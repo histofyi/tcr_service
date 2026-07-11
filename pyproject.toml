@@ -1,0 +1,15 @@
+[project]
+name = "tcr_service"
+version = "0.1.0"
+description = "TCR:pMHC structural analysis web service — a TCR-focused section of histo.fyi."
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "duckdb>=1.5.2",
+    "fastparquet>=2026.5.0",
+    "hypercorn>=0.17.3",
+    "jinja2>=3.1.4",
+    "polars>=1.41.2",
+    "pyarrow>=24.0.0",
+    "quart>=0.20.0",
+]

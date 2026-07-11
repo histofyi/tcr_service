@@ -1,0 +1,28 @@
+{
+ "clonotype_id": "CL068",
+ "tcr_id": "19954-16",
+ "tcr_name": "199.54-16",
+ "trav": "TRAV12-2*01",
+ "trbv": "TRBV19*01",
+ "traj": "TRAJ45*01",
+ "trbj": "TRBJ2-2*01",
+ "cdr3_alpha": "AVGGGADGLT",
+ "cdr3_beta": "ASSQGLAGAGELF",
+ "n_structures": 1,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2017-03-22",
+ "alleles": [
+  "HLA-A*02:01"
+ ],
+ "peptides": [
+  "ELAGIGILTV"
+ ],
+ "pdb_ids": [
+  "5NHT"
+ ],
+ "baseline_cdr3": {
+  "alpha": "AVGGGADGLT",
+  "beta": "ASSQGLAGAGELF"
+ },
+ "engineered_variants": []
+}

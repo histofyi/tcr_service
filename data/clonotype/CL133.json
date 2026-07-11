@@ -1,0 +1,28 @@
+{
+ "clonotype_id": "CL133",
+ "tcr_id": "n1732",
+ "tcr_name": "N17.3.2",
+ "trav": "TRAV19*01",
+ "trbv": "TRBV6-1*01",
+ "traj": "TRAJ17*01",
+ "trbj": "TRBJ1-1*01",
+ "cdr3_alpha": "ALSESGDAAGNKLT",
+ "cdr3_beta": "AEGENTEAF",
+ "n_structures": 1,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2025-11-23",
+ "alleles": [
+  "HLA-A*01:01"
+ ],
+ "peptides": [
+  "ILDTAGKEEY"
+ ],
+ "pdb_ids": [
+  "9ZCL"
+ ],
+ "baseline_cdr3": {
+  "alpha": "ALSESGDAAGNKLT",
+  "beta": "AEGENTEAF"
+ },
+ "engineered_variants": []
+}

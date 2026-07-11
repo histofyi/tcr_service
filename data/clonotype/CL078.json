@@ -1,0 +1,28 @@
+{
+ "clonotype_id": "CL078",
+ "tcr_id": "nybr",
+ "tcr_name": "NYBR",
+ "trav": "TRAV22*01",
+ "trbv": "TRBV11-2*01",
+ "traj": "TRAJ34*01",
+ "trbj": "TRBJ2-1*01",
+ "cdr3_alpha": "AVGGNDWNTDKLI",
+ "cdr3_beta": "ASSPLDVSISSYNEQF",
+ "n_structures": 1,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2019-03-18",
+ "alleles": [
+  "HLA-A*02:01"
+ ],
+ "peptides": [
+  "SLSKILDTV"
+ ],
+ "pdb_ids": [
+  "6R2L"
+ ],
+ "baseline_cdr3": {
+  "alpha": "AVGGNDWNTDKLI",
+  "beta": "ASSPLDVSISSYNEQF"
+ },
+ "engineered_variants": []
+}

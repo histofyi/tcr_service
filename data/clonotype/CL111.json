@@ -1,0 +1,28 @@
+{
+ "clonotype_id": "CL111",
+ "tcr_id": "s8",
+ "tcr_name": "S8",
+ "trav": "TRAV21*01",
+ "trbv": "TRBV9*01",
+ "traj": "TRAJ42*01",
+ "trbj": "TRBJ2-1*01",
+ "cdr3_alpha": "AVRQRGSQGNLI",
+ "cdr3_beta": "ASSPGGGHNEQF",
+ "n_structures": 1,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2024-02-09",
+ "alleles": [
+  "HLA-A*03:01"
+ ],
+ "peptides": [
+  "ELFSYLIEK"
+ ],
+ "pdb_ids": [
+  "8RYP"
+ ],
+ "baseline_cdr3": {
+  "alpha": "AVRQRGSQGNLI",
+  "beta": "ASSPGGGHNEQF"
+ },
+ "engineered_variants": []
+}

@@ -1,0 +1,28 @@
+{
+ "clonotype_id": "CL059",
+ "tcr_id": "c25",
+ "tcr_name": "C25",
+ "trav": "TRAV26-2*01",
+ "trbv": "TRBV7-6*01",
+ "traj": "TRAJ43*01",
+ "trbj": "TRBJ1-4*01",
+ "cdr3_alpha": "ILDNNNDMR",
+ "cdr3_beta": "ASSLAPGTTNEKLF",
+ "n_structures": 1,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2015-08-05",
+ "alleles": [
+  "HLA-A*02:01"
+ ],
+ "peptides": [
+  "NLVPMVATV"
+ ],
+ "pdb_ids": [
+  "5D2N"
+ ],
+ "baseline_cdr3": {
+  "alpha": "ILDNNNDMR",
+  "beta": "ASSLAPGTTNEKLF"
+ },
+ "engineered_variants": []
+}

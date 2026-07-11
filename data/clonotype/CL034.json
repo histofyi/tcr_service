@@ -1,0 +1,30 @@
+{
+ "clonotype_id": "CL034",
+ "tcr_id": "td08",
+ "tcr_name": "TD08",
+ "trav": "TRAV8-3*01",
+ "trbv": "TRBV7-9*03",
+ "traj": "TRAJ10*01",
+ "trbj": "TRBJ2-5*01",
+ "cdr3_alpha": "AVGFTGGGNKLT",
+ "cdr3_beta": "ASSDRDRVPETQY",
+ "n_structures": 2,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2022-09-14",
+ "alleles": [
+  "HLA-A*24:02"
+ ],
+ "peptides": [
+  "RFPLTFGW",
+  "RYPLTFGW"
+ ],
+ "pdb_ids": [
+  "8GVB",
+  "8GVG"
+ ],
+ "baseline_cdr3": {
+  "alpha": "AVGFTGGGNKLT",
+  "beta": "ASSDRDRVPETQY"
+ },
+ "engineered_variants": []
+}

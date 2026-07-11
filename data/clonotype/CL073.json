@@ -1,0 +1,28 @@
+{
+ "clonotype_id": "CL073",
+ "tcr_id": "kfj37",
+ "tcr_name": "KFJ37",
+ "trav": "TRAV4*01",
+ "trbv": "TRBV9*01",
+ "traj": "TRAJ8*01",
+ "trbj": "TRBJ2-1*01",
+ "cdr3_alpha": "LVVDQKLV",
+ "cdr3_beta": "ASSGGHTGSNEQF",
+ "n_structures": 1,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2017-09-02",
+ "alleles": [
+  "HLA-B*07:02"
+ ],
+ "peptides": [
+  "APRGPHGGAASGL"
+ ],
+ "pdb_ids": [
+  "6AVG"
+ ],
+ "baseline_cdr3": {
+  "alpha": "LVVDQKLV",
+  "beta": "ASSGGHTGSNEQF"
+ },
+ "engineered_variants": []
+}

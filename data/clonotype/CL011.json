@@ -1,0 +1,32 @@
+{
+ "clonotype_id": "CL011",
+ "tcr_id": "t4h2",
+ "tcr_name": "T4H2",
+ "trav": "TRAV12-2*01",
+ "trbv": "TRBV19*01",
+ "traj": "TRAJ49*01",
+ "trbj": "TRBJ2-7*01",
+ "cdr3_alpha": "AVNALLGNQFY",
+ "cdr3_beta": "ASSMGGTYEQY",
+ "n_structures": 3,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2020-01-27",
+ "alleles": [
+  "HLA-A*02:01"
+ ],
+ "peptides": [
+  "ILDQVPFSV",
+  "IMDQVPFSV",
+  "ITDQVPFSV"
+ ],
+ "pdb_ids": [
+  "6VM9",
+  "6VMA",
+  "6VMC"
+ ],
+ "baseline_cdr3": {
+  "alpha": "AVNALLGNQFY",
+  "beta": "ASSMGGTYEQY"
+ },
+ "engineered_variants": []
+}

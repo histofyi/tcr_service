@@ -1,0 +1,28 @@
+{
+ "clonotype_id": "CL098",
+ "tcr_id": "c3",
+ "tcr_name": "C3",
+ "trav": "TRAV21*01",
+ "trbv": "TRBV6-5*01",
+ "traj": "TRAJ15*01",
+ "trbj": "TRBJ1-2*01",
+ "cdr3_alpha": "AQLNQAGTALI",
+ "cdr3_beta": "ASSYGTGINYGYT",
+ "n_structures": 1,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2021-06-25",
+ "alleles": [
+  "HLA-B*53:01"
+ ],
+ "peptides": [
+  "QASQEVKNW"
+ ],
+ "pdb_ids": [
+  "7R80"
+ ],
+ "baseline_cdr3": {
+  "alpha": "AQLNQAGTALI",
+  "beta": "ASSYGTGINYGYT"
+ },
+ "engineered_variants": []
+}

@@ -1,0 +1,7 @@
+{% for navitem in navitems %}
+    {% if current_navitem == navitem.slug %}
+        <li><a class="is-active" href="{{ navitem.url }}">{{ navitem.label }}</a></li>
+    {% else %}
+        <li><a href="{{ navitem.url }}">{{ navitem.label }}</a></li>
+    {% endif %}
+{% endfor %}

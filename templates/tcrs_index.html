@@ -1,0 +1,99 @@
+{% set page_title = " | TCRs" %}
+{% extends "shared/base.html" %}
+
+{% block style %}
+<style>
+    .sort-bar { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+    .sort-bar a {
+        padding: 3px 8px;
+        border: 1px solid #cccccc;
+        border-radius: 3px;
+        text-decoration: none;
+    }
+    .sort-bar a.is-active { background: #333355; color: #ffffff; border-color: #333355; }
+
+    .tcr-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 12px;
+    }
+    .tcr-card { border: 1px solid #e0e0e0; border-radius: 4px; padding: 10px 12px; }
+    .tcr-card-toggle { display: none; }
+    .tcr-card-title a { font-weight: 600; font-size: 13pt; text-decoration: none; }
+    .tcr-card-flag, .structure-row-flag {
+        font-size: 8pt; text-transform: uppercase; letter-spacing: 0.04em;
+        background: rgba(120, 94, 240, 0.15); border: 1px solid #785ef0;
+        border-radius: 3px; padding: 1px 4px; margin-left: 4px;
+    }
+    .tcr-card-genes, .tcr-card-meta { margin-top: 3px; }
+    .tcr-card-meta small { margin-right: 4px; }
+    .tcr-card-antigens { margin-top: 6px; }
+    .antigen-dot {
+        display: inline-block; width: 11px; height: 11px; border-radius: 50%;
+        vertical-align: middle; margin-right: 2px;
+    }
+    .tcr-card-expand {
+        display: inline-block; margin-top: 8px; cursor: pointer;
+        user-select: none; font-size: 10pt; color: #333355;
+    }
+    .tcr-card-expand .icon::before {
+        content: "+"; font-weight: bold; margin-right: 4px;
+    }
+    .tcr-card-toggle:checked ~ .tcr-card-head .tcr-card-expand .icon::before {
+        content: "\2212"; /* minus */
+    }
+    .tcr-card-structures {
+        max-height: 0; overflow: hidden; transition: max-height 0.3s ease;
+        margin-top: 0;
+    }
+    .tcr-card-toggle:checked ~ .tcr-card-structures {
+        max-height: 2000px; margin-top: 8px;
+    }
+    .tcr-card-structure-link {
+        display: inline-block; font-family: 'IBM Plex Mono', monospace;
+        font-size: 10pt; padding: 2px 6px; margin: 2px;
+        border: 1px solid #e0e0e0; border-radius: 3px; text-decoration: none;
+    }
+</style>
+{% endblock %}
+
+{% block main %}
+<section>
+    <div class="grid-container">
+        <div class="column-full-width">
+            <div class="inner">
+                <h1 class="heading-medium vertical-spacing-top">TCRs</h1>
+                <p class="vertical-spacing-top-0-25">
+                    <small>{{ tcr_count }} T cell receptors with experimentally determined TCR:pMHC structures.</small>
+                </p>
+
+                <div class="sort-bar vertical-spacing-top-0-25">
+                    <small>Sort:</small>
+                    {% set labels = {
+                        'deposition_desc': 'Newest', 'deposition_asc': 'Oldest',
+                        'name_asc': 'Name A\u2013Z', 'name_desc': 'Name Z\u2013A',
+                        'structures_desc': 'Most structures', 'structures_asc': 'Fewest structures'
+                    } %}
+                    {% for option in sort_options %}
+                        <a href="/tcrs?sort={{ option }}" class="{{ 'is-active' if option == sort else '' }}">{{ labels[option] }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="grid-container">
+        <div class="column-full-width">
+            <div class="inner vertical-spacing-top-0-25">
+                <div class="tcr-grid">
+                    {% for tcr in tcrs %}
+                        {% include "fragments/_tcr_card.html" %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

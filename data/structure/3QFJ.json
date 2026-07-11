@@ -1,0 +1,428 @@
+{
+ "pdb_id": "3QFJ",
+ "resolution": 2.29,
+ "method": "x_ray",
+ "deposition_date": "2011-01-21",
+ "release_date": "2012-01-11",
+ "allele": "HLA-A*02:01",
+ "peptide_seq": "LLFGFPVYV",
+ "peptide_len": 9,
+ "antigen_type": "pathogen",
+ "trav": null,
+ "tcr_alpha_v_gene": "TRAV12-2*01",
+ "tcr_beta_v_gene": "TRBV6-5*01",
+ "tcr_alpha_j_gene": "TRAJ24*02",
+ "tcr_beta_j_gene": "TRBJ2-7*01",
+ "cdr3_alpha": "AVTTDSWGKLQ",
+ "cdr3_beta": "ASRPGLAGGRPEQY",
+ "cdrs": {
+  "alpha": {
+   "cdr1": "DRGSQS",
+   "cdr2": "IYSNGD",
+   "cdr3": "AVTTDSWGKLQ"
+  },
+  "beta": {
+   "cdr1": "MNHEY",
+   "cdr2": "SVGAGI",
+   "cdr3": "ASRPGLAGGRPEQY"
+  }
+ },
+ "has_altloc": false,
+ "n_copies": 1,
+ "publication": {
+  "pmid": "22019736",
+  "doi": "10.1016/j.jmb.2011.10.006",
+  "title": "Disparate degrees of hypervariable loop flexibility control T-cell receptor cross-reactivity, specificity, and binding mechanism.",
+  "journal": "Journal of molecular biology",
+  "year": 2011,
+  "authors": "Scott DR, Borbulevych OY, Piepenbrink KH, Corcelli SA, Baker BM."
+ },
+ "executive_summary": "The A6 \u03b1\u03b2 TCR was studied using crystallography, spectroscopy, and computation to understand how flexibility of complementarity-determining region (CDR) loops controls recognition of multiple antigenic peptides presented by MHC-I. The key finding is that CDR3\u03b2 and CDR3\u03b1 hypervariable loops have markedly different energy landscapes: CDR3\u03b2 displays a broad, smooth landscape enabling rapid sampling of multiple conformations compatible with diverse ligands, while CDR3\u03b1 has a rugged landscape constraining sampling to fewer conformations, thereby promoting specificity for particular peptides and MHC proteins. This differential loop flexibility directly explains TCR cross-reactivity and specificity at the molecular level, revealing that TCR binding employs a hybrid mechanism incorporating both conformational selection and induced fit. The work establishes loop dynamics as a fundamental determinant of TCR recognition breadth versus narrowness, with implications for understanding how a limited TCR repertoire achieves both functional cross-reactivity and the selectivity required to distinguish self from non-self.",
+ "noncanonical": {
+  "flag": false,
+  "evidence": ""
+ },
+ "com_px": {
+  "peptides": {
+   "x": 1034.7,
+   "y": 765.0
+  },
+  "tcrs": {
+   "x": 780.9,
+   "y": 801.4
+  },
+  "cdrs": {
+   "x": 901.3,
+   "y": 792.4
+  },
+  "cdr_alpha": {
+   "x": 715.5,
+   "y": 881.2
+  },
+  "cdr_beta": {
+   "x": 1083.7,
+   "y": 705.2
+  },
+  "footprint": {
+   "x": 817.2,
+   "y": 842.5
+  }
+ },
+ "contacts_loop_region": [
+  {
+   "complex": "1",
+   "cdr_loop": "CDR1_alpha",
+   "region": "alpha1",
+   "nb_atom_pairs": 6,
+   "ct_atom_pairs": 6
+  },
+  {
+   "complex": "1",
+   "cdr_loop": "CDR1_alpha",
+   "region": "alpha2",
+   "nb_atom_pairs": 43,
+   "ct_atom_pairs": 43
+  },
+  {
+   "complex": "1",
+   "cdr_loop": "CDR1_alpha",
+   "region": "peptide",
+   "nb_atom_pairs": 57,
+   "ct_atom_pairs": 57
+  },
+  {
+   "complex": "1",
+   "cdr_loop": "CDR1_alpha",
+   "region": "mhc_other",
+   "nb_atom_pairs": 10,
+   "ct_atom_pairs": 0
+  },
+  {
+   "complex": "1",
+   "cdr_loop": "CDR2_alpha",
+   "region": "alpha2",
+   "nb_atom_pairs": 43,
+   "ct_atom_pairs": 43
+  },
+  {
+   "complex": "1",
+   "cdr_loop": "CDR2_alpha",
+   "region": "mhc_other",
+   "nb_atom_pairs": 12,
+   "ct_atom_pairs": 0
+  },
+  {
+   "complex": "1",
+   "cdr_loop": "CDR3_alpha",
+   "region": "alpha1",
+   "nb_atom_pairs": 111,
+   "ct_atom_pairs": 111
+  },
+  {
+   "complex": "1",
+   "cdr_loop": "CDR3_alpha",
+   "region": "peptide",
+   "nb_atom_pairs": 67,
+   "ct_atom_pairs": 66
+  },
+  {
+   "complex": "1",
+   "cdr_loop": "CDR1_beta",
+   "region": "peptide",
+   "nb_atom_pairs": 13,
+   "ct_atom_pairs": 12
+  },
+  {
+   "complex": "1",
+   "cdr_loop": "CDR3_beta",
+   "region": "alpha1",
+   "nb_atom_pairs": 26,
+   "ct_atom_pairs": 26
+  },
+  {
+   "complex": "1",
+   "cdr_loop": "CDR3_beta",
+   "region": "alpha2",
+   "nb_atom_pairs": 87,
+   "ct_atom_pairs": 77
+  },
+  {
+   "complex": "1",
+   "cdr_loop": "CDR3_beta",
+   "region": "peptide",
+   "nb_atom_pairs": 89,
+   "ct_atom_pairs": 80
+  }
+ ],
+ "bsa": [
+  {
+   "complex": "hla_a_02_01__llfgfpvyv",
+   "cdr_loop": "alpha_cdr1",
+   "mhc_region": "alpha1",
+   "bsa_total": 55.89,
+   "bsa_cdr_side": 32.53
+  },
+  {
+   "complex": "hla_a_02_01__llfgfpvyv",
+   "cdr_loop": "alpha_cdr1",
+   "mhc_region": "alpha2",
+   "bsa_total": 137.72,
+   "bsa_cdr_side": 65.97
+  },
+  {
+   "complex": "hla_a_02_01__llfgfpvyv",
+   "cdr_loop": "alpha_cdr1",
+   "mhc_region": "peptide",
+   "bsa_total": 108.57,
+   "bsa_cdr_side": 54.13
+  },
+  {
+   "complex": "hla_a_02_01__llfgfpvyv",
+   "cdr_loop": "alpha_cdr2",
+   "mhc_region": "alpha1",
+   "bsa_total": 0.0,
+   "bsa_cdr_side": 0.0
+  },
+  {
+   "complex": "hla_a_02_01__llfgfpvyv",
+   "cdr_loop": "alpha_cdr2",
+   "mhc_region": "alpha2",
+   "bsa_total": 141.03,
+   "bsa_cdr_side": 63.78
+  },
+  {
+   "complex": "hla_a_02_01__llfgfpvyv",
+   "cdr_loop": "alpha_cdr2",
+   "mhc_region": "peptide",
+   "bsa_total": 0.0,
+   "bsa_cdr_side": 0.0
+  },
+  {
+   "complex": "hla_a_02_01__llfgfpvyv",
+   "cdr_loop": "alpha_cdr3",
+   "mhc_region": "alpha1",
+   "bsa_total": 299.13,
+   "bsa_cdr_side": 151.53
+  },
+  {
+   "complex": "hla_a_02_01__llfgfpvyv",
+   "cdr_loop": "alpha_cdr3",
+   "mhc_region": "alpha2",
+   "bsa_total": 0.0,
+   "bsa_cdr_side": 0.0
+  },
+  {
+   "complex": "hla_a_02_01__llfgfpvyv",
+   "cdr_loop": "alpha_cdr3",
+   "mhc_region": "peptide",
+   "bsa_total": 105.14,
+   "bsa_cdr_side": 48.42
+  },
+  {
+   "complex": "hla_a_02_01__llfgfpvyv",
+   "cdr_loop": "beta_cdr1",
+   "mhc_region": "alpha1",
+   "bsa_total": 4.33,
+   "bsa_cdr_side": 2.14
+  },
+  {
+   "complex": "hla_a_02_01__llfgfpvyv",
+   "cdr_loop": "beta_cdr1",
+   "mhc_region": "alpha2",
+   "bsa_total": 0.0,
+   "bsa_cdr_side": 0.0
+  },
+  {
+   "complex": "hla_a_02_01__llfgfpvyv",
+   "cdr_loop": "beta_cdr1",
+   "mhc_region": "peptide",
+   "bsa_total": 31.48,
+   "bsa_cdr_side": 15.0
+  },
+  {
+   "complex": "hla_a_02_01__llfgfpvyv",
+   "cdr_loop": "beta_cdr2",
+   "mhc_region": "alpha1",
+   "bsa_total": 5.42,
+   "bsa_cdr_side": 2.14
+  },
+  {
+   "complex": "hla_a_02_01__llfgfpvyv",
+   "cdr_loop": "beta_cdr2",
+   "mhc_region": "alpha2",
+   "bsa_total": 0.0,
+   "bsa_cdr_side": 0.0
+  },
+  {
+   "complex": "hla_a_02_01__llfgfpvyv",
+   "cdr_loop": "beta_cdr2",
+   "mhc_region": "peptide",
+   "bsa_total": 0.0,
+   "bsa_cdr_side": 0.0
+  },
+  {
+   "complex": "hla_a_02_01__llfgfpvyv",
+   "cdr_loop": "beta_cdr3",
+   "mhc_region": "alpha1",
+   "bsa_total": 46.71,
+   "bsa_cdr_side": 30.19
+  },
+  {
+   "complex": "hla_a_02_01__llfgfpvyv",
+   "cdr_loop": "beta_cdr3",
+   "mhc_region": "alpha2",
+   "bsa_total": 278.17,
+   "bsa_cdr_side": 133.05
+  },
+  {
+   "complex": "hla_a_02_01__llfgfpvyv",
+   "cdr_loop": "beta_cdr3",
+   "mhc_region": "peptide",
+   "bsa_total": 177.05,
+   "bsa_cdr_side": 82.75
+  }
+ ],
+ "shape_complementarity": [
+  {
+   "complex": "3QFJ_aligned_1",
+   "cdr_loop": "alpha_cdr1",
+   "mhc_region": "alpha1",
+   "sc": 0.3325417347781125,
+   "median_distance": 1.1337870318566563
+  },
+  {
+   "complex": "3QFJ_aligned_1",
+   "cdr_loop": "alpha_cdr1",
+   "mhc_region": "alpha2",
+   "sc": 0.644819892595652,
+   "median_distance": 0.6117367812969137
+  },
+  {
+   "complex": "3QFJ_aligned_1",
+   "cdr_loop": "alpha_cdr1",
+   "mhc_region": "peptide",
+   "sc": 0.8122475809444922,
+   "median_distance": 0.2969524304749501
+  },
+  {
+   "complex": "3QFJ_aligned_1",
+   "cdr_loop": "alpha_cdr2",
+   "mhc_region": "alpha1",
+   "sc": NaN,
+   "median_distance": NaN
+  },
+  {
+   "complex": "3QFJ_aligned_1",
+   "cdr_loop": "alpha_cdr2",
+   "mhc_region": "alpha2",
+   "sc": 0.5357778386810208,
+   "median_distance": 0.7546065040658063
+  },
+  {
+   "complex": "3QFJ_aligned_1",
+   "cdr_loop": "alpha_cdr2",
+   "mhc_region": "peptide",
+   "sc": 0.0,
+   "median_distance": 0.0
+  },
+  {
+   "complex": "3QFJ_aligned_1",
+   "cdr_loop": "alpha_cdr3",
+   "mhc_region": "alpha1",
+   "sc": 0.7800060251826468,
+   "median_distance": 0.3958590505817175
+  },
+  {
+   "complex": "3QFJ_aligned_1",
+   "cdr_loop": "alpha_cdr3",
+   "mhc_region": "alpha2",
+   "sc": 0.0,
+   "median_distance": 0.0
+  },
+  {
+   "complex": "3QFJ_aligned_1",
+   "cdr_loop": "alpha_cdr3",
+   "mhc_region": "peptide",
+   "sc": 0.8481560736144209,
+   "median_distance": 0.3332799245224576
+  },
+  {
+   "complex": "3QFJ_aligned_1",
+   "cdr_loop": "beta_cdr1",
+   "mhc_region": "alpha1",
+   "sc": 0.0,
+   "median_distance": 0.0
+  },
+  {
+   "complex": "3QFJ_aligned_1",
+   "cdr_loop": "beta_cdr1",
+   "mhc_region": "alpha2",
+   "sc": NaN,
+   "median_distance": NaN
+  },
+  {
+   "complex": "3QFJ_aligned_1",
+   "cdr_loop": "beta_cdr1",
+   "mhc_region": "peptide",
+   "sc": 0.8105734177800585,
+   "median_distance": 0.2140206267351139
+  },
+  {
+   "complex": "3QFJ_aligned_1",
+   "cdr_loop": "beta_cdr2",
+   "mhc_region": "alpha1",
+   "sc": 0.0,
+   "median_distance": 0.0
+  },
+  {
+   "complex": "3QFJ_aligned_1",
+   "cdr_loop": "beta_cdr2",
+   "mhc_region": "alpha2",
+   "sc": NaN,
+   "median_distance": NaN
+  },
+  {
+   "complex": "3QFJ_aligned_1",
+   "cdr_loop": "beta_cdr2",
+   "mhc_region": "peptide",
+   "sc": 0.0,
+   "median_distance": 0.0
+  },
+  {
+   "complex": "3QFJ_aligned_1",
+   "cdr_loop": "beta_cdr3",
+   "mhc_region": "alpha1",
+   "sc": 0.7473377608222247,
+   "median_distance": 0.4027263425398816
+  },
+  {
+   "complex": "3QFJ_aligned_1",
+   "cdr_loop": "beta_cdr3",
+   "mhc_region": "alpha2",
+   "sc": 0.667142974757656,
+   "median_distance": 0.5865571863236898
+  },
+  {
+   "complex": "3QFJ_aligned_1",
+   "cdr_loop": "beta_cdr3",
+   "mhc_region": "peptide",
+   "sc": 0.7275821940813534,
+   "median_distance": 0.5170951407136704
+  }
+ ],
+ "completeness": [
+  {
+   "complex": 1,
+   "iface_completeness_pct": 100.0,
+   "overall_completeness_pct": 93.2,
+   "a1_pct": 100.0,
+   "a2_pct": 100.0,
+   "pep_pct": 100.0,
+   "tcr_alpha_backbone_breaks": 0,
+   "tcr_beta_backbone_breaks": 0,
+   "iface_missing": NaN
+  }
+ ],
+ "executive_summary_attribution": "Summary generated by a literature research agent in Claude Science",
+ "executive_summary_attribution_html": "<smaller>Summary generated by a literature research agent in Claude Science</smaller>"
+}

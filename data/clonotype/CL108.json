@@ -1,0 +1,28 @@
+{
+ "clonotype_id": "CL108",
+ "tcr_id": "p1-15",
+ "tcr_name": "P1-15",
+ "trav": "TRAV12-1*01",
+ "trbv": "TRBV6-1*01",
+ "traj": "TRAJ41*01",
+ "trbj": "TRBJ2-7*01",
+ "cdr3_alpha": "VVNMLRNSGYALN",
+ "cdr3_beta": "ASSESGGYEQY",
+ "n_structures": 1,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2023-12-20",
+ "alleles": [
+  "HLA-A*24:02"
+ ],
+ "peptides": [
+  "NYNYLYRLF"
+ ],
+ "pdb_ids": [
+  "8RJ5"
+ ],
+ "baseline_cdr3": {
+  "alpha": "VVNMLRNSGYALN",
+  "beta": "ASSESGGYEQY"
+ },
+ "engineered_variants": []
+}

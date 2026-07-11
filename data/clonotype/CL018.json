@@ -1,0 +1,30 @@
+{
+ "clonotype_id": "CL018",
+ "tcr_id": "h27-14",
+ "tcr_name": "H27-14",
+ "trav": "TRAV21*01",
+ "trbv": "TRBV7-9*01",
+ "traj": "TRAJ12*01",
+ "trbj": "TRBJ2-2*01",
+ "cdr3_alpha": "AVRMDSSYKLI",
+ "cdr3_beta": "ASSSWDTGELF",
+ "n_structures": 2,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2012-09-20",
+ "alleles": [
+  "HLA-A*24:02"
+ ],
+ "peptides": [
+  "RYPLTFGWCF",
+  "RYPLTLGWCF"
+ ],
+ "pdb_ids": [
+  "3VXR",
+  "3VXS"
+ ],
+ "baseline_cdr3": {
+  "alpha": "AVRMDSSYKLI",
+  "beta": "ASSSWDTGELF"
+ },
+ "engineered_variants": []
+}

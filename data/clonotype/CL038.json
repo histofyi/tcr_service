@@ -1,0 +1,28 @@
+{
+ "clonotype_id": "CL038",
+ "tcr_id": "b7",
+ "tcr_name": "B7",
+ "trav": "TRAV29/DV5*01",
+ "trbv": "TRBV6-5*01",
+ "traj": "TRDJ1*01",
+ "trbj": "TRBJ2-7*01",
+ "cdr3_alpha": "AAMEGAQKLV",
+ "cdr3_beta": "ASSYPGGGFYEQY",
+ "n_structures": 1,
+ "has_engineered_variants": false,
+ "first_deposition_date": "1998-05-12",
+ "alleles": [
+  "HLA-A*02:01"
+ ],
+ "peptides": [
+  "LLFGYPVYV"
+ ],
+ "pdb_ids": [
+  "1BD2"
+ ],
+ "baseline_cdr3": {
+  "alpha": "AAMEGAQKLV",
+  "beta": "ASSYPGGGFYEQY"
+ },
+ "engineered_variants": []
+}

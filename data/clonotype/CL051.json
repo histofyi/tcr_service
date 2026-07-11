@@ -1,0 +1,28 @@
+{
+ "clonotype_id": "CL051",
+ "tcr_id": "rl42",
+ "tcr_name": "RL42",
+ "trav": "TRAV12-1*01",
+ "trbv": "TRBV6-2*01",
+ "traj": "TRAJ23*01",
+ "trbj": "TRBJ2-4*01",
+ "cdr3_alpha": "VVRAGKLI",
+ "cdr3_beta": "ASGQGNFDIQY",
+ "n_structures": 1,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2011-06-22",
+ "alleles": [
+  "HLA-B*08:01"
+ ],
+ "peptides": [
+  "FLRGRAYGL"
+ ],
+ "pdb_ids": [
+  "3SJV"
+ ],
+ "baseline_cdr3": {
+  "alpha": "VVRAGKLI",
+  "beta": "ASGQGNFDIQY"
+ },
+ "engineered_variants": []
+}

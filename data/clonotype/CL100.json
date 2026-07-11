@@ -1,0 +1,28 @@
+{
+ "clonotype_id": "CL100",
+ "tcr_id": "6-11",
+ "tcr_name": "6-11",
+ "trav": "TRAV6*01",
+ "trbv": "TRBV11-2*01",
+ "traj": "TRAJ43*01",
+ "trbj": "TRBJ2-2*01",
+ "cdr3_alpha": "ALDIYPHDMR",
+ "cdr3_beta": "ASSLDPGDTGELF",
+ "n_structures": 1,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2021-07-26",
+ "alleles": [
+  "HLA-A*02:01"
+ ],
+ "peptides": [
+  "HMTEVVRHC"
+ ],
+ "pdb_ids": [
+  "7RM4"
+ ],
+ "baseline_cdr3": {
+  "alpha": "ALDIYPHDMR",
+  "beta": "ASSLDPGDTGELF"
+ },
+ "engineered_variants": []
+}

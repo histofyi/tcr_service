@@ -1,0 +1,30 @@
+{
+ "clonotype_id": "CL025",
+ "tcr_id": "d30",
+ "tcr_name": "D30",
+ "trav": "TRAV30*05",
+ "trbv": "TRBV11-2*01",
+ "traj": "TRAJ39*01",
+ "trbj": "TRBJ1-2*01",
+ "cdr3_alpha": "GLGDAGNMLT",
+ "cdr3_beta": "ASSLGQGLLYGYT",
+ "n_structures": 2,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2017-07-25",
+ "alleles": [
+  "HLA-A*11:01"
+ ],
+ "peptides": [
+  "GTSGSPIINR",
+  "GTSGSPIVNR"
+ ],
+ "pdb_ids": [
+  "5WKF",
+  "5WKH"
+ ],
+ "baseline_cdr3": {
+  "alpha": "GLGDAGNMLT",
+  "beta": "ASSLGQGLLYGYT"
+ },
+ "engineered_variants": []
+}

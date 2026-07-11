@@ -1,0 +1,28 @@
+{
+ "clonotype_id": "CL066",
+ "tcr_id": "ls10",
+ "tcr_name": "LS10",
+ "trav": "TRAV38-2/DV8*01",
+ "trbv": "TRBV19*01",
+ "traj": "TRDJ1*01",
+ "trbj": "TRBJ1-2*01",
+ "cdr3_alpha": "AWGVNAGGTSYGKLT",
+ "cdr3_beta": "ASSIGVYGYT",
+ "n_structures": 1,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2016-04-20",
+ "alleles": [
+  "HLA-A*02:01"
+ ],
+ "peptides": [
+  "GILGFVFTL"
+ ],
+ "pdb_ids": [
+  "5JHD"
+ ],
+ "baseline_cdr3": {
+  "alpha": "AWGVNAGGTSYGKLT",
+  "beta": "ASSIGVYGYT"
+ },
+ "engineered_variants": []
+}

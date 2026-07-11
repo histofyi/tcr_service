@@ -1,0 +1,29 @@
+{
+ "clonotype_id": "CL024",
+ "tcr_id": "1406",
+ "tcr_name": "1406",
+ "trav": "TRAV38-2/DV8*01",
+ "trbv": "TRBV25-1*01",
+ "traj": "TRDJ1*01",
+ "trbj": "TRBJ2-7*01",
+ "cdr3_alpha": "AYGEDDKII",
+ "cdr3_beta": "ASRRGPYEQY",
+ "n_structures": 2,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2016-05-16",
+ "alleles": [
+  "HLA-A*02:01"
+ ],
+ "peptides": [
+  "KLVALGINAV"
+ ],
+ "pdb_ids": [
+  "5JZI",
+  "5YXN"
+ ],
+ "baseline_cdr3": {
+  "alpha": "AYGEDDKII",
+  "beta": "ASRRGPYEQY"
+ },
+ "engineered_variants": []
+}

@@ -1,0 +1,28 @@
+{
+ "clonotype_id": "CL101",
+ "tcr_id": "0606t1-2",
+ "tcr_name": "0606T1-2",
+ "trav": "TRAV4*01",
+ "trbv": "TRBV11-2*01",
+ "traj": "TRAJ9*01",
+ "trbj": "TRBJ2-7*01",
+ "cdr3_alpha": "LVGGAYTGGFKTI",
+ "cdr3_beta": "ASSLVAETYEQY",
+ "n_structures": 1,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2021-08-09",
+ "alleles": [
+  "HLA-A*03:01"
+ ],
+ "peptides": [
+  "ALHGGWTTK"
+ ],
+ "pdb_ids": [
+  "7RRG"
+ ],
+ "baseline_cdr3": {
+  "alpha": "LVGGAYTGGFKTI",
+  "beta": "ASSLVAETYEQY"
+ },
+ "engineered_variants": []
+}

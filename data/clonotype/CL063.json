@@ -1,0 +1,28 @@
+{
+ "clonotype_id": "CL063",
+ "tcr_id": "pf6",
+ "tcr_name": "PF6",
+ "trav": "TRAV27*01",
+ "trbv": "TRBV19*01",
+ "traj": "TRAJ42*01",
+ "trbj": "TRBJ2-7*01",
+ "cdr3_alpha": "AGAIGPSNTGKLI",
+ "cdr3_beta": "ASSIRSSYEQY",
+ "n_structures": 1,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2015-11-18",
+ "alleles": [
+  "HLA-A*02:01"
+ ],
+ "peptides": [
+  "GILGFVFTL"
+ ],
+ "pdb_ids": [
+  "5EUO"
+ ],
+ "baseline_cdr3": {
+  "alpha": "AGAIGPSNTGKLI",
+  "beta": "ASSIRSSYEQY"
+ },
+ "engineered_variants": []
+}

@@ -1,0 +1,28 @@
+{
+ "clonotype_id": "CL094",
+ "tcr_id": "jdi",
+ "tcr_name": "JDI",
+ "trav": "TRAV19*01",
+ "trbv": "TRBV6-2*01",
+ "traj": "TRAJ28*01",
+ "trbj": "TRBJ1-6*01",
+ "cdr3_alpha": "ALSGPSGAGSYQLT",
+ "cdr3_beta": "ASSYGPGQHNSPLH",
+ "n_structures": 1,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2021-07-30",
+ "alleles": [
+  "HLA-A*11:01"
+ ],
+ "peptides": [
+  "VVVGADGVGK"
+ ],
+ "pdb_ids": [
+  "7PB2"
+ ],
+ "baseline_cdr3": {
+  "alpha": "ALSGPSGAGSYQLT",
+  "beta": "ASSYGPGQHNSPLH"
+ },
+ "engineered_variants": []
+}

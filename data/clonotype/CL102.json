@@ -1,0 +1,28 @@
+{
+ "clonotype_id": "CL102",
+ "tcr_id": "as84",
+ "tcr_name": "AS8.4",
+ "trav": "TRAV21*01",
+ "trbv": "TRBV9*01",
+ "traj": "TRAJ28*01",
+ "trbj": "TRBJ2-3*01",
+ "cdr3_alpha": "AVNSPGSGAGSYQLT",
+ "cdr3_beta": "ASSVGTYSTDTQY",
+ "n_structures": 1,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2022-05-19",
+ "alleles": [
+  "HLA-B*27:05"
+ ],
+ "peptides": [
+  "LRVMMLAPF"
+ ],
+ "pdb_ids": [
+  "8CX4"
+ ],
+ "baseline_cdr3": {
+  "alpha": "AVNSPGSGAGSYQLT",
+  "beta": "ASSVGTYSTDTQY"
+ },
+ "engineered_variants": []
+}

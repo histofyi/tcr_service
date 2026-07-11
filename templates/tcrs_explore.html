@@ -1,0 +1,40 @@
+{% set page_title = " | Explore" %}
+{% extends "shared/base.html" %}
+
+{% block style %}
+<style>
+    .placeholder-slot {
+        border: 1px dashed #cccccc; border-radius: 4px; padding: 24px;
+        color: #888899; text-align: center;
+    }
+</style>
+{% endblock %}
+
+{% block main %}
+<section>
+    <div class="grid-container">
+        <div class="column-full-width">
+            <div class="inner">
+                <h1 class="heading-medium vertical-spacing-top">Explore</h1>
+                <p class="vertical-spacing-top-0-25">
+                    <small>Interactive centre-of-mass viewer across all TCR:pMHC footprints.</small>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{# The COM viewer component (com_viewer.html, ~880KB) is dropped into this slot
+   in a later pass; the route + template slot exist so the section shell is wired. #}
+<section>
+    <div class="grid-container">
+        <div class="column-full-width">
+            <div class="inner vertical-spacing-top-0-25">
+                <div class="placeholder-slot" style="min-height: 400px; display: flex; align-items: center; justify-content: center;">
+                    The interactive COM viewer renders here (component wired in a later pass).
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

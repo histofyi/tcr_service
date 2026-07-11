@@ -1,0 +1,28 @@
+{
+ "clonotype_id": "CL125",
+ "tcr_id": "tcr156",
+ "tcr_name": "TCR156",
+ "trav": "TRAV12-2*01",
+ "trbv": "TRBV9*01",
+ "traj": "TRAJ31*01",
+ "trbj": "TRBJ1-1*01",
+ "cdr3_alpha": "AVNNARLM",
+ "cdr3_beta": "ASSVAGSPEAF",
+ "n_structures": 1,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2025-03-04",
+ "alleles": [
+  "HLA-A*02:01"
+ ],
+ "peptides": [
+  "TLMSAMTNL"
+ ],
+ "pdb_ids": [
+  "9NMU"
+ ],
+ "baseline_cdr3": {
+  "alpha": "AVNNARLM",
+  "beta": "ASSVAGSPEAF"
+ },
+ "engineered_variants": []
+}

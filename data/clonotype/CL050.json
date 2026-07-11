@@ -1,0 +1,28 @@
+{
+ "clonotype_id": "CL050",
+ "tcr_id": "as01",
+ "tcr_name": "AS01",
+ "trav": "TRAV5*01",
+ "trbv": "TRBV20-1*01",
+ "traj": "TRAJ31*01",
+ "trbj": "TRBJ1-2*01",
+ "cdr3_alpha": "AEDNNARLM",
+ "cdr3_beta": "SARDGTGNGYT",
+ "n_structures": 1,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2010-07-27",
+ "alleles": [
+  "HLA-A*02:01"
+ ],
+ "peptides": [
+  "GLCTLVAML"
+ ],
+ "pdb_ids": [
+  "3O4L"
+ ],
+ "baseline_cdr3": {
+  "alpha": "AEDNNARLM",
+  "beta": "SARDGTGNGYT"
+ },
+ "engineered_variants": []
+}

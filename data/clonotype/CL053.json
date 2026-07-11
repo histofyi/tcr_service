@@ -1,0 +1,28 @@
+{
+ "clonotype_id": "CL053",
+ "tcr_id": "jkf6",
+ "tcr_name": "JKF6",
+ "trav": "TRAV12-2*01",
+ "trbv": "TRBV28*01",
+ "traj": "TRAJ24*02",
+ "trbj": "TRBJ2-7*01",
+ "cdr3_alpha": "AVSGGGADGLT",
+ "cdr3_beta": "ASSFLGTGVEQY",
+ "n_structures": 1,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2012-04-25",
+ "alleles": [
+  "HLA-A*02:01"
+ ],
+ "peptides": [
+  "ALGIGILTV"
+ ],
+ "pdb_ids": [
+  "4EUP"
+ ],
+ "baseline_cdr3": {
+  "alpha": "AVSGGGADGLT",
+  "beta": "ASSFLGTGVEQY"
+ },
+ "engineered_variants": []
+}

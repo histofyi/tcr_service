@@ -1,0 +1,28 @@
+{
+ "clonotype_id": "CL122",
+ "tcr_id": "lll6e",
+ "tcr_name": "LLL6E",
+ "trav": "TRAV12-1*01",
+ "trbv": "TRBV9*01",
+ "traj": "TRAJ17*01",
+ "trbj": "TRBJ2-3*01",
+ "cdr3_alpha": "VQGAAGNKLT",
+ "cdr3_beta": "ASSVELNSYEQY",
+ "n_structures": 1,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2024-08-10",
+ "alleles": [
+  "HLA-A*02:01"
+ ],
+ "peptides": [
+  "LLLDRLNQL"
+ ],
+ "pdb_ids": [
+  "9J4U"
+ ],
+ "baseline_cdr3": {
+  "alpha": "VQGAAGNKLT",
+  "beta": "ASSVELNSYEQY"
+ },
+ "engineered_variants": []
+}

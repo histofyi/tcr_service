@@ -1,0 +1,34 @@
+{
+ "clonotype_id": "CL008",
+ "tcr_id": "dmf5",
+ "tcr_name": "DMF5",
+ "trav": "TRAV12-2*01",
+ "trbv": "TRBV6-4*01",
+ "traj": "TRAJ23*01",
+ "trbj": "TRBJ1-1*01",
+ "cdr3_alpha": "AVNFGGGKLI",
+ "cdr3_beta": "ASSLSFGTEAF",
+ "n_structures": 4,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2011-01-18",
+ "alleles": [
+  "HLA-A*02:01"
+ ],
+ "peptides": [
+  "AAGIGILTV",
+  "ELAGIGILTV",
+  "MMWDRGLGMM",
+  "SMLGIGIVPV"
+ ],
+ "pdb_ids": [
+  "3QDG",
+  "3QDJ",
+  "6AM5",
+  "6AMU"
+ ],
+ "baseline_cdr3": {
+  "alpha": "AVNFGGGKLI",
+  "beta": "ASSLSFGTEAF"
+ },
+ "engineered_variants": []
+}

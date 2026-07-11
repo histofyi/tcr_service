@@ -1,0 +1,42 @@
+{
+ "clonotype_id": "CL061",
+ "tcr_id": "rd1-mart1high",
+ "tcr_name": "RD1-MART1high",
+ "trav": "TRAV12-2*01",
+ "trbv": "TRBV6-5*01",
+ "traj": "TRAJ24*02",
+ "trbj": "TRBJ2-7*01",
+ "cdr3_alpha": "AVTKYSWGKLQ",
+ "cdr3_beta": "ASRPGWMAGGVELY",
+ "n_structures": 1,
+ "has_engineered_variants": true,
+ "first_deposition_date": "2015-10-15",
+ "alleles": [
+  "HLA-A*02:01"
+ ],
+ "peptides": [
+  "ELAGIGILTV"
+ ],
+ "pdb_ids": [
+  "5E9D"
+ ],
+ "baseline_cdr3": {
+  "alpha": "AVTKYSWGKLQ",
+  "beta": "ASRPGWMAGGVELY"
+ },
+ "engineered_variants": [
+  {
+   "pdb_id": "5E9D",
+   "cdr3_alpha": "AVTKYSWGKLQ",
+   "cdr3_beta": "ASRPGWMAGGVELY",
+   "cdr3_alpha_differs": false,
+   "cdr3_beta_differs": false,
+   "publication": {
+    "title": "An Engineered Switch in T Cell Receptor Specificity Leads to an Unusual but Functional Binding Geometry.",
+    "doi": "10.1016/j.str.2016.04.011",
+    "pmid": "27238970"
+   },
+   "patent": null
+  }
+ ]
+}

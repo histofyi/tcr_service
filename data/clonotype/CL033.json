@@ -1,0 +1,30 @@
+{
+ "clonotype_id": "CL033",
+ "tcr_id": "rlq7",
+ "tcr_name": "RLQ7",
+ "trav": "TRAV38-2/DV8*01",
+ "trbv": "TRBV12-3*01",
+ "traj": "TRDJ4*01",
+ "trbj": "TRBJ2-3*01",
+ "cdr3_alpha": "ASSGNTPLV",
+ "cdr3_beta": "ASTWGRASTDTQY",
+ "n_structures": 2,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2022-08-25",
+ "alleles": [
+  "HLA-A*02:01"
+ ],
+ "peptides": [
+  "RLQSLQIYV",
+  "RLQSLQTYV"
+ ],
+ "pdb_ids": [
+  "8GOM",
+  "8GON"
+ ],
+ "baseline_cdr3": {
+  "alpha": "ASSGNTPLV",
+  "beta": "ASTWGRASTDTQY"
+ },
+ "engineered_variants": []
+}

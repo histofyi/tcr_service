@@ -1,0 +1,3856 @@
+[
+  {
+    "tcr_id": "0606t1-2",
+    "tcr_name": "0606T1-2",
+    "clonotype_ids": [
+      "CL101"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV4*01"
+    ],
+    "trbv": [
+      "TRBV11-2*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2021-08-09",
+    "latest_deposition_date": "2021-08-09",
+    "alleles": [
+      "HLA-A*03:01"
+    ],
+    "peptides": [
+      "ALHGGWTTK"
+    ],
+    "antigen_types": [
+      "tumour"
+    ],
+    "pdb_ids": [
+      "7RRG"
+    ]
+  },
+  {
+    "tcr_id": "1-2c-t96f",
+    "tcr_name": "1-2C-T96F",
+    "clonotype_ids": [
+      "CL119"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV7-2*02"
+    ],
+    "trbv": [
+      "TRBV13-2*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2024-06-29",
+    "latest_deposition_date": "2024-06-29",
+    "alleles": [
+      "HLA-A*11:01"
+    ],
+    "peptides": [
+      "VVGAVGVGK"
+    ],
+    "antigen_types": [
+      "tumour"
+    ],
+    "pdb_ids": [
+      "9IKY"
+    ]
+  },
+  {
+    "tcr_id": "12-6",
+    "tcr_name": "12-6",
+    "clonotype_ids": [
+      "CL088"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV12-1*01"
+    ],
+    "trbv": [
+      "TRBV6-1*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2020-02-08",
+    "latest_deposition_date": "2020-02-08",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "HMTEVVRHC"
+    ],
+    "antigen_types": [
+      "tumour"
+    ],
+    "pdb_ids": [
+      "6VRM"
+    ]
+  },
+  {
+    "tcr_id": "1406",
+    "tcr_name": "1406",
+    "clonotype_ids": [
+      "CL024"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV38-2/DV8*01"
+    ],
+    "trbv": [
+      "TRBV25-1*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2016-05-16",
+    "latest_deposition_date": "2016-05-16",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "KLVALGINAV"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "5JZI"
+    ]
+  },
+  {
+    "tcr_id": "192",
+    "tcr_name": "19.2",
+    "clonotype_ids": [
+      "CL036"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV21*01"
+    ],
+    "trbv": [
+      "TRBV9*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2025-06-26",
+    "latest_deposition_date": "2025-06-26",
+    "alleles": [
+      "HLA-B*27:05"
+    ],
+    "peptides": [
+      "LRVMMLAPF"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "9PBG"
+    ]
+  },
+  {
+    "tcr_id": "19916",
+    "tcr_name": "199.16",
+    "clonotype_ids": [
+      "CL069"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV12-2*01"
+    ],
+    "trbv": [
+      "TRBV19*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2017-04-20",
+    "latest_deposition_date": "2017-04-20",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "ELAGIGILTV"
+    ],
+    "antigen_types": [
+      "tumour"
+    ],
+    "pdb_ids": [
+      "5NQK"
+    ]
+  },
+  {
+    "tcr_id": "19954-16",
+    "tcr_name": "199.54-16",
+    "clonotype_ids": [
+      "CL068"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV12-2*01"
+    ],
+    "trbv": [
+      "TRBV19*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2017-03-22",
+    "latest_deposition_date": "2017-03-22",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "ELAGIGILTV"
+    ],
+    "antigen_types": [
+      "tumour"
+    ],
+    "pdb_ids": [
+      "5NHT"
+    ]
+  },
+  {
+    "tcr_id": "1a2",
+    "tcr_name": "1a2",
+    "clonotype_ids": [
+      "CL087"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV12-3*01"
+    ],
+    "trbv": [
+      "TRBV27*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2020-02-05",
+    "latest_deposition_date": "2020-02-05",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "HMTEVVRHC"
+    ],
+    "antigen_types": [
+      "tumour"
+    ],
+    "pdb_ids": [
+      "6VQO"
+    ]
+  },
+  {
+    "tcr_id": "1e6",
+    "tcr_name": "1E6",
+    "clonotype_ids": [
+      "CL002"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV12-3*01"
+    ],
+    "trbv": [
+      "TRBV12-4*01"
+    ],
+    "n_structures": 9,
+    "first_deposition_date": "2011-11-26",
+    "latest_deposition_date": "2016-02-01",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "ALWGPDPAAA",
+      "AQWGPDPAAA",
+      "MVWGPDPLYV",
+      "RQFGPDFPTI",
+      "RQFGPDWIVA",
+      "RQWGPDPAAV",
+      "YLGGPDFPTI",
+      "YQFGPDFPIA"
+    ],
+    "antigen_types": [
+      "autoimmune",
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "3UTS",
+      "3UTT",
+      "5C07",
+      "5C08",
+      "5C09",
+      "5C0A",
+      "5C0B",
+      "5C0C",
+      "5HYJ"
+    ]
+  },
+  {
+    "tcr_id": "1g4",
+    "tcr_name": "1G4",
+    "clonotype_ids": [
+      "CL007",
+      "CL039",
+      "CL041",
+      "CL042",
+      "CL043"
+    ],
+    "n_clonotypes": 5,
+    "has_engineered_variants": true,
+    "trav": [
+      "TRAV21*01"
+    ],
+    "trbv": [
+      "TRBV6-5*01"
+    ],
+    "n_structures": 8,
+    "first_deposition_date": "2005-03-31",
+    "latest_deposition_date": "2018-12-04",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "SLLMWITQC",
+      "SLLMWITQV"
+    ],
+    "antigen_types": [
+      "pathogen",
+      "tumour"
+    ],
+    "pdb_ids": [
+      "2BNQ",
+      "2BNR",
+      "2F53",
+      "2F54",
+      "2P5E",
+      "2P5W",
+      "2PYE",
+      "6Q3S"
+    ]
+  },
+  {
+    "tcr_id": "21lt2-2",
+    "tcr_name": "21LT2-2",
+    "clonotype_ids": [
+      "CL090"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV12-2*01"
+    ],
+    "trbv": [
+      "TRBV9*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2020-12-14",
+    "latest_deposition_date": "2020-12-14",
+    "alleles": [
+      "HLA-A*03:01"
+    ],
+    "peptides": [
+      "ALHGGWTTK"
+    ],
+    "antigen_types": [
+      "tumour"
+    ],
+    "pdb_ids": [
+      "7L1D"
+    ]
+  },
+  {
+    "tcr_id": "302-til",
+    "tcr_name": "302 TIL",
+    "clonotype_ids": [
+      "CL026"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV38-2/DV8*01"
+    ],
+    "trbv": [
+      "TRBV12-3*01"
+    ],
+    "n_structures": 2,
+    "first_deposition_date": "2019-10-04",
+    "latest_deposition_date": "2019-10-04",
+    "alleles": [
+      "HLA-A*02:06"
+    ],
+    "peptides": [
+      "KQWLVWLFL",
+      "KQWLVWLLL"
+    ],
+    "antigen_types": [
+      "tumour"
+    ],
+    "pdb_ids": [
+      "6UK2",
+      "6UK4"
+    ]
+  },
+  {
+    "tcr_id": "302til",
+    "tcr_name": "302TIL",
+    "clonotype_ids": [
+      "CL077"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV38-2/DV8*01"
+    ],
+    "trbv": [
+      "TRBV12-3*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2019-05-31",
+    "latest_deposition_date": "2019-05-31",
+    "alleles": [
+      "HLA-A*02:06"
+    ],
+    "peptides": [
+      "KQWLVWLFL"
+    ],
+    "antigen_types": [
+      "tumour"
+    ],
+    "pdb_ids": [
+      "6P64"
+    ]
+  },
+  {
+    "tcr_id": "3180",
+    "tcr_name": "3180",
+    "clonotype_ids": [
+      "CL014"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV13-1*01"
+    ],
+    "trbv": [
+      "TRBV20-1*01"
+    ],
+    "n_structures": 3,
+    "first_deposition_date": "2022-09-29",
+    "latest_deposition_date": "2022-10-02",
+    "alleles": [
+      "HLA-B*35:01"
+    ],
+    "peptides": [
+      "LPFDKATIM",
+      "LPFDKSTIM",
+      "LPFEKSTIM"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "8EN8",
+      "8ENH",
+      "8EO8"
+    ]
+  },
+  {
+    "tcr_id": "38-10",
+    "tcr_name": "38-10",
+    "clonotype_ids": [
+      "CL089"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV38-2/DV8*01"
+    ],
+    "trbv": [
+      "TRBV10-3*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2020-02-08",
+    "latest_deposition_date": "2020-02-08",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "HMTEVVRHC"
+    ],
+    "antigen_types": [
+      "tumour"
+    ],
+    "pdb_ids": [
+      "6VRN"
+    ]
+  },
+  {
+    "tcr_id": "3b",
+    "tcr_name": "3B",
+    "clonotype_ids": [
+      "CL056"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV17*01"
+    ],
+    "trbv": [
+      "TRBV7-3*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2013-09-03",
+    "latest_deposition_date": "2013-09-03",
+    "alleles": [
+      "HLA-B*51:01"
+    ],
+    "peptides": [
+      "TAFTIPSI"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "4MJI"
+    ]
+  },
+  {
+    "tcr_id": "4c6",
+    "tcr_name": "4C6",
+    "clonotype_ids": [
+      "CL013"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV5*01"
+    ],
+    "trbv": [
+      "TRBV7-9*03"
+    ],
+    "n_structures": 3,
+    "first_deposition_date": "2021-02-23",
+    "latest_deposition_date": "2021-02-23",
+    "alleles": [
+      "HLA-A*24:02"
+    ],
+    "peptides": [
+      "LWMRLLPLL",
+      "QLPRLFPLL"
+    ],
+    "antigen_types": [
+      "autoimmune"
+    ],
+    "pdb_ids": [
+      "7NME",
+      "7NMF",
+      "7NMG"
+    ]
+  },
+  {
+    "tcr_id": "589",
+    "tcr_name": "589",
+    "clonotype_ids": [
+      "CL074"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV19*01"
+    ],
+    "trbv": [
+      "TRBV5-4*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2017-11-03",
+    "latest_deposition_date": "2017-11-03",
+    "alleles": [
+      "HLA-B*35:01"
+    ],
+    "peptides": [
+      "IPLTEEAEL"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "6BJ2"
+    ]
+  },
+  {
+    "tcr_id": "5934",
+    "tcr_name": "5934",
+    "clonotype_ids": [
+      "CL123"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV13-1*01"
+    ],
+    "trbv": [
+      "TRBV3-1*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2024-10-17",
+    "latest_deposition_date": "2024-10-17",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "FSGEYIPTV"
+    ],
+    "antigen_types": [
+      "tumour"
+    ],
+    "pdb_ids": [
+      "9K2I"
+    ]
+  },
+  {
+    "tcr_id": "6-11",
+    "tcr_name": "6-11",
+    "clonotype_ids": [
+      "CL100"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV6*01"
+    ],
+    "trbv": [
+      "TRBV11-2*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2021-07-26",
+    "latest_deposition_date": "2021-07-26",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "HMTEVVRHC"
+    ],
+    "antigen_types": [
+      "tumour"
+    ],
+    "pdb_ids": [
+      "7RM4"
+    ]
+  },
+  {
+    "tcr_id": "868",
+    "tcr_name": "868",
+    "clonotype_ids": [
+      "CL010"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV12-2*01"
+    ],
+    "trbv": [
+      "TRBV5-6*01"
+    ],
+    "n_structures": 3,
+    "first_deposition_date": "2017-04-05",
+    "latest_deposition_date": "2017-04-05",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "SLFNTIAVL",
+      "SLYNTIATL",
+      "SLYNTVATL"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "5NME",
+      "5NMF",
+      "5NMG"
+    ]
+  },
+  {
+    "tcr_id": "9a",
+    "tcr_name": "9a",
+    "clonotype_ids": [
+      "CL027"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV4*01"
+    ],
+    "trbv": [
+      "TRBV5-6*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2019-10-08",
+    "latest_deposition_date": "2019-10-08",
+    "alleles": [
+      "HLA-C*08:02"
+    ],
+    "peptides": [
+      "GADGVGKSA"
+    ],
+    "antigen_types": [
+      "tumour"
+    ],
+    "pdb_ids": [
+      "6ULR"
+    ]
+  },
+  {
+    "tcr_id": "9d",
+    "tcr_name": "9d",
+    "clonotype_ids": [
+      "CL084"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV4*01"
+    ],
+    "trbv": [
+      "TRBV5-6*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2019-10-08",
+    "latest_deposition_date": "2019-10-08",
+    "alleles": [
+      "HLA-C*08:02"
+    ],
+    "peptides": [
+      "GADGVGKSA"
+    ],
+    "antigen_types": [
+      "tumour"
+    ],
+    "pdb_ids": [
+      "6ULN"
+    ]
+  },
+  {
+    "tcr_id": "a24b17",
+    "tcr_name": "a24b17",
+    "clonotype_ids": [
+      "CL005"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV12-2*01"
+    ],
+    "trbv": [
+      "TRBV30*02"
+    ],
+    "n_structures": 4,
+    "first_deposition_date": "2013-02-28",
+    "latest_deposition_date": "2019-12-05",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "EAAGIGILTV",
+      "ELAAIGILTV",
+      "ELAGIGALTV",
+      "ELAGIGILTV"
+    ],
+    "antigen_types": [
+      "tumour"
+    ],
+    "pdb_ids": [
+      "4JFD",
+      "4JFE",
+      "4JFF",
+      "6TMO"
+    ]
+  },
+  {
+    "tcr_id": "a6",
+    "tcr_name": "A6",
+    "clonotype_ids": [
+      "CL001"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV12-2*01"
+    ],
+    "trbv": [
+      "TRBV6-5*01"
+    ],
+    "n_structures": 10,
+    "first_deposition_date": "1997-07-21",
+    "latest_deposition_date": "2011-01-21",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "LGYGFVNYI",
+      "LLFGFPVYV",
+      "LLFGKPVYV",
+      "LLFGYAVYV",
+      "LLFGYPRYV",
+      "LLFGYPVAV",
+      "LLFGYPVYV",
+      "MLWGYLQYV"
+    ],
+    "antigen_types": [
+      "autoimmune",
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "1AO7",
+      "1QRN",
+      "1QSE",
+      "1QSF",
+      "2GJ6",
+      "3D39",
+      "3D3V",
+      "3H9S",
+      "3PWP",
+      "3QFJ"
+    ]
+  },
+  {
+    "tcr_id": "a6-c134",
+    "tcr_name": "A6_c134",
+    "clonotype_ids": [
+      "CL020"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV12-2*01"
+    ],
+    "trbv": [
+      "TRBV6-5*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2012-06-28",
+    "latest_deposition_date": "2012-06-28",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "LLFGYPVYV"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "4FTV"
+    ]
+  },
+  {
+    "tcr_id": "a7b2",
+    "tcr_name": "a7b2",
+    "clonotype_ids": [
+      "CL082"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV26-1*01"
+    ],
+    "trbv": [
+      "TRBV7-9*03"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2019-05-22",
+    "latest_deposition_date": "2019-05-22",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "RMFPNAPYL"
+    ],
+    "antigen_types": [
+      "tumour"
+    ],
+    "pdb_ids": [
+      "6RSY"
+    ]
+  },
+  {
+    "tcr_id": "aga",
+    "tcr_name": "AGA",
+    "clonotype_ids": [
+      "CL045"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV5*01"
+    ],
+    "trbv": [
+      "TRBV19*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2012-10-30",
+    "latest_deposition_date": "2012-10-30",
+    "alleles": [
+      "HLA-B*57:06"
+    ],
+    "peptides": [
+      "KAFSPEVIPMF"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "2YPL"
+    ]
+  },
+  {
+    "tcr_id": "as01",
+    "tcr_name": "AS01",
+    "clonotype_ids": [
+      "CL050"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV5*01"
+    ],
+    "trbv": [
+      "TRBV20-1*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2010-07-27",
+    "latest_deposition_date": "2010-07-27",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "GLCTLVAML"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "3O4L"
+    ]
+  },
+  {
+    "tcr_id": "as192",
+    "tcr_name": "AS19.2",
+    "clonotype_ids": [
+      "CL036"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV21*01"
+    ],
+    "trbv": [
+      "TRBV9*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2025-06-26",
+    "latest_deposition_date": "2025-06-26",
+    "alleles": [
+      "HLA-B*27:05"
+    ],
+    "peptides": [
+      "GRLPLLNPI"
+    ],
+    "antigen_types": [
+      "autoimmune"
+    ],
+    "pdb_ids": [
+      "9PBH"
+    ]
+  },
+  {
+    "tcr_id": "as31",
+    "tcr_name": "AS3.1",
+    "clonotype_ids": [
+      "CL092"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV21*01"
+    ],
+    "trbv": [
+      "TRBV9*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2021-05-29",
+    "latest_deposition_date": "2021-05-29",
+    "alleles": [
+      "HLA-B*27:05"
+    ],
+    "peptides": [
+      "TRLALIAPK"
+    ],
+    "antigen_types": [
+      "autoimmune"
+    ],
+    "pdb_ids": [
+      "7N2S"
+    ]
+  },
+  {
+    "tcr_id": "as42",
+    "tcr_name": "AS4.2",
+    "clonotype_ids": [
+      "CL031"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV21*01"
+    ],
+    "trbv": [
+      "TRBV9*01"
+    ],
+    "n_structures": 2,
+    "first_deposition_date": "2021-05-29",
+    "latest_deposition_date": "2021-05-29",
+    "alleles": [
+      "HLA-B*27:05"
+    ],
+    "peptides": [
+      "LRVMMLAPF",
+      "TRLALIAPK"
+    ],
+    "antigen_types": [
+      "autoimmune",
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "7N2N",
+      "7N2O"
+    ]
+  },
+  {
+    "tcr_id": "as43",
+    "tcr_name": "AS4.3",
+    "clonotype_ids": [
+      "CL012"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV21*01"
+    ],
+    "trbv": [
+      "TRBV9*01"
+    ],
+    "n_structures": 3,
+    "first_deposition_date": "2021-05-29",
+    "latest_deposition_date": "2021-05-29",
+    "alleles": [
+      "HLA-B*27:05"
+    ],
+    "peptides": [
+      "GQVMVVAPR",
+      "LRVMMLAPF",
+      "TRLALIAPK"
+    ],
+    "antigen_types": [
+      "autoimmune",
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "7N2P",
+      "7N2Q",
+      "7N2R"
+    ]
+  },
+  {
+    "tcr_id": "as84",
+    "tcr_name": "AS8.4",
+    "clonotype_ids": [
+      "CL102"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV21*01"
+    ],
+    "trbv": [
+      "TRBV9*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2022-05-19",
+    "latest_deposition_date": "2022-05-19",
+    "alleles": [
+      "HLA-B*27:05"
+    ],
+    "peptides": [
+      "LRVMMLAPF"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "8CX4"
+    ]
+  },
+  {
+    "tcr_id": "b7",
+    "tcr_name": "B7",
+    "clonotype_ids": [
+      "CL038"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV29/DV5*01"
+    ],
+    "trbv": [
+      "TRBV6-5*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "1998-05-12",
+    "latest_deposition_date": "1998-05-12",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "LLFGYPVYV"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "1BD2"
+    ]
+  },
+  {
+    "tcr_id": "c1-28",
+    "tcr_name": "C1-28",
+    "clonotype_ids": [
+      "CL052"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV8-3*01"
+    ],
+    "trbv": [
+      "TRBV4-1*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2012-09-20",
+    "latest_deposition_date": "2012-09-20",
+    "alleles": [
+      "HLA-A*24:02"
+    ],
+    "peptides": [
+      "RFPLTFGWCF"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "3VXM"
+    ]
+  },
+  {
+    "tcr_id": "c12c",
+    "tcr_name": "C12C",
+    "clonotype_ids": [
+      "CL021"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV14/DV4*02"
+    ],
+    "trbv": [
+      "TRBV6-5*01"
+    ],
+    "n_structures": 2,
+    "first_deposition_date": "2012-07-23",
+    "latest_deposition_date": "2012-07-23",
+    "alleles": [
+      "HLA-B*27:05"
+    ],
+    "peptides": [
+      "KRWIILGLNK",
+      "KRWIIMGLNK"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "4G8G",
+      "4G9F"
+    ]
+  },
+  {
+    "tcr_id": "c25",
+    "tcr_name": "C25",
+    "clonotype_ids": [
+      "CL059"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV26-2*01"
+    ],
+    "trbv": [
+      "TRBV7-6*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2015-08-05",
+    "latest_deposition_date": "2015-08-05",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "NLVPMVATV"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "5D2N"
+    ]
+  },
+  {
+    "tcr_id": "c3",
+    "tcr_name": "C3",
+    "clonotype_ids": [
+      "CL098"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV21*01"
+    ],
+    "trbv": [
+      "TRBV6-5*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2021-06-25",
+    "latest_deposition_date": "2021-06-25",
+    "alleles": [
+      "HLA-B*53:01"
+    ],
+    "peptides": [
+      "QASQEVKNW"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "7R80"
+    ]
+  },
+  {
+    "tcr_id": "c7",
+    "tcr_name": "C7",
+    "clonotype_ids": [
+      "CL058"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV24*01"
+    ],
+    "trbv": [
+      "TRBV7-2*02"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2015-08-05",
+    "latest_deposition_date": "2015-08-05",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "NLVPMVATV"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "5D2L"
+    ]
+  },
+  {
+    "tcr_id": "c756",
+    "tcr_name": "c756",
+    "clonotype_ids": [
+      "CL097"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV12-2*01"
+    ],
+    "trbv": [
+      "TRBV6-6*02"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2022-01-04",
+    "latest_deposition_date": "2022-01-04",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "GLYDGMEHL"
+    ],
+    "antigen_types": [
+      "tumour"
+    ],
+    "pdb_ids": [
+      "7QPJ"
+    ]
+  },
+  {
+    "tcr_id": "ca5",
+    "tcr_name": "CA5",
+    "clonotype_ids": [
+      "CL054"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV19*01"
+    ],
+    "trbv": [
+      "TRBV6-1*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2013-03-22",
+    "latest_deposition_date": "2013-03-22",
+    "alleles": [
+      "HLA-B*35:08"
+    ],
+    "peptides": [
+      "LPEPLPQGQLTAY"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "4JRX"
+    ]
+  },
+  {
+    "tcr_id": "cf34",
+    "tcr_name": "CF34",
+    "clonotype_ids": [
+      "CL047"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV14/DV4*01"
+    ],
+    "trbv": [
+      "TRBV11-2*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2008-12-03",
+    "latest_deposition_date": "2008-12-03",
+    "alleles": [
+      "HLA-B*08:01"
+    ],
+    "peptides": [
+      "FLRGRAYGL"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "3FFC"
+    ]
+  },
+  {
+    "tcr_id": "cla",
+    "tcr_name": "CLA",
+    "clonotype_ids": [
+      "CL120"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV3*01"
+    ],
+    "trbv": [
+      "TRBV9*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2024-08-10",
+    "latest_deposition_date": "2024-08-10",
+    "alleles": [
+      "HLA-B*07:02"
+    ],
+    "peptides": [
+      "SPRWYFYYL"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "9J4S"
+    ]
+  },
+  {
+    "tcr_id": "clb",
+    "tcr_name": "CLB",
+    "clonotype_ids": [
+      "CL121"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV17*01"
+    ],
+    "trbv": [
+      "TRBV6-6*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2024-08-10",
+    "latest_deposition_date": "2024-08-10",
+    "alleles": [
+      "HLA-B*07:02"
+    ],
+    "peptides": [
+      "SPRWYFYYL"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "9J4T"
+    ]
+  },
+  {
+    "tcr_id": "d1",
+    "tcr_name": "D1",
+    "clonotype_ids": [
+      "CL015"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV1-1*01"
+    ],
+    "trbv": [
+      "TRBV7-8*01"
+    ],
+    "n_structures": 3,
+    "first_deposition_date": "2023-11-29",
+    "latest_deposition_date": "2023-11-30",
+    "alleles": [
+      "HLA-B*35:01",
+      "HLA-B*35:42"
+    ],
+    "peptides": [
+      "LPFDKSTVM",
+      "LPFEKSTIM",
+      "LPFEKSTVM"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "8V4Z",
+      "8V50",
+      "8V51"
+    ]
+  },
+  {
+    "tcr_id": "d30",
+    "tcr_name": "D30",
+    "clonotype_ids": [
+      "CL025"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV30*05"
+    ],
+    "trbv": [
+      "TRBV11-2*01"
+    ],
+    "n_structures": 2,
+    "first_deposition_date": "2017-07-25",
+    "latest_deposition_date": "2017-07-25",
+    "alleles": [
+      "HLA-A*11:01"
+    ],
+    "peptides": [
+      "GTSGSPIINR",
+      "GTSGSPIVNR"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "5WKF",
+      "5WKH"
+    ]
+  },
+  {
+    "tcr_id": "dd31",
+    "tcr_name": "DD31",
+    "clonotype_ids": [
+      "CL057"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV9-2*02"
+    ],
+    "trbv": [
+      "TRBV11-2*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2014-07-02",
+    "latest_deposition_date": "2014-07-02",
+    "alleles": [
+      "HLA-B*08:01"
+    ],
+    "peptides": [
+      "HSKKKCDEL"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "4QRP"
+    ]
+  },
+  {
+    "tcr_id": "dm1",
+    "tcr_name": "DM1",
+    "clonotype_ids": [
+      "CL046"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV26-1*02"
+    ],
+    "trbv": [
+      "TRBV7-9*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2008-07-23",
+    "latest_deposition_date": "2008-07-23",
+    "alleles": [
+      "HLA-B*44:05"
+    ],
+    "peptides": [
+      "EENLLDFVRF"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "3DXA"
+    ]
+  },
+  {
+    "tcr_id": "dmf4",
+    "tcr_name": "DMF4",
+    "clonotype_ids": [
+      "CL017"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV35*01"
+    ],
+    "trbv": [
+      "TRBV10-3*01"
+    ],
+    "n_structures": 2,
+    "first_deposition_date": "2011-01-18",
+    "latest_deposition_date": "2011-01-20",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "AAGIGILTV",
+      "ELAGIGILTV"
+    ],
+    "antigen_types": [
+      "tumour"
+    ],
+    "pdb_ids": [
+      "3QDM",
+      "3QEQ"
+    ]
+  },
+  {
+    "tcr_id": "dmf5",
+    "tcr_name": "DMF5",
+    "clonotype_ids": [
+      "CL008",
+      "CL022",
+      "CL075"
+    ],
+    "n_clonotypes": 3,
+    "has_engineered_variants": true,
+    "trav": [
+      "TRAV12-2*01"
+    ],
+    "trbv": [
+      "TRBV6-4*01"
+    ],
+    "n_structures": 7,
+    "first_deposition_date": "2011-01-18",
+    "latest_deposition_date": "2018-05-30",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "AAGIGILTV",
+      "ELAGIGILTV",
+      "MMWDRGLGMM",
+      "SMLGIGIVPV"
+    ],
+    "antigen_types": [
+      "tumour"
+    ],
+    "pdb_ids": [
+      "3QDG",
+      "3QDJ",
+      "4L3E",
+      "6AM5",
+      "6AMU",
+      "6D78",
+      "6DKP"
+    ]
+  },
+  {
+    "tcr_id": "els4",
+    "tcr_name": "ELS4",
+    "clonotype_ids": [
+      "CL040"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV1-2*01"
+    ],
+    "trbv": [
+      "TRBV10-3*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2006-11-16",
+    "latest_deposition_date": "2006-11-16",
+    "alleles": [
+      "HLA-B*35:01"
+    ],
+    "peptides": [
+      "EPLPQGQLTAY"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "2NX5"
+    ]
+  },
+  {
+    "tcr_id": "em2",
+    "tcr_name": "EM2",
+    "clonotype_ids": [
+      "CL076"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV30*01"
+    ],
+    "trbv": [
+      "TRBV19*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2018-10-19",
+    "latest_deposition_date": "2018-10-19",
+    "alleles": [
+      "HLA-B*37:01"
+    ],
+    "peptides": [
+      "FEDLRVLSF"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "6MTM"
+    ]
+  },
+  {
+    "tcr_id": "f50",
+    "tcr_name": "F50",
+    "clonotype_ids": [
+      "CL070"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV13-1*01"
+    ],
+    "trbv": [
+      "TRBV27*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2016-09-23",
+    "latest_deposition_date": "2016-09-23",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "GILGFVFTL"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "5TEZ"
+    ]
+  },
+  {
+    "tcr_id": "g12v",
+    "tcr_name": "G12V",
+    "clonotype_ids": [
+      "CL109"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV12-3*05"
+    ],
+    "trbv": [
+      "TRBV1*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2024-01-23",
+    "latest_deposition_date": "2024-01-23",
+    "alleles": [
+      "HLA-A*03:01"
+    ],
+    "peptides": [
+      "VVVGAVGVGK"
+    ],
+    "antigen_types": [
+      "tumour"
+    ],
+    "pdb_ids": [
+      "8RRO"
+    ]
+  },
+  {
+    "tcr_id": "gpa3b17",
+    "tcr_name": "GPa3b17",
+    "clonotype_ids": [
+      "CL096"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV17*01"
+    ],
+    "trbv": [
+      "TRBV19*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2021-08-18",
+    "latest_deposition_date": "2021-08-18",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "YLEPGPVTV"
+    ],
+    "antigen_types": [
+      "tumour"
+    ],
+    "pdb_ids": [
+      "7PHR"
+    ]
+  },
+  {
+    "tcr_id": "gv37",
+    "tcr_name": "GV37",
+    "clonotype_ids": [
+      "CL118"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV5*01"
+    ],
+    "trbv": [
+      "TRBV7-8*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2024-12-05",
+    "latest_deposition_date": "2024-12-05",
+    "alleles": [
+      "HLA-C*12:02"
+    ],
+    "peptides": [
+      "KAYNVTQAF"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "9HLJ"
+    ]
+  },
+  {
+    "tcr_id": "gvy01",
+    "tcr_name": "GVY01",
+    "clonotype_ids": [
+      "CL083"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV10*01"
+    ],
+    "trbv": [
+      "TRBV28*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2019-12-19",
+    "latest_deposition_date": "2019-12-19",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "GVYDGREHTV"
+    ],
+    "antigen_types": [
+      "tumour"
+    ],
+    "pdb_ids": [
+      "6TRO"
+    ]
+  },
+  {
+    "tcr_id": "h25-11",
+    "tcr_name": "H25-11",
+    "clonotype_ids": [
+      "CL107"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV8-3*01"
+    ],
+    "trbv": [
+      "TRBV7-9*03"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2022-09-15",
+    "latest_deposition_date": "2022-09-15",
+    "alleles": [
+      "HLA-A*24:02"
+    ],
+    "peptides": [
+      "RYPLTFGW"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "8GVI"
+    ]
+  },
+  {
+    "tcr_id": "h27-14",
+    "tcr_name": "H27-14",
+    "clonotype_ids": [
+      "CL018"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV21*01"
+    ],
+    "trbv": [
+      "TRBV7-9*01"
+    ],
+    "n_structures": 2,
+    "first_deposition_date": "2012-09-20",
+    "latest_deposition_date": "2012-09-20",
+    "alleles": [
+      "HLA-A*24:02"
+    ],
+    "peptides": [
+      "RYPLTFGWCF",
+      "RYPLTLGWCF"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "3VXR",
+      "3VXS"
+    ]
+  },
+  {
+    "tcr_id": "hcv1406",
+    "tcr_name": "HCV1406",
+    "clonotype_ids": [
+      "CL024",
+      "CL071"
+    ],
+    "n_clonotypes": 2,
+    "has_engineered_variants": true,
+    "trav": [
+      "TRAV38-2/DV8*01"
+    ],
+    "trbv": [
+      "TRBV25-1*01"
+    ],
+    "n_structures": 2,
+    "first_deposition_date": "2017-12-06",
+    "latest_deposition_date": "2017-12-07",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "KLVALGINAV"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "5YXN",
+      "5YXU"
+    ]
+  },
+  {
+    "tcr_id": "hd14",
+    "tcr_name": "HD14",
+    "clonotype_ids": [
+      "CL086"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV24*01"
+    ],
+    "trbv": [
+      "TRBV4-1*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2020-01-28",
+    "latest_deposition_date": "2020-01-28",
+    "alleles": [
+      "HLA-B*07:02"
+    ],
+    "peptides": [
+      "RPPIFIRRL"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "6VMX"
+    ]
+  },
+  {
+    "tcr_id": "hghv4",
+    "tcr_name": null,
+    "clonotype_ids": [
+      "CL115"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV35*01"
+    ],
+    "trbv": [
+      "TRBV20-1*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2024-08-21",
+    "latest_deposition_date": "2024-08-21",
+    "alleles": [
+      "HLA-B*38:01"
+    ],
+    "peptides": [
+      "YHLIVDTDSL"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "9D95"
+    ]
+  },
+  {
+    "tcr_id": "ila1",
+    "tcr_name": "ILA1",
+    "clonotype_ids": [
+      "CL067"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV22*01"
+    ],
+    "trbv": [
+      "TRBV6-5*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2016-11-16",
+    "latest_deposition_date": "2016-11-16",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "ILAKFLHWL"
+    ],
+    "antigen_types": [
+      "tumour"
+    ],
+    "pdb_ids": [
+      "5MEN"
+    ]
+  },
+  {
+    "tcr_id": "jdi",
+    "tcr_name": "JDI",
+    "clonotype_ids": [
+      "CL094"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV19*01"
+    ],
+    "trbv": [
+      "TRBV6-2*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2021-07-30",
+    "latest_deposition_date": "2021-07-30",
+    "alleles": [
+      "HLA-A*11:01"
+    ],
+    "peptides": [
+      "VVVGADGVGK"
+    ],
+    "antigen_types": [
+      "tumour"
+    ],
+    "pdb_ids": [
+      "7PB2"
+    ]
+  },
+  {
+    "tcr_id": "jdia41b1",
+    "tcr_name": "JDIa41b1",
+    "clonotype_ids": [
+      "CL032"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV19*01"
+    ],
+    "trbv": [
+      "TRBV6-2*01"
+    ],
+    "n_structures": 2,
+    "first_deposition_date": "2021-06-16",
+    "latest_deposition_date": "2021-06-16",
+    "alleles": [
+      "HLA-A*11:01"
+    ],
+    "peptides": [
+      "VVVGADGVGK",
+      "VVVGAGGVGK"
+    ],
+    "antigen_types": [
+      "tumour"
+    ],
+    "pdb_ids": [
+      "7OW5",
+      "7OW6"
+    ]
+  },
+  {
+    "tcr_id": "jkf6",
+    "tcr_name": "JKF6",
+    "clonotype_ids": [
+      "CL053"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV12-2*01"
+    ],
+    "trbv": [
+      "TRBV28*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2012-04-25",
+    "latest_deposition_date": "2012-04-25",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "ALGIGILTV"
+    ],
+    "antigen_types": [
+      "tumour"
+    ],
+    "pdb_ids": [
+      "4EUP"
+    ]
+  },
+  {
+    "tcr_id": "jm22",
+    "tcr_name": "JM22",
+    "clonotype_ids": [
+      "CL006",
+      "CL044",
+      "CL064"
+    ],
+    "n_clonotypes": 3,
+    "has_engineered_variants": true,
+    "trav": [
+      "TRAV27*01"
+    ],
+    "trbv": [
+      "TRBV19*01"
+    ],
+    "n_structures": 6,
+    "first_deposition_date": "2003-04-28",
+    "latest_deposition_date": "2016-01-11",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "GILEFVFTL",
+      "GILGFVFTL",
+      "GILGLVFTL"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "1OGA",
+      "2VLJ",
+      "2VLK",
+      "2VLR",
+      "5HHM",
+      "5HHO"
+    ]
+  },
+  {
+    "tcr_id": "kfj37",
+    "tcr_name": "KFJ37",
+    "clonotype_ids": [
+      "CL073"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV4*01"
+    ],
+    "trbv": [
+      "TRBV9*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2017-09-02",
+    "latest_deposition_date": "2017-09-02",
+    "alleles": [
+      "HLA-B*07:02"
+    ],
+    "peptides": [
+      "APRGPHGGAASGL"
+    ],
+    "antigen_types": [
+      "tumour"
+    ],
+    "pdb_ids": [
+      "6AVG"
+    ]
+  },
+  {
+    "tcr_id": "kfj5",
+    "tcr_name": "KFJ5",
+    "clonotype_ids": [
+      "CL072"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV4*01"
+    ],
+    "trbv": [
+      "TRBV28*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2017-09-02",
+    "latest_deposition_date": "2017-09-02",
+    "alleles": [
+      "HLA-B*07:02"
+    ],
+    "peptides": [
+      "APRGPHGGAASGL"
+    ],
+    "antigen_types": [
+      "tumour"
+    ],
+    "pdb_ids": [
+      "6AVF"
+    ]
+  },
+  {
+    "tcr_id": "ks1",
+    "tcr_name": "KS1",
+    "clonotype_ids": [
+      "CL106"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV21*01"
+    ],
+    "trbv": [
+      "TRBV5-1*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2022-11-12",
+    "latest_deposition_date": "2022-11-12",
+    "alleles": [
+      "HLA-B*57:01"
+    ],
+    "peptides": [
+      "TSTLQEQIGW"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "8F5A"
+    ]
+  },
+  {
+    "tcr_id": "lc13",
+    "tcr_name": "LC13",
+    "clonotype_ids": [
+      "CL009"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV26-2*01"
+    ],
+    "trbv": [
+      "TRBV7-8*01"
+    ],
+    "n_structures": 3,
+    "first_deposition_date": "2002-08-21",
+    "latest_deposition_date": "2009-11-16",
+    "alleles": [
+      "HLA-B*08:01",
+      "HLA-B*44:05"
+    ],
+    "peptides": [
+      "EEYLKAWTF",
+      "EEYLQAFTY",
+      "FLRGRAYGL"
+    ],
+    "antigen_types": [
+      "alloreactive",
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "1MI5",
+      "3KPR",
+      "3KPS"
+    ]
+  },
+  {
+    "tcr_id": "ll8",
+    "tcr_name": "LL8",
+    "clonotype_ids": [
+      "CL103"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV12-2*01"
+    ],
+    "trbv": [
+      "TRBV7-2*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2022-07-11",
+    "latest_deposition_date": "2022-07-11",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "LLLDRLNQL"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "8DNT"
+    ]
+  },
+  {
+    "tcr_id": "lll6e",
+    "tcr_name": "LLL6E",
+    "clonotype_ids": [
+      "CL122"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV12-1*01"
+    ],
+    "trbv": [
+      "TRBV9*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2024-08-10",
+    "latest_deposition_date": "2024-08-10",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "LLLDRLNQL"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "9J4U"
+    ]
+  },
+  {
+    "tcr_id": "ls01",
+    "tcr_name": "LS01",
+    "clonotype_ids": [
+      "CL065"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV24*01"
+    ],
+    "trbv": [
+      "TRBV19*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2016-03-15",
+    "latest_deposition_date": "2016-03-15",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "GILGFVFTL"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "5ISZ"
+    ]
+  },
+  {
+    "tcr_id": "ls10",
+    "tcr_name": "LS10",
+    "clonotype_ids": [
+      "CL066"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV38-2/DV8*01"
+    ],
+    "trbv": [
+      "TRBV19*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2016-04-20",
+    "latest_deposition_date": "2016-04-20",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "GILGFVFTL"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "5JHD"
+    ]
+  },
+  {
+    "tcr_id": "mag-ic3",
+    "tcr_name": "MAG-IC3",
+    "clonotype_ids": [
+      "CL023"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV21*01"
+    ],
+    "trbv": [
+      "TRBV5-1*01"
+    ],
+    "n_structures": 2,
+    "first_deposition_date": "2015-06-01",
+    "latest_deposition_date": "2015-06-01",
+    "alleles": [
+      "HLA-A*01:01"
+    ],
+    "peptides": [
+      "ESDPIVAQY",
+      "EVDPIGHLY"
+    ],
+    "antigen_types": [
+      "tumour"
+    ],
+    "pdb_ids": [
+      "5BRZ",
+      "5BS0"
+    ]
+  },
+  {
+    "tcr_id": "mel5",
+    "tcr_name": "Mel5",
+    "clonotype_ids": [
+      "CL003",
+      "CL005"
+    ],
+    "n_clonotypes": 2,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV12-2*01"
+    ],
+    "trbv": [
+      "TRBV30*02"
+    ],
+    "n_structures": 6,
+    "first_deposition_date": "2009-05-13",
+    "latest_deposition_date": "2021-11-12",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "AAGIGILTV",
+      "EAAGIGILTV",
+      "ELAGIGILTV",
+      "LLLGIGILVL",
+      "NLSALGIFST"
+    ],
+    "antigen_types": [
+      "autoimmune",
+      "tumour"
+    ],
+    "pdb_ids": [
+      "3HG1",
+      "4QOK",
+      "6EQA",
+      "6EQB",
+      "7Q99",
+      "7Q9A"
+    ]
+  },
+  {
+    "tcr_id": "n172",
+    "tcr_name": "N17.2",
+    "clonotype_ids": [
+      "CL132"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV5*01"
+    ],
+    "trbv": [
+      "TRBV6-6*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2025-10-23",
+    "latest_deposition_date": "2025-10-23",
+    "alleles": [
+      "HLA-A*01:01"
+    ],
+    "peptides": [
+      "ILDTAGKEEY"
+    ],
+    "antigen_types": [
+      "tumour"
+    ],
+    "pdb_ids": [
+      "9YW4"
+    ]
+  },
+  {
+    "tcr_id": "n1732",
+    "tcr_name": "N17.3.2",
+    "clonotype_ids": [
+      "CL133"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV19*01"
+    ],
+    "trbv": [
+      "TRBV6-1*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2025-11-23",
+    "latest_deposition_date": "2025-11-23",
+    "alleles": [
+      "HLA-A*01:01"
+    ],
+    "peptides": [
+      "ILDTAGKEEY"
+    ],
+    "antigen_types": [
+      "tumour"
+    ],
+    "pdb_ids": [
+      "9ZCL"
+    ]
+  },
+  {
+    "tcr_id": "nr1c",
+    "tcr_name": "NR1C",
+    "clonotype_ids": [
+      "CL093"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV12-1*01"
+    ],
+    "trbv": [
+      "TRBV19*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2021-06-08",
+    "latest_deposition_date": "2021-06-08",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "YLQPRTFLL"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "7N6E"
+    ]
+  },
+  {
+    "tcr_id": "nybr",
+    "tcr_name": "NYBR",
+    "clonotype_ids": [
+      "CL078"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV22*01"
+    ],
+    "trbv": [
+      "TRBV11-2*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2019-03-18",
+    "latest_deposition_date": "2019-03-18",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "SLSKILDTV"
+    ],
+    "antigen_types": [
+      "tumour"
+    ],
+    "pdb_ids": [
+      "6R2L"
+    ]
+  },
+  {
+    "tcr_id": "nye-s1",
+    "tcr_name": "NYE_S1",
+    "clonotype_ids": [
+      "CL081"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV12-2*01"
+    ],
+    "trbv": [
+      "TRBV6-5*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2019-05-14",
+    "latest_deposition_date": "2019-05-14",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "SLLMWITQV"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "6RPB"
+    ]
+  },
+  {
+    "tcr_id": "nye-s2",
+    "tcr_name": "NYE_S2",
+    "clonotype_ids": [
+      "CL080"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV3*01"
+    ],
+    "trbv": [
+      "TRBV29-1*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2019-05-14",
+    "latest_deposition_date": "2019-05-14",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "SLLMWITQV"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "6RPA"
+    ]
+  },
+  {
+    "tcr_id": "nye-s3",
+    "tcr_name": "NYE_S3",
+    "clonotype_ids": [
+      "CL079"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV12-2*01"
+    ],
+    "trbv": [
+      "TRBV7-6*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2019-05-14",
+    "latest_deposition_date": "2019-05-14",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "SLLMWITQV"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "6RP9"
+    ]
+  },
+  {
+    "tcr_id": "nyn-i",
+    "tcr_name": "NYN-I",
+    "clonotype_ids": [
+      "CL114"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV12-1*01"
+    ],
+    "trbv": [
+      "TRBV6-1*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2024-02-21",
+    "latest_deposition_date": "2024-02-21",
+    "alleles": [
+      "HLA-A*24:02"
+    ],
+    "peptides": [
+      "NYNYLYRLF"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "8YE4"
+    ]
+  },
+  {
+    "tcr_id": "p1-15",
+    "tcr_name": "P1-15",
+    "clonotype_ids": [
+      "CL108"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV12-1*01"
+    ],
+    "trbv": [
+      "TRBV6-1*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2023-12-20",
+    "latest_deposition_date": "2023-12-20",
+    "alleles": [
+      "HLA-A*24:02"
+    ],
+    "peptides": [
+      "NYNYLYRLF"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "8RJ5"
+    ]
+  },
+  {
+    "tcr_id": "pf6",
+    "tcr_name": "PF6",
+    "clonotype_ids": [
+      "CL063"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV27*01"
+    ],
+    "trbv": [
+      "TRBV19*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2015-11-18",
+    "latest_deposition_date": "2015-11-18",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "GILGFVFTL"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "5EUO"
+    ]
+  },
+  {
+    "tcr_id": "pf8",
+    "tcr_name": "PF8",
+    "clonotype_ids": [
+      "CL060"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV35*01"
+    ],
+    "trbv": [
+      "TRBV27*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2015-10-09",
+    "latest_deposition_date": "2015-10-09",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "GILGFVFTL"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "5E6I"
+    ]
+  },
+  {
+    "tcr_id": "pmel17",
+    "tcr_name": "PMEL17",
+    "clonotype_ids": [
+      "CL062"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV21*01"
+    ],
+    "trbv": [
+      "TRBV7-3*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2015-11-18",
+    "latest_deposition_date": "2015-11-18",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "YLEPGPVTV"
+    ],
+    "antigen_types": [
+      "tumour"
+    ],
+    "pdb_ids": [
+      "5EU6"
+    ]
+  },
+  {
+    "tcr_id": "pn45428",
+    "tcr_name": "PN45428",
+    "clonotype_ids": [
+      "CL105"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV20*01"
+    ],
+    "trbv": [
+      "TRBV20-1*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2022-10-13",
+    "latest_deposition_date": "2022-10-13",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "GVYDGREHTV"
+    ],
+    "antigen_types": [
+      "tumour"
+    ],
+    "pdb_ids": [
+      "8ES9"
+    ]
+  },
+  {
+    "tcr_id": "pn45545",
+    "tcr_name": "PN45545",
+    "clonotype_ids": [
+      "CL104"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV14/DV4*01"
+    ],
+    "trbv": [
+      "TRBV28*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2022-10-13",
+    "latest_deposition_date": "2022-10-13",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "GVYDGREHTV"
+    ],
+    "antigen_types": [
+      "tumour"
+    ],
+    "pdb_ids": [
+      "8ES8"
+    ]
+  },
+  {
+    "tcr_id": "q04",
+    "tcr_name": "Q04",
+    "clonotype_ids": [
+      "CL131"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV25*01"
+    ],
+    "trbv": [
+      "TRBV7-8*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2025-08-13",
+    "latest_deposition_date": "2025-08-13",
+    "alleles": [
+      "HLA-B*07:02"
+    ],
+    "peptides": [
+      "SPRWYFYYL"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "9WBD"
+    ]
+  },
+  {
+    "tcr_id": "ra14",
+    "tcr_name": "RA14",
+    "clonotype_ids": [
+      "CL048"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV24*01"
+    ],
+    "trbv": [
+      "TRBV6-5*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2009-03-27",
+    "latest_deposition_date": "2009-03-27",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "NLVPMVATV"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "3GSN"
+    ]
+  },
+  {
+    "tcr_id": "rd1-mart1high",
+    "tcr_name": "RD1-MART1high",
+    "clonotype_ids": [
+      "CL061"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": true,
+    "trav": [
+      "TRAV12-2*01"
+    ],
+    "trbv": [
+      "TRBV6-5*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2015-10-15",
+    "latest_deposition_date": "2015-10-15",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "ELAGIGILTV"
+    ],
+    "antigen_types": [
+      "tumour"
+    ],
+    "pdb_ids": [
+      "5E9D"
+    ]
+  },
+  {
+    "tcr_id": "rl42",
+    "tcr_name": "RL42",
+    "clonotype_ids": [
+      "CL051"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV12-1*01"
+    ],
+    "trbv": [
+      "TRBV6-2*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2011-06-22",
+    "latest_deposition_date": "2011-06-22",
+    "alleles": [
+      "HLA-B*08:01"
+    ],
+    "peptides": [
+      "FLRGRAYGL"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "3SJV"
+    ]
+  },
+  {
+    "tcr_id": "rlq3",
+    "tcr_name": "RLQ3",
+    "clonotype_ids": [
+      "CL091"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV16*01"
+    ],
+    "trbv": [
+      "TRBV11-2*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2021-05-27",
+    "latest_deposition_date": "2021-05-27",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "RLQSLQTYV"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "7N1E"
+    ]
+  },
+  {
+    "tcr_id": "rlq7",
+    "tcr_name": "RLQ7",
+    "clonotype_ids": [
+      "CL033"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV38-2/DV8*01"
+    ],
+    "trbv": [
+      "TRBV12-3*01"
+    ],
+    "n_structures": 2,
+    "first_deposition_date": "2022-08-25",
+    "latest_deposition_date": "2022-08-25",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "RLQSLQIYV",
+      "RLQSLQTYV"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "8GOM",
+      "8GON"
+    ]
+  },
+  {
+    "tcr_id": "s2",
+    "tcr_name": "S2",
+    "clonotype_ids": [
+      "CL035"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV21*01"
+    ],
+    "trbv": [
+      "TRBV6-6*01"
+    ],
+    "n_structures": 2,
+    "first_deposition_date": "2024-02-09",
+    "latest_deposition_date": "2024-02-09",
+    "alleles": [
+      "HLA-A*03:01",
+      "HLA-A*11:01"
+    ],
+    "peptides": [
+      "ELFSYLIEK"
+    ],
+    "antigen_types": [
+      "tumour"
+    ],
+    "pdb_ids": [
+      "8RYM",
+      "8RYN"
+    ]
+  },
+  {
+    "tcr_id": "s2-198",
+    "tcr_name": "S2-198",
+    "clonotype_ids": [
+      "CL110"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV21*01"
+    ],
+    "trbv": [
+      "TRBV6-6*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2024-02-09",
+    "latest_deposition_date": "2024-02-09",
+    "alleles": [
+      "HLA-A*03:01"
+    ],
+    "peptides": [
+      "ELFSYLIEK"
+    ],
+    "antigen_types": [
+      "tumour"
+    ],
+    "pdb_ids": [
+      "8RYO"
+    ]
+  },
+  {
+    "tcr_id": "s8",
+    "tcr_name": "S8",
+    "clonotype_ids": [
+      "CL111"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV21*01"
+    ],
+    "trbv": [
+      "TRBV9*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2024-02-09",
+    "latest_deposition_date": "2024-02-09",
+    "alleles": [
+      "HLA-A*03:01"
+    ],
+    "peptides": [
+      "ELFSYLIEK"
+    ],
+    "antigen_types": [
+      "tumour"
+    ],
+    "pdb_ids": [
+      "8RYP"
+    ]
+  },
+  {
+    "tcr_id": "s8-9f3",
+    "tcr_name": "S8-9F3",
+    "clonotype_ids": [
+      "CL112"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV21*01"
+    ],
+    "trbv": [
+      "TRBV9*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2024-02-09",
+    "latest_deposition_date": "2024-02-09",
+    "alleles": [
+      "HLA-A*11:01"
+    ],
+    "peptides": [
+      "ELFSYLIEK"
+    ],
+    "antigen_types": [
+      "tumour"
+    ],
+    "pdb_ids": [
+      "8RYQ"
+    ]
+  },
+  {
+    "tcr_id": "sb27",
+    "tcr_name": "SB27",
+    "clonotype_ids": [
+      "CL016"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV19*01"
+    ],
+    "trbv": [
+      "TRBV6-1*01"
+    ],
+    "n_structures": 2,
+    "first_deposition_date": "2005-08-03",
+    "latest_deposition_date": "2009-12-03",
+    "alleles": [
+      "HLA-B*35:08"
+    ],
+    "peptides": [
+      "LPEPLPQGQLTAY"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "2AK4",
+      "3KXF"
+    ]
+  },
+  {
+    "tcr_id": "sb47",
+    "tcr_name": "SB47",
+    "clonotype_ids": [
+      "CL055"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV39*01"
+    ],
+    "trbv": [
+      "TRBV5-6*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2013-03-22",
+    "latest_deposition_date": "2013-03-22",
+    "alleles": [
+      "HLA-B*35:08"
+    ],
+    "peptides": [
+      "LPEPLPQGQLTAY"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "4JRY"
+    ]
+  },
+  {
+    "tcr_id": "silv44",
+    "tcr_name": "SILv44",
+    "clonotype_ids": [
+      "CL028"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV8-1*01"
+    ],
+    "trbv": [
+      "TRBV19*01"
+    ],
+    "n_structures": 2,
+    "first_deposition_date": "2020-01-27",
+    "latest_deposition_date": "2020-01-27",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "IMDQVPFSV",
+      "ITDQVPFSV"
+    ],
+    "antigen_types": [
+      "tumour"
+    ],
+    "pdb_ids": [
+      "6VM7",
+      "6VM8"
+    ]
+  },
+  {
+    "tcr_id": "t18a",
+    "tcr_name": "T18A",
+    "clonotype_ids": [
+      "CL029"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV26-1*01"
+    ],
+    "trbv": [
+      "TRBV12-3*01"
+    ],
+    "n_structures": 2,
+    "first_deposition_date": "2021-01-25",
+    "latest_deposition_date": "2021-01-25",
+    "alleles": [
+      "HLA-B*42:01",
+      "HLA-B*81:01"
+    ],
+    "peptides": [
+      "TPQDLNTML"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "7DZM",
+      "7DZN"
+    ]
+  },
+  {
+    "tcr_id": "t36-5",
+    "tcr_name": "T36-5",
+    "clonotype_ids": [
+      "CL019"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV12-2*01"
+    ],
+    "trbv": [
+      "TRBV27*01"
+    ],
+    "n_structures": 2,
+    "first_deposition_date": "2012-09-20",
+    "latest_deposition_date": "2012-11-05",
+    "alleles": [
+      "HLA-A*24:02"
+    ],
+    "peptides": [
+      "RFPLTFGWCF"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "3VXU",
+      "3W0W"
+    ]
+  },
+  {
+    "tcr_id": "t4h2",
+    "tcr_name": "T4H2",
+    "clonotype_ids": [
+      "CL011"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV12-2*01"
+    ],
+    "trbv": [
+      "TRBV19*01"
+    ],
+    "n_structures": 3,
+    "first_deposition_date": "2020-01-27",
+    "latest_deposition_date": "2020-01-27",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "ILDQVPFSV",
+      "IMDQVPFSV",
+      "ITDQVPFSV"
+    ],
+    "antigen_types": [
+      "tumour"
+    ],
+    "pdb_ids": [
+      "6VM9",
+      "6VMA",
+      "6VMC"
+    ]
+  },
+  {
+    "tcr_id": "tcr-c",
+    "tcr_name": "TCR-C",
+    "clonotype_ids": [
+      "CL116"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV4*01"
+    ],
+    "trbv": [
+      "TRBV11-2*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2024-09-23",
+    "latest_deposition_date": "2024-09-23",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "SLSNRLYYL"
+    ],
+    "antigen_types": [
+      "unresolved"
+    ],
+    "pdb_ids": [
+      "9GV6"
+    ]
+  },
+  {
+    "tcr_id": "tcr-e",
+    "tcr_name": "TCR-E",
+    "clonotype_ids": [
+      "CL117"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV12-2*01"
+    ],
+    "trbv": [
+      "TRBV6-2*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2024-09-23",
+    "latest_deposition_date": "2024-09-23",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "SLAGGLDDMKA"
+    ],
+    "antigen_types": [
+      "tumour"
+    ],
+    "pdb_ids": [
+      "9GV7"
+    ]
+  },
+  {
+    "tcr_id": "tcr10",
+    "tcr_name": "TCR10",
+    "clonotype_ids": [
+      "CL085"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV12-2*01"
+    ],
+    "trbv": [
+      "TRBV10-2*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2019-10-15",
+    "latest_deposition_date": "2019-10-15",
+    "alleles": [
+      "HLA-C*08:02"
+    ],
+    "peptides": [
+      "GADGVGKSAL"
+    ],
+    "antigen_types": [
+      "tumour"
+    ],
+    "pdb_ids": [
+      "6UON"
+    ]
+  },
+  {
+    "tcr_id": "tcr156",
+    "tcr_name": "TCR156",
+    "clonotype_ids": [
+      "CL125",
+      "CL126",
+      "CL127",
+      "CL128",
+      "CL129"
+    ],
+    "n_clonotypes": 5,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV12-2*01"
+    ],
+    "trbv": [
+      "TRBV9*01"
+    ],
+    "n_structures": 5,
+    "first_deposition_date": "2025-03-04",
+    "latest_deposition_date": "2025-03-04",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "TLMSAMTNL"
+    ],
+    "antigen_types": [
+      "tumour"
+    ],
+    "pdb_ids": [
+      "9NMU",
+      "9NMV",
+      "9NMW",
+      "9NMX",
+      "9NMY"
+    ]
+  },
+  {
+    "tcr_id": "tcr9a",
+    "tcr_name": "TCR9a",
+    "clonotype_ids": [
+      "CL027"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV4*01"
+    ],
+    "trbv": [
+      "TRBV5-6*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2021-11-16",
+    "latest_deposition_date": "2021-11-16",
+    "alleles": [
+      "HLA-C*05:01"
+    ],
+    "peptides": [
+      "GADGVGKSL"
+    ],
+    "antigen_types": [
+      "tumour"
+    ],
+    "pdb_ids": [
+      "7SU9"
+    ]
+  },
+  {
+    "tcr_id": "tcrpriv",
+    "tcr_name": "TCRpriv",
+    "clonotype_ids": [
+      "CL130"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV25*01"
+    ],
+    "trbv": [
+      "TRBV5-1*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2025-07-11",
+    "latest_deposition_date": "2025-07-11",
+    "alleles": [
+      "HLA-A*01:01"
+    ],
+    "peptides": [
+      "FTSDYYQLY"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "9RXM"
+    ]
+  },
+  {
+    "tcr_id": "tcrpub",
+    "tcr_name": "TCRpub",
+    "clonotype_ids": [
+      "CL037"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV3*01"
+    ],
+    "trbv": [
+      "TRBV5-1*01"
+    ],
+    "n_structures": 2,
+    "first_deposition_date": "2025-07-03",
+    "latest_deposition_date": "2025-07-04",
+    "alleles": [
+      "HLA-A*01:01"
+    ],
+    "peptides": [
+      "FTSDYYQLY"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "9RU5",
+      "9RUP"
+    ]
+  },
+  {
+    "tcr_id": "td08",
+    "tcr_name": "TD08",
+    "clonotype_ids": [
+      "CL034"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV8-3*01"
+    ],
+    "trbv": [
+      "TRBV7-9*03"
+    ],
+    "n_structures": 2,
+    "first_deposition_date": "2022-09-14",
+    "latest_deposition_date": "2022-09-15",
+    "alleles": [
+      "HLA-A*24:02"
+    ],
+    "peptides": [
+      "RFPLTFGW",
+      "RYPLTFGW"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "8GVB",
+      "8GVG"
+    ]
+  },
+  {
+    "tcr_id": "til-1383i",
+    "tcr_name": "TIL 1383i",
+    "clonotype_ids": [
+      "CL099"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV4*01"
+    ],
+    "trbv": [
+      "TRBV10-3*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2021-07-22",
+    "latest_deposition_date": "2021-07-22",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "YMDGTMSQV"
+    ],
+    "antigen_types": [
+      "tumour"
+    ],
+    "pdb_ids": [
+      "7RK7"
+    ]
+  },
+  {
+    "tcr_id": "tk3",
+    "tcr_name": "TK3",
+    "clonotype_ids": [
+      "CL004",
+      "CL049"
+    ],
+    "n_clonotypes": 2,
+    "has_engineered_variants": true,
+    "trav": [
+      "TRAV20*01"
+    ],
+    "trbv": [
+      "TRBV9*01",
+      "TRBV9*02"
+    ],
+    "n_structures": 6,
+    "first_deposition_date": "2010-05-03",
+    "latest_deposition_date": "2014-03-06",
+    "alleles": [
+      "HLA-B*35:01",
+      "HLA-B*35:08"
+    ],
+    "peptides": [
+      "HPVGDADYFEY",
+      "HPVGEADYFEY",
+      "HPVGQADYFEY"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "3MV7",
+      "3MV8",
+      "3MV9",
+      "4PRH",
+      "4PRI",
+      "4PRP"
+    ]
+  },
+  {
+    "tcr_id": "ki-890",
+    "tcr_name": null,
+    "clonotype_ids": [
+      "CL124"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV24*01"
+    ],
+    "trbv": [
+      "TRBV27*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2024-10-18",
+    "latest_deposition_date": "2024-10-18",
+    "alleles": [
+      "HLA-C*12:02"
+    ],
+    "peptides": [
+      "ILKEPVHGVYY"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "9K2R"
+    ]
+  },
+  {
+    "tcr_id": "v\u03b13s1v\u03b213s",
+    "tcr_name": "V\u03b13S1/V\u03b213S",
+    "clonotype_ids": [
+      "CL113"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV17*01"
+    ],
+    "trbv": [
+      "TRBV6-5*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2023-04-14",
+    "latest_deposition_date": "2023-04-14",
+    "alleles": [
+      "HLA-C*06:02"
+    ],
+    "peptides": [
+      "VRSRRALRL"
+    ],
+    "antigen_types": [
+      "autoimmune"
+    ],
+    "pdb_ids": [
+      "8SHI"
+    ]
+  },
+  {
+    "tcr_id": "ylq-sg3",
+    "tcr_name": "YLQ-SG3",
+    "clonotype_ids": [
+      "CL030"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV12-2*01"
+    ],
+    "trbv": [
+      "TRBV7-9*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2021-08-14",
+    "latest_deposition_date": "2021-08-14",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "YLQPRTFLL"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "7RTR"
+    ]
+  },
+  {
+    "tcr_id": "ylq36",
+    "tcr_name": "YLQ36",
+    "clonotype_ids": [
+      "CL095"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV12-1*01"
+    ],
+    "trbv": [
+      "TRBV7-9*03"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2021-08-02",
+    "latest_deposition_date": "2021-08-02",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "YLQPRTFLL"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "7PBE"
+    ]
+  },
+  {
+    "tcr_id": "ylq7",
+    "tcr_name": "YLQ7",
+    "clonotype_ids": [
+      "CL030"
+    ],
+    "n_clonotypes": 1,
+    "has_engineered_variants": false,
+    "trav": [
+      "TRAV12-2*01"
+    ],
+    "trbv": [
+      "TRBV7-9*01"
+    ],
+    "n_structures": 1,
+    "first_deposition_date": "2021-05-27",
+    "latest_deposition_date": "2021-05-27",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "YLQPRTFLL"
+    ],
+    "antigen_types": [
+      "pathogen"
+    ],
+    "pdb_ids": [
+      "7N1F"
+    ]
+  }
+]

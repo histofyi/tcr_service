@@ -1,0 +1,28 @@
+{
+ "clonotype_id": "CL088",
+ "tcr_id": "12-6",
+ "tcr_name": "12-6",
+ "trav": "TRAV12-1*01",
+ "trbv": "TRBV6-1*01",
+ "traj": "TRAJ13*02",
+ "trbj": "TRBJ2-7*01",
+ "cdr3_alpha": "VVQPGGYQKVT",
+ "cdr3_beta": "ASSEGLWQVGDEQY",
+ "n_structures": 1,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2020-02-08",
+ "alleles": [
+  "HLA-A*02:01"
+ ],
+ "peptides": [
+  "HMTEVVRHC"
+ ],
+ "pdb_ids": [
+  "6VRM"
+ ],
+ "baseline_cdr3": {
+  "alpha": "VVQPGGYQKVT",
+  "beta": "ASSEGLWQVGDEQY"
+ },
+ "engineered_variants": []
+}

@@ -1,0 +1,31 @@
+{
+ "clonotype_id": "CL013",
+ "tcr_id": "4c6",
+ "tcr_name": "4C6",
+ "trav": "TRAV5*01",
+ "trbv": "TRBV7-9*03",
+ "traj": "TRAJ37*01",
+ "trbj": "TRBJ2-7*01",
+ "cdr3_alpha": "AEPSGNTGKLI",
+ "cdr3_beta": "ASSLHHEQY",
+ "n_structures": 3,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2021-02-23",
+ "alleles": [
+  "HLA-A*24:02"
+ ],
+ "peptides": [
+  "LWMRLLPLL",
+  "QLPRLFPLL"
+ ],
+ "pdb_ids": [
+  "7NME",
+  "7NMF",
+  "7NMG"
+ ],
+ "baseline_cdr3": {
+  "alpha": "AEPSGNTGKLI",
+  "beta": "ASSLHHEQY"
+ },
+ "engineered_variants": []
+}

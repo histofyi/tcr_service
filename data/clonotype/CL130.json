@@ -1,0 +1,28 @@
+{
+ "clonotype_id": "CL130",
+ "tcr_id": "tcrpriv",
+ "tcr_name": "TCRpriv",
+ "trav": "TRAV25*01",
+ "trbv": "TRBV5-1*01",
+ "traj": "TRAJ57*01",
+ "trbj": "TRBJ1-1*01",
+ "cdr3_alpha": "ASDREGGSEKLV",
+ "cdr3_beta": "ASSLWTGVGTEAF",
+ "n_structures": 1,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2025-07-11",
+ "alleles": [
+  "HLA-A*01:01"
+ ],
+ "peptides": [
+  "FTSDYYQLY"
+ ],
+ "pdb_ids": [
+  "9RXM"
+ ],
+ "baseline_cdr3": {
+  "alpha": "ASDREGGSEKLV",
+  "beta": "ASSLWTGVGTEAF"
+ },
+ "engineered_variants": []
+}

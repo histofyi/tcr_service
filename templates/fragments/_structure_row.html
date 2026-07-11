@@ -1,0 +1,24 @@
+{# One structure row for the per-TCR structure list.
+   Expects `structure` (a dict from the TCR bundle's structures[]) and `tcr_id`. #}
+<div class="structure-row">
+    <span class="structure-row-pdb">
+        <a href="/tcrs/{{ tcr_id }}/structures/{{ structure.pdb_id | lower }}">{{ structure.pdb_id }}</a>
+    </span>
+    <span class="structure-row-peptide">
+        {{ structure.peptide | sequence_display | safe }}
+    </span>
+    <span class="structure-row-allele">{{ structure.allele }}</span>
+    <span class="structure-row-antigen">
+        <span class="antigen-dot"
+              style="background-color: {{ antigen_colors.get(structure.antigen_type, '#999999') }};"
+              title="{{ structure.antigen_type | deslugify_string }}"></span>
+        {{ structure.antigen_type | deslugify_string }}
+    </span>
+    <span class="structure-row-method">
+        {{ structure.method | deslugify_string }}{% if structure.resolution %}, {{ structure.resolution }} &#8491;{% endif %}
+    </span>
+    <span class="structure-row-date">{{ structure.deposition_date }}</span>
+    {% if structure.is_engineered_variant %}
+        <span class="structure-row-flag" title="Affinity-engineered variant">engineered</span>
+    {% endif %}
+</div>

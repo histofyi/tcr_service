@@ -1,0 +1,28 @@
+{
+ "clonotype_id": "CL070",
+ "tcr_id": "f50",
+ "tcr_name": "F50",
+ "trav": "TRAV13-1*01",
+ "trbv": "TRBV27*01",
+ "traj": "TRAJ54*01",
+ "trbj": "TRBJ1-1*01",
+ "cdr3_alpha": "AASFIIQGAQKLV",
+ "cdr3_beta": "ASSLLGGWSEAF",
+ "n_structures": 1,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2016-09-23",
+ "alleles": [
+  "HLA-A*02:01"
+ ],
+ "peptides": [
+  "GILGFVFTL"
+ ],
+ "pdb_ids": [
+  "5TEZ"
+ ],
+ "baseline_cdr3": {
+  "alpha": "AASFIIQGAQKLV",
+  "beta": "ASSLLGGWSEAF"
+ },
+ "engineered_variants": []
+}

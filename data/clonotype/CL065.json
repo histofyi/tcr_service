@@ -1,0 +1,28 @@
+{
+ "clonotype_id": "CL065",
+ "tcr_id": "ls01",
+ "tcr_name": "LS01",
+ "trav": "TRAV24*01",
+ "trbv": "TRBV19*01",
+ "traj": "TRAJ27*01",
+ "trbj": "TRBJ2-7*01",
+ "cdr3_alpha": "AFDTNAGKST",
+ "cdr3_beta": "ASSIFGQREQY",
+ "n_structures": 1,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2016-03-15",
+ "alleles": [
+  "HLA-A*02:01"
+ ],
+ "peptides": [
+  "GILGFVFTL"
+ ],
+ "pdb_ids": [
+  "5ISZ"
+ ],
+ "baseline_cdr3": {
+  "alpha": "AFDTNAGKST",
+  "beta": "ASSIFGQREQY"
+ },
+ "engineered_variants": []
+}

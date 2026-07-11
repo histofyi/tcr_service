@@ -1,0 +1,30 @@
+{
+ "clonotype_id": "CL032",
+ "tcr_id": "jdia41b1",
+ "tcr_name": "JDIa41b1",
+ "trav": "TRAV19*01",
+ "trbv": "TRBV6-2*01",
+ "traj": "TRAJ28*01",
+ "trbj": "TRBJ1-6*01",
+ "cdr3_alpha": "AMSVPSGDGSYQFT",
+ "cdr3_beta": "ASKVGPGQHNSPLH",
+ "n_structures": 2,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2021-06-16",
+ "alleles": [
+  "HLA-A*11:01"
+ ],
+ "peptides": [
+  "VVVGADGVGK",
+  "VVVGAGGVGK"
+ ],
+ "pdb_ids": [
+  "7OW5",
+  "7OW6"
+ ],
+ "baseline_cdr3": {
+  "alpha": "AMSVPSGDGSYQFT",
+  "beta": "ASKVGPGQHNSPLH"
+ },
+ "engineered_variants": []
+}

@@ -1,0 +1,42 @@
+{
+ "clonotype_id": "CL071",
+ "tcr_id": "hcv1406",
+ "tcr_name": "HCV1406",
+ "trav": "TRAV38-2/DV8*01",
+ "trbv": "TRBV25-1*01",
+ "traj": "TRDJ1*01",
+ "trbj": "TRBJ2-7*01",
+ "cdr3_alpha": "AYGEDDKII",
+ "cdr3_beta": "ASRRGSAELY",
+ "n_structures": 1,
+ "has_engineered_variants": true,
+ "first_deposition_date": "2017-12-07",
+ "alleles": [
+  "HLA-A*02:01"
+ ],
+ "peptides": [
+  "KLVALGINAV"
+ ],
+ "pdb_ids": [
+  "5YXU"
+ ],
+ "baseline_cdr3": {
+  "alpha": "AYGEDDKII",
+  "beta": "ASRRGSAELY"
+ },
+ "engineered_variants": [
+  {
+   "pdb_id": "5YXU",
+   "cdr3_alpha": "AYGEDDKII",
+   "cdr3_beta": "ASRRGSAELY",
+   "cdr3_alpha_differs": false,
+   "cdr3_beta_differs": false,
+   "publication": {
+    "title": "an affinity enhanced T cell receptor in complex with HLA-A0201 restricted HCV NS3 peptide KLVALGINAV",
+    "doi": null,
+    "pmid": null
+   },
+   "patent": null
+  }
+ ]
+}

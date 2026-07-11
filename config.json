@@ -1,0 +1,23 @@
+{
+    "SITE_TITLE": "histo.fyi TCRs",
+    "STATIC_ROUTE": "https://static.histo.fyi",
+    "NAVIGATION_ITEMS": [
+        {"slug": "tcrs", "label": "TCRs", "url": "/tcrs"},
+        {"slug": "clonotypes", "label": "Clonotypes", "url": "/clonotypes"},
+        {"slug": "explore", "label": "Explore", "url": "/tcrs/explore"}
+    ],
+    "ANTIGEN_COLORS": {
+        "tumour": "#dc267f",
+        "pathogen": "#648fff",
+        "autoimmune": "#ffb000",
+        "alloreactive": "#785ef0",
+        "unresolved": "#999999"
+    },
+    "AA_COLORS": {
+        "G": "#00B4A0", "D": "#E54F9B", "E": "#B01E66", "H": "#B07AF5",
+        "K": "#9355E0", "R": "#7232C0", "A": "#A8C5FF", "P": "#9ABCFF",
+        "V": "#8CB0FF", "L": "#7EA5FF", "I": "#6F9AFF", "M": "#648FFF",
+        "F": "#4A72DB", "W": "#3558B4", "S": "#FFD066", "T": "#FFC233",
+        "N": "#FFB000", "Q": "#E09B00", "Y": "#C08500", "C": "#FFA333"
+    }
+}

@@ -1,0 +1,28 @@
+{
+ "clonotype_id": "CL131",
+ "tcr_id": "q04",
+ "tcr_name": "Q04",
+ "trav": "TRAV25*01",
+ "trbv": "TRBV7-8*01",
+ "traj": "TRAJ40*01",
+ "trbj": "TRBJ1-2*01",
+ "cdr3_alpha": "AGYTSGTYKYI",
+ "cdr3_beta": "ASSLGQGHFT",
+ "n_structures": 1,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2025-08-13",
+ "alleles": [
+  "HLA-B*07:02"
+ ],
+ "peptides": [
+  "SPRWYFYYL"
+ ],
+ "pdb_ids": [
+  "9WBD"
+ ],
+ "baseline_cdr3": {
+  "alpha": "AGYTSGTYKYI",
+  "beta": "ASSLGQGHFT"
+ },
+ "engineered_variants": []
+}

@@ -1,0 +1,28 @@
+{
+ "clonotype_id": "CL103",
+ "tcr_id": "ll8",
+ "tcr_name": "LL8",
+ "trav": "TRAV12-2*01",
+ "trbv": "TRBV7-2*01",
+ "traj": "TRAJ54*01",
+ "trbj": "TRBJ2-1*01",
+ "cdr3_alpha": "AVREGAQKLV",
+ "cdr3_beta": "ASSLDLGADEQF",
+ "n_structures": 1,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2022-07-11",
+ "alleles": [
+  "HLA-A*02:01"
+ ],
+ "peptides": [
+  "LLLDRLNQL"
+ ],
+ "pdb_ids": [
+  "8DNT"
+ ],
+ "baseline_cdr3": {
+  "alpha": "AVREGAQKLV",
+  "beta": "ASSLDLGADEQF"
+ },
+ "engineered_variants": []
+}

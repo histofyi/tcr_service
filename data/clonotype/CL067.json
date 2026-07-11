@@ -1,0 +1,28 @@
+{
+ "clonotype_id": "CL067",
+ "tcr_id": "ila1",
+ "tcr_name": "ILA1",
+ "trav": "TRAV22*01",
+ "trbv": "TRBV6-5*01",
+ "traj": "TRAJ40*01",
+ "trbj": "TRBJ1-1*01",
+ "cdr3_alpha": "AVDSATSGTYKYI",
+ "cdr3_beta": "ASSYQGTEAF",
+ "n_structures": 1,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2016-11-16",
+ "alleles": [
+  "HLA-A*02:01"
+ ],
+ "peptides": [
+  "ILAKFLHWL"
+ ],
+ "pdb_ids": [
+  "5MEN"
+ ],
+ "baseline_cdr3": {
+  "alpha": "AVDSATSGTYKYI",
+  "beta": "ASSYQGTEAF"
+ },
+ "engineered_variants": []
+}

@@ -1,0 +1,42 @@
+{
+ "clonotype_id": "CL044",
+ "tcr_id": "jm22",
+ "tcr_name": "JM22",
+ "trav": "TRAV27*01",
+ "trbv": "TRBV19*01",
+ "traj": "TRAJ42*01",
+ "trbj": "TRBJ2-7*01",
+ "cdr3_alpha": "AGAGSQGNLI",
+ "cdr3_beta": "ASSSRASYEQY",
+ "n_structures": 1,
+ "has_engineered_variants": true,
+ "first_deposition_date": "2008-01-15",
+ "alleles": [
+  "HLA-A*02:01"
+ ],
+ "peptides": [
+  "GILGFVFTL"
+ ],
+ "pdb_ids": [
+  "2VLR"
+ ],
+ "baseline_cdr3": {
+  "alpha": "AGAGSQGNLI",
+  "beta": "ASSSRASYEQY"
+ },
+ "engineered_variants": [
+  {
+   "pdb_id": "2VLR",
+   "cdr3_alpha": "AGAGSQGNLI",
+   "cdr3_beta": "ASSSRASYEQY",
+   "cdr3_alpha_differs": false,
+   "cdr3_beta_differs": false,
+   "publication": {
+    "title": "The structural dynamics and energetics of an immunodominant T cell receptor are programmed by its Vbeta domain.",
+    "doi": "10.1016/j.immuni.2007.12.018",
+    "pmid": "18275829"
+   },
+   "patent": null
+  }
+ ]
+}

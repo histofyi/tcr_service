@@ -1,0 +1,28 @@
+{
+ "clonotype_id": "CL119",
+ "tcr_id": "1-2c-t96f",
+ "tcr_name": "1-2C-T96F",
+ "trav": "TRAV7-2*02",
+ "trbv": "TRBV13-2*01",
+ "traj": "TRAJ33*01",
+ "trbj": "TRBJ2-7*01",
+ "cdr3_alpha": "AARDSNYQLI",
+ "cdr3_beta": "ASGDFGGYEQY",
+ "n_structures": 1,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2024-06-29",
+ "alleles": [
+  "HLA-A*11:01"
+ ],
+ "peptides": [
+  "VVGAVGVGK"
+ ],
+ "pdb_ids": [
+  "9IKY"
+ ],
+ "baseline_cdr3": {
+  "alpha": "AARDSNYQLI",
+  "beta": "ASGDFGGYEQY"
+ },
+ "engineered_variants": []
+}

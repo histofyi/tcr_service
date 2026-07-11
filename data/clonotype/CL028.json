@@ -1,0 +1,30 @@
+{
+ "clonotype_id": "CL028",
+ "tcr_id": "silv44",
+ "tcr_name": "SILv44",
+ "trav": "TRAV8-1*01",
+ "trbv": "TRBV19*01",
+ "traj": "TRAJ29*01",
+ "trbj": "TRBJ2-1*01",
+ "cdr3_alpha": "AVNARRNTPLV",
+ "cdr3_beta": "ASSITLSSYNEQF",
+ "n_structures": 2,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2020-01-27",
+ "alleles": [
+  "HLA-A*02:01"
+ ],
+ "peptides": [
+  "IMDQVPFSV",
+  "ITDQVPFSV"
+ ],
+ "pdb_ids": [
+  "6VM7",
+  "6VM8"
+ ],
+ "baseline_cdr3": {
+  "alpha": "AVNARRNTPLV",
+  "beta": "ASSITLSSYNEQF"
+ },
+ "engineered_variants": []
+}

@@ -1,0 +1,42 @@
+{
+ "clonotype_id": "CL049",
+ "tcr_id": "tk3",
+ "tcr_name": "TK3",
+ "trav": "TRAV20*01",
+ "trbv": "TRBV9*02",
+ "traj": "TRAJ18*01",
+ "trbj": "TRBJ2-2*01",
+ "cdr3_alpha": "AVQDLGTSGSRLT",
+ "cdr3_beta": "ASSARSGELF",
+ "n_structures": 1,
+ "has_engineered_variants": true,
+ "first_deposition_date": "2010-05-03",
+ "alleles": [
+  "HLA-B*35:01"
+ ],
+ "peptides": [
+  "HPVGEADYFEY"
+ ],
+ "pdb_ids": [
+  "3MV8"
+ ],
+ "baseline_cdr3": {
+  "alpha": "AVQDLGTSGSRLT",
+  "beta": "ASSARSGELF"
+ },
+ "engineered_variants": [
+  {
+   "pdb_id": "3MV8",
+   "cdr3_alpha": "AVQDLGTSGSRLT",
+   "cdr3_beta": "ASSARSGELF",
+   "cdr3_alpha_differs": false,
+   "cdr3_beta_differs": false,
+   "publication": {
+    "title": "Allelic polymorphism in the T cell receptor and its impact on immune responses.",
+    "doi": "10.1084/jem.20100603",
+    "pmid": "20566715"
+   },
+   "patent": null
+  }
+ ]
+}

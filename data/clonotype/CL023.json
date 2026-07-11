@@ -1,0 +1,30 @@
+{
+ "clonotype_id": "CL023",
+ "tcr_id": "mag-ic3",
+ "tcr_name": "MAG-IC3",
+ "trav": "TRAV21*01",
+ "trbv": "TRBV5-1*01",
+ "traj": "TRAJ28*01",
+ "trbj": "TRBJ2-7*01",
+ "cdr3_alpha": "AVRPGGAGPFFVV",
+ "cdr3_beta": "ASSFNMATGQY",
+ "n_structures": 2,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2015-06-01",
+ "alleles": [
+  "HLA-A*01:01"
+ ],
+ "peptides": [
+  "ESDPIVAQY",
+  "EVDPIGHLY"
+ ],
+ "pdb_ids": [
+  "5BRZ",
+  "5BS0"
+ ],
+ "baseline_cdr3": {
+  "alpha": "AVRPGGAGPFFVV",
+  "beta": "ASSFNMATGQY"
+ },
+ "engineered_variants": []
+}

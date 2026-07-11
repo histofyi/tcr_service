@@ -1,0 +1,31 @@
+{
+ "clonotype_id": "CL027",
+ "tcr_id": "9a",
+ "tcr_name": "9a",
+ "trav": "TRAV4*01",
+ "trbv": "TRBV5-6*01",
+ "traj": "TRAJ15*01",
+ "trbj": "TRBJ1-2*01",
+ "cdr3_alpha": "LVGDMDQAGTALI",
+ "cdr3_beta": "ASSLGEGRVDGYT",
+ "n_structures": 2,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2019-10-08",
+ "alleles": [
+  "HLA-C*05:01",
+  "HLA-C*08:02"
+ ],
+ "peptides": [
+  "GADGVGKSA",
+  "GADGVGKSL"
+ ],
+ "pdb_ids": [
+  "6ULR",
+  "7SU9"
+ ],
+ "baseline_cdr3": {
+  "alpha": "LVGDMDQAGTALI",
+  "beta": "ASSLGEGRVDGYT"
+ },
+ "engineered_variants": []
+}

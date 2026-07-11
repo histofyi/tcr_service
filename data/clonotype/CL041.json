@@ -1,0 +1,42 @@
+{
+ "clonotype_id": "CL041",
+ "tcr_id": "1g4",
+ "tcr_name": "1G4",
+ "trav": "TRAV21*01",
+ "trbv": "TRBV6-5*01",
+ "traj": "TRAJ6*01",
+ "trbj": "TRBJ2-2*01",
+ "cdr3_alpha": "AVRPLLDGTYIPT",
+ "cdr3_beta": "ASSYLGNTGELF",
+ "n_structures": 1,
+ "has_engineered_variants": true,
+ "first_deposition_date": "2007-03-15",
+ "alleles": [
+  "HLA-A*02:01"
+ ],
+ "peptides": [
+  "SLLMWITQC"
+ ],
+ "pdb_ids": [
+  "2P5E"
+ ],
+ "baseline_cdr3": {
+  "alpha": "AVRPLLDGTYIPT",
+  "beta": "ASSYLGNTGELF"
+ },
+ "engineered_variants": [
+  {
+   "pdb_id": "2P5E",
+   "cdr3_alpha": "AVRPLLDGTYIPT",
+   "cdr3_beta": "ASSYLGNTGELF",
+   "cdr3_alpha_differs": false,
+   "cdr3_beta_differs": false,
+   "publication": {
+    "title": "Crystal structures of high affinity human T-cell receptors bound to peptide major histocompatibility complex reveal native diagonal binding geometry.",
+    "doi": "10.1093/protein/gzm033",
+    "pmid": "17644531"
+   },
+   "patent": null
+  }
+ ]
+}

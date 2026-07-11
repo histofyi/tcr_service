@@ -1,0 +1,42 @@
+{# One TCR card for the /tcrs grid. Expects `tcr` (an index record) in context.
+   The card doubles as the accordion control: the checkbox toggles the
+   structure list without a page load (CSS-only, progressive enhancement). #}
+<div class="tcr-card">
+    <input type="checkbox" id="tcr-{{ tcr.tcr_id }}" class="tcr-card-toggle">
+
+    <div class="tcr-card-head">
+        <div class="tcr-card-title">
+            <a href="/tcrs/{{ tcr.tcr_id }}">{{ tcr.tcr_name }}</a>
+            {% if tcr.has_engineered_variants %}
+                <span class="tcr-card-flag" title="Has affinity-engineered variants">engineered</span>
+            {% endif %}
+        </div>
+
+        <div class="tcr-card-genes">
+            <small>{{ tcr.trav | join(', ') }} / {{ tcr.trbv | join(', ') }}</small>
+        </div>
+
+        <div class="tcr-card-meta">
+            <small>{{ tcr.n_structures }} structure{% if tcr.n_structures != 1 %}s{% endif %}</small>
+            <small>&middot; first deposited {{ tcr.first_deposition_date }}</small>
+        </div>
+
+        <div class="tcr-card-antigens">
+            {% for antigen in tcr.antigen_types %}
+                <span class="antigen-dot"
+                      style="background-color: {{ antigen_colors.get(antigen, '#999999') }};"
+                      title="{{ antigen | deslugify_string }}"></span>
+            {% endfor %}
+        </div>
+
+        <label for="tcr-{{ tcr.tcr_id }}" class="tcr-card-expand">
+            <span class="icon"></span> structures
+        </label>
+    </div>
+
+    <div class="tcr-card-structures">
+        {% for pdb_id in tcr.pdb_ids %}
+            <a class="tcr-card-structure-link" href="/tcrs/{{ tcr.tcr_id }}/structures/{{ pdb_id | lower }}">{{ pdb_id }}</a>
+        {% endfor %}
+    </div>
+</div>

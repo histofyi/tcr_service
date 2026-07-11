@@ -1,0 +1,44 @@
+{
+ "clonotype_id": "CL022",
+ "tcr_id": "dmf5",
+ "tcr_name": "DMF5",
+ "trav": "TRAV12-2*01",
+ "trbv": "TRBV6-4*01",
+ "traj": "TRAJ23*01",
+ "trbj": "TRBJ1-1*01",
+ "cdr3_alpha": "AVNFGGGKLI",
+ "cdr3_beta": "ASSWSFGTEAF",
+ "n_structures": 2,
+ "has_engineered_variants": true,
+ "first_deposition_date": "2013-06-05",
+ "alleles": [
+  "HLA-A*02:01"
+ ],
+ "peptides": [
+  "AAGIGILTV",
+  "ELAGIGILTV"
+ ],
+ "pdb_ids": [
+  "4L3E",
+  "6D78"
+ ],
+ "baseline_cdr3": {
+  "alpha": "AVNFGGGKLI",
+  "beta": "ASSWSFGTEAF"
+ },
+ "engineered_variants": [
+  {
+   "pdb_id": "4L3E",
+   "cdr3_alpha": "AVNFGGGKLI",
+   "cdr3_beta": "ASSWSFGTEAF",
+   "cdr3_alpha_differs": false,
+   "cdr3_beta_differs": false,
+   "publication": {
+    "title": "Computational design of the affinity and specificity of a therapeutic T cell receptor.",
+    "doi": "10.1371/journal.pcbi.1003478",
+    "pmid": "24550723"
+   },
+   "patent": null
+  }
+ ]
+}

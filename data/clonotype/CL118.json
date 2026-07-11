@@ -1,0 +1,28 @@
+{
+ "clonotype_id": "CL118",
+ "tcr_id": "gv37",
+ "tcr_name": "GV37",
+ "trav": "TRAV5*01",
+ "trbv": "TRBV7-8*01",
+ "traj": "TRAJ29*01",
+ "trbj": "TRBJ2-1*01",
+ "cdr3_alpha": "AEVEGNTPLV",
+ "cdr3_beta": "ASSLAGLAGGVEQF",
+ "n_structures": 1,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2024-12-05",
+ "alleles": [
+  "HLA-C*12:02"
+ ],
+ "peptides": [
+  "KAYNVTQAF"
+ ],
+ "pdb_ids": [
+  "9HLJ"
+ ],
+ "baseline_cdr3": {
+  "alpha": "AEVEGNTPLV",
+  "beta": "ASSLAGLAGGVEQF"
+ },
+ "engineered_variants": []
+}

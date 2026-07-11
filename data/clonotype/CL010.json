@@ -1,0 +1,32 @@
+{
+ "clonotype_id": "CL010",
+ "tcr_id": "868",
+ "tcr_name": "868",
+ "trav": "TRAV12-2*01",
+ "trbv": "TRBV5-6*01",
+ "traj": "TRAJ41*01",
+ "trbj": "TRBJ2-7*01",
+ "cdr3_alpha": "AVRTNSGYALN",
+ "cdr3_beta": "ASSDTVSYEQY",
+ "n_structures": 3,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2017-04-05",
+ "alleles": [
+  "HLA-A*02:01"
+ ],
+ "peptides": [
+  "SLFNTIAVL",
+  "SLYNTIATL",
+  "SLYNTVATL"
+ ],
+ "pdb_ids": [
+  "5NME",
+  "5NMF",
+  "5NMG"
+ ],
+ "baseline_cdr3": {
+  "alpha": "AVRTNSGYALN",
+  "beta": "ASSDTVSYEQY"
+ },
+ "engineered_variants": []
+}

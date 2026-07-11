@@ -1,0 +1,29 @@
+{
+ "clonotype_id": "CL030",
+ "tcr_id": "ylq-sg3",
+ "tcr_name": "YLQ7",
+ "trav": "TRAV12-2*01",
+ "trbv": "TRBV7-9*01",
+ "traj": "TRAJ30*01",
+ "trbj": "TRBJ2-7*01",
+ "cdr3_alpha": "AVNRDDKII",
+ "cdr3_beta": "ASSPDIEQY",
+ "n_structures": 2,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2021-05-27",
+ "alleles": [
+  "HLA-A*02:01"
+ ],
+ "peptides": [
+  "YLQPRTFLL"
+ ],
+ "pdb_ids": [
+  "7N1F",
+  "7RTR"
+ ],
+ "baseline_cdr3": {
+  "alpha": "AVNRDDKII",
+  "beta": "ASSPDIEQY"
+ },
+ "engineered_variants": []
+}

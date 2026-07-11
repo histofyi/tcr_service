@@ -1,0 +1,28 @@
+{
+ "clonotype_id": "CL089",
+ "tcr_id": "38-10",
+ "tcr_name": "38-10",
+ "trav": "TRAV38-2/DV8*01",
+ "trbv": "TRBV10-3*01",
+ "traj": "TRDJ2*01",
+ "trbj": "TRBJ1-6*01",
+ "cdr3_alpha": "AFMGYSGAGSYQLT",
+ "cdr3_beta": "AISELVTGDSPLH",
+ "n_structures": 1,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2020-02-08",
+ "alleles": [
+  "HLA-A*02:01"
+ ],
+ "peptides": [
+  "HMTEVVRHC"
+ ],
+ "pdb_ids": [
+  "6VRN"
+ ],
+ "baseline_cdr3": {
+  "alpha": "AFMGYSGAGSYQLT",
+  "beta": "AISELVTGDSPLH"
+ },
+ "engineered_variants": []
+}

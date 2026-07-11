@@ -1,0 +1,28 @@
+{
+ "clonotype_id": "CL080",
+ "tcr_id": "nye-s2",
+ "tcr_name": "NYE_S2",
+ "trav": "TRAV3*01",
+ "trbv": "TRBV29-1*01",
+ "traj": "TRAJ28*01",
+ "trbj": "TRBJ2-3*01",
+ "cdr3_alpha": "AVRDINSGAGSYQLT",
+ "cdr3_beta": "SVGGSGGADTQY",
+ "n_structures": 1,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2019-05-14",
+ "alleles": [
+  "HLA-A*02:01"
+ ],
+ "peptides": [
+  "SLLMWITQV"
+ ],
+ "pdb_ids": [
+  "6RPA"
+ ],
+ "baseline_cdr3": {
+  "alpha": "AVRDINSGAGSYQLT",
+  "beta": "SVGGSGGADTQY"
+ },
+ "engineered_variants": []
+}

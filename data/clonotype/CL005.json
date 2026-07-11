@@ -1,0 +1,36 @@
+{
+ "clonotype_id": "CL005",
+ "tcr_id": "a24b17",
+ "tcr_name": "a24b17",
+ "trav": "TRAV12-2*01",
+ "trbv": "TRBV30*02",
+ "traj": "TRAJ27*01",
+ "trbj": "TRBJ2-2*01",
+ "cdr3_alpha": "AVNDGGRLT",
+ "cdr3_beta": "AWSETGLGMGGWQ",
+ "n_structures": 5,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2013-02-28",
+ "alleles": [
+  "HLA-A*02:01"
+ ],
+ "peptides": [
+  "AAGIGILTV",
+  "EAAGIGILTV",
+  "ELAAIGILTV",
+  "ELAGIGALTV",
+  "ELAGIGILTV"
+ ],
+ "pdb_ids": [
+  "4JFD",
+  "4JFE",
+  "4JFF",
+  "6EQB",
+  "6TMO"
+ ],
+ "baseline_cdr3": {
+  "alpha": "AVNDGGRLT",
+  "beta": "AWSETGLGMGGWQ"
+ },
+ "engineered_variants": []
+}

@@ -1,0 +1,33 @@
+{
+ "clonotype_id": "CL015",
+ "tcr_id": "d1",
+ "tcr_name": "D1",
+ "trav": "TRAV1-1*01",
+ "trbv": "TRBV7-8*01",
+ "traj": "TRAJ9*01",
+ "trbj": "TRBJ2-5*01",
+ "cdr3_alpha": "AVDTGGFKTI",
+ "cdr3_beta": "ASSPTGGQETQY",
+ "n_structures": 3,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2023-11-29",
+ "alleles": [
+  "HLA-B*35:01",
+  "HLA-B*35:42"
+ ],
+ "peptides": [
+  "LPFDKSTVM",
+  "LPFEKSTIM",
+  "LPFEKSTVM"
+ ],
+ "pdb_ids": [
+  "8V4Z",
+  "8V50",
+  "8V51"
+ ],
+ "baseline_cdr3": {
+  "alpha": "AVDTGGFKTI",
+  "beta": "ASSPTGGQETQY"
+ },
+ "engineered_variants": []
+}

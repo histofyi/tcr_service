@@ -1,0 +1,28 @@
+{
+ "clonotype_id": "CL057",
+ "tcr_id": "dd31",
+ "tcr_name": "DD31",
+ "trav": "TRAV9-2*02",
+ "trbv": "TRBV11-2*01",
+ "traj": "TRAJ43*01",
+ "trbj": "TRBJ1-5*01",
+ "cdr3_alpha": "ALSDPVNDMR",
+ "cdr3_beta": "ASSLRGRGDQPQH",
+ "n_structures": 1,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2014-07-02",
+ "alleles": [
+  "HLA-B*08:01"
+ ],
+ "peptides": [
+  "HSKKKCDEL"
+ ],
+ "pdb_ids": [
+  "4QRP"
+ ],
+ "baseline_cdr3": {
+  "alpha": "ALSDPVNDMR",
+  "beta": "ASSLRGRGDQPQH"
+ },
+ "engineered_variants": []
+}

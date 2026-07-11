@@ -1,0 +1,30 @@
+{
+ "clonotype_id": "CL026",
+ "tcr_id": "302-til",
+ "tcr_name": "302 TIL",
+ "trav": "TRAV38-2/DV8*01",
+ "trbv": "TRBV12-3*01",
+ "traj": "TRDJ2*01",
+ "trbj": "TRBJ2-3*01",
+ "cdr3_alpha": "AFMDSNYQLI",
+ "cdr3_beta": "ASSRTSPTDTQY",
+ "n_structures": 2,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2019-10-04",
+ "alleles": [
+  "HLA-A*02:06"
+ ],
+ "peptides": [
+  "KQWLVWLFL",
+  "KQWLVWLLL"
+ ],
+ "pdb_ids": [
+  "6UK2",
+  "6UK4"
+ ],
+ "baseline_cdr3": {
+  "alpha": "AFMDSNYQLI",
+  "beta": "ASSRTSPTDTQY"
+ },
+ "engineered_variants": []
+}

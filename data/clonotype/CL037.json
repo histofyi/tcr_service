@@ -1,0 +1,29 @@
+{
+ "clonotype_id": "CL037",
+ "tcr_id": "tcrpub",
+ "tcr_name": "TCRpub",
+ "trav": "TRAV3*01",
+ "trbv": "TRBV5-1*01",
+ "traj": "TRAJ6*01",
+ "trbj": "TRBJ1-1*01",
+ "cdr3_alpha": "AVRVVTSGGSYIPT",
+ "cdr3_beta": "ASSLAGDLGTEAF",
+ "n_structures": 2,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2025-07-03",
+ "alleles": [
+  "HLA-A*01:01"
+ ],
+ "peptides": [
+  "FTSDYYQLY"
+ ],
+ "pdb_ids": [
+  "9RU5",
+  "9RUP"
+ ],
+ "baseline_cdr3": {
+  "alpha": "AVRVVTSGGSYIPT",
+  "beta": "ASSLAGDLGTEAF"
+ },
+ "engineered_variants": []
+}

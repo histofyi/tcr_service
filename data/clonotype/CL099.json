@@ -1,0 +1,28 @@
+{
+ "clonotype_id": "CL099",
+ "tcr_id": "til-1383i",
+ "tcr_name": "TIL 1383i",
+ "trav": "TRAV4*01",
+ "trbv": "TRBV10-3*01",
+ "traj": "TRAJ42*01",
+ "trbj": "TRBJ1-3*01",
+ "cdr3_alpha": "LVALNYGGSQGNLI",
+ "cdr3_beta": "AISPTEEGGLIFPGNTIY",
+ "n_structures": 1,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2021-07-22",
+ "alleles": [
+  "HLA-A*02:01"
+ ],
+ "peptides": [
+  "YMDGTMSQV"
+ ],
+ "pdb_ids": [
+  "7RK7"
+ ],
+ "baseline_cdr3": {
+  "alpha": "LVALNYGGSQGNLI",
+  "beta": "AISPTEEGGLIFPGNTIY"
+ },
+ "engineered_variants": []
+}

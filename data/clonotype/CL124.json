@@ -1,0 +1,28 @@
+{
+ "clonotype_id": "CL124",
+ "tcr_id": "ki-890",
+ "tcr_name": null,
+ "trav": "TRAV24*01",
+ "trbv": "TRBV27*01",
+ "traj": "TRAJ33*01",
+ "trbj": "TRBJ1-5*01",
+ "cdr3_alpha": "YVPMDSNYQLI",
+ "cdr3_beta": "ASSLVGAGQPQH",
+ "n_structures": 1,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2024-10-18",
+ "alleles": [
+  "HLA-C*12:02"
+ ],
+ "peptides": [
+  "ILKEPVHGVYY"
+ ],
+ "pdb_ids": [
+  "9K2R"
+ ],
+ "baseline_cdr3": {
+  "alpha": "YVPMDSNYQLI",
+  "beta": "ASSLVGAGQPQH"
+ },
+ "engineered_variants": []
+}

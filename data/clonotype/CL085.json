@@ -1,0 +1,28 @@
+{
+ "clonotype_id": "CL085",
+ "tcr_id": "tcr10",
+ "tcr_name": "TCR10",
+ "trav": "TRAV12-2*01",
+ "trbv": "TRBV10-2*01",
+ "traj": "TRAJ12*01",
+ "trbj": "TRBJ1-1*01",
+ "cdr3_alpha": "AAAMDSSYKLI",
+ "cdr3_beta": "ASSDPGTEAF",
+ "n_structures": 1,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2019-10-15",
+ "alleles": [
+  "HLA-C*08:02"
+ ],
+ "peptides": [
+  "GADGVGKSAL"
+ ],
+ "pdb_ids": [
+  "6UON"
+ ],
+ "baseline_cdr3": {
+  "alpha": "AAAMDSSYKLI",
+  "beta": "ASSDPGTEAF"
+ },
+ "engineered_variants": []
+}

@@ -1,0 +1,28 @@
+{
+ "clonotype_id": "CL113",
+ "tcr_id": "v\u03b13s1v\u03b213s",
+ "tcr_name": "V\u03b13S1/V\u03b213S",
+ "trav": "TRAV17*01",
+ "trbv": "TRBV6-5*01",
+ "traj": "TRAJ45*01",
+ "trbj": "TRBJ1-1*01",
+ "cdr3_alpha": "ATDALYSGGGADGLT",
+ "cdr3_beta": "ASSYSEGEDEAF",
+ "n_structures": 1,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2023-04-14",
+ "alleles": [
+  "HLA-C*06:02"
+ ],
+ "peptides": [
+  "VRSRRALRL"
+ ],
+ "pdb_ids": [
+  "8SHI"
+ ],
+ "baseline_cdr3": {
+  "alpha": "ATDALYSGGGADGLT",
+  "beta": "ASSYSEGEDEAF"
+ },
+ "engineered_variants": []
+}

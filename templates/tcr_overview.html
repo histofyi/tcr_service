@@ -1,0 +1,172 @@
+{% if tcr %}{% set page_title = " | TCR " ~ tcr.tcr_name %}{% else %}{% set page_title = " | TCR not found" %}{% endif %}
+{% extends "shared/base.html" %}
+
+{% block style %}
+<style>
+    .antigen-dot {
+        display: inline-block; width: 11px; height: 11px; border-radius: 50%;
+        vertical-align: middle; margin-right: 2px;
+    }
+    .structure-row {
+        display: grid;
+        grid-template-columns: 70px 1.4fr 1fr 1.2fr 1.4fr 1fr auto;
+        align-items: center; gap: 8px; padding: 6px 8px;
+        border-bottom: 1px solid #eeeeee;
+    }
+    .structure-row:hover { background: #fafafa; }
+    .structure-row-pdb a { font-family: 'IBM Plex Mono', monospace; text-decoration: none; }
+    .structure-row-head { font-weight: 600; border-bottom: 1px solid #cccccc; }
+    .structure-row-flag {
+        font-size: 8pt; text-transform: uppercase; letter-spacing: 0.04em;
+        background: rgba(120, 94, 240, 0.15); border: 1px solid #785ef0;
+        border-radius: 3px; padding: 1px 4px;
+    }
+    .chain-table { width: 100%; border-collapse: collapse; }
+    .chain-table td { padding: 2px 6px; border-bottom: 1px solid #f0f0f0; }
+    .chain-table td:first-child { color: #666677; width: 40%; }
+    .placeholder-slot {
+        border: 1px dashed #cccccc; border-radius: 4px; padding: 16px;
+        color: #888899; text-align: center; font-size: 10pt;
+    }
+    .executive-summary { font-size: 11pt; }
+</style>
+{% endblock %}
+
+{% block main %}
+
+{% if tcr %}
+
+<section>
+    <div class="grid-container">
+        <div class="column-full-width">
+            <div class="inner">
+                <div class="vertical-spacing-top-0-5"><small><strong>TCR overview</strong></small></div>
+                <h1 class="heading-medium vertical-spacing-bottom-0-25">
+                    {{ tcr.tcr_name }}
+                    {% if tcr.has_engineered_variants %}
+                        <span class="structure-row-flag">engineered variants</span>
+                    {% endif %}
+                </h1>
+                <small>
+                    {{ tcr.trav | join(', ') }} / {{ tcr.trbv | join(', ') }}
+                    &middot; {{ tcr.n_structures }} structure{% if tcr.n_structures != 1 %}s{% endif %}
+                    &middot; {{ tcr.n_clonotypes }} clonotype{% if tcr.n_clonotypes != 1 %}s{% endif %}
+                </small>
+            </div>
+        </div>
+    </div>
+</section>
+
+{# Executive summary(ies) — from the linked publications. Every summary MUST
+   render its AI-provenance attribution alongside it (see _executive_summary). #}
+{% if tcr.publications %}
+<section>
+    <div class="grid-container">
+        <div class="column-full-width">
+            <div class="inner">
+                <hr />
+                <h2 class="heading-small vertical-spacing-top-0-5 vertical-spacing-bottom-0-25">Summary</h2>
+            </div>
+        </div>
+    </div>
+    {% for publication in tcr.publications %}
+        {% if publication.executive_summary %}
+        <div class="grid-container">
+            <div class="column-full-width">
+                <div class="inner vertical-spacing-bottom-0-5">
+                    {% with summary_text=publication.executive_summary,
+                            attribution_html=publication.executive_summary_attribution_html,
+                            publication=publication %}
+                        {% include "fragments/_executive_summary.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    {% endfor %}
+</section>
+{% endif %}
+
+<section>
+    <div class="grid-container">
+        <div class="column-one-third">
+            <div class="inner">
+                <div class="vertical-spacing-bottom-0-25"><strong>Genes</strong></div>
+                <small>
+                    <table class="chain-table">
+                        <tr><td>TRAV</td><td>{{ tcr.trav | join(', ') }}</td></tr>
+                        <tr><td>TRBV</td><td>{{ tcr.trbv | join(', ') }}</td></tr>
+                        <tr><td>Clonotypes</td><td>{{ tcr.clonotype_ids | join(', ') }}</td></tr>
+                    </table>
+                </small>
+            </div>
+        </div>
+        <div class="column-one-third">
+            <div class="inner">
+                <div class="vertical-spacing-bottom-0-25"><strong>Alleles</strong></div>
+                <small>{{ tcr.alleles | join(', ') }}</small>
+            </div>
+        </div>
+        <div class="column-one-third">
+            <div class="inner">
+                <div class="vertical-spacing-bottom-0-25"><strong>Antigen types</strong></div>
+                <small>
+                    {% for antigen in tcr.antigen_types %}
+                        <span class="antigen-dot" style="background-color: {{ antigen_colors.get(antigen, '#999999') }};"></span>{{ antigen | deslugify_string }}{% if not loop.last %} &middot; {% endif %}
+                    {% endfor %}
+                </small>
+            </div>
+        </div>
+    </div>
+</section>
+
+{# Slots reserved for later passes (COM viewer, structure overlay, SC/BSA matrix). #}
+<section>
+    <div class="grid-container">
+        <div class="column-full-width">
+            <div class="inner vertical-spacing-top-0-5">
+                <div class="placeholder-slot">
+                    Scoped COM viewer, structure overlay and SASA / shape-complementarity panels
+                    render here in the interactivity pass.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="grid-container">
+        <div class="column-full-width">
+            <div class="inner">
+                <hr />
+                <h2 class="heading-small vertical-spacing-top-0-5 vertical-spacing-bottom-0-25">
+                    Structures ({{ tcr.structures | length }})
+                </h2>
+                <div class="structure-row structure-row-head">
+                    <span>PDB</span><span>Peptide</span><span>Allele</span>
+                    <span>Antigen</span><span>Method</span><span>Deposited</span><span></span>
+                </div>
+                {% for structure in tcr.structures %}
+                    {% include "fragments/_structure_row.html" %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% else %}
+
+<section>
+    <div class="grid-container">
+        <div class="column-full-width">
+            <div class="inner">
+                <h1 class="heading-medium vertical-spacing-top">TCR not found</h1>
+                <p><small>No TCR with the id <code>{{ tcr_id }}</code>. <a href="/tcrs">Back to all TCRs</a>.</small></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endif %}
+
+{% endblock %}

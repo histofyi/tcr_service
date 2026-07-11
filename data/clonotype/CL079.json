@@ -1,0 +1,28 @@
+{
+ "clonotype_id": "CL079",
+ "tcr_id": "nye-s3",
+ "tcr_name": "NYE_S3",
+ "trav": "TRAV12-2*01",
+ "trbv": "TRBV7-6*01",
+ "traj": "TRAJ49*01",
+ "trbj": "TRBJ1-1*01",
+ "cdr3_alpha": "ALTRGPGNQFY",
+ "cdr3_beta": "ASSSPGGVSTEAF",
+ "n_structures": 1,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2019-05-14",
+ "alleles": [
+  "HLA-A*02:01"
+ ],
+ "peptides": [
+  "SLLMWITQV"
+ ],
+ "pdb_ids": [
+  "6RP9"
+ ],
+ "baseline_cdr3": {
+  "alpha": "ALTRGPGNQFY",
+  "beta": "ASSSPGGVSTEAF"
+ },
+ "engineered_variants": []
+}

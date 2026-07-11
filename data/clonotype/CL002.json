@@ -1,0 +1,43 @@
+{
+ "clonotype_id": "CL002",
+ "tcr_id": "1e6",
+ "tcr_name": "1E6",
+ "trav": "TRAV12-3*01",
+ "trbv": "TRBV12-4*01",
+ "traj": "TRAJ12*01",
+ "trbj": "TRBJ2-4*01",
+ "cdr3_alpha": "AMRGDSSYKLI",
+ "cdr3_beta": "ASSLWEKLAKNIQY",
+ "n_structures": 9,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2011-11-26",
+ "alleles": [
+  "HLA-A*02:01"
+ ],
+ "peptides": [
+  "ALWGPDPAAA",
+  "AQWGPDPAAA",
+  "MVWGPDPLYV",
+  "RQFGPDFPTI",
+  "RQFGPDWIVA",
+  "RQWGPDPAAV",
+  "YLGGPDFPTI",
+  "YQFGPDFPIA"
+ ],
+ "pdb_ids": [
+  "3UTS",
+  "3UTT",
+  "5C07",
+  "5C08",
+  "5C09",
+  "5C0A",
+  "5C0B",
+  "5C0C",
+  "5HYJ"
+ ],
+ "baseline_cdr3": {
+  "alpha": "AMRGDSSYKLI",
+  "beta": "ASSLWEKLAKNIQY"
+ },
+ "engineered_variants": []
+}

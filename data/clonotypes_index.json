@@ -1,0 +1,3351 @@
+[
+  {
+    "clonotype_id": "CL001",
+    "tcr_id": "a6",
+    "tcr_name": "A6",
+    "trav": "TRAV12-2*01",
+    "trbv": "TRBV6-5*01",
+    "traj": "TRAJ24*02",
+    "trbj": "TRBJ2-7*01",
+    "cdr3_alpha": "AVTTDSWGKLQ",
+    "cdr3_beta": "ASRPGLAGGRPEQY",
+    "n_structures": 10,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "1997-07-21",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "LGYGFVNYI",
+      "LLFGFPVYV",
+      "LLFGKPVYV",
+      "LLFGYAVYV",
+      "LLFGYPRYV",
+      "LLFGYPVAV",
+      "LLFGYPVYV",
+      "MLWGYLQYV"
+    ],
+    "pdb_ids": [
+      "1AO7",
+      "1QRN",
+      "1QSE",
+      "1QSF",
+      "2GJ6",
+      "3D39",
+      "3D3V",
+      "3H9S",
+      "3PWP",
+      "3QFJ"
+    ]
+  },
+  {
+    "clonotype_id": "CL002",
+    "tcr_id": "1e6",
+    "tcr_name": "1E6",
+    "trav": "TRAV12-3*01",
+    "trbv": "TRBV12-4*01",
+    "traj": "TRAJ12*01",
+    "trbj": "TRBJ2-4*01",
+    "cdr3_alpha": "AMRGDSSYKLI",
+    "cdr3_beta": "ASSLWEKLAKNIQY",
+    "n_structures": 9,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2011-11-26",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "ALWGPDPAAA",
+      "AQWGPDPAAA",
+      "MVWGPDPLYV",
+      "RQFGPDFPTI",
+      "RQFGPDWIVA",
+      "RQWGPDPAAV",
+      "YLGGPDFPTI",
+      "YQFGPDFPIA"
+    ],
+    "pdb_ids": [
+      "3UTS",
+      "3UTT",
+      "5C07",
+      "5C08",
+      "5C09",
+      "5C0A",
+      "5C0B",
+      "5C0C",
+      "5HYJ"
+    ]
+  },
+  {
+    "clonotype_id": "CL003",
+    "tcr_id": "mel5",
+    "tcr_name": "Mel5",
+    "trav": "TRAV12-2*01",
+    "trbv": "TRBV30*02",
+    "traj": "TRAJ27*01",
+    "trbj": "TRBJ2-2*01",
+    "cdr3_alpha": "AVNVAGKST",
+    "cdr3_beta": "AWSETGLGTGELF",
+    "n_structures": 5,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2009-05-13",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "AAGIGILTV",
+      "EAAGIGILTV",
+      "ELAGIGILTV",
+      "LLLGIGILVL",
+      "NLSALGIFST"
+    ],
+    "pdb_ids": [
+      "3HG1",
+      "4QOK",
+      "6EQA",
+      "7Q99",
+      "7Q9A"
+    ]
+  },
+  {
+    "clonotype_id": "CL004",
+    "tcr_id": "tk3",
+    "tcr_name": "TK3",
+    "trav": "TRAV20*01",
+    "trbv": "TRBV9*01",
+    "traj": "TRAJ18*01",
+    "trbj": "TRBJ2-2*01",
+    "cdr3_alpha": "AVQDLGTSGSRLT",
+    "cdr3_beta": "ASSARSGELF",
+    "n_structures": 5,
+    "engineered_variant_pdbs": [
+      "3MV9"
+    ],
+    "has_engineered_variants": true,
+    "first_deposition_date": "2010-05-03",
+    "alleles": [
+      "HLA-B*35:01",
+      "HLA-B*35:08"
+    ],
+    "peptides": [
+      "HPVGDADYFEY",
+      "HPVGEADYFEY",
+      "HPVGQADYFEY"
+    ],
+    "pdb_ids": [
+      "3MV7",
+      "3MV9",
+      "4PRH",
+      "4PRI",
+      "4PRP"
+    ]
+  },
+  {
+    "clonotype_id": "CL005",
+    "tcr_id": "a24b17",
+    "tcr_name": "a24b17",
+    "trav": "TRAV12-2*01",
+    "trbv": "TRBV30*02",
+    "traj": "TRAJ27*01",
+    "trbj": "TRBJ2-2*01",
+    "cdr3_alpha": "AVNDGGRLT",
+    "cdr3_beta": "AWSETGLGMGGWQ",
+    "n_structures": 5,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2013-02-28",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "AAGIGILTV",
+      "EAAGIGILTV",
+      "ELAAIGILTV",
+      "ELAGIGALTV",
+      "ELAGIGILTV"
+    ],
+    "pdb_ids": [
+      "4JFD",
+      "4JFE",
+      "4JFF",
+      "6EQB",
+      "6TMO"
+    ]
+  },
+  {
+    "clonotype_id": "CL006",
+    "tcr_id": "jm22",
+    "tcr_name": "JM22",
+    "trav": "TRAV27*01",
+    "trbv": "TRBV19*01",
+    "traj": "TRAJ42*01",
+    "trbj": "TRBJ2-7*01",
+    "cdr3_alpha": "AGAGSQGNLI",
+    "cdr3_beta": "ASSSRSSYEQY",
+    "n_structures": 4,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2003-04-28",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "GILGFVFTL",
+      "GILGLVFTL"
+    ],
+    "pdb_ids": [
+      "1OGA",
+      "2VLJ",
+      "2VLK",
+      "5HHM"
+    ]
+  },
+  {
+    "clonotype_id": "CL007",
+    "tcr_id": "1g4",
+    "tcr_name": "1G4",
+    "trav": "TRAV21*01",
+    "trbv": "TRBV6-5*01",
+    "traj": "TRAJ6*01",
+    "trbj": "TRBJ2-2*01",
+    "cdr3_alpha": "AVRPTSGGSYIPT",
+    "cdr3_beta": "ASSYVGNTGELF",
+    "n_structures": 4,
+    "engineered_variant_pdbs": [
+      "2F54"
+    ],
+    "has_engineered_variants": true,
+    "first_deposition_date": "2005-03-31",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "SLLMWITQC",
+      "SLLMWITQV"
+    ],
+    "pdb_ids": [
+      "2BNQ",
+      "2BNR",
+      "2F54",
+      "6Q3S"
+    ]
+  },
+  {
+    "clonotype_id": "CL008",
+    "tcr_id": "dmf5",
+    "tcr_name": "DMF5",
+    "trav": "TRAV12-2*01",
+    "trbv": "TRBV6-4*01",
+    "traj": "TRAJ23*01",
+    "trbj": "TRBJ1-1*01",
+    "cdr3_alpha": "AVNFGGGKLI",
+    "cdr3_beta": "ASSLSFGTEAF",
+    "n_structures": 4,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2011-01-18",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "AAGIGILTV",
+      "ELAGIGILTV",
+      "MMWDRGLGMM",
+      "SMLGIGIVPV"
+    ],
+    "pdb_ids": [
+      "3QDG",
+      "3QDJ",
+      "6AM5",
+      "6AMU"
+    ]
+  },
+  {
+    "clonotype_id": "CL009",
+    "tcr_id": "lc13",
+    "tcr_name": "LC13",
+    "trav": "TRAV26-2*01",
+    "trbv": "TRBV7-8*01",
+    "traj": "TRAJ52*01",
+    "trbj": "TRBJ2-7*01",
+    "cdr3_alpha": "ILPLAGGTSYGKLT",
+    "cdr3_beta": "ASSLGQAYEQY",
+    "n_structures": 3,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2002-08-21",
+    "alleles": [
+      "HLA-B*08:01",
+      "HLA-B*44:05"
+    ],
+    "peptides": [
+      "EEYLKAWTF",
+      "EEYLQAFTY",
+      "FLRGRAYGL"
+    ],
+    "pdb_ids": [
+      "1MI5",
+      "3KPR",
+      "3KPS"
+    ]
+  },
+  {
+    "clonotype_id": "CL010",
+    "tcr_id": "868",
+    "tcr_name": "868",
+    "trav": "TRAV12-2*01",
+    "trbv": "TRBV5-6*01",
+    "traj": "TRAJ41*01",
+    "trbj": "TRBJ2-7*01",
+    "cdr3_alpha": "AVRTNSGYALN",
+    "cdr3_beta": "ASSDTVSYEQY",
+    "n_structures": 3,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2017-04-05",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "SLFNTIAVL",
+      "SLYNTIATL",
+      "SLYNTVATL"
+    ],
+    "pdb_ids": [
+      "5NME",
+      "5NMF",
+      "5NMG"
+    ]
+  },
+  {
+    "clonotype_id": "CL011",
+    "tcr_id": "t4h2",
+    "tcr_name": "T4H2",
+    "trav": "TRAV12-2*01",
+    "trbv": "TRBV19*01",
+    "traj": "TRAJ49*01",
+    "trbj": "TRBJ2-7*01",
+    "cdr3_alpha": "AVNALLGNQFY",
+    "cdr3_beta": "ASSMGGTYEQY",
+    "n_structures": 3,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2020-01-27",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "ILDQVPFSV",
+      "IMDQVPFSV",
+      "ITDQVPFSV"
+    ],
+    "pdb_ids": [
+      "6VM9",
+      "6VMA",
+      "6VMC"
+    ]
+  },
+  {
+    "clonotype_id": "CL012",
+    "tcr_id": "as43",
+    "tcr_name": "AS4.3",
+    "trav": "TRAV21*01",
+    "trbv": "TRBV9*01",
+    "traj": "TRAJ21*01",
+    "trbj": "TRBJ2-3*01",
+    "cdr3_alpha": "AVSNFNKFY",
+    "cdr3_beta": "ASSVATYSTDTQY",
+    "n_structures": 3,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2021-05-29",
+    "alleles": [
+      "HLA-B*27:05"
+    ],
+    "peptides": [
+      "GQVMVVAPR",
+      "LRVMMLAPF",
+      "TRLALIAPK"
+    ],
+    "pdb_ids": [
+      "7N2P",
+      "7N2Q",
+      "7N2R"
+    ]
+  },
+  {
+    "clonotype_id": "CL013",
+    "tcr_id": "4c6",
+    "tcr_name": "4C6",
+    "trav": "TRAV5*01",
+    "trbv": "TRBV7-9*03",
+    "traj": "TRAJ37*01",
+    "trbj": "TRBJ2-7*01",
+    "cdr3_alpha": "AEPSGNTGKLI",
+    "cdr3_beta": "ASSLHHEQY",
+    "n_structures": 3,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2021-02-23",
+    "alleles": [
+      "HLA-A*24:02"
+    ],
+    "peptides": [
+      "LWMRLLPLL",
+      "QLPRLFPLL"
+    ],
+    "pdb_ids": [
+      "7NME",
+      "7NMF",
+      "7NMG"
+    ]
+  },
+  {
+    "clonotype_id": "CL014",
+    "tcr_id": "3180",
+    "tcr_name": "3180",
+    "trav": "TRAV13-1*01",
+    "trbv": "TRBV20-1*01",
+    "traj": "TRAJ28*01",
+    "trbj": "TRBJ2-3*01",
+    "cdr3_alpha": "AADGGAGSYQLT",
+    "cdr3_beta": "SAGPTSGRTDTQY",
+    "n_structures": 3,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2022-09-29",
+    "alleles": [
+      "HLA-B*35:01"
+    ],
+    "peptides": [
+      "LPFDKATIM",
+      "LPFDKSTIM",
+      "LPFEKSTIM"
+    ],
+    "pdb_ids": [
+      "8EN8",
+      "8ENH",
+      "8EO8"
+    ]
+  },
+  {
+    "clonotype_id": "CL015",
+    "tcr_id": "d1",
+    "tcr_name": "D1",
+    "trav": "TRAV1-1*01",
+    "trbv": "TRBV7-8*01",
+    "traj": "TRAJ9*01",
+    "trbj": "TRBJ2-5*01",
+    "cdr3_alpha": "AVDTGGFKTI",
+    "cdr3_beta": "ASSPTGGQETQY",
+    "n_structures": 3,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2023-11-29",
+    "alleles": [
+      "HLA-B*35:01",
+      "HLA-B*35:42"
+    ],
+    "peptides": [
+      "LPFDKSTVM",
+      "LPFEKSTIM",
+      "LPFEKSTVM"
+    ],
+    "pdb_ids": [
+      "8V4Z",
+      "8V50",
+      "8V51"
+    ]
+  },
+  {
+    "clonotype_id": "CL016",
+    "tcr_id": "sb27",
+    "tcr_name": "SB27",
+    "trav": "TRAV19*01",
+    "trbv": "TRBV6-1*01",
+    "traj": "TRAJ34*01",
+    "trbj": "TRBJ2-7*01",
+    "cdr3_alpha": "ALSGFYNTDKLI",
+    "cdr3_beta": "ASPGLAGEYEQY",
+    "n_structures": 2,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2005-08-03",
+    "alleles": [
+      "HLA-B*35:08"
+    ],
+    "peptides": [
+      "LPEPLPQGQLTAY"
+    ],
+    "pdb_ids": [
+      "2AK4",
+      "3KXF"
+    ]
+  },
+  {
+    "clonotype_id": "CL017",
+    "tcr_id": "dmf4",
+    "tcr_name": "DMF4",
+    "trav": "TRAV35*01",
+    "trbv": "TRBV10-3*01",
+    "traj": "TRAJ49*01",
+    "trbj": "TRBJ1-5*01",
+    "cdr3_alpha": "AGGTGNQFY",
+    "cdr3_beta": "AISEVGVGQPQH",
+    "n_structures": 2,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2011-01-18",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "AAGIGILTV",
+      "ELAGIGILTV"
+    ],
+    "pdb_ids": [
+      "3QDM",
+      "3QEQ"
+    ]
+  },
+  {
+    "clonotype_id": "CL018",
+    "tcr_id": "h27-14",
+    "tcr_name": "H27-14",
+    "trav": "TRAV21*01",
+    "trbv": "TRBV7-9*01",
+    "traj": "TRAJ12*01",
+    "trbj": "TRBJ2-2*01",
+    "cdr3_alpha": "AVRMDSSYKLI",
+    "cdr3_beta": "ASSSWDTGELF",
+    "n_structures": 2,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2012-09-20",
+    "alleles": [
+      "HLA-A*24:02"
+    ],
+    "peptides": [
+      "RYPLTFGWCF",
+      "RYPLTLGWCF"
+    ],
+    "pdb_ids": [
+      "3VXR",
+      "3VXS"
+    ]
+  },
+  {
+    "clonotype_id": "CL019",
+    "tcr_id": "t36-5",
+    "tcr_name": "T36-5",
+    "trav": "TRAV12-2*01",
+    "trbv": "TRBV27*01",
+    "traj": "TRAJ23*01",
+    "trbj": "TRBJ2-7*01",
+    "cdr3_alpha": "GTYNQGGKLI",
+    "cdr3_beta": "ASSGASHEQY",
+    "n_structures": 2,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2012-09-20",
+    "alleles": [
+      "HLA-A*24:02"
+    ],
+    "peptides": [
+      "RFPLTFGWCF"
+    ],
+    "pdb_ids": [
+      "3VXU",
+      "3W0W"
+    ]
+  },
+  {
+    "clonotype_id": "CL020",
+    "tcr_id": "a6-c134",
+    "tcr_name": "A6_c134",
+    "trav": "TRAV12-2*01",
+    "trbv": "TRBV6-5*01",
+    "traj": "TRAJ24*02",
+    "trbj": "TRBJ2-7*01",
+    "cdr3_alpha": "AVTTDSWGKLQ",
+    "cdr3_beta": "ASRPGLMSAQPEQY",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2012-06-28",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "LLFGYPVYV"
+    ],
+    "pdb_ids": [
+      "4FTV"
+    ]
+  },
+  {
+    "clonotype_id": "CL021",
+    "tcr_id": "c12c",
+    "tcr_name": "C12C",
+    "trav": "TRAV14/DV4*02",
+    "trbv": "TRBV6-5*01",
+    "traj": "TRDJ3*01",
+    "trbj": "TRBJ1-1*01",
+    "cdr3_alpha": "AMRDLRDNFNKFY",
+    "cdr3_beta": "ASREGLGGTEAF",
+    "n_structures": 2,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2012-07-23",
+    "alleles": [
+      "HLA-B*27:05"
+    ],
+    "peptides": [
+      "KRWIILGLNK",
+      "KRWIIMGLNK"
+    ],
+    "pdb_ids": [
+      "4G8G",
+      "4G9F"
+    ]
+  },
+  {
+    "clonotype_id": "CL022",
+    "tcr_id": "dmf5",
+    "tcr_name": "DMF5",
+    "trav": "TRAV12-2*01",
+    "trbv": "TRBV6-4*01",
+    "traj": "TRAJ23*01",
+    "trbj": "TRBJ1-1*01",
+    "cdr3_alpha": "AVNFGGGKLI",
+    "cdr3_beta": "ASSWSFGTEAF",
+    "n_structures": 2,
+    "engineered_variant_pdbs": [
+      "4L3E"
+    ],
+    "has_engineered_variants": true,
+    "first_deposition_date": "2013-06-05",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "AAGIGILTV",
+      "ELAGIGILTV"
+    ],
+    "pdb_ids": [
+      "4L3E",
+      "6D78"
+    ]
+  },
+  {
+    "clonotype_id": "CL023",
+    "tcr_id": "mag-ic3",
+    "tcr_name": "MAG-IC3",
+    "trav": "TRAV21*01",
+    "trbv": "TRBV5-1*01",
+    "traj": "TRAJ28*01",
+    "trbj": "TRBJ2-7*01",
+    "cdr3_alpha": "AVRPGGAGPFFVV",
+    "cdr3_beta": "ASSFNMATGQY",
+    "n_structures": 2,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2015-06-01",
+    "alleles": [
+      "HLA-A*01:01"
+    ],
+    "peptides": [
+      "ESDPIVAQY",
+      "EVDPIGHLY"
+    ],
+    "pdb_ids": [
+      "5BRZ",
+      "5BS0"
+    ]
+  },
+  {
+    "clonotype_id": "CL024",
+    "tcr_id": "1406",
+    "tcr_name": "1406",
+    "trav": "TRAV38-2/DV8*01",
+    "trbv": "TRBV25-1*01",
+    "traj": "TRDJ1*01",
+    "trbj": "TRBJ2-7*01",
+    "cdr3_alpha": "AYGEDDKII",
+    "cdr3_beta": "ASRRGPYEQY",
+    "n_structures": 2,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2016-05-16",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "KLVALGINAV"
+    ],
+    "pdb_ids": [
+      "5JZI",
+      "5YXN"
+    ]
+  },
+  {
+    "clonotype_id": "CL025",
+    "tcr_id": "d30",
+    "tcr_name": "D30",
+    "trav": "TRAV30*05",
+    "trbv": "TRBV11-2*01",
+    "traj": "TRAJ39*01",
+    "trbj": "TRBJ1-2*01",
+    "cdr3_alpha": "GLGDAGNMLT",
+    "cdr3_beta": "ASSLGQGLLYGYT",
+    "n_structures": 2,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2017-07-25",
+    "alleles": [
+      "HLA-A*11:01"
+    ],
+    "peptides": [
+      "GTSGSPIINR",
+      "GTSGSPIVNR"
+    ],
+    "pdb_ids": [
+      "5WKF",
+      "5WKH"
+    ]
+  },
+  {
+    "clonotype_id": "CL026",
+    "tcr_id": "302-til",
+    "tcr_name": "302 TIL",
+    "trav": "TRAV38-2/DV8*01",
+    "trbv": "TRBV12-3*01",
+    "traj": "TRDJ2*01",
+    "trbj": "TRBJ2-3*01",
+    "cdr3_alpha": "AFMDSNYQLI",
+    "cdr3_beta": "ASSRTSPTDTQY",
+    "n_structures": 2,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2019-10-04",
+    "alleles": [
+      "HLA-A*02:06"
+    ],
+    "peptides": [
+      "KQWLVWLFL",
+      "KQWLVWLLL"
+    ],
+    "pdb_ids": [
+      "6UK2",
+      "6UK4"
+    ]
+  },
+  {
+    "clonotype_id": "CL027",
+    "tcr_id": "9a",
+    "tcr_name": "9a",
+    "trav": "TRAV4*01",
+    "trbv": "TRBV5-6*01",
+    "traj": "TRAJ15*01",
+    "trbj": "TRBJ1-2*01",
+    "cdr3_alpha": "LVGDMDQAGTALI",
+    "cdr3_beta": "ASSLGEGRVDGYT",
+    "n_structures": 2,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2019-10-08",
+    "alleles": [
+      "HLA-C*05:01",
+      "HLA-C*08:02"
+    ],
+    "peptides": [
+      "GADGVGKSA",
+      "GADGVGKSL"
+    ],
+    "pdb_ids": [
+      "6ULR",
+      "7SU9"
+    ]
+  },
+  {
+    "clonotype_id": "CL028",
+    "tcr_id": "silv44",
+    "tcr_name": "SILv44",
+    "trav": "TRAV8-1*01",
+    "trbv": "TRBV19*01",
+    "traj": "TRAJ29*01",
+    "trbj": "TRBJ2-1*01",
+    "cdr3_alpha": "AVNARRNTPLV",
+    "cdr3_beta": "ASSITLSSYNEQF",
+    "n_structures": 2,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2020-01-27",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "IMDQVPFSV",
+      "ITDQVPFSV"
+    ],
+    "pdb_ids": [
+      "6VM7",
+      "6VM8"
+    ]
+  },
+  {
+    "clonotype_id": "CL029",
+    "tcr_id": "t18a",
+    "tcr_name": "T18A",
+    "trav": "TRAV26-1*01",
+    "trbv": "TRBV12-3*01",
+    "traj": "TRAJ39*01",
+    "trbj": "TRBJ1-3*01",
+    "cdr3_alpha": "IVRGLNNAGNMLT",
+    "cdr3_beta": "ASSLGIDAIY",
+    "n_structures": 2,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2021-01-25",
+    "alleles": [
+      "HLA-B*42:01",
+      "HLA-B*81:01"
+    ],
+    "peptides": [
+      "TPQDLNTML"
+    ],
+    "pdb_ids": [
+      "7DZM",
+      "7DZN"
+    ]
+  },
+  {
+    "clonotype_id": "CL030",
+    "tcr_id": "ylq-sg3",
+    "tcr_name": "YLQ7",
+    "trav": "TRAV12-2*01",
+    "trbv": "TRBV7-9*01",
+    "traj": "TRAJ30*01",
+    "trbj": "TRBJ2-7*01",
+    "cdr3_alpha": "AVNRDDKII",
+    "cdr3_beta": "ASSPDIEQY",
+    "n_structures": 2,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2021-05-27",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "YLQPRTFLL"
+    ],
+    "pdb_ids": [
+      "7N1F",
+      "7RTR"
+    ]
+  },
+  {
+    "clonotype_id": "CL031",
+    "tcr_id": "as42",
+    "tcr_name": "AS4.2",
+    "trav": "TRAV21*01",
+    "trbv": "TRBV9*01",
+    "traj": "TRAJ18*01",
+    "trbj": "TRBJ2-3*01",
+    "cdr3_alpha": "AVLSPVQETSGSRLT",
+    "cdr3_beta": "ASSVGLFSTDTQY",
+    "n_structures": 2,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2021-05-29",
+    "alleles": [
+      "HLA-B*27:05"
+    ],
+    "peptides": [
+      "LRVMMLAPF",
+      "TRLALIAPK"
+    ],
+    "pdb_ids": [
+      "7N2N",
+      "7N2O"
+    ]
+  },
+  {
+    "clonotype_id": "CL032",
+    "tcr_id": "jdia41b1",
+    "tcr_name": "JDIa41b1",
+    "trav": "TRAV19*01",
+    "trbv": "TRBV6-2*01",
+    "traj": "TRAJ28*01",
+    "trbj": "TRBJ1-6*01",
+    "cdr3_alpha": "AMSVPSGDGSYQFT",
+    "cdr3_beta": "ASKVGPGQHNSPLH",
+    "n_structures": 2,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2021-06-16",
+    "alleles": [
+      "HLA-A*11:01"
+    ],
+    "peptides": [
+      "VVVGADGVGK",
+      "VVVGAGGVGK"
+    ],
+    "pdb_ids": [
+      "7OW5",
+      "7OW6"
+    ]
+  },
+  {
+    "clonotype_id": "CL033",
+    "tcr_id": "rlq7",
+    "tcr_name": "RLQ7",
+    "trav": "TRAV38-2/DV8*01",
+    "trbv": "TRBV12-3*01",
+    "traj": "TRDJ4*01",
+    "trbj": "TRBJ2-3*01",
+    "cdr3_alpha": "ASSGNTPLV",
+    "cdr3_beta": "ASTWGRASTDTQY",
+    "n_structures": 2,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2022-08-25",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "RLQSLQIYV",
+      "RLQSLQTYV"
+    ],
+    "pdb_ids": [
+      "8GOM",
+      "8GON"
+    ]
+  },
+  {
+    "clonotype_id": "CL034",
+    "tcr_id": "td08",
+    "tcr_name": "TD08",
+    "trav": "TRAV8-3*01",
+    "trbv": "TRBV7-9*03",
+    "traj": "TRAJ10*01",
+    "trbj": "TRBJ2-5*01",
+    "cdr3_alpha": "AVGFTGGGNKLT",
+    "cdr3_beta": "ASSDRDRVPETQY",
+    "n_structures": 2,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2022-09-14",
+    "alleles": [
+      "HLA-A*24:02"
+    ],
+    "peptides": [
+      "RFPLTFGW",
+      "RYPLTFGW"
+    ],
+    "pdb_ids": [
+      "8GVB",
+      "8GVG"
+    ]
+  },
+  {
+    "clonotype_id": "CL035",
+    "tcr_id": "s2",
+    "tcr_name": "S2",
+    "trav": "TRAV21*01",
+    "trbv": "TRBV6-6*01",
+    "traj": "TRAJ39*01",
+    "trbj": "TRBJ1-2*01",
+    "cdr3_alpha": "AVNNAGNMLT",
+    "cdr3_beta": "ASSETRGAPYGYT",
+    "n_structures": 2,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2024-02-09",
+    "alleles": [
+      "HLA-A*03:01",
+      "HLA-A*11:01"
+    ],
+    "peptides": [
+      "ELFSYLIEK"
+    ],
+    "pdb_ids": [
+      "8RYM",
+      "8RYN"
+    ]
+  },
+  {
+    "clonotype_id": "CL036",
+    "tcr_id": "192",
+    "tcr_name": "AS19.2",
+    "trav": "TRAV21*01",
+    "trbv": "TRBV9*01",
+    "traj": "TRAJ28*01",
+    "trbj": "TRBJ2-3*01",
+    "cdr3_alpha": "GIALIGSGAGSYQLT",
+    "cdr3_beta": "ASSPATYSTDTQY",
+    "n_structures": 2,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2025-06-26",
+    "alleles": [
+      "HLA-B*27:05"
+    ],
+    "peptides": [
+      "GRLPLLNPI",
+      "LRVMMLAPF"
+    ],
+    "pdb_ids": [
+      "9PBG",
+      "9PBH"
+    ]
+  },
+  {
+    "clonotype_id": "CL037",
+    "tcr_id": "tcrpub",
+    "tcr_name": "TCRpub",
+    "trav": "TRAV3*01",
+    "trbv": "TRBV5-1*01",
+    "traj": "TRAJ6*01",
+    "trbj": "TRBJ1-1*01",
+    "cdr3_alpha": "AVRVVTSGGSYIPT",
+    "cdr3_beta": "ASSLAGDLGTEAF",
+    "n_structures": 2,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2025-07-03",
+    "alleles": [
+      "HLA-A*01:01"
+    ],
+    "peptides": [
+      "FTSDYYQLY"
+    ],
+    "pdb_ids": [
+      "9RU5",
+      "9RUP"
+    ]
+  },
+  {
+    "clonotype_id": "CL038",
+    "tcr_id": "b7",
+    "tcr_name": "B7",
+    "trav": "TRAV29/DV5*01",
+    "trbv": "TRBV6-5*01",
+    "traj": "TRDJ1*01",
+    "trbj": "TRBJ2-7*01",
+    "cdr3_alpha": "AAMEGAQKLV",
+    "cdr3_beta": "ASSYPGGGFYEQY",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "1998-05-12",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "LLFGYPVYV"
+    ],
+    "pdb_ids": [
+      "1BD2"
+    ]
+  },
+  {
+    "clonotype_id": "CL039",
+    "tcr_id": "1g4",
+    "tcr_name": "1G4",
+    "trav": "TRAV21*01",
+    "trbv": "TRBV6-5*01",
+    "traj": "TRAJ6*01",
+    "trbj": "TRBJ2-2*01",
+    "cdr3_alpha": "AVRPTSGGSYIPT",
+    "cdr3_beta": "ASSYVGNTGELF",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [
+      "2F53"
+    ],
+    "has_engineered_variants": true,
+    "first_deposition_date": "2005-11-25",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "SLLMWITQC"
+    ],
+    "pdb_ids": [
+      "2F53"
+    ]
+  },
+  {
+    "clonotype_id": "CL040",
+    "tcr_id": "els4",
+    "tcr_name": "ELS4",
+    "trav": "TRAV1-2*01",
+    "trbv": "TRBV10-3*01",
+    "traj": "TRAJ6*01",
+    "trbj": "TRBJ1-5*01",
+    "cdr3_alpha": "AVQASGGSYIPT",
+    "cdr3_beta": "ATGTGDSNQPQH",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2006-11-16",
+    "alleles": [
+      "HLA-B*35:01"
+    ],
+    "peptides": [
+      "EPLPQGQLTAY"
+    ],
+    "pdb_ids": [
+      "2NX5"
+    ]
+  },
+  {
+    "clonotype_id": "CL041",
+    "tcr_id": "1g4",
+    "tcr_name": "1G4",
+    "trav": "TRAV21*01",
+    "trbv": "TRBV6-5*01",
+    "traj": "TRAJ6*01",
+    "trbj": "TRBJ2-2*01",
+    "cdr3_alpha": "AVRPLLDGTYIPT",
+    "cdr3_beta": "ASSYLGNTGELF",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [
+      "2P5E"
+    ],
+    "has_engineered_variants": true,
+    "first_deposition_date": "2007-03-15",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "SLLMWITQC"
+    ],
+    "pdb_ids": [
+      "2P5E"
+    ]
+  },
+  {
+    "clonotype_id": "CL042",
+    "tcr_id": "1g4",
+    "tcr_name": "1G4",
+    "trav": "TRAV21*01",
+    "trbv": "TRBV6-5*01",
+    "traj": "TRAJ6*01",
+    "trbj": "TRBJ2-2*01",
+    "cdr3_alpha": "AVRPLLDGTYIPT",
+    "cdr3_beta": "ASSYLGNTGELF",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [
+      "2P5W"
+    ],
+    "has_engineered_variants": true,
+    "first_deposition_date": "2007-03-16",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "SLLMWITQC"
+    ],
+    "pdb_ids": [
+      "2P5W"
+    ]
+  },
+  {
+    "clonotype_id": "CL043",
+    "tcr_id": "1g4",
+    "tcr_name": "1G4",
+    "trav": "TRAV21*01",
+    "trbv": "TRBV6-5*01",
+    "traj": "TRAJ6*01",
+    "trbj": "TRBJ2-2*01",
+    "cdr3_alpha": "AVRPLLDGTYIPT",
+    "cdr3_beta": "ASSYLGNTGELF",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [
+      "2PYE"
+    ],
+    "has_engineered_variants": true,
+    "first_deposition_date": "2007-05-16",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "SLLMWITQC"
+    ],
+    "pdb_ids": [
+      "2PYE"
+    ]
+  },
+  {
+    "clonotype_id": "CL044",
+    "tcr_id": "jm22",
+    "tcr_name": "JM22",
+    "trav": "TRAV27*01",
+    "trbv": "TRBV19*01",
+    "traj": "TRAJ42*01",
+    "trbj": "TRBJ2-7*01",
+    "cdr3_alpha": "AGAGSQGNLI",
+    "cdr3_beta": "ASSSRASYEQY",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [
+      "2VLR"
+    ],
+    "has_engineered_variants": true,
+    "first_deposition_date": "2008-01-15",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "GILGFVFTL"
+    ],
+    "pdb_ids": [
+      "2VLR"
+    ]
+  },
+  {
+    "clonotype_id": "CL045",
+    "tcr_id": "aga",
+    "tcr_name": "AGA",
+    "trav": "TRAV5*01",
+    "trbv": "TRBV19*01",
+    "traj": "TRAJ13*01",
+    "trbj": "TRBJ1-2*01",
+    "cdr3_alpha": "AVSGGYQKVT",
+    "cdr3_beta": "ASTGSYGYT",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2012-10-30",
+    "alleles": [
+      "HLA-B*57:06"
+    ],
+    "peptides": [
+      "KAFSPEVIPMF"
+    ],
+    "pdb_ids": [
+      "2YPL"
+    ]
+  },
+  {
+    "clonotype_id": "CL046",
+    "tcr_id": "dm1",
+    "tcr_name": "DM1",
+    "trav": "TRAV26-1*02",
+    "trbv": "TRBV7-9*01",
+    "traj": "TRAJ13*02",
+    "trbj": "TRBJ2-1*01",
+    "cdr3_alpha": "IVWGGYQKVT",
+    "cdr3_beta": "ASRYRDDSYNEQF",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2008-07-23",
+    "alleles": [
+      "HLA-B*44:05"
+    ],
+    "peptides": [
+      "EENLLDFVRF"
+    ],
+    "pdb_ids": [
+      "3DXA"
+    ]
+  },
+  {
+    "clonotype_id": "CL047",
+    "tcr_id": "cf34",
+    "tcr_name": "CF34",
+    "trav": "TRAV14/DV4*01",
+    "trbv": "TRBV11-2*01",
+    "traj": "TRDJ3*01",
+    "trbj": "TRBJ2-3*01",
+    "cdr3_alpha": "AMREDTGNQFY",
+    "cdr3_beta": "ASSFTWTSGGATDTQY",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2008-12-03",
+    "alleles": [
+      "HLA-B*08:01"
+    ],
+    "peptides": [
+      "FLRGRAYGL"
+    ],
+    "pdb_ids": [
+      "3FFC"
+    ]
+  },
+  {
+    "clonotype_id": "CL048",
+    "tcr_id": "ra14",
+    "tcr_name": "RA14",
+    "trav": "TRAV24*01",
+    "trbv": "TRBV6-5*01",
+    "traj": "TRAJ49*01",
+    "trbj": "TRBJ1-2*01",
+    "cdr3_alpha": "ARNTGNQFY",
+    "cdr3_beta": "ASSPVTGGIYGYT",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2009-03-27",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "NLVPMVATV"
+    ],
+    "pdb_ids": [
+      "3GSN"
+    ]
+  },
+  {
+    "clonotype_id": "CL049",
+    "tcr_id": "tk3",
+    "tcr_name": "TK3",
+    "trav": "TRAV20*01",
+    "trbv": "TRBV9*02",
+    "traj": "TRAJ18*01",
+    "trbj": "TRBJ2-2*01",
+    "cdr3_alpha": "AVQDLGTSGSRLT",
+    "cdr3_beta": "ASSARSGELF",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [
+      "3MV8"
+    ],
+    "has_engineered_variants": true,
+    "first_deposition_date": "2010-05-03",
+    "alleles": [
+      "HLA-B*35:01"
+    ],
+    "peptides": [
+      "HPVGEADYFEY"
+    ],
+    "pdb_ids": [
+      "3MV8"
+    ]
+  },
+  {
+    "clonotype_id": "CL050",
+    "tcr_id": "as01",
+    "tcr_name": "AS01",
+    "trav": "TRAV5*01",
+    "trbv": "TRBV20-1*01",
+    "traj": "TRAJ31*01",
+    "trbj": "TRBJ1-2*01",
+    "cdr3_alpha": "AEDNNARLM",
+    "cdr3_beta": "SARDGTGNGYT",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2010-07-27",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "GLCTLVAML"
+    ],
+    "pdb_ids": [
+      "3O4L"
+    ]
+  },
+  {
+    "clonotype_id": "CL051",
+    "tcr_id": "rl42",
+    "tcr_name": "RL42",
+    "trav": "TRAV12-1*01",
+    "trbv": "TRBV6-2*01",
+    "traj": "TRAJ23*01",
+    "trbj": "TRBJ2-4*01",
+    "cdr3_alpha": "VVRAGKLI",
+    "cdr3_beta": "ASGQGNFDIQY",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2011-06-22",
+    "alleles": [
+      "HLA-B*08:01"
+    ],
+    "peptides": [
+      "FLRGRAYGL"
+    ],
+    "pdb_ids": [
+      "3SJV"
+    ]
+  },
+  {
+    "clonotype_id": "CL052",
+    "tcr_id": "c1-28",
+    "tcr_name": "C1-28",
+    "trav": "TRAV8-3*01",
+    "trbv": "TRBV4-1*01",
+    "traj": "TRAJ28*01",
+    "trbj": "TRBJ2-7*01",
+    "cdr3_alpha": "AVGAPSGAGSYQLT",
+    "cdr3_beta": "ASSPTSGIYEQY",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2012-09-20",
+    "alleles": [
+      "HLA-A*24:02"
+    ],
+    "peptides": [
+      "RFPLTFGWCF"
+    ],
+    "pdb_ids": [
+      "3VXM"
+    ]
+  },
+  {
+    "clonotype_id": "CL053",
+    "tcr_id": "jkf6",
+    "tcr_name": "JKF6",
+    "trav": "TRAV12-2*01",
+    "trbv": "TRBV28*01",
+    "traj": "TRAJ24*02",
+    "trbj": "TRBJ2-7*01",
+    "cdr3_alpha": "AVSGGGADGLT",
+    "cdr3_beta": "ASSFLGTGVEQY",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2012-04-25",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "ALGIGILTV"
+    ],
+    "pdb_ids": [
+      "4EUP"
+    ]
+  },
+  {
+    "clonotype_id": "CL054",
+    "tcr_id": "ca5",
+    "tcr_name": "CA5",
+    "trav": "TRAV19*01",
+    "trbv": "TRBV6-1*01",
+    "traj": "TRAJ34*01",
+    "trbj": "TRBJ1-1*01",
+    "cdr3_alpha": "ALSGFYNTDKLI",
+    "cdr3_beta": "ASPGETEAF",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2013-03-22",
+    "alleles": [
+      "HLA-B*35:08"
+    ],
+    "peptides": [
+      "LPEPLPQGQLTAY"
+    ],
+    "pdb_ids": [
+      "4JRX"
+    ]
+  },
+  {
+    "clonotype_id": "CL055",
+    "tcr_id": "sb47",
+    "tcr_name": "SB47",
+    "trav": "TRAV39*01",
+    "trbv": "TRBV5-6*01",
+    "traj": "TRAJ33*01",
+    "trbj": "TRBJ2-7*01",
+    "cdr3_alpha": "AVGGGSNYQLI",
+    "cdr3_beta": "ASSRTGSTYEQY",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2013-03-22",
+    "alleles": [
+      "HLA-B*35:08"
+    ],
+    "peptides": [
+      "LPEPLPQGQLTAY"
+    ],
+    "pdb_ids": [
+      "4JRY"
+    ]
+  },
+  {
+    "clonotype_id": "CL056",
+    "tcr_id": "3b",
+    "tcr_name": "3B",
+    "trav": "TRAV17*01",
+    "trbv": "TRBV7-3*01",
+    "traj": "TRAJ22*01",
+    "trbj": "TRBJ2-2*01",
+    "cdr3_alpha": "ATDDDSARQLT",
+    "cdr3_beta": "ASSLTGGGELF",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2013-09-03",
+    "alleles": [
+      "HLA-B*51:01"
+    ],
+    "peptides": [
+      "TAFTIPSI"
+    ],
+    "pdb_ids": [
+      "4MJI"
+    ]
+  },
+  {
+    "clonotype_id": "CL057",
+    "tcr_id": "dd31",
+    "tcr_name": "DD31",
+    "trav": "TRAV9-2*02",
+    "trbv": "TRBV11-2*01",
+    "traj": "TRAJ43*01",
+    "trbj": "TRBJ1-5*01",
+    "cdr3_alpha": "ALSDPVNDMR",
+    "cdr3_beta": "ASSLRGRGDQPQH",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2014-07-02",
+    "alleles": [
+      "HLA-B*08:01"
+    ],
+    "peptides": [
+      "HSKKKCDEL"
+    ],
+    "pdb_ids": [
+      "4QRP"
+    ]
+  },
+  {
+    "clonotype_id": "CL058",
+    "tcr_id": "c7",
+    "tcr_name": "C7",
+    "trav": "TRAV24*01",
+    "trbv": "TRBV7-2*02",
+    "traj": "TRAJ49*01",
+    "trbj": "TRBJ2-5*01",
+    "cdr3_alpha": "AFITGNQFY",
+    "cdr3_beta": "ASSQTQLWETQY",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2015-08-05",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "NLVPMVATV"
+    ],
+    "pdb_ids": [
+      "5D2L"
+    ]
+  },
+  {
+    "clonotype_id": "CL059",
+    "tcr_id": "c25",
+    "tcr_name": "C25",
+    "trav": "TRAV26-2*01",
+    "trbv": "TRBV7-6*01",
+    "traj": "TRAJ43*01",
+    "trbj": "TRBJ1-4*01",
+    "cdr3_alpha": "ILDNNNDMR",
+    "cdr3_beta": "ASSLAPGTTNEKLF",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2015-08-05",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "NLVPMVATV"
+    ],
+    "pdb_ids": [
+      "5D2N"
+    ]
+  },
+  {
+    "clonotype_id": "CL060",
+    "tcr_id": "pf8",
+    "tcr_name": "PF8",
+    "trav": "TRAV35*01",
+    "trbv": "TRBV27*01",
+    "traj": "TRAJ37*01",
+    "trbj": "TRBJ2-2*01",
+    "cdr3_alpha": "AGPGGSSNTGKLI",
+    "cdr3_beta": "ASSLIYPGELF",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2015-10-09",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "GILGFVFTL"
+    ],
+    "pdb_ids": [
+      "5E6I"
+    ]
+  },
+  {
+    "clonotype_id": "CL061",
+    "tcr_id": "rd1-mart1high",
+    "tcr_name": "RD1-MART1high",
+    "trav": "TRAV12-2*01",
+    "trbv": "TRBV6-5*01",
+    "traj": "TRAJ24*02",
+    "trbj": "TRBJ2-7*01",
+    "cdr3_alpha": "AVTKYSWGKLQ",
+    "cdr3_beta": "ASRPGWMAGGVELY",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [
+      "5E9D"
+    ],
+    "has_engineered_variants": true,
+    "first_deposition_date": "2015-10-15",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "ELAGIGILTV"
+    ],
+    "pdb_ids": [
+      "5E9D"
+    ]
+  },
+  {
+    "clonotype_id": "CL062",
+    "tcr_id": "pmel17",
+    "tcr_name": "PMEL17",
+    "trav": "TRAV21*01",
+    "trbv": "TRBV7-3*01",
+    "traj": "TRAJ53*01",
+    "trbj": "TRBJ2-3*01",
+    "cdr3_alpha": "AVLSSGGSNYKLT",
+    "cdr3_beta": "ASSFIGGTDTQY",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2015-11-18",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "YLEPGPVTV"
+    ],
+    "pdb_ids": [
+      "5EU6"
+    ]
+  },
+  {
+    "clonotype_id": "CL063",
+    "tcr_id": "pf6",
+    "tcr_name": "PF6",
+    "trav": "TRAV27*01",
+    "trbv": "TRBV19*01",
+    "traj": "TRAJ42*01",
+    "trbj": "TRBJ2-7*01",
+    "cdr3_alpha": "AGAIGPSNTGKLI",
+    "cdr3_beta": "ASSIRSSYEQY",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2015-11-18",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "GILGFVFTL"
+    ],
+    "pdb_ids": [
+      "5EUO"
+    ]
+  },
+  {
+    "clonotype_id": "CL064",
+    "tcr_id": "jm22",
+    "tcr_name": "JM22",
+    "trav": "TRAV27*01",
+    "trbv": "TRBV19*01",
+    "traj": "TRAJ42*01",
+    "trbj": "TRBJ2-7*01",
+    "cdr3_alpha": "AGAGSQGNLI",
+    "cdr3_beta": "ASSIRSSYEQY",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2016-01-11",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "GILEFVFTL"
+    ],
+    "pdb_ids": [
+      "5HHO"
+    ]
+  },
+  {
+    "clonotype_id": "CL065",
+    "tcr_id": "ls01",
+    "tcr_name": "LS01",
+    "trav": "TRAV24*01",
+    "trbv": "TRBV19*01",
+    "traj": "TRAJ27*01",
+    "trbj": "TRBJ2-7*01",
+    "cdr3_alpha": "AFDTNAGKST",
+    "cdr3_beta": "ASSIFGQREQY",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2016-03-15",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "GILGFVFTL"
+    ],
+    "pdb_ids": [
+      "5ISZ"
+    ]
+  },
+  {
+    "clonotype_id": "CL066",
+    "tcr_id": "ls10",
+    "tcr_name": "LS10",
+    "trav": "TRAV38-2/DV8*01",
+    "trbv": "TRBV19*01",
+    "traj": "TRDJ1*01",
+    "trbj": "TRBJ1-2*01",
+    "cdr3_alpha": "AWGVNAGGTSYGKLT",
+    "cdr3_beta": "ASSIGVYGYT",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2016-04-20",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "GILGFVFTL"
+    ],
+    "pdb_ids": [
+      "5JHD"
+    ]
+  },
+  {
+    "clonotype_id": "CL067",
+    "tcr_id": "ila1",
+    "tcr_name": "ILA1",
+    "trav": "TRAV22*01",
+    "trbv": "TRBV6-5*01",
+    "traj": "TRAJ40*01",
+    "trbj": "TRBJ1-1*01",
+    "cdr3_alpha": "AVDSATSGTYKYI",
+    "cdr3_beta": "ASSYQGTEAF",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2016-11-16",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "ILAKFLHWL"
+    ],
+    "pdb_ids": [
+      "5MEN"
+    ]
+  },
+  {
+    "clonotype_id": "CL068",
+    "tcr_id": "19954-16",
+    "tcr_name": "199.54-16",
+    "trav": "TRAV12-2*01",
+    "trbv": "TRBV19*01",
+    "traj": "TRAJ45*01",
+    "trbj": "TRBJ2-2*01",
+    "cdr3_alpha": "AVGGGADGLT",
+    "cdr3_beta": "ASSQGLAGAGELF",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2017-03-22",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "ELAGIGILTV"
+    ],
+    "pdb_ids": [
+      "5NHT"
+    ]
+  },
+  {
+    "clonotype_id": "CL069",
+    "tcr_id": "19916",
+    "tcr_name": "199.16",
+    "trav": "TRAV12-2*01",
+    "trbv": "TRBV19*01",
+    "traj": "TRAJ45*01",
+    "trbj": "TRBJ2-2*01",
+    "cdr3_alpha": "AGGGGADGLT",
+    "cdr3_beta": "ASSQGLAGAGELF",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2017-04-20",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "ELAGIGILTV"
+    ],
+    "pdb_ids": [
+      "5NQK"
+    ]
+  },
+  {
+    "clonotype_id": "CL070",
+    "tcr_id": "f50",
+    "tcr_name": "F50",
+    "trav": "TRAV13-1*01",
+    "trbv": "TRBV27*01",
+    "traj": "TRAJ54*01",
+    "trbj": "TRBJ1-1*01",
+    "cdr3_alpha": "AASFIIQGAQKLV",
+    "cdr3_beta": "ASSLLGGWSEAF",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2016-09-23",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "GILGFVFTL"
+    ],
+    "pdb_ids": [
+      "5TEZ"
+    ]
+  },
+  {
+    "clonotype_id": "CL071",
+    "tcr_id": "hcv1406",
+    "tcr_name": "HCV1406",
+    "trav": "TRAV38-2/DV8*01",
+    "trbv": "TRBV25-1*01",
+    "traj": "TRDJ1*01",
+    "trbj": "TRBJ2-7*01",
+    "cdr3_alpha": "AYGEDDKII",
+    "cdr3_beta": "ASRRGSAELY",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [
+      "5YXU"
+    ],
+    "has_engineered_variants": true,
+    "first_deposition_date": "2017-12-07",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "KLVALGINAV"
+    ],
+    "pdb_ids": [
+      "5YXU"
+    ]
+  },
+  {
+    "clonotype_id": "CL072",
+    "tcr_id": "kfj5",
+    "tcr_name": "KFJ5",
+    "trav": "TRAV4*01",
+    "trbv": "TRBV28*01",
+    "traj": "TRAJ21*01",
+    "trbj": "TRBJ2-3*01",
+    "cdr3_alpha": "LVGEILDNFNKFY",
+    "cdr3_beta": "ASSQRQEGDTQY",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2017-09-02",
+    "alleles": [
+      "HLA-B*07:02"
+    ],
+    "peptides": [
+      "APRGPHGGAASGL"
+    ],
+    "pdb_ids": [
+      "6AVF"
+    ]
+  },
+  {
+    "clonotype_id": "CL073",
+    "tcr_id": "kfj37",
+    "tcr_name": "KFJ37",
+    "trav": "TRAV4*01",
+    "trbv": "TRBV9*01",
+    "traj": "TRAJ8*01",
+    "trbj": "TRBJ2-1*01",
+    "cdr3_alpha": "LVVDQKLV",
+    "cdr3_beta": "ASSGGHTGSNEQF",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2017-09-02",
+    "alleles": [
+      "HLA-B*07:02"
+    ],
+    "peptides": [
+      "APRGPHGGAASGL"
+    ],
+    "pdb_ids": [
+      "6AVG"
+    ]
+  },
+  {
+    "clonotype_id": "CL074",
+    "tcr_id": "589",
+    "tcr_name": "589",
+    "trav": "TRAV19*01",
+    "trbv": "TRBV5-4*01",
+    "traj": "TRAJ53*01",
+    "trbj": "TRBJ2-5*01",
+    "cdr3_alpha": "ALSHNSGGSNYKLT",
+    "cdr3_beta": "ASSFRGGKTQY",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2017-11-03",
+    "alleles": [
+      "HLA-B*35:01"
+    ],
+    "peptides": [
+      "IPLTEEAEL"
+    ],
+    "pdb_ids": [
+      "6BJ2"
+    ]
+  },
+  {
+    "clonotype_id": "CL075",
+    "tcr_id": "dmf5",
+    "tcr_name": "DMF5",
+    "trav": "TRAV12-2*01",
+    "trbv": "TRBV6-4*01",
+    "traj": "TRAJ23*01",
+    "trbj": "TRBJ1-1*01",
+    "cdr3_alpha": "AVNFGGGKLI",
+    "cdr3_beta": "ASSWSFGTEAF",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2018-05-30",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "ELAGIGILTV"
+    ],
+    "pdb_ids": [
+      "6DKP"
+    ]
+  },
+  {
+    "clonotype_id": "CL076",
+    "tcr_id": "em2",
+    "tcr_name": "EM2",
+    "trav": "TRAV30*01",
+    "trbv": "TRBV19*01",
+    "traj": "TRAJ13*01",
+    "trbj": "TRBJ1-1*01",
+    "cdr3_alpha": "GTERSGGYQKVT",
+    "cdr3_beta": "ASSMSAMGTEAF",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2018-10-19",
+    "alleles": [
+      "HLA-B*37:01"
+    ],
+    "peptides": [
+      "FEDLRVLSF"
+    ],
+    "pdb_ids": [
+      "6MTM"
+    ]
+  },
+  {
+    "clonotype_id": "CL077",
+    "tcr_id": "302til",
+    "tcr_name": "302TIL",
+    "trav": "TRAV38-2/DV8*01",
+    "trbv": "TRBV12-3*01",
+    "traj": "TRDJ2*01",
+    "trbj": "TRBJ2-3*01",
+    "cdr3_alpha": "AFMDSNYQLI",
+    "cdr3_beta": "ASSRTSPTDTQY",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2019-05-31",
+    "alleles": [
+      "HLA-A*02:06"
+    ],
+    "peptides": [
+      "KQWLVWLFL"
+    ],
+    "pdb_ids": [
+      "6P64"
+    ]
+  },
+  {
+    "clonotype_id": "CL078",
+    "tcr_id": "nybr",
+    "tcr_name": "NYBR",
+    "trav": "TRAV22*01",
+    "trbv": "TRBV11-2*01",
+    "traj": "TRAJ34*01",
+    "trbj": "TRBJ2-1*01",
+    "cdr3_alpha": "AVGGNDWNTDKLI",
+    "cdr3_beta": "ASSPLDVSISSYNEQF",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2019-03-18",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "SLSKILDTV"
+    ],
+    "pdb_ids": [
+      "6R2L"
+    ]
+  },
+  {
+    "clonotype_id": "CL079",
+    "tcr_id": "nye-s3",
+    "tcr_name": "NYE_S3",
+    "trav": "TRAV12-2*01",
+    "trbv": "TRBV7-6*01",
+    "traj": "TRAJ49*01",
+    "trbj": "TRBJ1-1*01",
+    "cdr3_alpha": "ALTRGPGNQFY",
+    "cdr3_beta": "ASSSPGGVSTEAF",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2019-05-14",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "SLLMWITQV"
+    ],
+    "pdb_ids": [
+      "6RP9"
+    ]
+  },
+  {
+    "clonotype_id": "CL080",
+    "tcr_id": "nye-s2",
+    "tcr_name": "NYE_S2",
+    "trav": "TRAV3*01",
+    "trbv": "TRBV29-1*01",
+    "traj": "TRAJ28*01",
+    "trbj": "TRBJ2-3*01",
+    "cdr3_alpha": "AVRDINSGAGSYQLT",
+    "cdr3_beta": "SVGGSGGADTQY",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2019-05-14",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "SLLMWITQV"
+    ],
+    "pdb_ids": [
+      "6RPA"
+    ]
+  },
+  {
+    "clonotype_id": "CL081",
+    "tcr_id": "nye-s1",
+    "tcr_name": "NYE_S1",
+    "trav": "TRAV12-2*01",
+    "trbv": "TRBV6-5*01",
+    "traj": "TRAJ6*01",
+    "trbj": "TRBJ2-3*01",
+    "cdr3_alpha": "AVKSGGSYIPT",
+    "cdr3_beta": "ASSYLNRDSALD",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2019-05-14",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "SLLMWITQV"
+    ],
+    "pdb_ids": [
+      "6RPB"
+    ]
+  },
+  {
+    "clonotype_id": "CL082",
+    "tcr_id": "a7b2",
+    "tcr_name": "a7b2",
+    "trav": "TRAV26-1*01",
+    "trbv": "TRBV7-9*03",
+    "traj": "TRAJ40*01",
+    "trbj": "TRBJ2-5*01",
+    "cdr3_alpha": "IGGGTTSGTYKYI",
+    "cdr3_beta": "ASSLGFGRDVMR",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2019-05-22",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "RMFPNAPYL"
+    ],
+    "pdb_ids": [
+      "6RSY"
+    ]
+  },
+  {
+    "clonotype_id": "CL083",
+    "tcr_id": "gvy01",
+    "tcr_name": "GVY01",
+    "trav": "TRAV10*01",
+    "trbv": "TRBV28*01",
+    "traj": "TRAJ6*01",
+    "trbj": "TRBJ2-7*01",
+    "cdr3_alpha": "VVNHSGGSYIPT",
+    "cdr3_beta": "ASSFLMTSGDPYEQY",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2019-12-19",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "GVYDGREHTV"
+    ],
+    "pdb_ids": [
+      "6TRO"
+    ]
+  },
+  {
+    "clonotype_id": "CL084",
+    "tcr_id": "9d",
+    "tcr_name": "9d",
+    "trav": "TRAV4*01",
+    "trbv": "TRBV5-6*01",
+    "traj": "TRAJ15*01",
+    "trbj": "TRBJ1-2*01",
+    "cdr3_alpha": "LVGDMDQAGTALI",
+    "cdr3_beta": "ASSLGQTNYGYT",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2019-10-08",
+    "alleles": [
+      "HLA-C*08:02"
+    ],
+    "peptides": [
+      "GADGVGKSA"
+    ],
+    "pdb_ids": [
+      "6ULN"
+    ]
+  },
+  {
+    "clonotype_id": "CL085",
+    "tcr_id": "tcr10",
+    "tcr_name": "TCR10",
+    "trav": "TRAV12-2*01",
+    "trbv": "TRBV10-2*01",
+    "traj": "TRAJ12*01",
+    "trbj": "TRBJ1-1*01",
+    "cdr3_alpha": "AAAMDSSYKLI",
+    "cdr3_beta": "ASSDPGTEAF",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2019-10-15",
+    "alleles": [
+      "HLA-C*08:02"
+    ],
+    "peptides": [
+      "GADGVGKSAL"
+    ],
+    "pdb_ids": [
+      "6UON"
+    ]
+  },
+  {
+    "clonotype_id": "CL086",
+    "tcr_id": "hd14",
+    "tcr_name": "HD14",
+    "trav": "TRAV24*01",
+    "trbv": "TRBV4-1*01",
+    "traj": "TRAJ37*01",
+    "trbj": "TRBJ1-2*01",
+    "cdr3_alpha": "AFGSSNTGKLI",
+    "cdr3_beta": "ASSQDLFTGGYT",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2020-01-28",
+    "alleles": [
+      "HLA-B*07:02"
+    ],
+    "peptides": [
+      "RPPIFIRRL"
+    ],
+    "pdb_ids": [
+      "6VMX"
+    ]
+  },
+  {
+    "clonotype_id": "CL087",
+    "tcr_id": "1a2",
+    "tcr_name": "1a2",
+    "trav": "TRAV12-3*01",
+    "trbv": "TRBV27*01",
+    "traj": "TRAJ12*01",
+    "trbj": "TRBJ2-3*01",
+    "cdr3_alpha": "AMSGLKEDSSYKLI",
+    "cdr3_beta": "ASSIQQGADTQY",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2020-02-05",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "HMTEVVRHC"
+    ],
+    "pdb_ids": [
+      "6VQO"
+    ]
+  },
+  {
+    "clonotype_id": "CL088",
+    "tcr_id": "12-6",
+    "tcr_name": "12-6",
+    "trav": "TRAV12-1*01",
+    "trbv": "TRBV6-1*01",
+    "traj": "TRAJ13*02",
+    "trbj": "TRBJ2-7*01",
+    "cdr3_alpha": "VVQPGGYQKVT",
+    "cdr3_beta": "ASSEGLWQVGDEQY",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2020-02-08",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "HMTEVVRHC"
+    ],
+    "pdb_ids": [
+      "6VRM"
+    ]
+  },
+  {
+    "clonotype_id": "CL089",
+    "tcr_id": "38-10",
+    "tcr_name": "38-10",
+    "trav": "TRAV38-2/DV8*01",
+    "trbv": "TRBV10-3*01",
+    "traj": "TRDJ2*01",
+    "trbj": "TRBJ1-6*01",
+    "cdr3_alpha": "AFMGYSGAGSYQLT",
+    "cdr3_beta": "AISELVTGDSPLH",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2020-02-08",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "HMTEVVRHC"
+    ],
+    "pdb_ids": [
+      "6VRN"
+    ]
+  },
+  {
+    "clonotype_id": "CL090",
+    "tcr_id": "21lt2-2",
+    "tcr_name": "21LT2-2",
+    "trav": "TRAV12-2*01",
+    "trbv": "TRBV9*01",
+    "traj": "TRAJ44*01",
+    "trbj": "TRBJ2-6*01",
+    "cdr3_alpha": "AGNTGTASKLT",
+    "cdr3_beta": "ASSGLAGGPVSGANVLT",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2020-12-14",
+    "alleles": [
+      "HLA-A*03:01"
+    ],
+    "peptides": [
+      "ALHGGWTTK"
+    ],
+    "pdb_ids": [
+      "7L1D"
+    ]
+  },
+  {
+    "clonotype_id": "CL091",
+    "tcr_id": "rlq3",
+    "tcr_name": "RLQ3",
+    "trav": "TRAV16*01",
+    "trbv": "TRBV11-2*01",
+    "traj": "TRAJ39*01",
+    "trbj": "TRBJ2-3*01",
+    "cdr3_alpha": "ALSGFNNAGNMLT",
+    "cdr3_beta": "ASSLGGAGGADTQY",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2021-05-27",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "RLQSLQTYV"
+    ],
+    "pdb_ids": [
+      "7N1E"
+    ]
+  },
+  {
+    "clonotype_id": "CL092",
+    "tcr_id": "as31",
+    "tcr_name": "AS3.1",
+    "trav": "TRAV21*01",
+    "trbv": "TRBV9*01",
+    "traj": "TRAJ28*01",
+    "trbj": "TRBJ2-3*01",
+    "cdr3_alpha": "AVSLGTGAGSYQLT",
+    "cdr3_beta": "ASSVGLYSTDTQY",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2021-05-29",
+    "alleles": [
+      "HLA-B*27:05"
+    ],
+    "peptides": [
+      "TRLALIAPK"
+    ],
+    "pdb_ids": [
+      "7N2S"
+    ]
+  },
+  {
+    "clonotype_id": "CL093",
+    "tcr_id": "nr1c",
+    "tcr_name": "NR1C",
+    "trav": "TRAV12-1*01",
+    "trbv": "TRBV19*01",
+    "traj": "TRAJ43*01",
+    "trbj": "TRBJ2-2*01",
+    "cdr3_alpha": "VVNRNNDMR",
+    "cdr3_beta": "AGQVTNTGELF",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2021-06-08",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "YLQPRTFLL"
+    ],
+    "pdb_ids": [
+      "7N6E"
+    ]
+  },
+  {
+    "clonotype_id": "CL094",
+    "tcr_id": "jdi",
+    "tcr_name": "JDI",
+    "trav": "TRAV19*01",
+    "trbv": "TRBV6-2*01",
+    "traj": "TRAJ28*01",
+    "trbj": "TRBJ1-6*01",
+    "cdr3_alpha": "ALSGPSGAGSYQLT",
+    "cdr3_beta": "ASSYGPGQHNSPLH",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2021-07-30",
+    "alleles": [
+      "HLA-A*11:01"
+    ],
+    "peptides": [
+      "VVVGADGVGK"
+    ],
+    "pdb_ids": [
+      "7PB2"
+    ]
+  },
+  {
+    "clonotype_id": "CL095",
+    "tcr_id": "ylq36",
+    "tcr_name": "YLQ36",
+    "trav": "TRAV12-1*01",
+    "trbv": "TRBV7-9*03",
+    "traj": "TRAJ34*01",
+    "trbj": "TRBJ2-2*01",
+    "cdr3_alpha": "VVNINTDKLI",
+    "cdr3_beta": "ASSSANSGELF",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2021-08-02",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "YLQPRTFLL"
+    ],
+    "pdb_ids": [
+      "7PBE"
+    ]
+  },
+  {
+    "clonotype_id": "CL096",
+    "tcr_id": "gpa3b17",
+    "tcr_name": "GPa3b17",
+    "trav": "TRAV17*01",
+    "trbv": "TRBV19*01",
+    "traj": "TRAJ29*01",
+    "trbj": "TRBJ2-7*01",
+    "cdr3_alpha": "ATDGSTPMQ",
+    "cdr3_beta": "ASSWGAPYEQY",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2021-08-18",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "YLEPGPVTV"
+    ],
+    "pdb_ids": [
+      "7PHR"
+    ]
+  },
+  {
+    "clonotype_id": "CL097",
+    "tcr_id": "c756",
+    "tcr_name": "c756",
+    "trav": "TRAV12-2*01",
+    "trbv": "TRBV6-6*02",
+    "traj": "TRAJ5*01",
+    "trbj": "TRBJ1-1*01",
+    "cdr3_alpha": "AVRGTGRRALT",
+    "cdr3_beta": "ASSFATEAF",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2022-01-04",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "GLYDGMEHL"
+    ],
+    "pdb_ids": [
+      "7QPJ"
+    ]
+  },
+  {
+    "clonotype_id": "CL098",
+    "tcr_id": "c3",
+    "tcr_name": "C3",
+    "trav": "TRAV21*01",
+    "trbv": "TRBV6-5*01",
+    "traj": "TRAJ15*01",
+    "trbj": "TRBJ1-2*01",
+    "cdr3_alpha": "AQLNQAGTALI",
+    "cdr3_beta": "ASSYGTGINYGYT",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2021-06-25",
+    "alleles": [
+      "HLA-B*53:01"
+    ],
+    "peptides": [
+      "QASQEVKNW"
+    ],
+    "pdb_ids": [
+      "7R80"
+    ]
+  },
+  {
+    "clonotype_id": "CL099",
+    "tcr_id": "til-1383i",
+    "tcr_name": "TIL 1383i",
+    "trav": "TRAV4*01",
+    "trbv": "TRBV10-3*01",
+    "traj": "TRAJ42*01",
+    "trbj": "TRBJ1-3*01",
+    "cdr3_alpha": "LVALNYGGSQGNLI",
+    "cdr3_beta": "AISPTEEGGLIFPGNTIY",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2021-07-22",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "YMDGTMSQV"
+    ],
+    "pdb_ids": [
+      "7RK7"
+    ]
+  },
+  {
+    "clonotype_id": "CL100",
+    "tcr_id": "6-11",
+    "tcr_name": "6-11",
+    "trav": "TRAV6*01",
+    "trbv": "TRBV11-2*01",
+    "traj": "TRAJ43*01",
+    "trbj": "TRBJ2-2*01",
+    "cdr3_alpha": "ALDIYPHDMR",
+    "cdr3_beta": "ASSLDPGDTGELF",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2021-07-26",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "HMTEVVRHC"
+    ],
+    "pdb_ids": [
+      "7RM4"
+    ]
+  },
+  {
+    "clonotype_id": "CL101",
+    "tcr_id": "0606t1-2",
+    "tcr_name": "0606T1-2",
+    "trav": "TRAV4*01",
+    "trbv": "TRBV11-2*01",
+    "traj": "TRAJ9*01",
+    "trbj": "TRBJ2-7*01",
+    "cdr3_alpha": "LVGGAYTGGFKTI",
+    "cdr3_beta": "ASSLVAETYEQY",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2021-08-09",
+    "alleles": [
+      "HLA-A*03:01"
+    ],
+    "peptides": [
+      "ALHGGWTTK"
+    ],
+    "pdb_ids": [
+      "7RRG"
+    ]
+  },
+  {
+    "clonotype_id": "CL102",
+    "tcr_id": "as84",
+    "tcr_name": "AS8.4",
+    "trav": "TRAV21*01",
+    "trbv": "TRBV9*01",
+    "traj": "TRAJ28*01",
+    "trbj": "TRBJ2-3*01",
+    "cdr3_alpha": "AVNSPGSGAGSYQLT",
+    "cdr3_beta": "ASSVGTYSTDTQY",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2022-05-19",
+    "alleles": [
+      "HLA-B*27:05"
+    ],
+    "peptides": [
+      "LRVMMLAPF"
+    ],
+    "pdb_ids": [
+      "8CX4"
+    ]
+  },
+  {
+    "clonotype_id": "CL103",
+    "tcr_id": "ll8",
+    "tcr_name": "LL8",
+    "trav": "TRAV12-2*01",
+    "trbv": "TRBV7-2*01",
+    "traj": "TRAJ54*01",
+    "trbj": "TRBJ2-1*01",
+    "cdr3_alpha": "AVREGAQKLV",
+    "cdr3_beta": "ASSLDLGADEQF",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2022-07-11",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "LLLDRLNQL"
+    ],
+    "pdb_ids": [
+      "8DNT"
+    ]
+  },
+  {
+    "clonotype_id": "CL104",
+    "tcr_id": "pn45545",
+    "tcr_name": "PN45545",
+    "trav": "TRAV14/DV4*01",
+    "trbv": "TRBV28*01",
+    "traj": "TRDJ2*01",
+    "trbj": "TRBJ1-6*01",
+    "cdr3_alpha": "AMRGGGSGGSYIPT",
+    "cdr3_beta": "ASSFTGPYNSPLH",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2022-10-13",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "GVYDGREHTV"
+    ],
+    "pdb_ids": [
+      "8ES8"
+    ]
+  },
+  {
+    "clonotype_id": "CL105",
+    "tcr_id": "pn45428",
+    "tcr_name": "PN45428",
+    "trav": "TRAV20*01",
+    "trbv": "TRBV20-1*01",
+    "traj": "TRAJ38*01",
+    "trbj": "TRBJ1-1*01",
+    "cdr3_alpha": "AVQPLNAGNNRKLI",
+    "cdr3_beta": "SAREWGGTEAF",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2022-10-13",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "GVYDGREHTV"
+    ],
+    "pdb_ids": [
+      "8ES9"
+    ]
+  },
+  {
+    "clonotype_id": "CL106",
+    "tcr_id": "ks1",
+    "tcr_name": "KS1",
+    "trav": "TRAV21*01",
+    "trbv": "TRBV5-1*01",
+    "traj": "TRAJ39*01",
+    "trbj": "TRBJ1-1*01",
+    "cdr3_alpha": "AVTLNNNAGNMLT",
+    "cdr3_beta": "ASSVGGTEAF",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2022-11-12",
+    "alleles": [
+      "HLA-B*57:01"
+    ],
+    "peptides": [
+      "TSTLQEQIGW"
+    ],
+    "pdb_ids": [
+      "8F5A"
+    ]
+  },
+  {
+    "clonotype_id": "CL107",
+    "tcr_id": "h25-11",
+    "tcr_name": "H25-11",
+    "trav": "TRAV8-3*01",
+    "trbv": "TRBV7-9*03",
+    "traj": "TRAJ10*01",
+    "trbj": "TRBJ2-5*01",
+    "cdr3_alpha": "AVVFTGGGNKLT",
+    "cdr3_beta": "ASSLRDRVPETQY",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2022-09-15",
+    "alleles": [
+      "HLA-A*24:02"
+    ],
+    "peptides": [
+      "RYPLTFGW"
+    ],
+    "pdb_ids": [
+      "8GVI"
+    ]
+  },
+  {
+    "clonotype_id": "CL108",
+    "tcr_id": "p1-15",
+    "tcr_name": "P1-15",
+    "trav": "TRAV12-1*01",
+    "trbv": "TRBV6-1*01",
+    "traj": "TRAJ41*01",
+    "trbj": "TRBJ2-7*01",
+    "cdr3_alpha": "VVNMLRNSGYALN",
+    "cdr3_beta": "ASSESGGYEQY",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2023-12-20",
+    "alleles": [
+      "HLA-A*24:02"
+    ],
+    "peptides": [
+      "NYNYLYRLF"
+    ],
+    "pdb_ids": [
+      "8RJ5"
+    ]
+  },
+  {
+    "clonotype_id": "CL109",
+    "tcr_id": "g12v",
+    "tcr_name": "G12V",
+    "trav": "TRAV12-3*05",
+    "trbv": "TRBV1*01",
+    "traj": "TRAJ40*01",
+    "trbj": "TRBJ2-3*01",
+    "cdr3_alpha": "ALSEGGNYKYV",
+    "cdr3_beta": "TCSARHSAETLY",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2024-01-23",
+    "alleles": [
+      "HLA-A*03:01"
+    ],
+    "peptides": [
+      "VVVGAVGVGK"
+    ],
+    "pdb_ids": [
+      "8RRO"
+    ]
+  },
+  {
+    "clonotype_id": "CL110",
+    "tcr_id": "s2-198",
+    "tcr_name": "S2-198",
+    "trav": "TRAV21*01",
+    "trbv": "TRBV6-6*01",
+    "traj": "TRAJ39*01",
+    "trbj": "TRBJ1-2*01",
+    "cdr3_alpha": "AVNNAGNMLT",
+    "cdr3_beta": "ASSETRGAPYGYT",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2024-02-09",
+    "alleles": [
+      "HLA-A*03:01"
+    ],
+    "peptides": [
+      "ELFSYLIEK"
+    ],
+    "pdb_ids": [
+      "8RYO"
+    ]
+  },
+  {
+    "clonotype_id": "CL111",
+    "tcr_id": "s8",
+    "tcr_name": "S8",
+    "trav": "TRAV21*01",
+    "trbv": "TRBV9*01",
+    "traj": "TRAJ42*01",
+    "trbj": "TRBJ2-1*01",
+    "cdr3_alpha": "AVRQRGSQGNLI",
+    "cdr3_beta": "ASSPGGGHNEQF",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2024-02-09",
+    "alleles": [
+      "HLA-A*03:01"
+    ],
+    "peptides": [
+      "ELFSYLIEK"
+    ],
+    "pdb_ids": [
+      "8RYP"
+    ]
+  },
+  {
+    "clonotype_id": "CL112",
+    "tcr_id": "s8-9f3",
+    "tcr_name": "S8-9F3",
+    "trav": "TRAV21*01",
+    "trbv": "TRBV9*01",
+    "traj": "TRAJ42*01",
+    "trbj": "TRBJ2-1*01",
+    "cdr3_alpha": "AVRQWGSLGNLI",
+    "cdr3_beta": "ASSPGGGHNEQF",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2024-02-09",
+    "alleles": [
+      "HLA-A*11:01"
+    ],
+    "peptides": [
+      "ELFSYLIEK"
+    ],
+    "pdb_ids": [
+      "8RYQ"
+    ]
+  },
+  {
+    "clonotype_id": "CL113",
+    "tcr_id": "v\u03b13s1v\u03b213s",
+    "tcr_name": "V\u03b13S1/V\u03b213S",
+    "trav": "TRAV17*01",
+    "trbv": "TRBV6-5*01",
+    "traj": "TRAJ45*01",
+    "trbj": "TRBJ1-1*01",
+    "cdr3_alpha": "ATDALYSGGGADGLT",
+    "cdr3_beta": "ASSYSEGEDEAF",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2023-04-14",
+    "alleles": [
+      "HLA-C*06:02"
+    ],
+    "peptides": [
+      "VRSRRALRL"
+    ],
+    "pdb_ids": [
+      "8SHI"
+    ]
+  },
+  {
+    "clonotype_id": "CL114",
+    "tcr_id": "nyn-i",
+    "tcr_name": "NYN-I",
+    "trav": "TRAV12-1*01",
+    "trbv": "TRBV6-1*01",
+    "traj": "TRAJ28*01",
+    "trbj": "TRBJ2-7*01",
+    "cdr3_alpha": "VVNAHSGAGSYQLT",
+    "cdr3_beta": "ASSETGGYEQY",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2024-02-21",
+    "alleles": [
+      "HLA-A*24:02"
+    ],
+    "peptides": [
+      "NYNYLYRLF"
+    ],
+    "pdb_ids": [
+      "8YE4"
+    ]
+  },
+  {
+    "clonotype_id": "CL115",
+    "tcr_id": "hghv4",
+    "tcr_name": null,
+    "trav": "TRAV35*01",
+    "trbv": "TRBV20-1*01",
+    "traj": "TRAJ40*01",
+    "trbj": "TRBJ1-2*01",
+    "cdr3_alpha": "AGRDEGTYKYI",
+    "cdr3_beta": "SARDLQGVNYGYT",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2024-08-21",
+    "alleles": [
+      "HLA-B*38:01"
+    ],
+    "peptides": [
+      "YHLIVDTDSL"
+    ],
+    "pdb_ids": [
+      "9D95"
+    ]
+  },
+  {
+    "clonotype_id": "CL116",
+    "tcr_id": "tcr-c",
+    "tcr_name": "TCR-C",
+    "trav": "TRAV4*01",
+    "trbv": "TRBV11-2*01",
+    "traj": "TRAJ34*01",
+    "trbj": "TRBJ2-5*01",
+    "cdr3_alpha": "LAWGGTDMLI",
+    "cdr3_beta": "ASSLDWVGDGERQY",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2024-09-23",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "SLSNRLYYL"
+    ],
+    "pdb_ids": [
+      "9GV6"
+    ]
+  },
+  {
+    "clonotype_id": "CL117",
+    "tcr_id": "tcr-e",
+    "tcr_name": "TCR-E",
+    "trav": "TRAV12-2*01",
+    "trbv": "TRBV6-2*01",
+    "traj": "TRAJ4*01",
+    "trbj": "TRBJ2-3*01",
+    "cdr3_alpha": "AVGERVGGYNKLI",
+    "cdr3_beta": "ASSYGSGYNAQT",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2024-09-23",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "SLAGGLDDMKA"
+    ],
+    "pdb_ids": [
+      "9GV7"
+    ]
+  },
+  {
+    "clonotype_id": "CL118",
+    "tcr_id": "gv37",
+    "tcr_name": "GV37",
+    "trav": "TRAV5*01",
+    "trbv": "TRBV7-8*01",
+    "traj": "TRAJ29*01",
+    "trbj": "TRBJ2-1*01",
+    "cdr3_alpha": "AEVEGNTPLV",
+    "cdr3_beta": "ASSLAGLAGGVEQF",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2024-12-05",
+    "alleles": [
+      "HLA-C*12:02"
+    ],
+    "peptides": [
+      "KAYNVTQAF"
+    ],
+    "pdb_ids": [
+      "9HLJ"
+    ]
+  },
+  {
+    "clonotype_id": "CL119",
+    "tcr_id": "1-2c-t96f",
+    "tcr_name": "1-2C-T96F",
+    "trav": "TRAV7-2*02",
+    "trbv": "TRBV13-2*01",
+    "traj": "TRAJ33*01",
+    "trbj": "TRBJ2-7*01",
+    "cdr3_alpha": "AARDSNYQLI",
+    "cdr3_beta": "ASGDFGGYEQY",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2024-06-29",
+    "alleles": [
+      "HLA-A*11:01"
+    ],
+    "peptides": [
+      "VVGAVGVGK"
+    ],
+    "pdb_ids": [
+      "9IKY"
+    ]
+  },
+  {
+    "clonotype_id": "CL120",
+    "tcr_id": "cla",
+    "tcr_name": "CLA",
+    "trav": "TRAV3*01",
+    "trbv": "TRBV9*01",
+    "traj": "TRAJ31*01",
+    "trbj": "TRBJ2-1*01",
+    "cdr3_alpha": "AVRDYNNARLM",
+    "cdr3_beta": "ASSVSGGAYNEQF",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2024-08-10",
+    "alleles": [
+      "HLA-B*07:02"
+    ],
+    "peptides": [
+      "SPRWYFYYL"
+    ],
+    "pdb_ids": [
+      "9J4S"
+    ]
+  },
+  {
+    "clonotype_id": "CL121",
+    "tcr_id": "clb",
+    "tcr_name": "CLB",
+    "trav": "TRAV17*01",
+    "trbv": "TRBV6-6*01",
+    "traj": "TRAJ57*01",
+    "trbj": "TRBJ2-7*01",
+    "cdr3_alpha": "ATDAGPEKLV",
+    "cdr3_beta": "ASRQLAGFYEQY",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2024-08-10",
+    "alleles": [
+      "HLA-B*07:02"
+    ],
+    "peptides": [
+      "SPRWYFYYL"
+    ],
+    "pdb_ids": [
+      "9J4T"
+    ]
+  },
+  {
+    "clonotype_id": "CL122",
+    "tcr_id": "lll6e",
+    "tcr_name": "LLL6E",
+    "trav": "TRAV12-1*01",
+    "trbv": "TRBV9*01",
+    "traj": "TRAJ17*01",
+    "trbj": "TRBJ2-3*01",
+    "cdr3_alpha": "VQGAAGNKLT",
+    "cdr3_beta": "ASSVELNSYEQY",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2024-08-10",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "LLLDRLNQL"
+    ],
+    "pdb_ids": [
+      "9J4U"
+    ]
+  },
+  {
+    "clonotype_id": "CL123",
+    "tcr_id": "5934",
+    "tcr_name": "5934",
+    "trav": "TRAV13-1*01",
+    "trbv": "TRBV3-1*01",
+    "traj": "TRAJ54*01",
+    "trbj": "TRBJ2-1*01",
+    "cdr3_alpha": "AASRGGAQKLV",
+    "cdr3_beta": "ASSQLAGGPLYNEQF",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2024-10-17",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "FSGEYIPTV"
+    ],
+    "pdb_ids": [
+      "9K2I"
+    ]
+  },
+  {
+    "clonotype_id": "CL124",
+    "tcr_id": "ki-890",
+    "tcr_name": null,
+    "trav": "TRAV24*01",
+    "trbv": "TRBV27*01",
+    "traj": "TRAJ33*01",
+    "trbj": "TRBJ1-5*01",
+    "cdr3_alpha": "YVPMDSNYQLI",
+    "cdr3_beta": "ASSLVGAGQPQH",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2024-10-18",
+    "alleles": [
+      "HLA-C*12:02"
+    ],
+    "peptides": [
+      "ILKEPVHGVYY"
+    ],
+    "pdb_ids": [
+      "9K2R"
+    ]
+  },
+  {
+    "clonotype_id": "CL125",
+    "tcr_id": "tcr156",
+    "tcr_name": "TCR156",
+    "trav": "TRAV12-2*01",
+    "trbv": "TRBV9*01",
+    "traj": "TRAJ31*01",
+    "trbj": "TRBJ1-1*01",
+    "cdr3_alpha": "AVNNARLM",
+    "cdr3_beta": "ASSVAGSPEAF",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2025-03-04",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "TLMSAMTNL"
+    ],
+    "pdb_ids": [
+      "9NMU"
+    ]
+  },
+  {
+    "clonotype_id": "CL126",
+    "tcr_id": "tcr156",
+    "tcr_name": "TCR156",
+    "trav": "TRAV12-2*01",
+    "trbv": "TRBV9*01",
+    "traj": "TRAJ31*01",
+    "trbj": "TRBJ1-1*01",
+    "cdr3_alpha": "AVNNARLM",
+    "cdr3_beta": "ASSVAGSPEAF",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2025-03-04",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "TLMSAMTNL"
+    ],
+    "pdb_ids": [
+      "9NMV"
+    ]
+  },
+  {
+    "clonotype_id": "CL127",
+    "tcr_id": "tcr156",
+    "tcr_name": "TCR156",
+    "trav": "TRAV12-2*01",
+    "trbv": "TRBV9*01",
+    "traj": "TRAJ31*01",
+    "trbj": "TRBJ1-1*01",
+    "cdr3_alpha": "AVNNARLM",
+    "cdr3_beta": "ASSVAGSPEAF",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2025-03-04",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "TLMSAMTNL"
+    ],
+    "pdb_ids": [
+      "9NMW"
+    ]
+  },
+  {
+    "clonotype_id": "CL128",
+    "tcr_id": "tcr156",
+    "tcr_name": "TCR156",
+    "trav": "TRAV12-2*01",
+    "trbv": "TRBV9*01",
+    "traj": "TRAJ31*01",
+    "trbj": "TRBJ1-1*01",
+    "cdr3_alpha": "AVNNARLM",
+    "cdr3_beta": "ASSVAGSPEAF",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2025-03-04",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "TLMSAMTNL"
+    ],
+    "pdb_ids": [
+      "9NMX"
+    ]
+  },
+  {
+    "clonotype_id": "CL129",
+    "tcr_id": "tcr156",
+    "tcr_name": "TCR156",
+    "trav": "TRAV12-2*01",
+    "trbv": "TRBV9*01",
+    "traj": "TRAJ31*01",
+    "trbj": "TRBJ1-1*01",
+    "cdr3_alpha": "AVNNARLM",
+    "cdr3_beta": "ASSVAGSPEAF",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2025-03-04",
+    "alleles": [
+      "HLA-A*02:01"
+    ],
+    "peptides": [
+      "TLMSAMTNL"
+    ],
+    "pdb_ids": [
+      "9NMY"
+    ]
+  },
+  {
+    "clonotype_id": "CL130",
+    "tcr_id": "tcrpriv",
+    "tcr_name": "TCRpriv",
+    "trav": "TRAV25*01",
+    "trbv": "TRBV5-1*01",
+    "traj": "TRAJ57*01",
+    "trbj": "TRBJ1-1*01",
+    "cdr3_alpha": "ASDREGGSEKLV",
+    "cdr3_beta": "ASSLWTGVGTEAF",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2025-07-11",
+    "alleles": [
+      "HLA-A*01:01"
+    ],
+    "peptides": [
+      "FTSDYYQLY"
+    ],
+    "pdb_ids": [
+      "9RXM"
+    ]
+  },
+  {
+    "clonotype_id": "CL131",
+    "tcr_id": "q04",
+    "tcr_name": "Q04",
+    "trav": "TRAV25*01",
+    "trbv": "TRBV7-8*01",
+    "traj": "TRAJ40*01",
+    "trbj": "TRBJ1-2*01",
+    "cdr3_alpha": "AGYTSGTYKYI",
+    "cdr3_beta": "ASSLGQGHFT",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2025-08-13",
+    "alleles": [
+      "HLA-B*07:02"
+    ],
+    "peptides": [
+      "SPRWYFYYL"
+    ],
+    "pdb_ids": [
+      "9WBD"
+    ]
+  },
+  {
+    "clonotype_id": "CL132",
+    "tcr_id": "n172",
+    "tcr_name": "N17.2",
+    "trav": "TRAV5*01",
+    "trbv": "TRBV6-6*01",
+    "traj": "TRAJ9*01",
+    "trbj": "TRBJ2-7*01",
+    "cdr3_alpha": "AESSGGGFKTI",
+    "cdr3_beta": "ASSTPGPSAYEQY",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2025-10-23",
+    "alleles": [
+      "HLA-A*01:01"
+    ],
+    "peptides": [
+      "ILDTAGKEEY"
+    ],
+    "pdb_ids": [
+      "9YW4"
+    ]
+  },
+  {
+    "clonotype_id": "CL133",
+    "tcr_id": "n1732",
+    "tcr_name": "N17.3.2",
+    "trav": "TRAV19*01",
+    "trbv": "TRBV6-1*01",
+    "traj": "TRAJ17*01",
+    "trbj": "TRBJ1-1*01",
+    "cdr3_alpha": "ALSESGDAAGNKLT",
+    "cdr3_beta": "AEGENTEAF",
+    "n_structures": 1,
+    "engineered_variant_pdbs": [],
+    "has_engineered_variants": false,
+    "first_deposition_date": "2025-11-23",
+    "alleles": [
+      "HLA-A*01:01"
+    ],
+    "peptides": [
+      "ILDTAGKEEY"
+    ],
+    "pdb_ids": [
+      "9ZCL"
+    ]
+  }
+]

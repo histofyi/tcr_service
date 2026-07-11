@@ -1,0 +1,28 @@
+{
+ "clonotype_id": "CL090",
+ "tcr_id": "21lt2-2",
+ "tcr_name": "21LT2-2",
+ "trav": "TRAV12-2*01",
+ "trbv": "TRBV9*01",
+ "traj": "TRAJ44*01",
+ "trbj": "TRBJ2-6*01",
+ "cdr3_alpha": "AGNTGTASKLT",
+ "cdr3_beta": "ASSGLAGGPVSGANVLT",
+ "n_structures": 1,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2020-12-14",
+ "alleles": [
+  "HLA-A*03:01"
+ ],
+ "peptides": [
+  "ALHGGWTTK"
+ ],
+ "pdb_ids": [
+  "7L1D"
+ ],
+ "baseline_cdr3": {
+  "alpha": "AGNTGTASKLT",
+  "beta": "ASSGLAGGPVSGANVLT"
+ },
+ "engineered_variants": []
+}

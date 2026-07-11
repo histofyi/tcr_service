@@ -1,0 +1,28 @@
+{
+ "clonotype_id": "CL056",
+ "tcr_id": "3b",
+ "tcr_name": "3B",
+ "trav": "TRAV17*01",
+ "trbv": "TRBV7-3*01",
+ "traj": "TRAJ22*01",
+ "trbj": "TRBJ2-2*01",
+ "cdr3_alpha": "ATDDDSARQLT",
+ "cdr3_beta": "ASSLTGGGELF",
+ "n_structures": 1,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2013-09-03",
+ "alleles": [
+  "HLA-B*51:01"
+ ],
+ "peptides": [
+  "TAFTIPSI"
+ ],
+ "pdb_ids": [
+  "4MJI"
+ ],
+ "baseline_cdr3": {
+  "alpha": "ATDDDSARQLT",
+  "beta": "ASSLTGGGELF"
+ },
+ "engineered_variants": []
+}

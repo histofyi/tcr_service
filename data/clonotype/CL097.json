@@ -1,0 +1,28 @@
+{
+ "clonotype_id": "CL097",
+ "tcr_id": "c756",
+ "tcr_name": "c756",
+ "trav": "TRAV12-2*01",
+ "trbv": "TRBV6-6*02",
+ "traj": "TRAJ5*01",
+ "trbj": "TRBJ1-1*01",
+ "cdr3_alpha": "AVRGTGRRALT",
+ "cdr3_beta": "ASSFATEAF",
+ "n_structures": 1,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2022-01-04",
+ "alleles": [
+  "HLA-A*02:01"
+ ],
+ "peptides": [
+  "GLYDGMEHL"
+ ],
+ "pdb_ids": [
+  "7QPJ"
+ ],
+ "baseline_cdr3": {
+  "alpha": "AVRGTGRRALT",
+  "beta": "ASSFATEAF"
+ },
+ "engineered_variants": []
+}

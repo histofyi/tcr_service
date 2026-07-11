@@ -1,0 +1,28 @@
+{
+ "clonotype_id": "CL132",
+ "tcr_id": "n172",
+ "tcr_name": "N17.2",
+ "trav": "TRAV5*01",
+ "trbv": "TRBV6-6*01",
+ "traj": "TRAJ9*01",
+ "trbj": "TRBJ2-7*01",
+ "cdr3_alpha": "AESSGGGFKTI",
+ "cdr3_beta": "ASSTPGPSAYEQY",
+ "n_structures": 1,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2025-10-23",
+ "alleles": [
+  "HLA-A*01:01"
+ ],
+ "peptides": [
+  "ILDTAGKEEY"
+ ],
+ "pdb_ids": [
+  "9YW4"
+ ],
+ "baseline_cdr3": {
+  "alpha": "AESSGGGFKTI",
+  "beta": "ASSTPGPSAYEQY"
+ },
+ "engineered_variants": []
+}

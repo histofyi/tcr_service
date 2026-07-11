@@ -1,0 +1,28 @@
+{
+ "clonotype_id": "CL104",
+ "tcr_id": "pn45545",
+ "tcr_name": "PN45545",
+ "trav": "TRAV14/DV4*01",
+ "trbv": "TRBV28*01",
+ "traj": "TRDJ2*01",
+ "trbj": "TRBJ1-6*01",
+ "cdr3_alpha": "AMRGGGSGGSYIPT",
+ "cdr3_beta": "ASSFTGPYNSPLH",
+ "n_structures": 1,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2022-10-13",
+ "alleles": [
+  "HLA-A*02:01"
+ ],
+ "peptides": [
+  "GVYDGREHTV"
+ ],
+ "pdb_ids": [
+  "8ES8"
+ ],
+ "baseline_cdr3": {
+  "alpha": "AMRGGGSGGSYIPT",
+  "beta": "ASSFTGPYNSPLH"
+ },
+ "engineered_variants": []
+}

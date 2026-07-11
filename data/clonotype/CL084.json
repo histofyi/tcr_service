@@ -1,0 +1,28 @@
+{
+ "clonotype_id": "CL084",
+ "tcr_id": "9d",
+ "tcr_name": "9d",
+ "trav": "TRAV4*01",
+ "trbv": "TRBV5-6*01",
+ "traj": "TRAJ15*01",
+ "trbj": "TRBJ1-2*01",
+ "cdr3_alpha": "LVGDMDQAGTALI",
+ "cdr3_beta": "ASSLGQTNYGYT",
+ "n_structures": 1,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2019-10-08",
+ "alleles": [
+  "HLA-C*08:02"
+ ],
+ "peptides": [
+  "GADGVGKSA"
+ ],
+ "pdb_ids": [
+  "6ULN"
+ ],
+ "baseline_cdr3": {
+  "alpha": "LVGDMDQAGTALI",
+  "beta": "ASSLGQTNYGYT"
+ },
+ "engineered_variants": []
+}

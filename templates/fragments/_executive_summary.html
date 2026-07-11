@@ -1,0 +1,23 @@
+{# Executive summary + its REQUIRED AI-provenance attribution.
+   Callers pass: summary_text, attribution_html, and optionally publication (dict).
+   The <smaller> attribution MUST always render with the summary — do not show
+   a summary without it. #}
+{% if summary_text %}
+<div class="executive-summary">
+    <p>{{ summary_text }}</p>
+    {% if publication %}
+    <div class="vertical-spacing-top-0-25">
+        <small>
+            {% if publication.title %}<strong>{{ publication.title }}</strong>{% endif %}
+            {% if publication.journal %} &middot; {{ publication.journal }}{% endif %}
+            {% if publication.year %} ({{ publication.year }}){% endif %}
+            {% if publication.doi %} &middot; <a href="https://doi.org/{{ publication.doi }}" target="_blank" rel="noopener">doi:{{ publication.doi }}</a>{% endif %}
+            {% if publication.pmid %} &middot; <a href="https://pubmed.ncbi.nlm.nih.gov/{{ publication.pmid }}" target="_blank" rel="noopener">PMID {{ publication.pmid }}</a>{% endif %}
+        </small>
+    </div>
+    {% endif %}
+    <div class="vertical-spacing-top-0-25">
+        {{ attribution_html | safe }}
+    </div>
+</div>
+{% endif %}

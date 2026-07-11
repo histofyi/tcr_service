@@ -1,0 +1,36 @@
+{
+ "clonotype_id": "CL003",
+ "tcr_id": "mel5",
+ "tcr_name": "Mel5",
+ "trav": "TRAV12-2*01",
+ "trbv": "TRBV30*02",
+ "traj": "TRAJ27*01",
+ "trbj": "TRBJ2-2*01",
+ "cdr3_alpha": "AVNVAGKST",
+ "cdr3_beta": "AWSETGLGTGELF",
+ "n_structures": 5,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2009-05-13",
+ "alleles": [
+  "HLA-A*02:01"
+ ],
+ "peptides": [
+  "AAGIGILTV",
+  "EAAGIGILTV",
+  "ELAGIGILTV",
+  "LLLGIGILVL",
+  "NLSALGIFST"
+ ],
+ "pdb_ids": [
+  "3HG1",
+  "4QOK",
+  "6EQA",
+  "7Q99",
+  "7Q9A"
+ ],
+ "baseline_cdr3": {
+  "alpha": "AVNVAGKST",
+  "beta": "AWSETGLGTGELF"
+ },
+ "engineered_variants": []
+}

@@ -1,0 +1,30 @@
+{
+ "clonotype_id": "CL035",
+ "tcr_id": "s2",
+ "tcr_name": "S2",
+ "trav": "TRAV21*01",
+ "trbv": "TRBV6-6*01",
+ "traj": "TRAJ39*01",
+ "trbj": "TRBJ1-2*01",
+ "cdr3_alpha": "AVNNAGNMLT",
+ "cdr3_beta": "ASSETRGAPYGYT",
+ "n_structures": 2,
+ "has_engineered_variants": false,
+ "first_deposition_date": "2024-02-09",
+ "alleles": [
+  "HLA-A*03:01",
+  "HLA-A*11:01"
+ ],
+ "peptides": [
+  "ELFSYLIEK"
+ ],
+ "pdb_ids": [
+  "8RYM",
+  "8RYN"
+ ],
+ "baseline_cdr3": {
+  "alpha": "AVNNAGNMLT",
+  "beta": "ASSETRGAPYGYT"
+ },
+ "engineered_variants": []
+}
