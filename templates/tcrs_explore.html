@@ -119,6 +119,20 @@
 #com-viewer .card .val { color:#857F9C;float:none }
 #com-viewer .cnt { color:var(--wmut);font-size:11px }
 
+/* --- facet-shape overlay readout (added): a small histo-styled card pinned
+   top-left inside the canvas frame; pointer-events:none so it never blocks
+   canvas hover / Mol* click-through. --- */
+#com-viewer .facetbox { position:absolute;top:10px;left:10px;z-index:5;pointer-events:none;
+   background:#fff;border:1px solid rgba(10,0,57,.20);border-radius:6px;
+   padding:8px 11px;box-shadow:0 5px 15px rgba(0,0,0,.1);color:var(--ink);
+   font-family:var(--sans);font-size:11.5px;min-width:158px }
+#com-viewer .facetbox .fhdr { font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:1px;
+   color:var(--ink);margin-bottom:5px;border-bottom:1px solid var(--line);padding-bottom:4px;font-feature-settings:"salt" on }
+#com-viewer .facetbox .frow { display:flex;justify-content:space-between;gap:16px;line-height:1.55 }
+#com-viewer .facetbox .frow .fk { color:var(--mut);text-transform:uppercase;letter-spacing:.5px;font-size:10px }
+#com-viewer .facetbox .frow .fv { font-family:var(--mono);font-variant-numeric:tabular-nums;color:var(--ink) }
+#com-viewer .facetbox .fmsg { color:var(--mut);font-style:italic;margin-top:3px }
+
 /* --- embedding overrides (added for integration): the standalone viewer is a
    height:100vh full-viewport app; bound it here so it reads as a page section
    under the histo header rather than overflowing the shell. Desktop-only;
@@ -138,11 +152,23 @@
   <div class="wbar topbar">
    <div class="title">COM projection viewer
      <span class="sub">COMs projected onto the 1hhk antigen-binding domain (top-down) — click a circle to load its aligned structure.</span></div>
-   <label class="ctl">COM type <select id="type"></select></label>
+   <div style="display:flex;align-items:center;gap:16px">
+     <label class="ctl">COM type <select id="type"></select></label>
+     <label class="ctl"><input type="checkbox" id="facettoggle" checked> Show facet shape</label>
+   </div>
   </div>
 
   <div class="stage" id="stage">
-   <div id="wrap"><img id="bg"><canvas id="cv"></canvas></div>
+   <div id="wrap"><img id="bg"><canvas id="cv"></canvas>
+    <div class="facetbox" id="facetbox">
+     <div class="fhdr">Facet shape (visible set)</div>
+     <div class="frow"><span class="fk">n</span><span class="fv" id="fx-n">—</span></div>
+     <div class="frow"><span class="fk">RMS radius</span><span class="fv" id="fx-rms">—</span></div>
+     <div class="frow"><span class="fk">Anisotropy</span><span class="fv" id="fx-aniso">—</span></div>
+     <div class="frow"><span class="fk">Hull area</span><span class="fv" id="fx-hull">—</span></div>
+     <div class="fmsg" id="fx-msg" style="display:none"></div>
+    </div>
+   </div>
   </div>
 
   <!-- antigen-type selectors + Colour-by: white bar BELOW the viewer -->
@@ -362,6 +388,90 @@ function layout(){
   ctx.setTransform(dpr,0,0,dpr,0,0);
   scale=w/W; draw();
 }
+/* ---------------- Facet-shape overlay (added) ----------------
+   Describes EXACTLY the set { p in pts() : visible(p) } for the current layer,
+   recomputed on every draw(). Pixel<->Angstrom via the calibrated scale below.
+   Distances in DATA-pixel space; d_px/PX_PER_A -> A, area_px2/PX_PER_A^2 -> A^2. */
+const PX_PER_A=28.98;
+let facetOn=true;
+
+// convex hull (Andrew monotone chain) over DATA-pixel coords; returns hull ring.
+function facetHull(V){
+  const pts=V.map(p=>[p.x,p.y]).sort((a,b)=>a[0]-b[0]||a[1]-b[1]);
+  const uniq=[]; for(const p of pts){ if(!uniq.length||uniq[uniq.length-1][0]!==p[0]||uniq[uniq.length-1][1]!==p[1]) uniq.push(p); }
+  if(uniq.length<3) return uniq;
+  const cross=(o,a,b)=>(a[0]-o[0])*(b[1]-o[1])-(a[1]-o[1])*(b[0]-o[0]);
+  const lower=[]; for(const p of uniq){ while(lower.length>=2 && cross(lower[lower.length-2],lower[lower.length-1],p)<=0) lower.pop(); lower.push(p); }
+  const upper=[]; for(let i=uniq.length-1;i>=0;i--){ const p=uniq[i]; while(upper.length>=2 && cross(upper[upper.length-2],upper[upper.length-1],p)<=0) upper.pop(); upper.push(p); }
+  return lower.slice(0,-1).concat(upper.slice(0,-1));
+}
+function polyArea(ring){ let a=0; for(let i=0;i<ring.length;i++){ const p=ring[i],q=ring[(i+1)%ring.length]; a+=p[0]*q[1]-q[0]*p[1]; } return Math.abs(a)/2; }
+
+// full facet descriptor set over the visible points of the current layer.
+function facetStats(V){
+  const n=V.length;
+  if(n<3) return {n:n, ok:false};
+  let cx=0,cy=0; for(const p of V){ cx+=p.x; cy+=p.y; } cx/=n; cy/=n;
+  let a=0,b=0,d=0,msr=0;
+  for(const p of V){ const dx=p.x-cx, dy=p.y-cy; a+=dx*dx; b+=dx*dy; d+=dy*dy; msr+=dx*dx+dy*dy; }
+  a/=n; b/=n; d/=n; msr/=n;                       // population covariance
+  const tr=a+d, det=a*d-b*b, disc=Math.sqrt(Math.max(0,tr*tr/4-det));
+  const l1=tr/2+disc, l2=Math.max(0,tr/2-disc);
+  const angle = (b!==0) ? Math.atan2(l1-a, b) : (a>=d?0:Math.PI/2);
+  const axMajor=2*Math.sqrt(l1), axMinor=2*Math.sqrt(l2);   // 2-sigma semi-axes (DATA px)
+  const rmsA=Math.sqrt(msr)/PX_PER_A;
+  const aniso = axMajor>0 ? (1-axMinor/axMajor) : 0;
+  const hullA2 = polyArea(facetHull(V))/(PX_PER_A*PX_PER_A);
+  return {n:n, ok:true, cx:cx, cy:cy, angle:angle, axMajor:axMajor, axMinor:axMinor, rmsA:rmsA, aniso:aniso, hullA2:hullA2};
+}
+
+// dominant group colour among the visible set, else neutral ink.
+function facetColour(V){
+  const cnt={}; for(const p of V){ const c=colorFor(p); cnt[c]=(cnt[c]||0)+1; }
+  let best=null,bn=0,total=V.length; for(const c in cnt){ if(cnt[c]>bn){bn=cnt[c];best=c;} }
+  return (best && bn>total*0.6) ? best : "#0a0039";
+}
+
+function fmtA(v){ return v.toFixed(2); }
+function updateFacetReadout(s){
+  const box=$("#facetbox"), msg=$("#fx-msg");
+  const rows=["fx-n","fx-rms","fx-aniso","fx-hull"];
+  if(!s.ok){
+    rows.forEach(id=>$("#"+id).textContent = (id==="fx-n" ? String(s.n) : "—"));
+    msg.style.display="block"; msg.textContent="n<3 — need \u22653 points";
+    return;
+  }
+  $("#fx-n").textContent=String(s.n);
+  $("#fx-rms").textContent=fmtA(s.rmsA)+" \u00c5";
+  $("#fx-aniso").textContent=s.aniso.toFixed(3);
+  $("#fx-hull").textContent=fmtA(s.hullA2)+" \u00c5\u00b2";
+  msg.style.display="none";
+}
+
+// draw 2-sigma + 1-sigma covariance ellipses and a centroid marker (DATA px * scale).
+function drawFacetShape(s, col){
+  const cx=s.cx*scale, cy=s.cy*scale;
+  const A2=s.axMajor*scale, B2=s.axMinor*scale;   // 2-sigma semi-axes (canvas px)
+  ctx.save();
+  ctx.translate(cx,cy); ctx.rotate(s.angle);
+  // 2-sigma ellipse: light fill + stroked outline
+  ctx.beginPath(); ctx.ellipse(0,0,A2,B2,0,0,2*Math.PI);
+  ctx.globalAlpha=0.10; ctx.fillStyle=col; ctx.fill();
+  ctx.globalAlpha=0.85; ctx.lineWidth=2; ctx.strokeStyle=col; ctx.stroke();
+  // 1-sigma ellipse (half axes): lighter fill
+  ctx.beginPath(); ctx.ellipse(0,0,A2/2,B2/2,0,0,2*Math.PI);
+  ctx.globalAlpha=0.10; ctx.fillStyle=col; ctx.fill();
+  ctx.globalAlpha=0.55; ctx.lineWidth=1; ctx.strokeStyle=col; ctx.stroke();
+  ctx.restore();
+  // centroid marker: small ring + cross (axis-aligned, at centroid)
+  ctx.save();
+  ctx.globalAlpha=0.9; ctx.strokeStyle=col; ctx.lineWidth=1.5;
+  ctx.beginPath(); ctx.arc(cx,cy,4,0,2*Math.PI); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(cx-7,cy); ctx.lineTo(cx+7,cy); ctx.moveTo(cx,cy-7); ctx.lineTo(cx,cy+7); ctx.stroke();
+  ctx.restore();
+  ctx.globalAlpha=1;
+}
+
 function draw(){
   const dpr=window.devicePixelRatio||1, w=cv.width/dpr, h=cv.height/dpr;
   ctx.clearRect(0,0,w,h);
@@ -381,6 +491,13 @@ function draw(){
     ctx.globalAlpha=1; ctx.fillStyle=colorFor(selPt); ctx.fill();
     ctx.lineWidth=2.5; ctx.strokeStyle="#000"; ctx.stroke();
   }
+  // --- facet-shape overlay: exactly the visible set of the current layer ---
+  const V=pts().filter(visible);
+  const s=facetStats(V);
+  if(facetOn && s.ok){ drawFacetShape(s, facetColour(V)); }
+  $("#facetbox").style.display = facetOn ? "block" : "none";
+  updateFacetReadout(s);
+  ctx.globalAlpha=1;
   if(showRef && DATA.ref && DATA.ref.px){
     const rx=DATA.ref.px[0]*scale, ry=DATA.ref.px[1]*scale;
     ctx.globalAlpha=1; ctx.beginPath(); ctx.arc(rx,ry,3,0,2*Math.PI);
@@ -425,6 +542,7 @@ cv.addEventListener("click",e=>{
 });
 
 typeSel.onchange=e=>{curType=e.target.value;draw();};
+$("#facettoggle").onchange=e=>{facetOn=e.target.checked;draw();};
 $("#groupby").onchange=e=>{groupby=e.target.value;computeColors();renderColorKey();draw();};
 $("#fmode").onchange=e=>{fmode=e.target.value; $("#fsearch").value=""; renderFilterList(); draw();};
 $("#fsearch").oninput=renderFilterList;
