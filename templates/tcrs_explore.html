@@ -33,10 +33,10 @@
 #com-viewer { margin:0;font-family:var(--sans);background:var(--bg);color:var(--ink);font-size:13px }
 #com-viewer .mono { font-family:var(--mono) }
 #com-viewer .wbar { flex:0 0 auto;background:var(--wsurf);color:var(--wink) }
-#com-viewer .topbar { display:flex;align-items:center;justify-content:space-between;gap:16px;
+/* Controls only — the page heading above already says what this is, so the bar
+   packs left rather than splitting a title away from the controls. */
+#com-viewer .topbar { display:flex;align-items:center;gap:24px;
    padding:9px 16px;border-bottom:1px solid var(--wline) }
-#com-viewer .topbar .title { font-size:18px;font-weight:600;line-height:1.2;letter-spacing:-.006em;color:var(--ink);font-feature-settings:"salt" on }
-#com-viewer .topbar .title .sub { display:block;font-size:11.5px;font-weight:400;color:var(--wmut);margin-top:2px;letter-spacing:0 }
 #com-viewer .topbar .ctl { display:flex;align-items:center;gap:8px;font-size:11px;font-weight:500;white-space:nowrap;
    text-transform:uppercase;letter-spacing:1px;color:var(--wink) }
 #com-viewer .botbar { display:flex;align-items:center;flex-wrap:wrap;gap:8px 18px;
@@ -168,14 +168,11 @@
             <div class="inner">
                 <div class="com-main">
 
+                    {# No title here: the page heading above already says what this
+                       is, so the topbar is just controls. #}
                     <div class="wbar topbar">
-                        <div class="title">COM projection viewer
-                            <span class="sub">COMs projected onto the 1hhk antigen-binding domain (top-down) &mdash; click a circle to load its aligned structure.</span>
-                        </div>
-                        <div style="display:flex;align-items:center;gap:16px">
-                            <label class="ctl">COM type <select id="type"></select></label>
-                            <label class="ctl"><input type="checkbox" id="facettoggle" checked> Show facet shape</label>
-                        </div>
+                        <label class="ctl">COM type <select id="type"></select></label>
+                        <label class="ctl"><input type="checkbox" id="facettoggle" checked> Show facet shape</label>
                     </div>
 
                     <div class="stage" id="stage">
