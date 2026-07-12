@@ -296,7 +296,7 @@ function draw(){
   ctx.globalAlpha=1;
   if(showRef && DATA.ref && DATA.ref.px){
     const rx=DATA.ref.px[0]*scale, ry=DATA.ref.px[1]*scale;
-    ctx.globalAlpha=1; ctx.beginPath(); ctx.arc(rx,ry,3,0,2*Math.PI);
+    ctx.globalAlpha=1; ctx.beginPath(); ctx.arc(rx,ry,5,0,2*Math.PI);
     ctx.fillStyle="#000"; ctx.fill(); ctx.lineWidth=1.5; ctx.strokeStyle="#fff"; ctx.stroke();
   }
   ctx.globalAlpha=1;
