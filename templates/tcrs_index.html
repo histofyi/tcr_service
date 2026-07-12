@@ -45,11 +45,13 @@
     }
     .antigen-list { display: flex; flex-wrap: wrap; gap: 2px 10px; }
     .antigen-tag { white-space: nowrap; }
+    /* Column headers are a wayfinding label, not content — knocked back so the
+       TCR rows below them carry the weight. */
     .accordion-head {
-        border-bottom: 1px solid #cccccc;
+        border-bottom: 1px solid #e0e0e8;
         font-weight: 600;
-        color: #666677;
     }
+    .accordion-head small { color: #9a9aad; }
     .accordion-item { border-bottom: 1px solid #eeeeee; }
 
     .accordion-toggle { display: none; }

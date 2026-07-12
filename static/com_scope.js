@@ -16,6 +16,7 @@
   const COLORS = JSON.parse(root.dataset.antigenColors);
   const W = parseFloat(root.dataset.width);
   const H = parseFloat(root.dataset.height);
+  const REF = JSON.parse(root.dataset.ref);   // the ABD's own centre of mass
 
   const bg = root.querySelector('.com-scope-bg');
   const cv = root.querySelector('.com-scope-canvas');
@@ -55,6 +56,19 @@
       ctx.strokeStyle = isOn ? '#0a0039' : colour;
       ctx.stroke();
     });
+
+    // The antigen-binding domain's own centre of mass — the fixed point every
+    // COM is read against. Drawn last so it sits above the circles, and to the
+    // same recipe as the explore viewer.
+    if (REF) {
+      ctx.beginPath();
+      ctx.arc(REF.x * scale, REF.y * scale, 3, 0, Math.PI * 2);
+      ctx.fillStyle = '#000000';
+      ctx.fill();
+      ctx.lineWidth = 1.5;
+      ctx.strokeStyle = '#ffffff';
+      ctx.stroke();
+    }
   }
 
   function layout() {

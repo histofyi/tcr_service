@@ -9,6 +9,17 @@
         box-shadow: inset 3px 0 0 #0a0039;
     }
 
+    /* The ABD reference marker in the legend, matching the canvas: black, small,
+       white-ringed. */
+    .antigen-dot.is-ref {
+        width: 7px;
+        height: 7px;
+        background: #000000;
+        box-shadow: 0 0 0 1.5px #ffffff;
+        margin-left: 2px;
+        margin-right: 5px;
+    }
+
     /* --- scoped COM viewer -------------------------------------------------- */
     #com-scope {
         border: 1px solid rgba(10, 0, 57, 0.20);
@@ -229,7 +240,8 @@
                      data-antigen-colors='{{ antigen_colors | tojson }}'
                      data-background="{{ com_projection.background }}"
                      data-width="{{ com_projection.width }}"
-                     data-height="{{ com_projection.height }}">
+                     data-height="{{ com_projection.height }}"
+                     data-ref='{{ com_projection.ref | tojson }}'>
                     <div class="com-scope-bar">
                         <label>COM type <select class="com-scope-type"></select></label>
                     </div>
@@ -258,6 +270,7 @@
                         {% for antigen in tcr.antigen_types %}
                             <span class="antigen-dot" style="background-color: {{ antigen_colors.get(antigen, '#999999') }};"></span>{{ antigen | deslugify_string }}<br />
                         {% endfor %}
+                        <span class="antigen-dot is-ref"></span>Centre of the antigen-binding domain
                     </p>
                     <p>
                         <smaller><a href="/tcrs/explore">See every structure in the explore viewer</a></smaller>
