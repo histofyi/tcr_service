@@ -16,5 +16,5 @@
         {{ structure.antigen_type | deslugify_string }}
     </td>
     <td>{{ structure.method | deslugify_string }}{% if structure.resolution %}, {{ structure.resolution }} &#8491;{% endif %}</td>
-    <td>{{ structure.deposition_date }}</td>
+    <td>{{ structure.deposition_date | date_display }}</td>
 </tr>

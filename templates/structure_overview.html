@@ -8,11 +8,85 @@
 {% block style %}
 <style>
     .cdr-seq { font-family: 'IBM Plex Mono', monospace; }
-    .placeholder-slot {
-        border: 1px dashed #cccccc; border-radius: 4px; padding: 16px;
-        color: #888899; text-align: center; font-size: 10pt;
-    }
     .executive-summary { font-size: 11pt; }
+
+    /* --- the interface matrix ------------------------------------------------
+       6 CDR loops x 3 MHC regions. Bubble AREA = buried surface area, bubble
+       COLOUR = shape complementarity. Built as SVG by interface_matrix.js. */
+    .matrix-svg { width: 100%; height: auto; display: block; }
+
+    .matrix-label {
+        font-size: 12px;
+        fill: #333355;
+        font-family: 'Poppins', sans-serif;
+    }
+    .matrix-label-cdr { font-weight: 600; fill: #0a0039; }
+    .matrix-legend-text {
+        font-size: 11px;
+        fill: #666677;
+        font-family: 'IBM Plex Mono', monospace;
+    }
+    .matrix-split { stroke: rgba(10, 0, 57, 0.25); stroke-width: 1; }
+    .matrix-rule { stroke: #eeeeee; stroke-width: 1; }
+
+    .matrix-bubble {
+        stroke: #0a0039;
+        stroke-width: 0.75;
+        pointer-events: none;
+    }
+    /* Contact, but shape complementarity could not be computed — an outline, so
+       it never reads as "no contact". */
+    .matrix-bubble.is-unknown {
+        stroke-dasharray: 3 2;
+        stroke: #666677;
+    }
+    .matrix-bubble.is-legend { fill: #e4e4ec; }
+    /* No contact at all: a tick, not an empty cell. */
+    .matrix-empty { fill: #ccccd8; pointer-events: none; }
+
+    .matrix-hit { fill: transparent; cursor: pointer; }
+    .matrix-hit.is-hot { fill: rgba(10, 0, 57, 0.05); }
+
+    .matrix-tooltip {
+        position: fixed;
+        z-index: 60;
+        display: none;
+        pointer-events: none;
+        background: #ffffff;
+        border: 1px solid rgba(10, 0, 57, 0.20);
+        border-radius: 5px;
+        padding: 9px 11px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        font-size: 11.5px;
+        color: #0a0039;
+        max-width: 260px;
+    }
+    .matrix-tooltip .tt-title { font-weight: 600; margin-bottom: 4px; }
+    .matrix-tooltip table { border-collapse: collapse; }
+    .matrix-tooltip td { padding: 1px 0; }
+    .matrix-tooltip .tt-k {
+        color: #857f9c;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-size: 10px;
+    }
+    .matrix-tooltip .tt-note {
+        margin-top: 5px;
+        color: #857f9c;
+        font-style: italic;
+    }
+
+    .matrix-key { display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center; }
+    .matrix-ramp {
+        display: inline-block;
+        width: 130px;
+        height: 10px;
+        border-radius: 2px;
+        border: 1px solid rgba(10, 0, 57, 0.20);
+        vertical-align: -1px;
+    }
 </style>
 {% endblock %}
 
@@ -34,21 +108,26 @@
 
 {% if structure %}
 
+{# The headline is what the structure IS; the PDB code is the label above it.
+   Mirrors how histo.fyi titles a structure. #}
 <section>
     <div class="grid-container">
         <div class="column-full-width">
             <div class="inner">
-                <h1 class="heading-extra-large vertical-spacing-bottom-0-25">
-                    {{ pdb_id }}
+                <div id="structure-top"></div>
+                <small>
+                    <strong>{{ pdb_id }}</strong>
                     {% if structure.noncanonical and structure.noncanonical.flag %}
                         <span class="flag is-noncanonical" title="{{ structure.noncanonical.evidence }}">non-canonical</span>
                     {% endif %}
+                </small>
+                {# heading-medium, not extra-large: the latter is 72px, which sets a
+                   full sentence like this over four lines. #}
+                <h1 class="heading-medium vertical-spacing-bottom-0-5">
+                    {{ structure.allele }} presenting {{ structure.peptide_seq }}
+                    to {{ tcr.tcr_name if tcr else 'a T cell receptor' }}{% if structure.resolution %}
+                    at {{ structure.resolution }}&#8491; resolution{% endif %}
                 </h1>
-                <p class="vertical-spacing-bottom-0-5">
-                    {{ structure.allele }} presenting
-                    {{ structure.peptide_seq | sequence_display | safe }}
-                    to {{ tcr.tcr_name if tcr else 'a T cell receptor' }}
-                </p>
             </div>
         </div>
     </div>
@@ -72,13 +151,13 @@
                         <tr><td>Method</td><td>{{ structure.method | deslugify_string }}</td></tr>
                         <tr><td>Resolution</td><td>{% if structure.resolution %}{{ structure.resolution }} &#8491;{% else %}&mdash;{% endif %}</td></tr>
                         <tr><td>Allele</td><td>{{ structure.allele }}</td></tr>
-                        <tr><td>Peptide</td><td><span class="mono">{{ structure.peptide_seq }}</span><br /><smaller>{{ structure.peptide_len }}mer</smaller></td></tr>
+                        <tr><td>Peptide</td><td>{{ structure.peptide_seq | sequence_display | safe }}<br /><smaller>{{ structure.peptide_len }}mer</smaller></td></tr>
                         <tr><td>Antigen</td><td>
                             <span class="antigen-dot" style="background-color: {{ antigen_colors.get(structure.antigen_type, '#999999') }};"></span>{{ structure.antigen_type | deslugify_string }}
                         </td></tr>
                         <tr><td>ASU copies</td><td>{{ structure.n_copies }}</td></tr>
-                        <tr><td>Deposited</td><td>{{ structure.deposition_date }}</td></tr>
-                        <tr><td>Released</td><td>{{ structure.release_date }}</td></tr>
+                        <tr><td>Deposited</td><td>{{ structure.deposition_date | date_display }}</td></tr>
+                        <tr><td>Released</td><td>{{ structure.release_date | date_display }}</td></tr>
                     </table>
                 </small>
                 <p class="vertical-spacing-top-0-25">
@@ -87,6 +166,72 @@
                         <a href="https://www.rcsb.org/structure/{{ pdb_id }}" target="_blank" rel="noopener">View at RCSB PDB</a>
                     </smaller>
                 </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{# The interface: what each CDR loop buries against each region of the MHC, and
+   how well it packs there. Hovering a cell highlights that loop in the viewer
+   above; clicking zooms to it. #}
+<section>
+    <div class="grid-container">
+        <div class="column-full-width">
+            <div class="inner">
+                <hr />
+                <h2 class="heading-small vertical-spacing-top-0-5 vertical-spacing-bottom-0-25">Interface</h2>
+                <p class="vertical-spacing-bottom-0-25">
+                    <small>
+                        Buried surface area and shape complementarity for each CDR loop against
+                        each region of the peptide-binding groove. Bubble area is the area buried;
+                        colour is the shape complementarity (Sc). Hover a cell to highlight that
+                        loop in the structure, click to zoom to it.
+                    </small>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="grid-container">
+        <div class="column-three-quarters">
+            <div class="inner">
+                <div id="interface-matrix"
+                     data-viewer="structure-viewer"
+                     data-matrix='{{ matrix | tojson }}'
+                     data-cdr-loops='{{ cdr_loops | tojson }}'
+                     data-mhc-regions='{{ mhc_regions | tojson }}'
+                     data-cdr-labels='{{ cdr_labels | tojson }}'
+                     data-mhc-labels='{{ mhc_labels | tojson }}'
+                     data-cdr-selections='{{ cdr_selections | tojson }}'
+                     data-mhc-selections='{{ mhc_selections | tojson }}'
+                     data-sc-min="{{ sc_min }}"
+                     data-sc-max="{{ sc_max }}"></div>
+            </div>
+        </div>
+        <div class="column-one-quarter">
+            <div class="inner">
+                <div class="panel-title vertical-spacing-bottom-0-25">Reading this</div>
+                <small>
+                    <div class="matrix-key vertical-spacing-bottom-0-25">
+                        <span>Sc {{ sc_min }} <span class="matrix-ramp" id="matrix-ramp"></span> {{ sc_max }}</span>
+                    </div>
+                    <p>
+                        Bubble area is proportional to buried surface area, on a scale shared
+                        with every other structure &mdash; so the bubbles are comparable
+                        between pages, not just within this one.
+                    </p>
+                    <p>
+                        A dashed outline means the loop does touch that region, but Sc could not
+                        be computed for the pair. A small dot means no contact at all.
+                    </p>
+                    {% if structure.n_copies > 1 %}
+                    <p>
+                        <smaller>
+                            Values are the mean over the {{ structure.n_copies }} copies of the complex
+                            in the asymmetric unit.
+                        </smaller>
+                    </p>
+                    {% endif %}
+                </small>
             </div>
         </div>
     </div>
@@ -113,12 +258,30 @@
         </div>
         <div class="column-one-half">
             <div class="inner vertical-spacing-top-0-5">
-                <div class="panel-title vertical-spacing-bottom-0-25">Interface</div>
-                <div class="placeholder-slot">
-                    Shape-complementarity / BSA bubble row
-                    ({{ structure.shape_complementarity | length }} SC &middot; {{ structure.bsa | length }} BSA rows),
-                    the interactive chord diagram and within-structure variability render here.
-                </div>
+                <div class="panel-title vertical-spacing-bottom-0-25">Model completeness</div>
+                <small>
+                    <table class="info-table">
+                        {% set multi = structure.completeness | length > 1 %}
+                        {% if multi %}
+                        <tr>
+                            <th></th>
+                            {% for copy in structure.completeness %}<th>Copy {{ loop.index }}</th>{% endfor %}
+                        </tr>
+                        {% endif %}
+                        <tr>
+                            <td>Interface</td>
+                            {% for copy in structure.completeness %}<td>{{ copy.iface_completeness_pct }}%</td>{% endfor %}
+                        </tr>
+                        <tr>
+                            <td>Overall</td>
+                            {% for copy in structure.completeness %}<td>{{ copy.overall_completeness_pct }}%</td>{% endfor %}
+                        </tr>
+                        <tr>
+                            <td>Backbone breaks</td>
+                            {% for copy in structure.completeness %}<td>{{ copy.tcr_alpha_backbone_breaks }} &alpha; &middot; {{ copy.tcr_beta_backbone_breaks }} &beta;</td>{% endfor %}
+                        </tr>
+                    </table>
+                </small>
             </div>
         </div>
     </div>
@@ -143,6 +306,8 @@
 </section>
 {% endif %}
 
+<div class="matrix-tooltip" id="matrix-tooltip"></div>
+
 {% else %}
 
 <section>
@@ -163,4 +328,7 @@
 
 {% block scripts %}
 {% include "fragments/_molstar_scripts.html" %}
+{% if structure %}
+<script src="{{ asset('interface_matrix.js') }}"></script>
+{% endif %}
 {% endblock %}

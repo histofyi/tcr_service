@@ -334,7 +334,10 @@ cv.addEventListener("mouseleave",()=>{card.style.display="none";cardPdb=null;});
 cv.addEventListener("click",e=>{
   const r=cv.getBoundingClientRect();
   const p=hit(e.clientX-r.left,e.clientY-r.top);
+  // A click on a COM loads it; a click on empty background clears the selection
+  // and empties the Mol* panel, so there's a way back to "nothing selected".
   if(p){ selPdb=p.pdb; draw(); loadStructure(p); }
+  else { clearStructure(); }
 });
 
 typeSel.onchange=e=>{curType=e.target.value;draw();};
@@ -380,6 +383,21 @@ try{ new ResizeObserver(()=>molResize()).observe($("#mol")); }catch(e){}
    files, so it cannot be built from a naming convention on the client. */
 let mstar=null;
 function molResize(){ try{ mstar && mstar.plugin && mstar.plugin.handleResize(); }catch(e){} }
+
+/* Back to "nothing selected": drop the highlighted COM, empty the Mol* panel and
+   restore its prompt. */
+async function clearStructure(){
+  if(selPdb === null) return;
+  selPdb = null;
+  draw();
+
+  $("#molempty").style.display = "";
+  $("#mol").classList.remove("loaded");
+  $("#molpill").textContent = "No structure loaded";
+
+  const viewer = mstar || HistoTCR.viewers["molhost"];
+  if(viewer){ try{ await viewer.plugin.clear(); }catch(e){ /* already empty */ } }
+}
 
 async function loadStructure(p){
   const url = COORDS[p.pdb];

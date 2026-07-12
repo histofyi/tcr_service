@@ -122,7 +122,10 @@
    standard body width. Sizing is therefore driven by the column, not the
    viewport: layout() already derives the canvas height from stage.clientWidth,
    so the projection scales with the column. --- */
-#com-viewer .main { min-width:0 }
+/* NB: the viewer's wrapper must NOT be called .main — histo's stylesheet gives
+   .main a 60px top margin (it styles the page's <main class="main">), which
+   pushed the viewer 60px below the filter panel beside it. */
+#com-viewer .com-main { min-width:0 }
 #com-viewer .stage { position:relative;background:#fff;overflow:hidden }
 #com-viewer .mol { position:relative;height:420px;background:#fff;border:1px solid var(--line2);
    border-top:none }
@@ -163,7 +166,7 @@
 
         <div class="column-three-quarters">
             <div class="inner">
-                <div class="main">
+                <div class="com-main">
 
                     <div class="wbar topbar">
                         <div class="title">COM projection viewer
@@ -240,9 +243,11 @@
 
     </div>
 </section>
-</div>
 
+{# The hover card MUST live inside #com-viewer — all of its styling is scoped
+   under that id, so outside it the card renders unstyled and invisible. #}
 <div class="card" id="card"></div>
+</div>
 {% endblock %}
 
 {% block scripts %}

@@ -187,29 +187,78 @@ window.HistoTCR = (function () {
     return viewer;
   }
 
-  /* Zoom to (auth chain, auth residue number) and show its interactions. */
-  function focusResidue(viewer, chainId, resnum) {
-    if (!viewer || !molstar.MS) return;
+  function currentStructure(viewer) {
     const structures =
-      viewer.plugin.managers.structure.hierarchy.current.structures;
-    if (!structures || !structures.length || !structures[0].cell.obj) return;
-    const structure = structures[0].cell.obj.data;
+      viewer && viewer.plugin.managers.structure.hierarchy.current.structures;
+    if (!structures || !structures.length || !structures[0].cell.obj) return null;
+    return structures[0].cell.obj.data;
+  }
+
+  /* A loci for a whole chain, or for an inclusive residue range within it.
+   * Pass start/end as null for the entire chain (that's how the peptide is
+   * selected — it is chain C in its entirety). */
+  function rangeLoci(viewer, chainId, start, end) {
+    if (!viewer || !molstar.MS) return null;
+    const structure = currentStructure(viewer);
+    if (!structure) return null;
 
     const MS = molstar.MS;
-    const expr = MS.struct.generator.atomGroups({
+    const seqId = MS.struct.atomProperty.macromolecular.auth_seq_id();
+    const tests = {
       'chain-test': MS.core.rel.eq([
         MS.struct.atomProperty.macromolecular.auth_asym_id(), chainId,
       ]),
-      'residue-test': MS.core.rel.eq([
-        MS.struct.atomProperty.macromolecular.auth_seq_id(), resnum,
-      ]),
-    });
-    const loci = molstar.StructureSelection.toLociWithSourceUnits(
-      molstar.Script.getStructureSelection(expr, structure));
-    if (molstar.StructureElement.Loci.isEmpty(loci)) return;
+    };
+    if (start !== null && start !== undefined && end !== null && end !== undefined) {
+      tests['residue-test'] = MS.core.logic.and([
+        MS.core.rel.gre([seqId, start]),
+        MS.core.rel.lte([seqId, end]),
+      ]);
+    }
 
+    const loci = molstar.StructureSelection.toLociWithSourceUnits(
+      molstar.Script.getStructureSelection(
+        MS.struct.generator.atomGroups(tests), structure));
+    return molstar.StructureElement.Loci.isEmpty(loci) ? null : loci;
+  }
+
+  /* Zoom to (auth chain, auth residue number) and show its interactions. */
+  function focusResidue(viewer, chainId, resnum) {
+    const loci = rangeLoci(viewer, chainId, resnum, resnum);
+    if (!loci) return;
     viewer.plugin.managers.camera.focusLoci(loci);
     viewer.plugin.managers.structure.focus.setFromLoci(loci);
+  }
+
+  /* Zoom to a residue range — a CDR loop or an MHC helix. */
+  function focusRange(viewer, chainId, start, end) {
+    const loci = rangeLoci(viewer, chainId, start, end);
+    if (!loci) return;
+    viewer.plugin.managers.camera.focusLoci(loci);
+    viewer.plugin.managers.structure.focus.setFromLoci(loci);
+  }
+
+  /* Transiently highlight a residue range (hover), without moving the camera.
+   * Call with no selection to clear. */
+  function highlightRange(viewer, chainId, start, end) {
+    if (!viewer) return;
+    const interactivity = viewer.plugin.managers.interactivity;
+    if (!interactivity) return;
+    if (chainId === undefined || chainId === null) {
+      interactivity.lociHighlights.clearHighlights();
+      return;
+    }
+    const loci = rangeLoci(viewer, chainId, start, end);
+    if (loci) interactivity.lociHighlights.highlightOnly({ loci });
+  }
+
+  /* Drop the focus/highlight state set by a focusRange(). */
+  function clearFocus(viewer) {
+    if (!viewer) return;
+    try {
+      viewer.plugin.managers.structure.focus.clear();
+      viewer.plugin.managers.interactivity.lociHighlights.clearHighlights();
+    } catch (e) { /* nothing focused */ }
   }
 
   /* Every `.molstar-box[data-structure-url]` on the page becomes a viewer, keyed
@@ -232,5 +281,8 @@ window.HistoTCR = (function () {
 
   document.addEventListener('DOMContentLoaded', autoInit);
 
-  return { load, replace, focusResidue, renderStructure, paintLegend, viewers };
+  return {
+    load, replace, renderStructure, paintLegend, viewers,
+    focusResidue, focusRange, highlightRange, clearFocus,
+  };
 })();

@@ -2,6 +2,7 @@ import subprocess
 
 from quart import Quart, request
 
+from datetime import datetime
 import json
 import os
 
@@ -88,6 +89,17 @@ def sequence_display_filter(sequence: str) -> str:
     if sequence is not None:
         return ''.join([f"<span class='bg-{aa.lower()} aa'>{aa}</span>" for aa in sequence])
     return ''
+
+
+@app.template_filter('date_display')
+def date_display_filter(value: str) -> str:
+    """ISO date -> the house display form: 2021-11-12 -> 12 Nov 2021."""
+    if not value:
+        return '—'
+    try:
+        return datetime.strptime(str(value)[:10], '%Y-%m-%d').strftime('%-d %b %Y')
+    except ValueError:
+        return str(value)
 
 
 @app.template_filter('coordinate_url')

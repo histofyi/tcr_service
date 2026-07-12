@@ -39,7 +39,6 @@
                         <th>Method</th>
                         <th>Resolution</th>
                         <th>Published</th>
-                        <th>Deposited</th>
                     </tr>
                     {% for structure in structures %}
                     <tr>
@@ -51,7 +50,6 @@
                         <td>{{ structure.method | deslugify_string }}</td>
                         <td>{% if structure.resolution %}{{ structure.resolution }} &#8491;{% else %}&mdash;{% endif %}</td>
                         <td>{{ structure.published or '&mdash;' | safe }}</td>
-                        <td>{{ structure.deposition_date }}</td>
                     </tr>
                     {% endfor %}
                 </table>

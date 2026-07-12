@@ -41,7 +41,7 @@
                     <small>
                         {{ tcr.n_structures }} structure{% if tcr.n_structures != 1 %}s{% endif %}
                         &middot; {{ tcr.n_clonotypes }} clonotype{% if tcr.n_clonotypes != 1 %}s{% endif %}
-                        &middot; deposited {{ tcr.first_deposition_date }} to {{ tcr.latest_deposition_date }}
+                        &middot; deposited {{ tcr.first_deposition_date | date_display }} to {{ tcr.latest_deposition_date | date_display }}
                     </small>
                 </p>
             </div>
@@ -165,8 +165,18 @@
                 </h2>
                 <small>
                     <table class="structure-table">
+                        {# PDB id first, mirroring the structure list above. #}
+                        <tr>
+                            <th>PDB</th>
+                            <th>Publication</th>
+                        </tr>
                         {% for publication in tcr.publications %}
                         <tr>
+                            <td class="pdb">
+                                {% for pdb_id in publication.structures %}
+                                    <a href="/tcrs/{{ tcr_id }}/structures/{{ pdb_id | lower }}">{{ pdb_id }}</a>{% if not loop.last %}<br />{% endif %}
+                                {% endfor %}
+                            </td>
                             <td>
                                 {{ publication.title }}
                                 <br />
@@ -175,11 +185,6 @@
                                     {% if publication.doi %} &middot; <a href="https://doi.org/{{ publication.doi }}" target="_blank" rel="noopener">doi:{{ publication.doi }}</a>{% endif %}
                                     {% if publication.pmid %} &middot; <a href="https://pubmed.ncbi.nlm.nih.gov/{{ publication.pmid }}" target="_blank" rel="noopener">PMID {{ publication.pmid }}</a>{% endif %}
                                 </smaller>
-                            </td>
-                            <td class="pdb">
-                                {% for pdb_id in publication.structures %}
-                                    <a href="/tcrs/{{ tcr_id }}/structures/{{ pdb_id | lower }}">{{ pdb_id }}</a>{% if not loop.last %}<br />{% endif %}
-                                {% endfor %}
                             </td>
                         </tr>
                         {% endfor %}
