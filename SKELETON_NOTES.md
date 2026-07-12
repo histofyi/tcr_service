@@ -1,133 +1,235 @@
-# TCR service — app skeleton notes
+# TCR service — build notes
 
-Step 2 of the agreed build order: a thin, working Quart microapp that renders
-the real prebaked data. Minimal styling only — the full front-end pass (card
-visuals, COM viewer, chord diagram, SC/BSA panels, Mol*) is deliberately later.
+The **TCRs** section of [histo.fyi](https://www.histo.fyi/): a Quart microapp over
+prebaked structural data for 123 T cell receptors, 133 clonotypes and 206
+TCR:pMHC structures. It runs standalone in development and is intended to merge
+into histo.fyi as a new navbar item.
 
-## What was built
+Supersedes the original skeleton notes. The skeleton (routes, models, handlers,
+prebaked data) is unchanged in shape; what follows describes the front end that
+was built on top of it, and the traps found on the way.
 
-- **App factory + config** — `main.py::create_app()`, `config.json` loaded into
-  `app.config`, secrets read from the environment, `git_commit` captured at
-  startup, `trim_blocks`/`lstrip_blocks` set. `pyproject.toml` (Python ≥3.14;
-  quart, duckdb, polars, jinja2, hypercorn, pyarrow, fastparquet). `dev_server.sh`
-  runs `uv run python -m quart --app main:app` on port 8080.
-- **Six routes** as thin `*_view` → `*_handler` pairs:
-  - `/tcrs` — sortable card grid + accordion. `?sort=` → 6 orderings
-    (deposition / name / n_structures × asc/desc), sorted server-side in DuckDB.
-  - `/tcrs/explore` — COM viewer page; route + template slot wired, viewer
-    component dropped in a later pass (the 880KB viewer is not embedded).
-  - `/tcrs/{tcr_id}` — per-TCR page from `data/tcr/{tcr_id}.json`.
-  - `/tcrs/{tcr_id}/structures/{pdb_id}` — deep dive from `data/structure/{pdb_id}.json`.
-  - `/clonotypes` and `/clonotypes/{clonotype_id}` — the finer grain (built, not
-    stubbed).
-- **models/** — `Tcr`, `Clonotype` (DuckDB over the parquet index for the
-  sortable browse + JSON file read for detail), `Structure` (JSON file read).
-  All subclass a shared `Model` base. No ORM.
-- **functions/** — `decorators.py` (`@templated`), `templating.py` (`render()`),
-  `slugs.py`, `common.py` (`run_query`).
-- **templates/** — `shared/base.html` + `shared/components/*` shell linking the
-  histo stylesheet via `STATIC_ROUTE`; one template per route; the named
-  partials `_tcr_card.html`, `_structure_row.html`, plus `_executive_summary.html`.
+`./dev_server.sh` → http://127.0.0.1:8080/tcrs
 
-## mimotopesdb idioms reused (verbatim or near-verbatim)
+## Routes
 
-- `create_app()` factory + flat route table in `main.py` (no blueprints).
-- Package split: `handlers/` (context-dict functions), `functions/`, `models/`,
-  `templates/`. `handlers/__init__.py` re-exports every handler.
-- Thin `*_view` (parse args → delegate) → `*_handler` (returns a plain dict);
-  the single `@templated('<template>')` decorator renders via `render()`.
-- `render()` injects site globals (`static_route`, `site_title`, nav items,
-  colour maps, `git_commit`, `current_navitem`).
-- `functions/decorators.py`, `functions/templating.py`, `functions/slugs.py`,
-  `functions/common.py::run_query` ported from the house versions.
-- `Model` base with `build_read_fragment`/`build_base_query`; object models
-  named `Tcr`/`Structure`/`Clonotype` with `get_one`/`get_all`; domain
-  annotation (`annotate_index_record`) as module-level functions in the model
-  file, mirroring `annotate_record` in mimotopesdb's `tcrs.py`.
-- **Literal-path + slug URL construction, NO `url_for`** — nav paths in
-  `config.json`, `href`s typed out, dynamic paths built as f-strings.
-- Template shell = `top.html`/`bottom.html` includes; `{% extends "shared/base.html" %}`
-  + `{% block main %}` for pages; `{% include %}` for partials; template
-  filters (`deslugify_allele`, `sequence_display`, …) registered in `main.py`.
-- The CSS-only checkbox accordion pattern (from `browse_collection.html`) drives
-  the card structure-list expand without JS.
+| Route | Page |
+| --- | --- |
+| `/tcrs` | Browse: sortable accordion list of all TCRs |
+| `/tcrs/explore` | The COM projection viewer over all 206 structures |
+| `/tcrs/{tcr_id}` | One TCR: genes + CDRs, its structures, a scoped COM viewer |
+| `/tcrs/{tcr_id}/structures/{pdb_id}` | One structure: Mol\*, the interface matrix |
+| `/clonotypes`, `/clonotypes/{id}` | The finer grain. Live, but not in the navbar |
 
-## Deliberate deviations from mimotopesdb (flagged for review)
+Thin `*_view` (parse args) → `*_handler` (returns a dict) → `@templated('name')`
+renders via `functions/templating.py::render()`. No `url_for` — nav paths live in
+`config.json`, dynamic paths are f-strings.
 
-1. **`/tcrs` serves the index, not a redirect.** mimotopesdb redirects
-   `/tcrs` → `/browse/tcrs/all`. The brief specifies `/tcrs` *is* the sortable
-   card grid for this standalone microapp, so I followed the brief. No `/browse`
-   namespace exists here.
-2. **Model method naming.** The brief's loader sketch names free functions
-   (`get_tcr_index(sort=…)`, `get_tcr(tcr_id)`); the house pattern (which the
-   brief also says to match exactly) uses object-model classes with
-   `get_one`/`get_all`. I built the house class shape (`Tcr().get_all(sort=…)`,
-   `Tcr().get_one(tcr_id)`) since that's the load-bearing convention repeated
-   across every mimotopesdb model. **Confirm this is the wanted shape.**
-3. **`current_navitem` set by handlers.** mimotopesdb derives the nav key from
-   the template filename (`template_name.split('_')[0]`), which here would give
-   `tcr`/`clonotype`/`structure` — none of which match a nav slug, and which
-   would highlight both `TCRs` and `Explore` together. I kept the filename
-   derivation as the fallback in `render()` but have each handler set
-   `current_navitem` explicitly (`tcrs`/`clonotypes`/`explore`). **Confirm.**
+## The shell
 
-## Data-shape notes (worth knowing before the front-end pass)
+`templates/shared/base.html` is a **real parent template**: the whole document,
+with `{% block head %}`, `{% block style %}`, `{% block breadcrumbs %}`,
+`{% block main %}` and `{% block scripts %}` defined directly in it.
 
-- Parquet index list columns (`trav`, `alleles`, `peptides`, `antigen_types`,
-  `pdb_ids`, …) are **JSON-encoded strings**; models decode them to lists in
-  `annotate_index_record`.
-- The per-TCR bundle's `structures[]` items use the key `peptide`; the per-
-  structure deep-dive bundle uses `peptide_seq` + `peptide_len`. The templates
-  read the correct key for each shape — do not "unify" them.
-- Clonotype detail files are `CL001.json` (upper-case); `Clonotype.get_one` is
-  case-tolerant. Structure files are `1AO7.json` (upper-case); `Structure.get_one`
-  upper-cases the incoming slug (URLs carry lower-case PDB ids).
-- Antigen types in the data: `tumour`, `pathogen`, `autoimmune`, `alloreactive`,
-  `unresolved`. Methods: `x_ray`, `cryo_em`. `ANTIGEN_COLORS` (config.json,
-  IBM palette) drives the card dots.
-- `AA_COLORS` covers all 20 residues incl. Cysteine, and `top.html` has a
-  matching `.bg-c` rule (CDR3 sequences begin with a conserved C).
+> **This is load-bearing.** It used to `{% include %}` a `top.html` that *defined*
+> those blocks. **Jinja blocks do not cross an `{% include %}`**, so every page's
+> `{% block style %}` was silently discarded and no page CSS had ever reached the
+> browser. That single bug is why the early prototype looked unstyled and why the
+> explore page worked around it by inlining everything into `{% block main %}`.
+> `top.html` / `bottom.html` are gone. Do not reintroduce that pattern.
 
-## AI-provenance (REQUIRED — implemented)
+- `shared/components/site_style.html` — house CSS every page shares (amino-acid
+  palette, `.info-table`, `.structure-table`, `.antigen-dot`, `.flag`,
+  `.molstar-box` + the Mol\* chrome overrides).
+- `shared/components/header.html` + `navbar.html` + `shared/svgs/histo_logo.svg`
+  — the real histo.fyi navbar. **The whole microapp is the "TCRs" nav item**, so
+  `current_navitem` is hardcoded to `tcrs` in `render()`; the other items link
+  out to histo.fyi absolutely.
+- The histo stylesheet is used **directly from histo** and never vendored:
+  `https://static.histo.fyi/style.css` via `STATIC_ROUTE`.
+- `main.py::asset()` — cache-busting for **our own** JS/CSS. Quart serves
+  `/static` with `cache-control: max-age=43200`, so an edited file stays
+  invisible to a browser that already has it for 12 hours. `molstar.js` and the
+  coordinate files are deliberately *not* routed through it — they never change,
+  and the long cache is what we want.
 
-`fragments/_executive_summary.html` renders every `executive_summary` **with**
-its `executive_summary_attribution_html` (`<smaller>Summary generated by a
-literature research agent in Claude Science</smaller>`). It is used on both the
-per-TCR page (one block per publication) and the structure deep dive. A summary
-is never rendered without the attribution. Verified: A6's page emits 7
-attribution snippets (one per publication summary); 1AO7's deep dive emits 1.
+### Beware the histo stylesheet's global class names
 
-## Verification (how I confirmed it runs)
+It styles bare class names that are easy to collide with. `.main` gets
+`margin-top: 60px` (it styles the page's `<main class="main">`). The COM viewer's
+own inner wrapper was called `.main`, which pushed it 60px below the filter panel
+beside it. It is now `.com-main`. Scope new component classes.
 
-- App imports cleanly; `create_app()` builds the factory.
-- Exercised all routes via the Quart test client AND a live hypercorn dev
-  server over HTTP — all return 200 (missing-entity ids render their in-page
-  "not found" state, still 200). Sample:
-  `/tcrs`, `/tcrs?sort=name_asc`, `/tcrs/explore`, `/tcrs/a6`,
-  `/tcrs/a6/structures/1ao7`, `/clonotypes`, `/clonotypes/CL001`.
-- Content assertions on rendered HTML: 6 sort orderings produce distinct first
-  cards (newest N17.3.2 / oldest A6 / name_asc 0606T1-2 / most-structures A6);
-  all 123 TCR cards render; the histo stylesheet is linked; nav active-state is
-  correct; AI-provenance attribution present on every summary; DOI/PMID links,
-  CDR sequences and alleles render from the real bundles.
+## Mol\*
 
-## Deliberately left for later passes
+`static/molstar.js` (5.2MB, **committed**, so the site needs no build step) is the
+self-bundled Mol\* copied from `protein-design-website`. It re-exports the
+selection API — `MS`, `Script`, `StructureSelection`, `StructureElement` — which
+the **CDN "viewer" build does not expose**. Without it you cannot build a loci, so
+you cannot focus a residue or a loop. `molstar-src/` holds the esbuild entry point
+to rebuild it (needs node; not installed on this box).
 
-- **Front-end pass:** real card styling, typography polish, the IBM-palette
-  visual language. Current CSS is inline-minimal, just enough to read the data.
-- **COM viewer** (`/tcrs/explore` + scoped on per-TCR pages) — component exists,
-  dropped in later.
-- **Mol\* viewer, structure overlay, SC/BSA bubble-matrix, COMs-on-ABD,
-  within-structure variability** — placeholder slots are in the templates; the
-  structure bundle already carries the data (`shape_complementarity`, `bsa`,
-  `com_px`, `completeness`, `contacts_loop_region`).
-- **Interactive chord diagram** — the dedicated last pass; needs residue-residue
-  contact pairs not yet in the bundle (see data README TODO).
-- No `send_file` CIF/PDB serving yet — the aligned coordinate files live on
-  `coordinates.histo.fyi`; wire when the viewer lands.
+`static/viewer.js` (`window.HistoTCR`):
 
-## Open questions raised
+- `load(el, url)` / `replace(viewer, url)` — Mol\*'s own **chain-id colours**
+  (deliberately not a house palette), plus ball-and-stick on the peptide, which
+  is too short to read as cartoon alone.
+- `paintLegend(viewerId, viewer)` — reads the colours **back off the chain-id
+  theme** and paints the page's legend swatches, so the legend cannot drift from
+  what is rendered.
+- `focusRange` / `highlightRange` / `clearFocus` / `focusResidue`.
+- `autoInit()` turns every `.molstar-box[data-structure-url]` into a viewer keyed
+  by DOM id in `HistoTCR.viewers`. An empty `data-structure-url` yields an empty
+  viewer ready for a later `replace()` — that is the explore page's lower panel.
 
-- Model method shape (classes/`get_all` vs free functions/`get_tcr_index`)?
-- `current_navitem` handled by handlers — acceptable, or prefer another scheme?
-- `/tcrs` as index (confirmed from brief) vs the mimotopesdb redirect idiom.
+Drop a viewer into a page with `fragments/_molstar_viewer.html` +
+`_molstar_head.html` (in `{% block head %}`) + `_molstar_scripts.html` (in
+`{% block scripts %}`).
+
+### Chain conventions
+
+Every coordinate file has the same chains:
+
+`A` = MHC α (heavy) · `B` = β2m · `C` = peptide · `D` = TCR α · `E` = TCR β
+
+**Chains D and E are IMGT-renumbered.** That is what makes the CDR loops
+addressable by a fixed lookup (`functions/interface.py::CDR_SELECTIONS`) rather
+than a per-structure annotation, and is what the interface matrix's click-to-zoom
+depends on. Chain A is *not* renumbered, but class I heavy chains share a common
+numbering, so the α1/α2 helix bounds are also fixed (taken from the grant's
+`structure_components.json`).
+
+### Coordinates
+
+`static/coordinates/` — 385 IMGT-renumbered, aligned PDB files, lower-cased.
+**Gitignored** (152MB); in production they live on `coordinates.histo.fyi`.
+Rebuild from `imgt_renumbered_structures.tar.gz` with the recipe in `.gitignore`.
+
+Always resolve a path through `functions/coordinates.py`. **76 of the 206
+structures exist only as altloc files** (`2f53_aligned_1_altloca.pdb`), so the
+obvious f-string `{pdb}_aligned_1.pdb` 404s for a third of the set. There are also
+multi-copy structures (`2ak4_aligned_1..4`). `coordinate_url()` picks the
+preferred file; `coordinate_map()` gives the explore page the whole
+`{PDB_ID: url}` map, because its COM points carry a PDB id but **no filename**.
+
+## Pages
+
+### `/tcrs` — browse
+
+Sortable (6 orderings, server-side in DuckDB) CSS-only accordion — hidden
+checkbox + `<label>` + `max-height` transition, from mimotopesdb's
+`browse_collection.html`. The `<input>` must be the **first child** so the `~`
+sibling selectors reach both the header icon and the content.
+
+Each row expands to a full structure table (PDB, allele, peptide, method,
+resolution, published). Publication year is not on the structure records, so
+`models/tcrs.py::annotate_structure_publications()` inverts the TCR's
+`publications[]` into `pdb_id → year`, and `browse_structures()` reads and caches
+all 123 TCR bundles once (a browse request must not re-read them).
+
+### `/tcrs/explore` — the COM projection viewer
+
+All 206 footprints projected onto the 1hhk antigen-binding domain. Click a COM to
+load that structure into the Mol\* panel below; click empty background to clear.
+
+It was authored as a **standalone `height:100vh` app** and is now split across the
+histo grid: `column-three-quarters` (canvas + Mol\*) + `column-one-quarter`
+(filters). Its CSS is scoped under `#com-viewer`. `layout()` sizes the canvas off
+`stage.clientWidth`, so it scales with the column; the original viewport cap
+(58vh + scroll) was removed — on a page that just hides half the projection.
+
+Its Mol\* panel **had never worked**: the COM points have no `file` key, so it was
+building `structures/undefined`. Coordinates are now resolved server-side.
+
+The template used to be **892KB** — a 274KB inline `DATA` blob and a 586KB base64
+PNG. Both are now static files (`static/data/com_coords.json`,
+`static/images/com_projection_background.png`), fetched by `static/explore.js`.
+Template is now 15KB.
+
+### `/tcrs/{tcr_id}`
+
+The **structure information panel** (V/J genes + CDR1–3 per chain, and the pMHC it
+sees) at the top, ported from mimotopesdb's TCR view. The per-TCR bundle has no
+CDR1/CDR2 — they are germline (V-gene encoded) and live in the structure bundles —
+so `annotate_chains()` assembles the panel from a representative **non-engineered**
+structure.
+
+Then the structure list, then a **scoped COM viewer** (`static/com_scope.js`)
+showing only this TCR's structures. Wired the *opposite* way to explore: clicking
+a COM does not load Mol\*, it **highlights that structure's row in the list**
+(`#structure-row-{PDB}`); hovering a row lights up its COM. The list is the
+subject of the page; the projection is a way into it.
+
+Executive summaries are deliberately **not** here — they belong on the structure
+pages. Publications appear as titles + links only.
+
+### `/tcrs/{tcr_id}/structures/{pdb_id}`
+
+Headline is what the structure *is* ("HLA-B\*27:05 presenting GQVMVVAPR to AS4.3
+at 2.5Å resolution"), with the PDB code demoted to a label above it — mirroring
+histo.fyi. Use `heading-medium`: `heading-extra-large` is **72px** and sets that
+sentence over four lines.
+
+Mol\* is the main event (3/4 + 1/4). Below it, the **interface matrix**.
+
+#### The interface matrix
+
+`functions/interface.py` + `static/interface_matrix.js`. A 6 CDR loop × 3 MHC
+region bubble chart: **area = buried surface area, colour = shape complementarity**
+(viridis). Hover a cell → that CDR loop highlights in Mol\*; click → it zooms.
+
+Ported as *geometry and a data contract* from `bsi_career_enhancing_grant`. **There
+is no interactive code in that repo to lift** — its chord and bubble figures are
+pure matplotlib rendered to static PNG/SVG. The interactivity here is new.
+
+Three things the source data forces, all easy to get wrong:
+
+1. **Area, not radius, carries BSA** (radius ∝ √BSA), and it is normalised against
+   the max across **all 206 structures**, not the page's own max — so a bubble
+   means the same thing on every structure page. `global_bsa_max()` is cached.
+2. **A multi-copy structure has 18 cells *per ASU copy*** (2AK4 has 72 rows). The
+   SC rows name their copy; the **BSA rows cannot be attributed to a copy at all**
+   — their `complex` field is the *system slug*, identical across copies. Cells are
+   therefore **averaged over copies**, and the page says so when n > 1.
+3. **21% of SC values are `NaN`.** Python's json reads NaN happily but **`NaN` is
+   not valid JSON** and breaks `JSON.parse` in the browser. They are sanitised to
+   `None` and drawn as a **dashed outline** — kept visually distinct from *no
+   contact*, which is a small dot (35% of BSA cells are exactly zero).
+
+## Data layer
+
+Unchanged from the skeleton; see `data/README.md`. Worth repeating:
+
+- Parquet index list columns are **JSON-encoded strings**; models decode them.
+- The per-TCR bundle's `structures[]` use the key `peptide`; the per-structure
+  bundle uses `peptide_seq` + `peptide_len`. Do not "unify" them.
+- Structure files are upper-case (`1AO7.json`); URLs carry lower-case PDB ids.
+
+## AI provenance — REQUIRED
+
+Every `executive_summary` was written by a literature research agent, not a human.
+`fragments/_executive_summary.html` renders each one **with** its
+`executive_summary_attribution_html`. A summary is **never** rendered without it.
+
+## Open
+
+- **Chord diagram.** Deferred: it needs residue-residue contact pairs (the grant's
+  `contact_maps` CSV format), which the current bundle does not carry —
+  `contacts_loop_region` is only loop × region *counts*. Chris has this data
+  elsewhere. Expect to build the interactivity fresh, as with the bubble matrix.
+- **Two TCRs are named `nan`** (9K2R and one other) — a NaN leaked into `tcr_name`.
+  `data/README.md` says these should slug to `ki-890` and `hghv4`. Data-layer bug.
+- **Structure overlay** and **within-structure variability** panels not yet built.
+- Explore's Mol\* panel does not reset its camera between structures.
+- Desktop-only; no responsive pass has been done.
+
+## Verified
+
+All routes 200 (`/tcrs` incl. all 6 sorts, `/tcrs/explore`, TCR pages, structure
+pages incl. multi-copy + altloc-only, clonotypes, and the not-found states).
+Driven in a real browser with `shot-scraper`; Mol\* needs WebGL, so headless runs
+must pass `--browser-arg=--use-gl=angle --browser-arg=--use-angle=swiftshader
+--browser-arg=--enable-unsafe-swiftshader` or it renders "WebGL is not available".
+Confirmed end to end: chain-coloured structures render; an explore COM click loads
+the right structure; a matrix cell click focuses the right IMGT loop
+(α CDR3 → `ALA 105 | D [+8 residues]`); a scoped COM click selects the right row.
