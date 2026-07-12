@@ -3,11 +3,77 @@
 
 {% block style %}
 <style>
-    .placeholder-slot {
-        border: 1px dashed #cccccc; border-radius: 4px; padding: 16px;
-        color: #888899; text-align: center; font-size: 10pt;
+    /* The row the scoped COM viewer has selected. */
+    .structure-table tr.is-selected td {
+        background: rgba(10, 0, 57, 0.07);
+        box-shadow: inset 3px 0 0 #0a0039;
     }
-    .epitope-list { margin: 0; padding-left: 16px; }
+
+    /* --- scoped COM viewer -------------------------------------------------- */
+    #com-scope {
+        border: 1px solid rgba(10, 0, 57, 0.20);
+        border-radius: 6px;
+        overflow: hidden;
+    }
+    .com-scope-bar {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 9px 16px;
+        border-bottom: 1px solid rgba(10, 0, 57, 0.10);
+        font-size: 11px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #0a0039;
+    }
+    .com-scope-bar select {
+        border: 1px solid rgba(10, 0, 57, 0.20);
+        border-radius: 5px;
+        padding: 5px 8px;
+        font-size: 13px;
+        font-family: 'Poppins', sans-serif;
+        text-transform: none;
+        letter-spacing: 0;
+        cursor: pointer;
+    }
+    .com-scope-stage { position: relative; background: #ffffff; overflow: hidden; }
+    .com-scope-wrap { position: relative; }
+    .com-scope-bg {
+        position: absolute; top: 0; left: 0;
+        width: 100%; height: auto; display: block;
+    }
+    .com-scope-canvas { position: absolute; top: 0; left: 0; }
+
+    .com-scope-card {
+        position: fixed;
+        z-index: 50;
+        display: none;
+        pointer-events: none;
+        background: #ffffff;
+        border: 1px solid rgba(10, 0, 57, 0.20);
+        border-radius: 5px;
+        padding: 9px 11px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        color: #0a0039;
+        max-width: 260px;
+    }
+    .com-scope-card .pdb {
+        font-weight: 600;
+        font-size: 14px;
+        margin-bottom: 4px;
+        font-family: 'IBM Plex Mono', monospace;
+    }
+    .com-scope-card table { border-collapse: collapse; font-size: 11.5px; }
+    .com-scope-card td { padding: 1px 0; vertical-align: top; }
+    .com-scope-card td.k {
+        color: #857f9c;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-size: 10.5px;
+    }
 </style>
 {% endblock %}
 
@@ -108,20 +174,6 @@
     </div>
 </section>
 
-{# Slot for the scoped COM viewer / structure overlay, a later pass. #}
-<section>
-    <div class="grid-container">
-        <div class="column-full-width">
-            <div class="inner vertical-spacing-top-0-5">
-                <div class="placeholder-slot">
-                    Scoped COM viewer, structure overlay and SASA / shape-complementarity
-                    panels render here in the interactivity pass.
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
 {# The structures for this TCR. Executive summaries deliberately live on the
    individual structure pages, not here. #}
 <section>
@@ -151,6 +203,71 @@
         </div>
     </div>
 </section>
+
+{# The scoped COM viewer: this TCR's structures projected onto the antigen-binding
+   domain. Unlike /tcrs/explore, clicking a COM does not load a structure — it
+   highlights that structure's row in the list above, which is the subject of the
+   page. Hovering a row lights up its COM, the other way round. #}
+{% if com_points %}
+<section>
+    <div class="grid-container">
+        <div class="column-full-width">
+            <div class="inner">
+                <hr />
+                <h2 class="heading-small vertical-spacing-top-0-5 vertical-spacing-bottom-0-25">
+                    Where these structures sit on the groove
+                </h2>
+            </div>
+        </div>
+    </div>
+    <div class="grid-container">
+        <div class="column-three-quarters">
+            <div class="inner">
+                <div id="com-scope"
+                     data-points='{{ com_points | tojson }}'
+                     data-layers='{{ com_projection.layers | tojson }}'
+                     data-antigen-colors='{{ antigen_colors | tojson }}'
+                     data-background="{{ com_projection.background }}"
+                     data-width="{{ com_projection.width }}"
+                     data-height="{{ com_projection.height }}">
+                    <div class="com-scope-bar">
+                        <label>COM type <select class="com-scope-type"></select></label>
+                    </div>
+                    <div class="com-scope-stage">
+                        <div class="com-scope-wrap">
+                            <img class="com-scope-bg" alt="Antigen-binding domain projection">
+                            <canvas class="com-scope-canvas"></canvas>
+                        </div>
+                    </div>
+                    <div class="com-scope-card"></div>
+                </div>
+            </div>
+        </div>
+        <div class="column-one-quarter">
+            <div class="inner">
+                <div class="panel-title vertical-spacing-bottom-0-25">Reading this</div>
+                <small>
+                    <p>
+                        Each circle is one of this TCR&rsquo;s structures, its centre of mass
+                        projected onto the 1hhk antigen-binding domain, viewed from above.
+                        Click one to highlight it in the list; hover a row in the list to find
+                        it here.
+                    </p>
+                    <p>Circles are coloured by antigen type:</p>
+                    <p>
+                        {% for antigen in tcr.antigen_types %}
+                            <span class="antigen-dot" style="background-color: {{ antigen_colors.get(antigen, '#999999') }};"></span>{{ antigen | deslugify_string }}<br />
+                        {% endfor %}
+                    </p>
+                    <p>
+                        <smaller><a href="/tcrs/explore">See every structure in the explore viewer</a></smaller>
+                    </p>
+                </small>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
 
 {# The publications behind this TCR — titles and links only. The executive
    summaries belong on the structure pages. #}
@@ -211,4 +328,10 @@
 
 {% endif %}
 
+{% endblock %}
+
+{% block scripts %}
+{% if com_points %}
+<script src="{{ asset('com_scope.js') }}"></script>
+{% endif %}
 {% endblock %}

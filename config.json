@@ -8,6 +8,19 @@
         {"slug": "tcrs", "label": "TCRs", "url": "/tcrs"},
         {"slug": "about", "label": "About", "url": "https://www.histo.fyi/about"}
     ],
+    "COM_PROJECTION": {
+        "width": 1900,
+        "height": 1550,
+        "background": "/static/images/com_projection_background.png",
+        "layers": {
+            "peptides": "Peptide",
+            "tcrs": "TCR variable domain",
+            "cdrs": "All CDR loops",
+            "cdr_alpha": "CDR loops, alpha",
+            "cdr_beta": "CDR loops, beta",
+            "footprint": "Footprint centre"
+        }
+    },
     "CHAIN_LABELS": {
         "A": "MHC α (heavy chain)",
         "B": "β2-microglobulin",

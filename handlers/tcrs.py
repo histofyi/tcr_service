@@ -1,4 +1,5 @@
 from functions.coordinates import coordinate_map
+from functions.slugs import de_slugify_string
 from models.structures import Structure
 from models.tcrs import (
     Tcr,
@@ -38,11 +39,30 @@ def tcr_handler(tcr_id: str) -> dict:
     assembled from a representative structure; see models.tcrs.annotate_chains.
     """
     tcr = Tcr().get_one(tcr_id)
-    if tcr:
-        representative = Structure().get_one(representative_pdb_id(tcr) or '')
-        annotate_chains(tcr, representative)
-        annotate_structure_publications(tcr)
-    return {'tcr': tcr, 'tcr_id': tcr_id}
+    if not tcr:
+        return {'tcr': None, 'tcr_id': tcr_id}
+
+    representative = Structure().get_one(representative_pdb_id(tcr) or '')
+    annotate_chains(tcr, representative)
+    annotate_structure_publications(tcr)
+
+    # The scoped COM viewer below the structure list. Only the fields the canvas
+    # and its hover card need — the page already carries the rest.
+    com_points = [
+        {
+            'pdb_id': structure['pdb_id'],
+            'com_px': structure.get('com_px'),
+            'allele': structure.get('allele'),
+            'peptide': structure.get('peptide'),
+            'antigen_type': structure.get('antigen_type'),
+            'antigen_label': de_slugify_string(structure.get('antigen_type') or ''),
+            'resolution': structure.get('resolution'),
+        }
+        for structure in tcr.get('structures') or []
+        if structure.get('com_px')
+    ]
+
+    return {'tcr': tcr, 'tcr_id': tcr_id, 'com_points': com_points}
 
 
 def explore_handler() -> dict:

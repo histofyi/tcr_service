@@ -25,6 +25,7 @@ async def render(template_name: str, variables: Dict) -> str:
     variables['antigen_colors'] = current_app.config['ANTIGEN_COLORS']
     variables['aa_colors'] = current_app.config['AA_COLORS']
     variables['chain_labels'] = current_app.config['CHAIN_LABELS']
+    variables['com_projection'] = current_app.config['COM_PROJECTION']
     # This whole microapp is the "TCRs" item in the histo.fyi navbar — every page it
     # serves (TCRs, explore, clonotypes, structure deep dives) sits under that item,
     # so the nav highlight is constant. The other nav items link out to histo.fyi.
