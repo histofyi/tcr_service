@@ -5,6 +5,8 @@ from models.tcrs import (
     SORT_ORDERINGS,
     DEFAULT_SORT,
     annotate_chains,
+    annotate_structure_publications,
+    browse_structures,
     representative_pdb_id,
 )
 
@@ -20,6 +22,7 @@ def tcrs_handler(sort: str = DEFAULT_SORT) -> dict:
     tcrs = Tcr().get_all(sort=sort)
     return {
         'tcrs': tcrs,
+        'structures_by_tcr': browse_structures(),
         'sort': sort,
         'sort_options': list(SORT_ORDERINGS.keys()),
         'tcr_count': len(tcrs),
@@ -38,6 +41,7 @@ def tcr_handler(tcr_id: str) -> dict:
     if tcr:
         representative = Structure().get_one(representative_pdb_id(tcr) or '')
         annotate_chains(tcr, representative)
+        annotate_structure_publications(tcr)
     return {'tcr': tcr, 'tcr_id': tcr_id}
 
 

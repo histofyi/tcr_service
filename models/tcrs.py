@@ -1,5 +1,6 @@
 import json
 import os
+from functools import lru_cache
 
 import duckdb
 
@@ -68,6 +69,47 @@ def annotate_chains(tcr: dict, representative: dict | None) -> dict:
     }
     tcr['representative_pdb_id'] = representative.get('pdb_id')
     return tcr
+
+
+def annotate_structure_publications(tcr: dict) -> dict:
+    """Add `published` (the publication year) to each of a TCR's structures.
+
+    The per-structure records carry a deposition date but no publication year;
+    the year lives on the TCR's publications[], each of which lists the PDB ids
+    it reported. Invert that into pdb_id -> year. A structure with no linked
+    publication keeps `published = None`.
+    """
+    published_by_pdb = {
+        pdb_id: publication.get('year')
+        for publication in tcr.get('publications') or []
+        for pdb_id in publication.get('structures') or []
+    }
+    for structure in tcr.get('structures') or []:
+        structure['published'] = published_by_pdb.get(structure.get('pdb_id'))
+    return tcr
+
+
+@lru_cache(maxsize=1)
+def browse_structures() -> dict:
+    """{ tcr_id: [structure, ...] } for the /tcrs accordion bodies.
+
+    The parquet index carries only a list of PDB ids, but the accordion wants the
+    full per-structure detail (allele, peptide, method, resolution, deposited,
+    published). That lives in the per-TCR bundles, so read all 123 once and cache
+    — a browse request must not re-read them.
+    """
+    detail_dir = 'data/tcr'
+    structures_by_tcr: dict = {}
+
+    for filename in os.listdir(detail_dir):
+        if not filename.endswith('.json'):
+            continue
+        with open(os.path.join(detail_dir, filename)) as detail_file:
+            tcr = json.load(detail_file)
+        annotate_structure_publications(tcr)
+        structures_by_tcr[tcr['tcr_id']] = tcr.get('structures') or []
+
+    return structures_by_tcr
 
 
 def representative_pdb_id(tcr: dict) -> str | None:

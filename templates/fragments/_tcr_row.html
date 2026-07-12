@@ -1,47 +1,60 @@
-{# One TCR row of the /tcrs accordion. Expects `tcr` (an index record).
+{# One TCR row of the /tcrs accordion. Expects `tcr` (an index record) and
+   `structures_by_tcr`.
 
    The CSS-only accordion pattern from mimotopesdb's browse_collection.html: a
    hidden checkbox, a <label> sibling that toggles it, and a max-height
    transition on the content. The input MUST be the first child so the `~`
-   sibling selectors reach both the header icon and the content. #}
+   sibling selectors reach both the header icon and the content.
+
+   The "engineered variants" flag deliberately does NOT appear here — it lives on
+   the individual TCR page. #}
+{% set structures = structures_by_tcr.get(tcr.tcr_id, []) %}
 <div class="accordion-item">
     <input type="checkbox" id="tcr-{{ tcr.tcr_id }}" class="accordion-toggle">
 
     <label for="tcr-{{ tcr.tcr_id }}" class="accordion-row tcr-row accordion-header">
         <span class="icon"></span>
-        <span class="tcr-row-name">
-            <a href="/tcrs/{{ tcr.tcr_id }}">{{ tcr.tcr_name }}</a>
-            {% if tcr.has_engineered_variants %}
-                <span class="flag" title="Has affinity-engineered variants">engineered</span>
-            {% endif %}
-        </span>
+        <span class="tcr-row-name"><a href="/tcrs/{{ tcr.tcr_id }}">{{ tcr.tcr_name }}</a></span>
         <span class="mono">{{ tcr.trav | join(', ') }}</span>
         <span class="mono">{{ tcr.trbv | join(', ') }}</span>
         <span>{{ tcr.n_structures }}</span>
         <span>{{ tcr.alleles | join(', ') }}</span>
-        <span>
+        <span class="antigen-list">
             {% for antigen in tcr.antigen_types %}
-                <span class="antigen-dot"
-                      style="background-color: {{ antigen_colors.get(antigen, '#999999') }};"
-                      title="{{ antigen | deslugify_string }}"></span>
+                <span class="antigen-tag">
+                    <span class="antigen-dot" style="background-color: {{ antigen_colors.get(antigen, '#999999') }};"></span>{{ antigen | deslugify_string }}
+                </span>
             {% endfor %}
         </span>
-        <span>{{ tcr.first_deposition_date }}</span>
     </label>
 
     <div class="accordion-content">
         <div class="accordion-body">
             <small>
-                <span class="accordion-body-label">Structures</span>
-                {% for pdb_id in tcr.pdb_ids %}
-                    <a class="pdb-chip" href="/tcrs/{{ tcr.tcr_id }}/structures/{{ pdb_id | lower }}">{{ pdb_id }}</a>
-                {% endfor %}
-            </small>
-            <small class="vertical-spacing-top-0-25">
-                <span class="accordion-body-label">Peptides</span>
-                {% for peptide in tcr.peptides %}
-                    <span class="mono peptide-chip">{{ peptide }}</span>
-                {% endfor %}
+                <table class="structure-table is-nested">
+                    <tr>
+                        <th>PDB</th>
+                        <th>Allele</th>
+                        <th>Peptide</th>
+                        <th>Method</th>
+                        <th>Resolution</th>
+                        <th>Published</th>
+                        <th>Deposited</th>
+                    </tr>
+                    {% for structure in structures %}
+                    <tr>
+                        <td class="pdb">
+                            <a href="/tcrs/{{ tcr.tcr_id }}/structures/{{ structure.pdb_id | lower }}">{{ structure.pdb_id }}</a>
+                        </td>
+                        <td>{{ structure.allele }}</td>
+                        <td>{{ structure.peptide | sequence_display | safe }}</td>
+                        <td>{{ structure.method | deslugify_string }}</td>
+                        <td>{% if structure.resolution %}{{ structure.resolution }} &#8491;{% else %}&mdash;{% endif %}</td>
+                        <td>{{ structure.published or '&mdash;' | safe }}</td>
+                        <td>{{ structure.deposition_date }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
             </small>
         </div>
     </div>

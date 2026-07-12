@@ -10,7 +10,13 @@
         border-radius: 3px;
         text-decoration: none;
     }
-    .sort-bar a.is-active { background: #0a0039; color: #ffffff; border-color: #0a0039; }
+    /* Selected sort: a 10% tint of the histo ink, keeping the label readable
+       (a solid fill made the text unreadable). */
+    .sort-bar a.is-active {
+        background: rgba(10, 0, 57, 0.10);
+        border-color: rgba(10, 0, 57, 0.35);
+        font-weight: 600;
+    }
 
     /* A call-out linking through to the COM projection viewer. */
     .explore-callout {
@@ -32,9 +38,13 @@
         gap: 8px;
         padding: 7px 8px;
     }
+    /* Dropping the "first deposited" column frees the width for the antigen
+       types to be named rather than shown as bare dots. */
     .tcr-row {
-        grid-template-columns: 28px 1.4fr 1.2fr 1.2fr 0.6fr 1.3fr 0.7fr 1fr;
+        grid-template-columns: 28px 1.3fr 1.2fr 1.2fr 0.7fr 1.2fr 1.6fr;
     }
+    .antigen-list { display: flex; flex-wrap: wrap; gap: 2px 10px; }
+    .antigen-tag { white-space: nowrap; }
     .accordion-head {
         border-bottom: 1px solid #cccccc;
         font-weight: 600;
@@ -66,33 +76,15 @@
     }
     .accordion-toggle:checked ~ .accordion-content { max-height: 1000px; }
 
-    .accordion-body { padding: 4px 8px 12px 36px; }
-    .accordion-body small { display: block; }
-    .accordion-body-label {
-        display: inline-block;
-        min-width: 80px;
-        color: #666677;
-    }
+    .accordion-body { padding: 2px 8px 14px 36px; }
 
-    .pdb-chip {
-        display: inline-block;
-        font-family: 'IBM Plex Mono', monospace;
-        font-size: 10pt;
-        padding: 1px 6px;
-        margin: 2px 2px 2px 0;
-        border: 1px solid #e0e0e8;
-        border-radius: 3px;
-        text-decoration: none;
+    /* The per-TCR structure table nested inside an open accordion row. */
+    .structure-table.is-nested th {
+        border-bottom: 1px solid #e6e6ee;
+        padding-top: 2px;
     }
-    .pdb-chip:hover { background: #f0f0f5; }
-    .peptide-chip {
-        display: inline-block;
-        font-size: 10pt;
-        padding: 1px 6px;
-        margin: 2px 2px 2px 0;
-        background: #f6f6fa;
-        border-radius: 3px;
-    }
+    .structure-table.is-nested td { padding: 5px 10px 5px 0; }
+    .structure-table.is-nested tr:last-child td { border-bottom: none; }
 </style>
 {% endblock %}
 
@@ -101,7 +93,7 @@
     <div class="grid-container">
         <div class="column-full-width">
             <div class="inner">
-                <h1 class="heading-extra-large vertical-spacing-bottom-0-25">TCRs</h1>
+                <h1 class="heading-extra-large vertical-spacing-bottom-0-25">Browse TCRs</h1>
                 <p class="vertical-spacing-bottom-0-5">
                     {{ tcr_count }} T cell receptors with experimentally determined TCR:pMHC structures.
                 </p>
@@ -150,8 +142,7 @@
                         <span><small>TRBV</small></span>
                         <span><small>Structures</small></span>
                         <span><small>Alleles</small></span>
-                        <span><small>Antigens</small></span>
-                        <span><small>First deposited</small></span>
+                        <span><small>Antigen types</small></span>
                     </div>
 
                     {% for tcr in tcrs %}

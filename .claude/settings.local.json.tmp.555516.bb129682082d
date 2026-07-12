@@ -31,7 +31,8 @@
       "Bash(/tmp/claude-1000/-home-chris-Desktop-Claude-Science-Website-development-tcr-service/c8d43f83-a687-439c-967a-23e869ec1f0a/scratchpad/shot.sh /tcrs/explore explore_fixed '' 12000)",
       "Bash(grep -oE '[a-z-]{4,}')",
       "Bash(git add *)",
-      "Bash(git commit -q -m 'Use the histo heading scale on the clonotype pages *)"
+      "Bash(git commit -q -m 'Use the histo heading scale on the clonotype pages *)",
+      "Bash(git commit -q -m 'Browse page tweaks: Browse TCRs, richer accordion, readable sort state *)"
     ]
   }
 }
