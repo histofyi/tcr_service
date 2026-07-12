@@ -62,7 +62,7 @@
     // same recipe as the explore viewer.
     if (REF) {
       ctx.beginPath();
-      ctx.arc(REF.x * scale, REF.y * scale, 3, 0, Math.PI * 2);
+      ctx.arc(REF.x * scale, REF.y * scale, 5, 0, Math.PI * 2);
       ctx.fillStyle = '#000000';
       ctx.fill();
       ctx.lineWidth = 1.5;
