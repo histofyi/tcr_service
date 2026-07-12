@@ -216,3 +216,11 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Aligned, IMGT-renumbered coordinate files (152MB, 385 PDBs), mirrored from
+# imgt_renumbered_structures.tar.gz and lower-cased. Served from static/ in
+# development; in production they live on coordinates.histo.fyi / S3. Too heavy
+# for git — rebuild with:
+#   tar -xzf imgt_renumbered_structures.tar.gz -C tmp/ && \
+#     for f in tmp/*.pdb; do cp "$f" "static/coordinates/$(basename "$f" | tr 'A-Z' 'a-z')"; done
+static/coordinates/

@@ -14,5 +14,4 @@ def structure_handler(tcr_id: str, pdb_id: str) -> dict:
         'tcr': tcr,
         'tcr_id': tcr_id,
         'pdb_id': pdb_id.upper(),
-        'current_navitem': 'tcrs',
     }

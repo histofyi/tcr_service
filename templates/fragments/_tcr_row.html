@@ -1,0 +1,48 @@
+{# One TCR row of the /tcrs accordion. Expects `tcr` (an index record).
+
+   The CSS-only accordion pattern from mimotopesdb's browse_collection.html: a
+   hidden checkbox, a <label> sibling that toggles it, and a max-height
+   transition on the content. The input MUST be the first child so the `~`
+   sibling selectors reach both the header icon and the content. #}
+<div class="accordion-item">
+    <input type="checkbox" id="tcr-{{ tcr.tcr_id }}" class="accordion-toggle">
+
+    <label for="tcr-{{ tcr.tcr_id }}" class="accordion-row tcr-row accordion-header">
+        <span class="icon"></span>
+        <span class="tcr-row-name">
+            <a href="/tcrs/{{ tcr.tcr_id }}">{{ tcr.tcr_name }}</a>
+            {% if tcr.has_engineered_variants %}
+                <span class="flag" title="Has affinity-engineered variants">engineered</span>
+            {% endif %}
+        </span>
+        <span class="mono">{{ tcr.trav | join(', ') }}</span>
+        <span class="mono">{{ tcr.trbv | join(', ') }}</span>
+        <span>{{ tcr.n_structures }}</span>
+        <span>{{ tcr.alleles | join(', ') }}</span>
+        <span>
+            {% for antigen in tcr.antigen_types %}
+                <span class="antigen-dot"
+                      style="background-color: {{ antigen_colors.get(antigen, '#999999') }};"
+                      title="{{ antigen | deslugify_string }}"></span>
+            {% endfor %}
+        </span>
+        <span>{{ tcr.first_deposition_date }}</span>
+    </label>
+
+    <div class="accordion-content">
+        <div class="accordion-body">
+            <small>
+                <span class="accordion-body-label">Structures</span>
+                {% for pdb_id in tcr.pdb_ids %}
+                    <a class="pdb-chip" href="/tcrs/{{ tcr.tcr_id }}/structures/{{ pdb_id | lower }}">{{ pdb_id }}</a>
+                {% endfor %}
+            </small>
+            <small class="vertical-spacing-top-0-25">
+                <span class="accordion-body-label">Peptides</span>
+                {% for peptide in tcr.peptides %}
+                    <span class="mono peptide-chip">{{ peptide }}</span>
+                {% endfor %}
+            </small>
+        </div>
+    </div>
+</div>

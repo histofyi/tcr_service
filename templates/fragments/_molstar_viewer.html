@@ -1,0 +1,23 @@
+{# A Mol* viewer box + its chain legend.
+
+   Params (via {% with %}):
+     viewer_id   — DOM id; the viewer is registered under this in HistoTCR.viewers
+     pdb_id      — PDB id to load; omit for an empty box a page fills later
+     box_class   — extra class on .molstar-box ('is-tall' / 'is-short')
+     show_legend — default true
+
+   The structure is coloured by Mol*'s own chain-id theme, so the legend swatches
+   are left unpainted here and filled in by viewer.js once the structure is up —
+   it reads the colours back off the theme. A chain absent from the file has its
+   legend entry hidden. #}
+{% set structure_url = (pdb_id | coordinate_url) if pdb_id else '' %}
+<div id="{{ viewer_id }}"
+     class="molstar-box {{ box_class }}"
+     data-structure-url="{{ structure_url }}"></div>
+{% if show_legend is not defined or show_legend %}
+<p class="mol-legend" data-viewer="{{ viewer_id }}">
+  {% for chain, label in chain_labels.items() %}
+  <span hidden><i class="swatch" data-chain="{{ chain }}"></i>{{ label }}</span>
+  {% endfor %}
+</p>
+{% endif %}

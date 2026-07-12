@@ -10,49 +10,88 @@
         border-radius: 3px;
         text-decoration: none;
     }
-    .sort-bar a.is-active { background: #333355; color: #ffffff; border-color: #333355; }
+    .sort-bar a.is-active { background: #0a0039; color: #ffffff; border-color: #0a0039; }
 
-    .tcr-grid {
+    /* A call-out linking through to the COM projection viewer. */
+    .explore-callout {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 10px;
+        padding: 10px 14px;
+        border: 1px solid #e0e0e8;
+        border-left: 3px solid #785ef0;
+        border-radius: 3px;
+    }
+
+    /* CSS-only accordion (from mimotopesdb's browse_collection.html). */
+    .accordion { width: 100%; }
+    .accordion-row {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-        gap: 12px;
+        align-items: center;
+        gap: 8px;
+        padding: 7px 8px;
     }
-    .tcr-card { border: 1px solid #e0e0e0; border-radius: 4px; padding: 10px 12px; }
-    .tcr-card-toggle { display: none; }
-    .tcr-card-title a { font-weight: 600; font-size: 13pt; text-decoration: none; }
-    .tcr-card-flag, .structure-row-flag {
-        font-size: 8pt; text-transform: uppercase; letter-spacing: 0.04em;
-        background: rgba(120, 94, 240, 0.15); border: 1px solid #785ef0;
-        border-radius: 3px; padding: 1px 4px; margin-left: 4px;
+    .tcr-row {
+        grid-template-columns: 28px 1.4fr 1.2fr 1.2fr 0.6fr 1.3fr 0.7fr 1fr;
     }
-    .tcr-card-genes, .tcr-card-meta { margin-top: 3px; }
-    .tcr-card-meta small { margin-right: 4px; }
-    .tcr-card-antigens { margin-top: 6px; }
-    .antigen-dot {
-        display: inline-block; width: 11px; height: 11px; border-radius: 50%;
-        vertical-align: middle; margin-right: 2px;
+    .accordion-head {
+        border-bottom: 1px solid #cccccc;
+        font-weight: 600;
+        color: #666677;
     }
-    .tcr-card-expand {
-        display: inline-block; margin-top: 8px; cursor: pointer;
-        user-select: none; font-size: 10pt; color: #333355;
+    .accordion-item { border-bottom: 1px solid #eeeeee; }
+
+    .accordion-toggle { display: none; }
+
+    .accordion-header { cursor: pointer; user-select: none; }
+    .accordion-header:hover { background: #fafafa; }
+
+    .icon::before {
+        content: "+";
+        display: inline-block;
+        font-weight: bold;
+        width: 1em;
+        text-align: center;
+        color: #666677;
     }
-    .tcr-card-expand .icon::before {
-        content: "+"; font-weight: bold; margin-right: 4px;
-    }
-    .tcr-card-toggle:checked ~ .tcr-card-head .tcr-card-expand .icon::before {
+    .accordion-toggle:checked ~ .accordion-header .icon::before {
         content: "\2212"; /* minus */
     }
-    .tcr-card-structures {
-        max-height: 0; overflow: hidden; transition: max-height 0.3s ease;
-        margin-top: 0;
+
+    .accordion-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
     }
-    .tcr-card-toggle:checked ~ .tcr-card-structures {
-        max-height: 2000px; margin-top: 8px;
+    .accordion-toggle:checked ~ .accordion-content { max-height: 1000px; }
+
+    .accordion-body { padding: 4px 8px 12px 36px; }
+    .accordion-body small { display: block; }
+    .accordion-body-label {
+        display: inline-block;
+        min-width: 80px;
+        color: #666677;
     }
-    .tcr-card-structure-link {
-        display: inline-block; font-family: 'IBM Plex Mono', monospace;
-        font-size: 10pt; padding: 2px 6px; margin: 2px;
-        border: 1px solid #e0e0e0; border-radius: 3px; text-decoration: none;
+
+    .pdb-chip {
+        display: inline-block;
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 10pt;
+        padding: 1px 6px;
+        margin: 2px 2px 2px 0;
+        border: 1px solid #e0e0e8;
+        border-radius: 3px;
+        text-decoration: none;
+    }
+    .pdb-chip:hover { background: #f0f0f5; }
+    .peptide-chip {
+        display: inline-block;
+        font-size: 10pt;
+        padding: 1px 6px;
+        margin: 2px 2px 2px 0;
+        background: #f6f6fa;
+        border-radius: 3px;
     }
 </style>
 {% endblock %}
@@ -62,21 +101,25 @@
     <div class="grid-container">
         <div class="column-full-width">
             <div class="inner">
-                <h1 class="heading-medium vertical-spacing-top">TCRs</h1>
-                <p class="vertical-spacing-top-0-25">
-                    <small>{{ tcr_count }} T cell receptors with experimentally determined TCR:pMHC structures.</small>
+                <h1 class="heading-extra-large vertical-spacing-bottom-0-25">TCRs</h1>
+                <p class="vertical-spacing-bottom-0-5">
+                    {{ tcr_count }} T cell receptors with experimentally determined TCR:pMHC structures.
                 </p>
+            </div>
+        </div>
+    </div>
+</section>
 
-                <div class="sort-bar vertical-spacing-top-0-25">
-                    <small>Sort:</small>
-                    {% set labels = {
-                        'deposition_desc': 'Newest', 'deposition_asc': 'Oldest',
-                        'name_asc': 'Name A\u2013Z', 'name_desc': 'Name Z\u2013A',
-                        'structures_desc': 'Most structures', 'structures_asc': 'Fewest structures'
-                    } %}
-                    {% for option in sort_options %}
-                        <a href="/tcrs?sort={{ option }}" class="{{ 'is-active' if option == sort else '' }}">{{ labels[option] }}</a>
-                    {% endfor %}
+<section>
+    <div class="grid-container">
+        <div class="column-full-width">
+            <div class="inner vertical-spacing-bottom-0-5">
+                <div class="explore-callout">
+                    <strong><a href="/tcrs/explore">Explore the COM projection viewer</a></strong>
+                    <small>
+                        Every TCR:pMHC footprint projected onto the antigen-binding domain &mdash;
+                        click a centre of mass to load its aligned structure.
+                    </small>
                 </div>
             </div>
         </div>
@@ -86,10 +129,33 @@
 <section>
     <div class="grid-container">
         <div class="column-full-width">
-            <div class="inner vertical-spacing-top-0-25">
-                <div class="tcr-grid">
+            <div class="inner">
+                <div class="sort-bar vertical-spacing-bottom-0-5">
+                    <small>Sort:</small>
+                    {% set labels = {
+                        'deposition_desc': 'Newest', 'deposition_asc': 'Oldest',
+                        'name_asc': 'Name A–Z', 'name_desc': 'Name Z–A',
+                        'structures_desc': 'Most structures', 'structures_asc': 'Fewest structures'
+                    } %}
+                    {% for option in sort_options %}
+                        <a href="/tcrs?sort={{ option }}" class="{{ 'is-active' if option == sort else '' }}"><small>{{ labels[option] }}</small></a>
+                    {% endfor %}
+                </div>
+
+                <div class="accordion">
+                    <div class="accordion-row tcr-row accordion-head">
+                        <span></span>
+                        <span><small>TCR</small></span>
+                        <span><small>TRAV</small></span>
+                        <span><small>TRBV</small></span>
+                        <span><small>Structures</small></span>
+                        <span><small>Alleles</small></span>
+                        <span><small>Antigens</small></span>
+                        <span><small>First deposited</small></span>
+                    </div>
+
                     {% for tcr in tcrs %}
-                        {% include "fragments/_tcr_card.html" %}
+                        {% include "fragments/_tcr_row.html" %}
                     {% endfor %}
                 </div>
             </div>

@@ -1,11 +1,20 @@
 {
-    "SITE_TITLE": "histo.fyi TCRs",
+    "SITE_TITLE": "histo.fyi",
     "STATIC_ROUTE": "https://static.histo.fyi",
+    "HISTO_ROUTE": "https://www.histo.fyi",
     "NAVIGATION_ITEMS": [
+        {"slug": "home", "label": "Home", "url": "https://www.histo.fyi/"},
+        {"slug": "structures", "label": "Structures", "url": "https://www.histo.fyi/structures"},
         {"slug": "tcrs", "label": "TCRs", "url": "/tcrs"},
-        {"slug": "clonotypes", "label": "Clonotypes", "url": "/clonotypes"},
-        {"slug": "explore", "label": "Explore", "url": "/tcrs/explore"}
+        {"slug": "about", "label": "About", "url": "https://www.histo.fyi/about"}
     ],
+    "CHAIN_LABELS": {
+        "A": "MHC α (heavy chain)",
+        "B": "β2-microglobulin",
+        "C": "Peptide",
+        "D": "TCR α",
+        "E": "TCR β"
+    },
     "ANTIGEN_COLORS": {
         "tumour": "#dc267f",
         "pathogen": "#648fff",

@@ -1,25 +1,18 @@
 {% if structure %}{% set page_title = " | " ~ pdb_id %}{% else %}{% set page_title = " | structure not found" %}{% endif %}
 {% extends "shared/base.html" %}
 
+{% block head %}
+{% include "fragments/_molstar_head.html" %}
+{% endblock %}
+
 {% block style %}
 <style>
-    .meta-table { width: 100%; border-collapse: collapse; }
-    .meta-table td { padding: 3px 6px; border-bottom: 1px solid #f0f0f0; }
-    .meta-table td:first-child { color: #666677; width: 45%; }
-    .cdr-table { width: 100%; border-collapse: collapse; }
-    .cdr-table th, .cdr-table td { padding: 3px 6px; text-align: left; border-bottom: 1px solid #f0f0f0; }
-    .cdr-table th { color: #666677; font-weight: 600; }
     .cdr-seq { font-family: 'IBM Plex Mono', monospace; }
     .placeholder-slot {
         border: 1px dashed #cccccc; border-radius: 4px; padding: 16px;
         color: #888899; text-align: center; font-size: 10pt;
     }
     .executive-summary { font-size: 11pt; }
-    .noncanonical-flag {
-        font-size: 9pt; text-transform: uppercase; letter-spacing: 0.04em;
-        background: rgba(220, 38, 127, 0.12); border: 1px solid #dc267f;
-        border-radius: 3px; padding: 1px 5px; margin-left: 6px;
-    }
 </style>
 {% endblock %}
 
@@ -45,30 +38,86 @@
     <div class="grid-container">
         <div class="column-full-width">
             <div class="inner">
-                <div class="vertical-spacing-top-0-5"><small><strong>Structure deep dive</strong></small></div>
-                <h1 class="heading-medium vertical-spacing-bottom-0-25">
+                <h1 class="heading-extra-large vertical-spacing-bottom-0-25">
                     {{ pdb_id }}
                     {% if structure.noncanonical and structure.noncanonical.flag %}
-                        <span class="noncanonical-flag" title="{{ structure.noncanonical.evidence }}">non-canonical</span>
+                        <span class="flag is-noncanonical" title="{{ structure.noncanonical.evidence }}">non-canonical</span>
                     {% endif %}
                 </h1>
-                <small>
+                <p class="vertical-spacing-bottom-0-5">
                     {{ structure.allele }} presenting
                     {{ structure.peptide_seq | sequence_display | safe }}
-                    ({{ structure.antigen_type | deslugify_string }})
-                </small>
+                    to {{ tcr.tcr_name if tcr else 'a T cell receptor' }}
+                </p>
             </div>
         </div>
     </div>
 </section>
 
-{# Hero slot — the Mol* viewer + interactive chord / sequence / CDR views land here. #}
+{# The main event: the aligned structure, coloured by chain. #}
 <section>
     <div class="grid-container">
-        <div class="column-full-width">
-            <div class="inner vertical-spacing-top-0-25">
-                <div class="placeholder-slot" style="min-height: 240px; display: flex; align-items: center; justify-content: center;">
-                    Mol* viewer, interactive chord diagram and sequence track render here in the interactivity pass.
+        <div class="column-three-quarters">
+            <div class="inner">
+                {% with viewer_id='structure-viewer', box_class='is-tall' %}
+                    {% include "fragments/_molstar_viewer.html" %}
+                {% endwith %}
+            </div>
+        </div>
+        <div class="column-one-quarter">
+            <div class="inner">
+                <div class="panel-title vertical-spacing-bottom-0-25">Structure</div>
+                <small>
+                    <table class="info-table">
+                        <tr><td>Method</td><td>{{ structure.method | deslugify_string }}</td></tr>
+                        <tr><td>Resolution</td><td>{% if structure.resolution %}{{ structure.resolution }} &#8491;{% else %}&mdash;{% endif %}</td></tr>
+                        <tr><td>Allele</td><td>{{ structure.allele }}</td></tr>
+                        <tr><td>Peptide</td><td><span class="mono">{{ structure.peptide_seq }}</span><br /><smaller>{{ structure.peptide_len }}mer</smaller></td></tr>
+                        <tr><td>Antigen</td><td>
+                            <span class="antigen-dot" style="background-color: {{ antigen_colors.get(structure.antigen_type, '#999999') }};"></span>{{ structure.antigen_type | deslugify_string }}
+                        </td></tr>
+                        <tr><td>ASU copies</td><td>{{ structure.n_copies }}</td></tr>
+                        <tr><td>Deposited</td><td>{{ structure.deposition_date }}</td></tr>
+                        <tr><td>Released</td><td>{{ structure.release_date }}</td></tr>
+                    </table>
+                </small>
+                <p class="vertical-spacing-top-0-25">
+                    <smaller>
+                        <a href="{{ pdb_id | coordinate_url }}" download>Download aligned PDB</a><br />
+                        <a href="https://www.rcsb.org/structure/{{ pdb_id }}" target="_blank" rel="noopener">View at RCSB PDB</a>
+                    </smaller>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="grid-container">
+        <div class="column-one-half">
+            <div class="inner vertical-spacing-top-0-5">
+                <div class="panel-title vertical-spacing-bottom-0-25">TCR genes &amp; CDRs</div>
+                <small>
+                    <table class="info-table">
+                        <tr><th></th><th>Alpha</th><th>Beta</th></tr>
+                        <tr><td>V gene</td><td>{{ structure.tcr_alpha_v_gene }}</td><td>{{ structure.tcr_beta_v_gene }}</td></tr>
+                        <tr><td>J gene</td><td>{{ structure.tcr_alpha_j_gene }}</td><td>{{ structure.tcr_beta_j_gene }}</td></tr>
+                        {% if structure.cdrs %}
+                        <tr><td>CDR1</td><td class="cdr-seq">{{ structure.cdrs.alpha.cdr1 }}</td><td class="cdr-seq">{{ structure.cdrs.beta.cdr1 }}</td></tr>
+                        <tr><td>CDR2</td><td class="cdr-seq">{{ structure.cdrs.alpha.cdr2 }}</td><td class="cdr-seq">{{ structure.cdrs.beta.cdr2 }}</td></tr>
+                        <tr><td>CDR3</td><td class="cdr-seq">{{ structure.cdrs.alpha.cdr3 }}</td><td class="cdr-seq">{{ structure.cdrs.beta.cdr3 }}</td></tr>
+                        {% endif %}
+                    </table>
+                </small>
+            </div>
+        </div>
+        <div class="column-one-half">
+            <div class="inner vertical-spacing-top-0-5">
+                <div class="panel-title vertical-spacing-bottom-0-25">Interface</div>
+                <div class="placeholder-slot">
+                    Shape-complementarity / BSA bubble row
+                    ({{ structure.shape_complementarity | length }} SC &middot; {{ structure.bsa | length }} BSA rows),
+                    the interactive chord diagram and within-structure variability render here.
                 </div>
             </div>
         </div>
@@ -94,59 +143,6 @@
 </section>
 {% endif %}
 
-<section>
-    <div class="grid-container">
-        <div class="column-one-half">
-            <div class="inner">
-                <div class="vertical-spacing-bottom-0-25"><strong>Structure</strong></div>
-                <small>
-                    <table class="meta-table">
-                        <tr><td>Method</td><td>{{ structure.method | deslugify_string }}</td></tr>
-                        <tr><td>Resolution</td><td>{% if structure.resolution %}{{ structure.resolution }} &#8491;{% else %}&mdash;{% endif %}</td></tr>
-                        <tr><td>Deposited</td><td>{{ structure.deposition_date }}</td></tr>
-                        <tr><td>Released</td><td>{{ structure.release_date }}</td></tr>
-                        <tr><td>Allele</td><td>{{ structure.allele }}</td></tr>
-                        <tr><td>Peptide</td><td class="cdr-seq">{{ structure.peptide_seq }} ({{ structure.peptide_len }}mer)</td></tr>
-                        <tr><td>ASU copies</td><td>{{ structure.n_copies }}</td></tr>
-                    </table>
-                </small>
-            </div>
-        </div>
-        <div class="column-one-half">
-            <div class="inner">
-                <div class="vertical-spacing-bottom-0-25"><strong>TCR genes &amp; CDRs</strong></div>
-                <small>
-                    <table class="cdr-table">
-                        <tr><th></th><th>Alpha</th><th>Beta</th></tr>
-                        <tr><td>V gene</td><td>{{ structure.tcr_alpha_v_gene }}</td><td>{{ structure.tcr_beta_v_gene }}</td></tr>
-                        <tr><td>J gene</td><td>{{ structure.tcr_alpha_j_gene }}</td><td>{{ structure.tcr_beta_j_gene }}</td></tr>
-                        {% if structure.cdrs %}
-                        <tr><td>CDR1</td><td class="cdr-seq">{{ structure.cdrs.alpha.cdr1 }}</td><td class="cdr-seq">{{ structure.cdrs.beta.cdr1 }}</td></tr>
-                        <tr><td>CDR2</td><td class="cdr-seq">{{ structure.cdrs.alpha.cdr2 }}</td><td class="cdr-seq">{{ structure.cdrs.beta.cdr2 }}</td></tr>
-                        <tr><td>CDR3</td><td class="cdr-seq">{{ structure.cdrs.alpha.cdr3 }}</td><td class="cdr-seq">{{ structure.cdrs.beta.cdr3 }}</td></tr>
-                        {% endif %}
-                    </table>
-                </small>
-            </div>
-        </div>
-    </div>
-</section>
-
-{# Slots for the SC / BSA bubble row, COMs-on-ABD and within-structure variability. #}
-<section>
-    <div class="grid-container">
-        <div class="column-full-width">
-            <div class="inner vertical-spacing-top-0-5">
-                <div class="placeholder-slot">
-                    Shape-complementarity / BSA bubble row ({{ structure.shape_complementarity | length }} SC &middot;
-                    {{ structure.bsa | length }} BSA rows), COMs-on-ABD and within-structure variability
-                    render here in a later pass.
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
 {% else %}
 
 <section>
@@ -163,4 +159,8 @@
 
 {% endif %}
 
+{% endblock %}
+
+{% block scripts %}
+{% include "fragments/_molstar_scripts.html" %}
 {% endblock %}

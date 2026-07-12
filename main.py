@@ -9,6 +9,7 @@ from handlers import tcrs_handler, tcr_handler, explore_handler
 from handlers import structure_handler
 from handlers import clonotypes_handler, clonotype_handler
 
+from functions.coordinates import coordinate_url
 from functions.decorators import templated
 from functions.slugs import (
     de_slugify_allele,
@@ -87,6 +88,29 @@ def sequence_display_filter(sequence: str) -> str:
     if sequence is not None:
         return ''.join([f"<span class='bg-{aa.lower()} aa'>{aa}</span>" for aa in sequence])
     return ''
+
+
+@app.template_filter('coordinate_url')
+def coordinate_url_filter(pdb_id: str) -> str:
+    """The static URL of a PDB id's aligned coordinate file, for Mol* to load."""
+    return coordinate_url(pdb_id) or ''
+
+
+@app.template_global('asset')
+def asset(filename: str) -> str:
+    """Cache-busting URL for one of our own static files.
+
+    Quart serves /static with `cache-control: max-age=43200`, so an edited JS or
+    CSS file is invisible to a browser that already has it for another 12 hours.
+    Appending the file's mtime makes each edit a new URL. Coordinate files and the
+    Mol* bundle are deliberately NOT routed through this — they never change, and
+    the long cache is exactly what we want for them.
+    """
+    path = os.path.join('static', filename)
+    try:
+        return f'/static/{filename}?v={int(os.path.getmtime(path))}'
+    except OSError:
+        return f'/static/{filename}'
 
 
 ### Thin views — parse request args, delegate to a handler, let @templated render. ###

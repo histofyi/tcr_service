@@ -19,16 +19,16 @@ async def render(template_name: str, variables: Dict) -> str:
         template_name += ".html"
 
     variables['static_route'] = current_app.config['STATIC_ROUTE']
+    variables['histo_route'] = current_app.config['HISTO_ROUTE']
     variables['site_title'] = current_app.config['SITE_TITLE']
     variables['navitems'] = current_app.config['NAVIGATION_ITEMS']
     variables['antigen_colors'] = current_app.config['ANTIGEN_COLORS']
     variables['aa_colors'] = current_app.config['AA_COLORS']
-    # Nav highlight: a handler may set 'current_navitem' explicitly in its context
-    # (preferred here, since our template names don't map cleanly to nav slugs);
-    # otherwise fall back to the mimotopesdb convention of deriving it from the
-    # template name (basename before the first '_').
-    if not variables.get('current_navitem'):
-        variables['current_navitem'] = template_name.split('_')[0]
+    variables['chain_labels'] = current_app.config['CHAIN_LABELS']
+    # This whole microapp is the "TCRs" item in the histo.fyi navbar — every page it
+    # serves (TCRs, explore, clonotypes, structure deep dives) sits under that item,
+    # so the nav highlight is constant. The other nav items link out to histo.fyi.
+    variables['current_navitem'] = 'tcrs'
     variables['git_commit'] = current_app.config['git_commit']
 
     return await render_template(template_name, **variables)

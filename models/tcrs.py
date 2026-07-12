@@ -35,6 +35,53 @@ def annotate_index_record(record: dict) -> dict:
     return record
 
 
+def annotate_chains(tcr: dict, representative: dict | None) -> dict:
+    """Add `tcr['chains']` — the alpha/beta gene + CDR panel shown at the top of
+    the TCR page.
+
+    The per-TCR bundle carries only V genes, so the panel is assembled from a
+    representative structure bundle, which carries V/J genes and all three CDRs
+    for both chains. CDR1 and CDR2 are germline (V-gene encoded) and CDR3 defines
+    the clonotype, so they are constant across a TCR's structures — with one
+    exception: an affinity-engineered variant may carry a mutated CDR3. The
+    representative is therefore the first NON-engineered structure, so the panel
+    always shows the parent TCR rather than a variant. Residue-level engineering
+    detail stays on the clonotype page.
+    """
+    if not representative:
+        tcr['chains'] = {}
+        return tcr
+
+    cdrs = representative.get('cdrs') or {}
+
+    tcr['chains'] = {
+        'alpha': {
+            'v_gene': representative.get('tcr_alpha_v_gene'),
+            'j_gene': representative.get('tcr_alpha_j_gene'),
+            **(cdrs.get('alpha') or {}),
+        },
+        'beta': {
+            'v_gene': representative.get('tcr_beta_v_gene'),
+            'j_gene': representative.get('tcr_beta_j_gene'),
+            **(cdrs.get('beta') or {}),
+        },
+    }
+    tcr['representative_pdb_id'] = representative.get('pdb_id')
+    return tcr
+
+
+def representative_pdb_id(tcr: dict) -> str | None:
+    """The PDB id whose bundle best represents the parent TCR: the first structure
+    that is not an affinity-engineered variant, else simply the first."""
+    structures = tcr.get('structures') or []
+    if not structures:
+        return None
+    for structure in structures:
+        if not structure.get('is_engineered_variant'):
+            return structure.get('pdb_id')
+    return structures[0].get('pdb_id')
+
+
 class Tcr(Model):
     """
     TCR data access. Two shapes, mirroring the house DuckDB/JSON split:

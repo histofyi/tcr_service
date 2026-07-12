@@ -1,0 +1,7 @@
+{# The self-bundled Mol* (Viewer + the selection API the CDN viewer build omits)
+   and our loading / legend helpers.
+
+   viewer.js goes through asset() so an edit is picked up immediately; the Mol*
+   bundle does not — it never changes, and its 12-hour cache is what we want. #}
+<script src="/static/molstar.js"></script>
+<script src="{{ asset('viewer.js') }}"></script>

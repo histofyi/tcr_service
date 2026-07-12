@@ -1,0 +1,12 @@
+{# One TCR chain's genes + CDRs. Params: chain_details, chain_title.
+   Ported from mimotopesdb's fragments/tcr_chain_info_table.html. #}
+<div class="panel-title vertical-spacing-bottom-0-25">{{ chain_title }}</div>
+<small>
+    <table class="info-table">
+        <tr><td>V gene</td><td class="mono">{{ chain_details.v_gene or '&mdash;' | safe }}</td></tr>
+        <tr><td>J gene</td><td class="mono">{{ chain_details.j_gene or '&mdash;' | safe }}</td></tr>
+        <tr><td>CDR1</td><td><span class="sequence">{{ chain_details.cdr1 | sequence_display | safe }}</span></td></tr>
+        <tr><td>CDR2</td><td><span class="sequence">{{ chain_details.cdr2 | sequence_display | safe }}</span></td></tr>
+        <tr><td>CDR3</td><td><span class="sequence">{{ chain_details.cdr3 | sequence_display | safe }}</span></td></tr>
+    </table>
+</small>

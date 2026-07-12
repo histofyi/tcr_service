@@ -1,0 +1,194 @@
+<style>
+  smaller {
+    font-size: 10pt;
+    color: #333355;
+  }
+  small {
+    font-size: 11pt;
+    color: #333355;
+  }
+
+  hr {
+    margin-top: 10px;
+    border-top: 1px dashed #cccccc;
+    margin-bottom: 0px;
+  }
+
+  .aa {
+    font-family: 'IBM Plex Mono', monospace !important;
+    font-size: 13pt;
+    padding: 0.5px;
+    margin: 0.5px;
+  }
+
+/* Amino-acid background-color variants (rgba, low opacity) */
+.bg-g { background-color: rgba(0, 180, 160, 0.15); }
+.bg-d { background-color: rgba(229, 79, 155, 0.15); }
+.bg-e { background-color: rgba(176, 30, 102, 0.15); }
+.bg-h { background-color: rgba(176, 122, 245, 0.15); }
+.bg-k { background-color: rgba(147, 85, 224, 0.15); }
+.bg-r { background-color: rgba(114, 50, 192, 0.15); }
+.bg-a { background-color: rgba(168, 197, 255, 0.15); }
+.bg-p { background-color: rgba(154, 187, 255, 0.15); }
+.bg-v { background-color: rgba(140, 176, 255, 0.15); }
+.bg-l { background-color: rgba(126, 165, 255, 0.15); }
+.bg-i { background-color: rgba(111, 154, 255, 0.15); }
+.bg-m { background-color: rgba(100, 143, 255, 0.15); }
+.bg-f { background-color: rgba(74, 114, 219, 0.15); }
+.bg-w { background-color: rgba(51, 88, 180, 0.15); }
+.bg-s { background-color: rgba(255, 208, 102, 0.15); }
+.bg-t { background-color: rgba(255, 194, 51, 0.15); }
+.bg-n { background-color: rgba(255, 176, 0, 0.15); }
+.bg-q { background-color: rgba(224, 155, 0, 0.15); }
+.bg-y { background-color: rgba(192, 133, 0, 0.15); }
+.bg-c { background-color: rgba(255, 163, 51, 0.15); }
+
+/* ---- house components, shared across the TCR pages ---------------------- */
+
+/* A labelled key/value panel — the shape used for chain / structure info. */
+.info-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.info-table td {
+  padding: 3px 6px;
+  border-bottom: 1px solid #f0f0f0;
+  vertical-align: top;
+}
+.info-table td:first-child {
+  color: #666677;
+  width: 42%;
+}
+.info-table th {
+  padding: 3px 6px;
+  text-align: left;
+  color: #666677;
+  font-weight: 600;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.panel-title {
+  font-weight: 600;
+}
+
+/* Monospace identifiers (PDB codes, sequences, gene names). */
+.mono {
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+/* Antigen-type dot (IBM palette, from config ANTIGEN_COLORS). */
+.antigen-dot {
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-right: 3px;
+}
+
+/* Small uppercase pill — "engineered variants", "non-canonical", etc. */
+.flag {
+  font-size: 8pt;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: rgba(120, 94, 240, 0.12);
+  border: 1px solid #785ef0;
+  border-radius: 3px;
+  padding: 1px 5px;
+  margin-left: 4px;
+  white-space: nowrap;
+}
+.flag.is-noncanonical {
+  background: rgba(220, 38, 127, 0.12);
+  border-color: #dc267f;
+}
+
+/* Structure list — a table of the structures belonging to a TCR. */
+.structure-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.structure-table th {
+  text-align: left;
+  font-weight: 600;
+  color: #666677;
+  border-bottom: 1px solid #cccccc;
+  padding: 6px 10px 6px 0;
+  white-space: nowrap;
+}
+.structure-table td {
+  padding: 7px 10px 7px 0;
+  border-bottom: 1px solid #eeeeee;
+  vertical-align: middle;
+}
+.structure-table tr:hover td {
+  background: #fafafa;
+}
+.structure-table .pdb a {
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 600;
+}
+
+/* Mol* viewer container. molstar.css is loaded after the histo stylesheet, so the
+   chrome overrides below are scoped + !important to win. */
+.molstar-box {
+  position: relative;
+  width: 100%;
+  height: 460px;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid #e6e6ee;
+}
+.molstar-box.is-tall { height: 620px; }
+.molstar-box.is-short { height: 340px; }
+.molstar-box .msp-plugin,
+.molstar-box .msp-viewport { background: #ffffff !important; }
+.molstar-box .msp-layout-standard { border: none !important; }
+.molstar-box .msp-btn,
+.molstar-box .msp-viewport-controls-buttons button { background: #ffffff !important; }
+.molstar-box .msp-btn:hover,
+.molstar-box .msp-viewport-controls-buttons button:hover {
+  background: #f0f0f2 !important;
+  outline: none !important;
+}
+.molstar-box .msp-btn svg,
+.molstar-box .msp-btn-icon svg,
+.molstar-box .msp-viewport-controls-buttons svg {
+  fill: #6b6f7e !important;
+  stroke: #6b6f7e !important;
+}
+.molstar-box .msp-viewport-controls-buttons button:hover svg {
+  fill: #0a0039 !important;
+  stroke: #0a0039 !important;
+}
+.molstar-box .msp-btn-icon,
+.molstar-box .msp-btn-link,
+.molstar-box .msp-btn-link-toggle-off,
+.molstar-box .msp-btn-link-toggle-on { color: #6b6f7e !important; }
+.molstar-box .msp-highlight-info,
+.molstar-box .msp-hover-box-body,
+.molstar-box .msp-highlight-simple-row {
+  background: #ffffff !important;
+  color: #0a0039 !important;
+}
+/* the screenshot button has no viewportShow* flag — hide it here */
+.molstar-box [title="Screenshot"] { display: none !important; }
+
+/* Chain legend under a Mol* viewer. */
+.mol-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-size: 10pt;
+  color: #333355;
+  margin: 6px 0 0;
+}
+.mol-legend .swatch {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  margin-right: 5px;
+  vertical-align: -1px;
+}
+</style>

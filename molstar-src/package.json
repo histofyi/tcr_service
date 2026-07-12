@@ -1,0 +1,15 @@
+{
+  "name": "w6-molstar-bundle",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Bundles Mol* Viewer + the selection API (not in the CDN viewer build) -> website/static/molstar.js, so the site can focus a residue / colour by selection.",
+  "dependencies": {
+    "molstar": "4.3.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.23.0"
+  },
+  "scripts": {
+    "build": "esbuild entry.js --bundle --format=iife --global-name=molstar --outfile=../static/molstar.js --minify --log-level=error --loader:.jpg=dataurl --loader:.png=dataurl --loader:.gif=dataurl --loader:.svg=dataurl --loader:.woff=dataurl --loader:.woff2=dataurl --loader:.ttf=dataurl --loader:.glsl=text --loader:.frag=text --loader:.vert=text --loader:.ico=dataurl --loader:.html=text --alias:fs=./empty.js --alias:path=./empty.js --alias:crypto=./empty.js --alias:stream=./empty.js --alias:os=./empty.js --alias:util=./empty.js --alias:zlib=./empty.js"
+  }
+}
