@@ -15,8 +15,12 @@
   const LAYERS = JSON.parse(root.dataset.layers);
   const COLORS = JSON.parse(root.dataset.antigenColors);
   const W = parseFloat(root.dataset.width);
-  const H = parseFloat(root.dataset.height);
   const REF = JSON.parse(root.dataset.ref);   // the ABD's own centre of mass
+  // Only this vertical band of the 1900x1550 projection is shown — it has ~165px
+  // of white above the antigen-binding domain and ~284px below, which is dead
+  // space in an interactive panel. Coordinates stay in the original image space;
+  // this is purely a window onto it.
+  const CROP = JSON.parse(root.dataset.crop);
 
   const bg = root.querySelector('.com-scope-bg');
   const cv = root.querySelector('.com-scope-canvas');
@@ -39,7 +43,8 @@
 
   function draw() {
     const dpr = window.devicePixelRatio || 1;
-    ctx.clearRect(0, 0, cv.width / dpr, cv.height / dpr);
+    // the context is translated into image space, so clear the band being shown
+    ctx.clearRect(0, CROP.top * scale, cv.width / dpr, CROP.height * scale);
 
     visible().forEach((p) => {
       const { x, y } = at(p);
@@ -73,18 +78,23 @@
 
   function layout() {
     const width = root.querySelector('.com-scope-stage').clientWidth;
-    const height = width * H / W;
     const dpr = window.devicePixelRatio || 1;
+
+    scale = width / W;
+    const height = CROP.height * scale;
+    const offset = CROP.top * scale;
 
     wrap.style.width = `${width}px`;
     wrap.style.height = `${height}px`;
+    bg.style.top = `${-offset}px`;
+
     cv.width = width * dpr;
     cv.height = height * dpr;
     cv.style.width = `${width}px`;
     cv.style.height = `${height}px`;
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    // translate by -offset so draw() keeps working in original image space
+    ctx.setTransform(dpr, 0, 0, dpr, 0, -offset * dpr);
 
-    scale = width / W;
     draw();
   }
 
@@ -144,7 +154,7 @@
 
   cv.addEventListener('mousemove', (e) => {
     const r = cv.getBoundingClientRect();
-    const p = pick(e.clientX - r.left, e.clientY - r.top);
+    const p = pick(e.clientX - r.left, e.clientY - r.top + CROP.top * scale);
     if (!p) {
       card.style.display = 'none';
       cv.style.cursor = 'default';
@@ -163,7 +173,7 @@
 
   cv.addEventListener('click', (e) => {
     const r = cv.getBoundingClientRect();
-    const p = pick(e.clientX - r.left, e.clientY - r.top);
+    const p = pick(e.clientX - r.left, e.clientY - r.top + CROP.top * scale);
     // Clicking empty background clears the selection, same as the explore viewer.
     if (p) selectStructure(p.pdb_id);
     else {

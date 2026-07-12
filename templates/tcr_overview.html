@@ -107,7 +107,7 @@
     <div class="grid-container">
         <div class="column-full-width">
             <div class="inner">
-                <h1 class="heading-extra-large vertical-spacing-bottom-0-25">
+                <h1 class="heading-large vertical-spacing-top-0-5 vertical-spacing-bottom-0-25">
                     {{ tcr.tcr_name }}
                     {% if tcr.has_engineered_variants %}
                         <span class="flag">engineered variants</span>
@@ -239,10 +239,10 @@
                      data-antigen-colors='{{ antigen_colors | tojson }}'
                      data-background="{{ com_projection.background }}"
                      data-width="{{ com_projection.width }}"
-                     data-height="{{ com_projection.height }}"
+                     data-crop='{{ com_projection.crop | tojson }}'
                      data-ref='{{ com_projection.ref | tojson }}'>
                     <div class="com-scope-bar">
-                        <label>COM type <select class="com-scope-type"></select></label>
+                        <label>Centre of mass type <select class="com-scope-type"></select></label>
                     </div>
                     <div class="com-scope-stage">
                         <div class="com-scope-wrap">

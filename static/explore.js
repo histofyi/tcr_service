@@ -15,6 +15,9 @@ const $=s=>document.querySelector(s);
 const stage=$("#stage"), wrap=$("#wrap"), bg=$("#bg"), cv=$("#cv"), ctx=cv.getContext("2d"), card=$("#card");
 let DATA=null, COORDS={};
 let W=0, H=0;
+// The vertical band of the projection actually shown; see layout(). Coordinates
+// stay in the original image space, so this only shifts the view.
+let CROP={top:0, height:0};
 let scale=1;
 let cardPdb=null;   // which point the hover card currently shows (keeps it fixed until the point changes)
 
@@ -171,18 +174,27 @@ function renderFilterList(){
 function updateAtNote(){ /* override note removed */ }
 
 function layout(){
-  const w=stage.clientWidth, h=w*H/W;
-  // Fit to the width of the three-quarter column and take the full projection
-  // height. The standalone app capped this to 58% of the viewport and scrolled
-  // the overflow, because it was a fixed-height full-screen app; on a page that
-  // just hides half the projection behind a scrollbar, so show all of it and let
-  // the page scroll instead.
-  wrap.style.width=w+"px"; wrap.style.height=h+"px";
-  stage.style.height=h+"px";
+  // Fit to the width of the three-quarter column, but show only the CROP band of
+  // the projection vertically. The background image is 1900x1550 with ~165px of
+  // white above the antigen-binding domain and ~284px below — fine for a figure,
+  // dead space in an interactive panel. So the image is scrolled up by crop.top
+  // and the viewport is crop.height tall. Nothing is lost: every COM point falls
+  // inside the band. The asset itself is untouched; this is purely a window onto
+  // it, so COM coordinates stay in the original 1900x1550 space.
+  const w=stage.clientWidth;
+  scale=w/W;
+  const viewH=CROP.height*scale;
+  const offset=CROP.top*scale;
+
+  wrap.style.width=w+"px"; wrap.style.height=viewH+"px";
+  stage.style.height=viewH+"px";
+  bg.style.top=(-offset)+"px";
+
   const dpr=window.devicePixelRatio||1;
-  cv.width=w*dpr; cv.height=h*dpr; cv.style.width=w+"px"; cv.style.height=h+"px";
-  ctx.setTransform(dpr,0,0,dpr,0,0);
-  scale=w/W; draw();
+  cv.width=w*dpr; cv.height=viewH*dpr; cv.style.width=w+"px"; cv.style.height=viewH+"px";
+  // translate by -offset so draw() can keep working in original image space
+  ctx.setTransform(dpr,0,0,dpr,0,-offset*dpr);
+  draw();
 }
 /* ---------------- Facet-shape overlay (added) ----------------
    Describes EXACTLY the set { p in pts() : visible(p) } for the current layer,
@@ -269,8 +281,10 @@ function drawFacetShape(s, col){
 }
 
 function draw(){
-  const dpr=window.devicePixelRatio||1, w=cv.width/dpr, h=cv.height/dpr;
-  ctx.clearRect(0,0,w,h);
+  const dpr=window.devicePixelRatio||1, w=cv.width/dpr;
+  // the context is translated into image space, so clear the band we're showing,
+  // not (0,0)-(w,h) — that would leave the top of the view uncleared
+  ctx.clearRect(0, CROP.top*scale, w, CROP.height*scale);
   let selPt=null;
   for(const p of pts()){
     if(!visible(p)) continue;
@@ -311,7 +325,7 @@ function hit(mx,my){
 }
 cv.addEventListener("mousemove",e=>{
   const r=cv.getBoundingClientRect();
-  const p=hit(e.clientX-r.left,e.clientY-r.top);
+  const p=hit(e.clientX-r.left, e.clientY-r.top + CROP.top*scale);
   if(!p){card.style.display="none";cv.style.cursor="default";cardPdb=null;return;}
   cv.style.cursor="pointer";
   if(p.pdb===cardPdb) return;   // same point — leave the card where it is (fixed, not mouse-following)
@@ -333,7 +347,7 @@ cv.addEventListener("mousemove",e=>{
 cv.addEventListener("mouseleave",()=>{card.style.display="none";cardPdb=null;});
 cv.addEventListener("click",e=>{
   const r=cv.getBoundingClientRect();
-  const p=hit(e.clientX-r.left,e.clientY-r.top);
+  const p=hit(e.clientX-r.left, e.clientY-r.top + CROP.top*scale);
   // A click on a COM loads it; a click on empty background clears the selection
   // and empties the Mol* panel, so there's a way back to "nothing selected".
   if(p){ selPdb=p.pdb; draw(); loadStructure(p); }
@@ -421,6 +435,7 @@ async function loadStructure(p){
 async function boot(){
   const root = document.getElementById("com-viewer");
   COORDS = JSON.parse(root.dataset.coordinates);
+  CROP = JSON.parse(root.dataset.crop);
 
   DATA = await (await fetch(root.dataset.comCoords)).json();
   W = DATA.W; H = DATA.H;

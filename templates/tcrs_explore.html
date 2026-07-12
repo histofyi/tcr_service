@@ -33,8 +33,7 @@
 #com-viewer { margin:0;font-family:var(--sans);background:var(--bg);color:var(--ink);font-size:13px }
 #com-viewer .mono { font-family:var(--mono) }
 #com-viewer .wbar { flex:0 0 auto;background:var(--wsurf);color:var(--wink) }
-/* Controls only — the page heading above already says what this is, so the bar
-   packs left rather than splitting a title away from the controls. */
+/* A thin row of controls only, so the projection starts right below the selector. */
 #com-viewer .topbar { display:flex;align-items:center;gap:24px;
    padding:9px 16px;border-bottom:1px solid var(--wline) }
 #com-viewer .topbar .ctl { display:flex;align-items:center;gap:8px;font-size:11px;font-weight:500;white-space:nowrap;
@@ -95,10 +94,11 @@
 #com-viewer .card .val { color:#857F9C;float:none }
 #com-viewer .cnt { color:var(--wmut);font-size:11px }
 
-/* --- facet-shape overlay readout (added): a small histo-styled card pinned
-   top-left inside the canvas frame; pointer-events:none so it never blocks
-   canvas hover / Mol* click-through. --- */
-#com-viewer .facetbox { position:absolute;top:10px;left:10px;z-index:5;pointer-events:none;
+/* --- facet-shape readout: a small histo-styled card pinned to the top-right of
+   the VIEWER (not the canvas), so its top sits level with the selector. It
+   overlays the projection, which is fine. pointer-events:none so it never blocks
+   canvas hover / click. --- */
+#com-viewer .facetbox { position:absolute;top:8px;right:10px;z-index:6;pointer-events:none;
    background:#fff;border:1px solid rgba(10,0,57,.20);border-radius:6px;
    padding:8px 11px;box-shadow:0 5px 15px rgba(0,0,0,.1);color:var(--ink);
    font-family:var(--sans);font-size:11.5px;min-width:158px }
@@ -125,7 +125,9 @@
 /* NB: the viewer's wrapper must NOT be called .main — histo's stylesheet gives
    .main a 60px top margin (it styles the page's <main class="main">), which
    pushed the viewer 60px below the filter panel beside it. */
-#com-viewer .com-main { min-width:0 }
+/* position:relative so the facet readout can pin to the viewer's top-right,
+   level with the selector, rather than to the canvas below it. */
+#com-viewer .com-main { min-width:0;position:relative }
 #com-viewer .stage { position:relative;background:#fff;overflow:hidden }
 #com-viewer .mol { position:relative;height:420px;background:#fff;border:1px solid var(--line2);
    border-top:none }
@@ -147,7 +149,7 @@
     <div class="grid-container">
         <div class="column-full-width">
             <div class="inner">
-                <h1 class="heading-extra-large vertical-spacing-bottom-0-25">Explore TCRs</h1>
+                <h1 class="heading-large vertical-spacing-top-0-5 vertical-spacing-bottom-0-25">Explore TCRs</h1>
                 <p class="vertical-spacing-bottom-0-5">
                     Interactive centre-of-mass viewer across all TCR:pMHC footprints &mdash;
                     click a projected COM to load its aligned structure in Mol*.
@@ -159,7 +161,8 @@
 
 <div id="com-viewer"
      data-com-coords="/static/data/com_coords.json"
-     data-background="/static/images/com_projection_background.png"
+     data-background="{{ com_projection.background }}"
+     data-crop='{{ com_projection.crop | tojson }}'
      data-coordinates='{{ coordinates | tojson }}'>
 <section>
     <div class="grid-container">
@@ -169,23 +172,29 @@
                 <div class="com-main">
 
                     {# No title here: the page heading above already says what this
-                       is, so the topbar is just controls. #}
+                       is, so the topbar is a thin row of controls only — the facet
+                       readout floats over the canvas instead, so the projection
+                       can start immediately below the selector. #}
                     <div class="wbar topbar">
-                        <label class="ctl">COM type <select id="type"></select></label>
+                        <label class="ctl">Centre of mass type <select id="type"></select></label>
                         <label class="ctl"><input type="checkbox" id="facettoggle" checked> Show facet shape</label>
                     </div>
 
                     <div class="stage" id="stage">
-                        <div id="wrap"><img id="bg" alt="Antigen-binding domain projection"><canvas id="cv"></canvas>
-                            <div class="facetbox" id="facetbox">
-                                <div class="fhdr">Facet shape (visible set)</div>
-                                <div class="frow"><span class="fk">n</span><span class="fv" id="fx-n">&mdash;</span></div>
-                                <div class="frow"><span class="fk">RMS radius</span><span class="fv" id="fx-rms">&mdash;</span></div>
-                                <div class="frow"><span class="fk">Anisotropy</span><span class="fv" id="fx-aniso">&mdash;</span></div>
-                                <div class="frow"><span class="fk">Hull area</span><span class="fv" id="fx-hull">&mdash;</span></div>
-                                <div class="fmsg" id="fx-msg" style="display:none"></div>
-                            </div>
-                        </div>
+                        <div id="wrap"><img id="bg" alt="Antigen-binding domain projection"><canvas id="cv"></canvas></div>
+                    </div>
+
+                    {# Anchored to .com-main, not to the canvas, so its top lines up
+                       with the selector in the topbar. It therefore overlays both
+                       the bar and the projection — which is fine, and is what buys
+                       a canvas that starts immediately below the controls. #}
+                    <div class="facetbox" id="facetbox">
+                        <div class="fhdr">Facet shape (visible set)</div>
+                        <div class="frow"><span class="fk">n</span><span class="fv" id="fx-n">&mdash;</span></div>
+                        <div class="frow"><span class="fk">RMS radius</span><span class="fv" id="fx-rms">&mdash;</span></div>
+                        <div class="frow"><span class="fk">Anisotropy</span><span class="fv" id="fx-aniso">&mdash;</span></div>
+                        <div class="frow"><span class="fk">Hull area</span><span class="fv" id="fx-hull">&mdash;</span></div>
+                        <div class="fmsg" id="fx-msg" style="display:none"></div>
                     </div>
 
                     <div class="wbar botbar">

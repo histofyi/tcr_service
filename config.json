@@ -13,6 +13,7 @@
         "height": 1550,
         "background": "/static/images/com_projection_background.png",
         "ref": {"x": 949.7, "y": 774.5},
+        "crop": {"top": 160, "height": 1113},
         "layers": {
             "peptides": "Peptide",
             "tcrs": "TCR variable domain",
