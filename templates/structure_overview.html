@@ -7,8 +7,15 @@
 
 {% block style %}
 <style>
-    .cdr-seq { font-family: 'IBM Plex Mono', monospace; }
     .executive-summary { font-size: 11pt; }
+
+    /* The alpha/beta chain table in the one-third column: three columns, and a
+       CDR3 can run to 14 residues, so the label column gives up its width and the
+       residues are set smaller than the site default. */
+    .info-table.is-chains td:first-child { width: 26%; }
+    .info-table.is-chains td { padding: 3px 4px 3px 0; }
+    .info-table.is-chains .aa { font-size: 10pt; padding: 0; margin: 0; }
+    .info-table.is-chains .mono { font-size: 10pt; }
 
     /* --- the interface matrix ------------------------------------------------
        6 CDR loops x 3 MHC regions. Bubble AREA = buried surface area, bubble
@@ -133,29 +140,84 @@
     </div>
 </section>
 
-{# The main event: the aligned structure, coloured by chain. #}
+{# The main event: the aligned structure, coloured by chain, with what it IS
+   beside it — the receptor's genes and loops, and the pMHC it is reading. The
+   provenance of the file (method, resolution, dates) sits below instead: it
+   describes the experiment, not the biology, and does not belong at eye level. #}
 <section>
     <div class="grid-container">
-        <div class="column-three-quarters">
+        <div class="column-two-thirds">
             <div class="inner">
                 {% with viewer_id='structure-viewer', box_class='is-tall' %}
                     {% include "fragments/_molstar_viewer.html" %}
                 {% endwith %}
             </div>
         </div>
-        <div class="column-one-quarter">
+        <div class="column-one-third">
             <div class="inner">
-                <div class="panel-title vertical-spacing-bottom-0-25">Structure</div>
+                <div class="panel-title vertical-spacing-bottom-0-25">T cell receptor</div>
+                <small>
+                    <table class="info-table is-chains">
+                        <tr><th></th><th>Alpha</th><th>Beta</th></tr>
+                        <tr><td>V gene</td><td class="mono">{{ structure.tcr_alpha_v_gene }}</td><td class="mono">{{ structure.tcr_beta_v_gene }}</td></tr>
+                        <tr><td>J gene</td><td class="mono">{{ structure.tcr_alpha_j_gene }}</td><td class="mono">{{ structure.tcr_beta_j_gene }}</td></tr>
+                        {% if structure.cdrs %}
+                        <tr><td>CDR1</td><td>{{ structure.cdrs.alpha.cdr1 | sequence_display | safe }}</td><td>{{ structure.cdrs.beta.cdr1 | sequence_display | safe }}</td></tr>
+                        <tr><td>CDR2</td><td>{{ structure.cdrs.alpha.cdr2 | sequence_display | safe }}</td><td>{{ structure.cdrs.beta.cdr2 | sequence_display | safe }}</td></tr>
+                        <tr><td>CDR3</td><td>{{ structure.cdrs.alpha.cdr3 | sequence_display | safe }}</td><td>{{ structure.cdrs.beta.cdr3 | sequence_display | safe }}</td></tr>
+                        {% endif %}
+                    </table>
+                </small>
+
+                <div class="panel-title vertical-spacing-top-0-5 vertical-spacing-bottom-0-25">Peptide &amp; MHC</div>
+                <small>
+                    <table class="info-table">
+                        <tr><td>Allele</td><td>{{ structure.allele }}</td></tr>
+                        <tr>
+                            <td>Peptide</td>
+                            <td>
+                                {{ structure.peptide_seq | sequence_display | safe }}
+                                <br /><smaller>{{ structure.peptide_len }}mer</smaller>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Antigen type</td>
+                            <td>
+                                <span class="antigen-dot" style="background-color: {{ antigen_colors.get(structure.antigen_type, '#999999') }};"></span>{{ structure.antigen_type | deslugify_string }}
+                            </td>
+                        </tr>
+                        {# IEDB epitope annotation (source organism, epitope id, assays) would
+                           sit here. It is NOT in the data layer — the structure bundles carry
+                           only allele / peptide_seq / peptide_len / antigen_type, and there is
+                           no IEDB CSV in the repo. Add the fields to the bundle and they can be
+                           rendered as extra rows. #}
+                    </table>
+                </small>
+            </div>
+        </div>
+    </div>
+</section>
+
+{# The file itself: how it was determined, and how much of it is actually modelled.
+   "Structure completeness" rather than "model completeness" — this is an
+   experimental structure, and "model" reads as a prediction. #}
+<section>
+    <div class="grid-container">
+        <div class="column-full-width">
+            <div class="inner">
+                <hr />
+                <h2 class="heading-small vertical-spacing-top-0-5 vertical-spacing-bottom-0-25">Structure information</h2>
+            </div>
+        </div>
+    </div>
+    <div class="grid-container">
+        <div class="column-one-half">
+            <div class="inner">
                 <small>
                     <table class="info-table">
                         <tr><td>Method</td><td>{{ structure.method | deslugify_string }}</td></tr>
                         <tr><td>Resolution</td><td>{% if structure.resolution %}{{ structure.resolution }} &#8491;{% else %}&mdash;{% endif %}</td></tr>
-                        <tr><td>Allele</td><td>{{ structure.allele }}</td></tr>
-                        <tr><td>Peptide</td><td>{{ structure.peptide_seq | sequence_display | safe }}<br /><smaller>{{ structure.peptide_len }}mer</smaller></td></tr>
-                        <tr><td>Antigen</td><td>
-                            <span class="antigen-dot" style="background-color: {{ antigen_colors.get(structure.antigen_type, '#999999') }};"></span>{{ structure.antigen_type | deslugify_string }}
-                        </td></tr>
-                        <tr><td>ASU copies</td><td>{{ structure.n_copies }}</td></tr>
+                        <tr><td>Copies in the asymmetric unit</td><td>{{ structure.n_copies }}</td></tr>
                         <tr><td>Deposited</td><td>{{ structure.deposition_date | date_display }}</td></tr>
                         <tr><td>Released</td><td>{{ structure.release_date | date_display }}</td></tr>
                     </table>
@@ -164,6 +226,40 @@
                     <smaller>
                         <a href="{{ pdb_id | coordinate_url }}" download>Download aligned PDB</a><br />
                         <a href="https://www.rcsb.org/structure/{{ pdb_id }}" target="_blank" rel="noopener">View at RCSB PDB</a>
+                    </smaller>
+                </p>
+            </div>
+        </div>
+        <div class="column-one-half">
+            <div class="inner">
+                <div class="panel-title vertical-spacing-bottom-0-25">Structure completeness</div>
+                <small>
+                    <table class="info-table">
+                        {% set multi = structure.completeness | length > 1 %}
+                        {% if multi %}
+                        <tr>
+                            <th></th>
+                            {% for copy in structure.completeness %}<th>Copy {{ loop.index }}</th>{% endfor %}
+                        </tr>
+                        {% endif %}
+                        <tr>
+                            <td>Interface</td>
+                            {% for copy in structure.completeness %}<td>{{ copy.iface_completeness_pct }}%</td>{% endfor %}
+                        </tr>
+                        <tr>
+                            <td>Overall</td>
+                            {% for copy in structure.completeness %}<td>{{ copy.overall_completeness_pct }}%</td>{% endfor %}
+                        </tr>
+                        <tr>
+                            <td>Backbone breaks</td>
+                            {% for copy in structure.completeness %}<td>{{ copy.tcr_alpha_backbone_breaks }} &alpha; &middot; {{ copy.tcr_beta_backbone_breaks }} &beta;</td>{% endfor %}
+                        </tr>
+                    </table>
+                </small>
+                <p class="vertical-spacing-top-0-25">
+                    <smaller>
+                        How much of the deposited structure is actually modelled &mdash; at the
+                        TCR:pMHC interface, and overall.
                     </smaller>
                 </p>
             </div>
@@ -231,56 +327,6 @@
                         </smaller>
                     </p>
                     {% endif %}
-                </small>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section>
-    <div class="grid-container">
-        <div class="column-one-half">
-            <div class="inner vertical-spacing-top-0-5">
-                <div class="panel-title vertical-spacing-bottom-0-25">TCR genes &amp; CDRs</div>
-                <small>
-                    <table class="info-table">
-                        <tr><th></th><th>Alpha</th><th>Beta</th></tr>
-                        <tr><td>V gene</td><td>{{ structure.tcr_alpha_v_gene }}</td><td>{{ structure.tcr_beta_v_gene }}</td></tr>
-                        <tr><td>J gene</td><td>{{ structure.tcr_alpha_j_gene }}</td><td>{{ structure.tcr_beta_j_gene }}</td></tr>
-                        {% if structure.cdrs %}
-                        <tr><td>CDR1</td><td class="cdr-seq">{{ structure.cdrs.alpha.cdr1 }}</td><td class="cdr-seq">{{ structure.cdrs.beta.cdr1 }}</td></tr>
-                        <tr><td>CDR2</td><td class="cdr-seq">{{ structure.cdrs.alpha.cdr2 }}</td><td class="cdr-seq">{{ structure.cdrs.beta.cdr2 }}</td></tr>
-                        <tr><td>CDR3</td><td class="cdr-seq">{{ structure.cdrs.alpha.cdr3 }}</td><td class="cdr-seq">{{ structure.cdrs.beta.cdr3 }}</td></tr>
-                        {% endif %}
-                    </table>
-                </small>
-            </div>
-        </div>
-        <div class="column-one-half">
-            <div class="inner vertical-spacing-top-0-5">
-                <div class="panel-title vertical-spacing-bottom-0-25">Model completeness</div>
-                <small>
-                    <table class="info-table">
-                        {% set multi = structure.completeness | length > 1 %}
-                        {% if multi %}
-                        <tr>
-                            <th></th>
-                            {% for copy in structure.completeness %}<th>Copy {{ loop.index }}</th>{% endfor %}
-                        </tr>
-                        {% endif %}
-                        <tr>
-                            <td>Interface</td>
-                            {% for copy in structure.completeness %}<td>{{ copy.iface_completeness_pct }}%</td>{% endfor %}
-                        </tr>
-                        <tr>
-                            <td>Overall</td>
-                            {% for copy in structure.completeness %}<td>{{ copy.overall_completeness_pct }}%</td>{% endfor %}
-                        </tr>
-                        <tr>
-                            <td>Backbone breaks</td>
-                            {% for copy in structure.completeness %}<td>{{ copy.tcr_alpha_backbone_breaks }} &alpha; &middot; {{ copy.tcr_beta_backbone_breaks }} &beta;</td>{% endfor %}
-                        </tr>
-                    </table>
                 </small>
             </div>
         </div>
