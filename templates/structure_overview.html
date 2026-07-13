@@ -76,10 +76,14 @@
         letter-spacing: 0.5px;
         font-size: 10px;
     }
-    .matrix-tooltip .tt-note {
-        margin-top: 5px;
+    .matrix-tooltip .tt-sub {
+        margin-top: 7px;
+        padding-top: 5px;
+        border-top: 1px solid rgba(10, 0, 57, 0.10);
         color: #857f9c;
-        font-style: italic;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-size: 10px;
     }
 
     .matrix-key { display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center; }
@@ -357,11 +361,16 @@
                         A dashed outline means the loop does touch that region, but Sc could not
                         be computed for the pair. A small dot means no contact at all.
                     </p>
-                    {% if structure.n_copies > 1 %}
+                    <p>
+                        Hovering a cell also breaks down the atom pairs behind it by bond type.
+                    </p>
+                    {% if matrix.copies | length > 1 %}
                     <p>
                         <smaller>
-                            Values are the mean over the {{ structure.n_copies }} copies of the complex
-                            in the asymmetric unit.
+                            This complex has {{ matrix.copies | length }} copies in the asymmetric
+                            unit. The figures describe
+                            <span class="mono">{{ matrix.structure_id }}</span> &mdash; the copy
+                            loaded in the viewer above &mdash; not an average over them.
                         </smaller>
                     </p>
                     {% endif %}

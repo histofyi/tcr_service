@@ -35,7 +35,9 @@ def structure_handler(tcr_id: str, pdb_id: str) -> dict:
         context.update({
             'iedb': iedb_annotation(pdb_id),
             'external_links': external_links(pdb_id),
-            'matrix': interface_matrix(structure),
+            # Keyed off the coordinate file the viewer loads, so the matrix always
+            # describes the copy actually on screen — no longer averaged.
+            'matrix': interface_matrix(pdb_id),
             'cdr_loops': list(CDR_LOOPS),
             'mhc_regions': list(MHC_REGIONS),
             'cdr_labels': CDR_LABELS,

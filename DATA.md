@@ -124,7 +124,25 @@ field is named `overall_completeness_pct` and the row is labelled just "Overall"
 if it is whole-complex, the page copy is wrong. Needs confirming, and the column
 renaming to match.
 
-### 10. Two `peptide` keys for the same thing
+### 10. Structure ids and coordinate filenames disagree on case
+
+The interaction export keys on `7N2P_aligned_1_altlocA` — upper-case PDB id,
+**upper-case altloc letter**. The coordinate files are lower-cased on disk
+(`7n2p_aligned_1_altloca.pdb`), which is how the site serves them.
+
+Reconstructing one from the other by upper-casing the PDB id looks right and
+works for most structures — then **silently returns nothing for every altloc-only
+structure**, which is a third of the set. It fails quietly: you get an empty
+interface matrix, not an error.
+
+**Fix at source:** settle on one case convention across coordinate files and
+data keys.
+
+**Site workaround:** `functions/interface.py::_structure_id_index()` matches
+case-insensitively against the keys that actually exist, rather than constructing
+the key.
+
+### 11. Two `peptide` keys for the same thing
 
 The per-TCR bundle's `structures[]` use `peptide`; the per-structure bundle uses
 `peptide_seq` (+ `peptide_len`). Templates must read the right one per shape.
@@ -135,7 +153,7 @@ but it is a foot-gun.
 
 ## Fixed by the `interaction_export` drop
 
-### 11. BSA could not be attributed to an ASU copy — *now fixed*
+### 12. BSA could not be attributed to an ASU copy — *now fixed*
 
 In the **old** structure bundles, a multi-copy structure carries 18 SASA/SC cells
 *per copy* (2AK4 has 72 rows), but the BSA rows' `complex` field is the **system

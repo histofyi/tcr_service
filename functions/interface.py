@@ -1,30 +1,36 @@
 """
-The TCR:pMHC interface matrix — 6 CDR loops x 3 MHC regions.
+The TCR:pMHC interface — 6 CDR loops x 3 MHC regions.
 
-Each structure bundle carries `bsa` (buried surface area) and
-`shape_complementarity` (SC) as flat lists of cells keyed by
-(cdr_loop, mhc_region). Both are turned into one 6x3 matrix for the structure
-page, where a cell is drawn as a bubble: area encodes BSA, colour encodes SC.
+Reads `data/interactions/`, the per-structure interaction export:
 
-Two things about the source data drive the shape of this module.
+* `sasa_by_structure.json` — buried surface area per CDR-loop x MHC-region
+* `shape_complementarity_by_structure.json` — Sc, median distance, trimmed area
+* `contacts_by_structure.json` — bond-typed atom-pair counts (the chord layer)
+* `neighbours_by_structure.json` — distance-based proximity pairs
 
-**Copies.** A structure with n copies in the asymmetric unit has 18 cells *per
-copy* (2AK4 has 4 copies, so 72 rows). The SC rows identify their copy
-(`2AK4_aligned_1`), but the BSA rows' `complex` is the *system* slug, identical
-across every copy — so BSA cannot be attributed to a copy at all. Cells are
-therefore averaged over the copies, and `n_values` records how many went in.
+All four are keyed by **structure id** — the coordinate-file stem,
+`<PDB>_aligned_<complex>[_altloc<X>]` (e.g. `1AO7_aligned_1`,
+`3PWP_aligned_1_altlocA`). That matters: a structure with several copies in the
+asymmetric unit has a separate record per copy, so the interface can be described
+for **the copy actually on screen** rather than averaged across all of them.
 
-**NaN.** 21% of SC cells are NaN (the SC calculation fails when a patch pair is
-too far apart to generate molecular dots) and 35% of BSA cells are exactly zero
-(that loop simply doesn't touch that region). Python's json module happily reads
-NaN, but `NaN` is not valid JSON, so passing it to a template would emit a
-payload that JSON.parse() rejects. Everything is sanitised to None here.
+(The older prebaked structure bundles could not do this: their BSA rows carried
+the *system* slug as `complex`, identical across copies, so BSA could not be
+attributed to a copy at all and had to be averaged. See DATA.md #11.)
+
+The structure id shown is therefore derived from the coordinate file the Mol*
+viewer is loading, so the matrix and the 3D view always describe the same
+coordinates.
 """
 
 import json
 import math
 import os
 from functools import lru_cache
+
+from functions.coordinates import coordinate_file
+
+INTERACTION_DIR = os.path.join('data', 'interactions')
 
 # Left-to-right across the matrix: the alpha chain's three loops, then beta's.
 CDR_LOOPS = (
@@ -51,15 +57,21 @@ MHC_LABELS = {
     'alpha2': 'α2 helix',
 }
 
+# The contacts/neighbours files label the loops `CDR1_alpha`; SASA/SC use
+# `alpha_cdr1`. Same six loops — normalise everything to the SASA/SC style.
+CONTACT_LOOP_ALIASES = {
+    f'CDR{n}_{chain}': f'{chain}_cdr{n}'
+    for chain in ('alpha', 'beta')
+    for n in (1, 2, 3)
+}
+
 # Where each patch sits in the coordinate files, so a cell can be focused in Mol*.
 #
 # Chains D (TCR alpha) and E (TCR beta) are IMGT-renumbered, so the CDR loops are
-# at their canonical IMGT positions in every structure — that is what makes this
-# a lookup rather than a per-structure annotation. Chain A (MHC heavy) is NOT
-# renumbered, but class I heavy chains already share a common numbering, and the
-# helix bounds below are the ones the grant pipeline uses
-# (bsi_career_enhancing_grant/structure_components.json). The peptide is chain C
-# in its entirety.
+# at their canonical IMGT positions in every structure — that is what makes this a
+# lookup rather than a per-structure annotation. Chain A (MHC heavy) is not
+# renumbered, but class I heavy chains share a common numbering. Bounds per the
+# interaction_export README: alpha1 = A 1-90, alpha2 = A 91-180, peptide = all of C.
 CDR_SELECTIONS = {
     'alpha_cdr1': {'chain': 'D', 'start': 27, 'end': 38},
     'alpha_cdr2': {'chain': 'D', 'start': 56, 'end': 65},
@@ -70,19 +82,24 @@ CDR_SELECTIONS = {
 }
 
 MHC_SELECTIONS = {
-    'alpha1': {'chain': 'A', 'start': 50, 'end': 86},
-    'alpha2': {'chain': 'A', 'start': 137, 'end': 180},
+    'alpha1': {'chain': 'A', 'start': 1, 'end': 90},
+    'alpha2': {'chain': 'A', 'start': 91, 'end': 180},
     'peptide': {'chain': 'C', 'start': None, 'end': None},
 }
 
-# SC is a correlation-like score in [0, 1]. The grant's figures clamp the colour
-# scale at 0.85; our set reaches 0.967, so the full range is used here rather
-# than flattening the best-packed cells into one colour.
+# Sc is a correlation-like score in [0, 1]. The grant's figures clamp the colour
+# scale at 0.85; our set reaches 0.97, so the full range is used rather than
+# flattening the best-packed cells into one colour.
 SC_MIN, SC_MAX = 0.0, 1.0
+
+# `proximal` is Arpeggio's "these atoms are near each other" catch-all rather than
+# a specific chemistry, and it dominates the counts (typically 10x the rest). It
+# is kept, but flagged, so a chord can separate real bonds from mere proximity.
+NON_SPECIFIC_BONDS = ('proximal',)
 
 
 def _clean(value):
-    """NaN/inf -> None. `NaN` is not valid JSON and would break JSON.parse()."""
+    """NaN/inf -> None. `NaN` is not valid JSON and breaks JSON.parse(). DATA.md #2."""
     if value is None:
         return None
     if isinstance(value, float) and not math.isfinite(value):
@@ -90,90 +107,130 @@ def _clean(value):
     return value
 
 
-def _mean(values: list):
-    """Mean of the non-null values, or None if there are none."""
-    present = [v for v in values if v is not None]
-    return sum(present) / len(present) if present else None
+@lru_cache(maxsize=4)
+def _dataset(name: str) -> dict:
+    """One of the four interaction files, keyed by structure id. Read once."""
+    path = os.path.join(INTERACTION_DIR, f'{name}_by_structure.json')
+    if not os.path.exists(path):
+        return {}
+    with open(path) as data_file:
+        return json.load(data_file)
 
 
-def _group(rows: list, value_keys: tuple) -> dict:
-    """Collect rows into { (cdr_loop, mhc_region): {key: [values...]} }."""
-    grouped: dict = {}
-    for row in rows or []:
-        cell = grouped.setdefault(
-            (row.get('cdr_loop'), row.get('mhc_region')),
-            {key: [] for key in value_keys},
-        )
-        for key in value_keys:
-            cell[key].append(_clean(row.get(key)))
-    return grouped
+@lru_cache(maxsize=1)
+def _structure_id_index() -> dict:
+    """{ lower-cased structure id: the real key }.
+
+    The two sides disagree on case: our coordinate files are lower-cased on disk
+    (`7n2p_aligned_1_altloca.pdb`) while the export keys the altloc letter in
+    upper case (`7N2P_aligned_1_altlocA`). Reconstructing the key from the
+    filename therefore silently misses every altloc-only structure — a third of
+    the set. Match case-insensitively against the keys that actually exist.
+    """
+    return {key.lower(): key for key in _dataset('contacts')}
+
+
+def structure_id(pdb_id: str) -> str | None:
+    """The interaction-data key for the copy the Mol* viewer is showing.
+
+    Derived from the coordinate file itself, so the matrix and the 3D view can
+    never describe different coordinates.
+    """
+    filename = coordinate_file(pdb_id)
+    if not filename:
+        return None
+
+    return _structure_id_index().get(filename[:-4].lower())
+
+
+def copies(pdb_id: str) -> list:
+    """Every structure id for a PDB entry — one per ASU copy / altloc."""
+    return sorted(
+        key for key, record in _dataset('contacts').items()
+        if record.get('pdb_id', '').upper() == pdb_id.upper()
+    )
 
 
 @lru_cache(maxsize=1)
 def global_bsa_max() -> float:
     """The largest BSA cell across every structure.
 
-    Bubble area is normalised against this rather than against the structure's
-    own maximum, so a bubble means the same thing on every structure page and the
-    matrices are comparable by eye. (The grant's figures do the same, for the same
-    reason.) Read once and cached.
+    Bubble area is normalised against this rather than against a structure's own
+    maximum, so a bubble means the same thing on every structure page and the
+    matrices are comparable by eye. (The grant's figures do the same.)
     """
     largest = 0.0
-    detail_dir = 'data/structure'
-
-    for filename in os.listdir(detail_dir):
-        if not filename.endswith('.json'):
-            continue
-        with open(os.path.join(detail_dir, filename)) as detail_file:
-            structure = json.load(detail_file)
-        for row in structure.get('bsa') or []:
-            value = _clean(row.get('bsa_total'))
+    for record in _dataset('sasa').values():
+        for pair in record.get('pairs') or []:
+            value = _clean(pair.get('bsa_total'))
             if value is not None:
                 largest = max(largest, value)
-
     return largest or 1.0
 
 
-def interface_matrix(structure: dict) -> dict:
-    """The 6x3 interface matrix for one structure.
+def interface_matrix(pdb_id: str) -> dict | None:
+    """The 6x3 interface matrix for the copy of `pdb_id` that is on screen.
 
-    Returns a dict ready to hand to the template as JSON:
-
-        {
-          'cells': [ { 'cdr_loop', 'mhc_region', 'bsa_total', 'bsa_cdr_side',
-                       'sc', 'median_distance', 'n_values' }, ... ],   # 18 of them
-          'bsa_max': <global max, for the shared area scale>,
-          'n_copies': <ASU copies the cells were averaged over>,
-        }
-
-    A cell with no BSA (the loop doesn't reach that region) keeps bsa_total 0 —
-    the template draws nothing. A cell whose SC failed keeps sc None, and is
-    drawn as an outline so "no contact" and "contact, SC unavailable" stay
-    visually distinct.
+    A cell has BSA (area buried), Sc (how well the two surfaces mesh) and the
+    bond-typed contact counts behind it. A cell with no BSA means that loop never
+    reaches that region; a cell with BSA but no Sc means the two are in contact
+    but Sc could not be computed for the pair — the page keeps those visually
+    distinct.
     """
-    bsa = _group(structure.get('bsa'), ('bsa_total', 'bsa_cdr_side'))
-    sc = _group(structure.get('shape_complementarity'), ('sc', 'median_distance'))
+    key = structure_id(pdb_id)
+    if not key:
+        return None
+
+    sasa = _dataset('sasa').get(key) or {}
+    sc = _dataset('shape_complementarity').get(key) or {}
+    contacts = _dataset('contacts').get(key) or {}
+    neighbours = _dataset('neighbours').get(key) or {}
+
+    sasa_pairs = {
+        (p['cdr_loop'], p['mhc_region']): p for p in sasa.get('pairs') or []
+    }
+    sc_pairs = {
+        (p['cdr_loop'], p['mhc_region']): p for p in sc.get('pairs') or []
+    }
+
+    # Bond-typed contacts, collapsed onto the same (loop, region) grid.
+    bonds: dict = {}
+    for bond in contacts.get('bonds') or []:
+        loop = CONTACT_LOOP_ALIASES.get(bond['cdr_loop'], bond['cdr_loop'])
+        cell = bonds.setdefault((loop, bond['region']), {})
+        cell[bond['bond_type']] = cell.get(bond['bond_type'], 0) + bond['n_atom_pairs']
 
     cells = []
     for mhc_region in MHC_REGIONS:
         for cdr_loop in CDR_LOOPS:
-            key = (cdr_loop, mhc_region)
-            bsa_cell = bsa.get(key, {})
-            sc_cell = sc.get(key, {})
+            pair = (cdr_loop, mhc_region)
+            sasa_cell = sasa_pairs.get(pair, {})
+            sc_cell = sc_pairs.get(pair, {})
+            bond_cell = bonds.get(pair, {})
 
-            bsa_totals = bsa_cell.get('bsa_total', [])
+            specific = sum(
+                n for bond_type, n in bond_cell.items()
+                if bond_type not in NON_SPECIFIC_BONDS
+            )
+
             cells.append({
                 'cdr_loop': cdr_loop,
                 'mhc_region': mhc_region,
-                'bsa_total': _mean(bsa_totals),
-                'bsa_cdr_side': _mean(bsa_cell.get('bsa_cdr_side', [])),
-                'sc': _mean(sc_cell.get('sc', [])),
-                'median_distance': _mean(sc_cell.get('median_distance', [])),
-                'n_values': len([v for v in bsa_totals if v is not None]),
+                'bsa_total': _clean(sasa_cell.get('bsa_total')),
+                'bsa_cdr_side': _clean(sasa_cell.get('bsa_cdr_side')),
+                'sc': _clean(sc_cell.get('sc')),
+                'median_distance': _clean(sc_cell.get('median_distance')),
+                'bonds': bond_cell,
+                'n_atom_pairs': sum(bond_cell.values()),
+                'n_specific_pairs': specific,
             })
 
     return {
+        'structure_id': key,
         'cells': cells,
         'bsa_max': global_bsa_max(),
-        'n_copies': structure.get('n_copies') or 1,
+        'copies': copies(pdb_id),
+        'iface_completeness_pct': sasa.get('iface_completeness_pct'),
+        'total_atom_pairs': contacts.get('ct_total_atom_pairs'),
+        'residue_contacts': neighbours.get('nb_residue_contacts'),
     }

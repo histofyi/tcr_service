@@ -117,11 +117,36 @@
   const tooltip = document.getElementById('matrix-tooltip');
   const viewerFor = () => (window.HistoTCR || {}).viewers?.[VIEWER_ID];
 
+  /* The bond-typed contacts behind a cell, strongest chemistry first. `proximal`
+   * is Arpeggio's "these atoms are near each other" catch-all rather than a
+   * specific interaction, and it dominates the counts — so it is listed last and
+   * called what it is. */
+  const BOND_ORDER = [
+    'hbond', 'ionic', 'aromatic', 'hydrophobic', 'vdw', 'vdw_clash',
+    'polar', 'weak_polar', 'weak_hbond', 'carbonyl', 'proximal',
+  ];
+  const BOND_LABELS = {
+    hbond: 'H-bond', ionic: 'Ionic', aromatic: 'Aromatic',
+    hydrophobic: 'Hydrophobic', vdw: 'VdW', vdw_clash: 'VdW clash',
+    polar: 'Polar', weak_polar: 'Weak polar', weak_hbond: 'Weak H-bond',
+    carbonyl: 'Carbonyl', proximal: 'Proximal (no specific bond)',
+  };
+
+  function bondRows(bonds) {
+    const types = Object.keys(bonds || {});
+    if (!types.length) return '';
+    types.sort((a, b) => {
+      const ia = BOND_ORDER.indexOf(a), ib = BOND_ORDER.indexOf(b);
+      return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib);
+    });
+    return `<div class="tt-sub">Atom pairs by bond type</div><table>` +
+      types.map(t =>
+        `<tr><td class="tt-k">${BOND_LABELS[t] || t}</td><td>${bonds[t]}</td></tr>`
+      ).join('') + `</table>`;
+  }
+
   function showTooltip(event, cell) {
     if (!tooltip) return;
-    const copies = DATA.n_copies > 1
-      ? `<div class="tt-note">mean of ${DATA.n_copies} copies in the asymmetric unit</div>`
-      : '';
     tooltip.innerHTML = `
       <div class="tt-title">${CDR_LABELS[cell.cdr_loop]} &middot; ${MHC_LABELS[cell.mhc_region]}</div>
       <table>
@@ -129,7 +154,7 @@
         <tr><td class="tt-k">CDR side</td><td>${fmt(cell.bsa_cdr_side)} Å²</td></tr>
         <tr><td class="tt-k">Sc</td><td>${cell.sc === null ? 'not available' : fmt(cell.sc, 2)}</td></tr>
         <tr><td class="tt-k">Median gap</td><td>${cell.median_distance === null ? '—' : fmt(cell.median_distance, 2) + ' Å'}</td></tr>
-      </table>${copies}`;
+      </table>${bondRows(cell.bonds)}`;
     tooltip.style.display = 'block';
     const pad = 14;
     let x = event.clientX + pad;
