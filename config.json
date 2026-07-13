@@ -24,6 +24,11 @@
             "footprint": "Footprint centre"
         }
     },
+    "OVERLAY_COLORS": [
+        "#0a0039", "#dc267f", "#648fff", "#ffb000", "#785ef0",
+        "#fe6100", "#1b9e77", "#a6761d", "#7570b3", "#e7298a",
+        "#66a61e", "#666666"
+    ],
     "CHAIN_LABELS": {
         "A": "MHC α (heavy chain)",
         "B": "β2-microglobulin",

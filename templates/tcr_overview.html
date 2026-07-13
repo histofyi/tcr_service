@@ -1,6 +1,10 @@
 {% if tcr %}{% set page_title = " | TCR " ~ tcr.tcr_name %}{% else %}{% set page_title = " | TCR not found" %}{% endif %}
 {% extends "shared/base.html" %}
 
+{% block head %}
+{% include "fragments/_molstar_head.html" %}
+{% endblock %}
+
 {% block style %}
 <style>
     /* The row the scoped COM viewer has selected. */
@@ -23,6 +27,18 @@
         box-shadow: 0 0 0 1.5px #ffffff;
         margin-right: 4px;
     }
+
+    /* --- structure overlay --------------------------------------------------- */
+    .overlay-swatch {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        border-radius: 2px;
+        margin: 0 5px 0 4px;
+        vertical-align: -1px;
+    }
+    #structure-overlay label { cursor: pointer; user-select: none; }
+    .overlay-status { color: #857f9c; }
 
     /* --- scoped COM viewer -------------------------------------------------- */
     #com-scope {
@@ -227,6 +243,65 @@
     </div>
 </section>
 
+{# Every structure of this TCR, superposed. The coordinates are all on the
+   1hhk-aligned frame, so they overlay directly — there is nothing to fit. The
+   groove is drawn once and each structure's TCR chains over it, so you can see how
+   far the docking geometry actually moves. Needs two structures to say anything. #}
+{% if overlay %}
+<section>
+    <div class="grid-container">
+        <div class="column-full-width">
+            <div class="inner">
+                <hr />
+                <h2 class="heading-small vertical-spacing-top-0-5 vertical-spacing-bottom-0-25">
+                    The structures, superposed
+                </h2>
+            </div>
+        </div>
+    </div>
+    <div class="grid-container">
+        <div class="column-two-thirds">
+            <div class="inner">
+                <div id="structure-overlay" data-structures='{{ overlay | tojson }}'>
+                    <div class="molstar-box is-tall"></div>
+                    <p class="overlay-status"><small>Scroll down to load the overlay&hellip;</small></p>
+                </div>
+            </div>
+        </div>
+        <div class="column-one-third">
+            <div class="inner">
+                <div class="panel-title vertical-spacing-bottom-0-25">Structures</div>
+                <p>
+                    <small>
+                        The peptide-binding groove is drawn once, from
+                        <span class="mono">{{ overlay[0].pdb }}</span>; each structure&rsquo;s
+                        TCR &alpha; and &beta; chains are drawn over it in their own colour.
+                        Untick one to take it out.
+                    </small>
+                </p>
+                <small>
+                    <table class="info-table">
+                        {% for entry in overlay %}
+                        <tr>
+                            <td>
+                                <label>
+                                    <input type="checkbox" class="overlay-toggle"
+                                           data-pdb="{{ entry.pdb }}" checked disabled>
+                                    <span class="overlay-swatch" style="background: {{ entry.colour }};"></span>
+                                    <a href="/tcrs/{{ tcr_id }}/structures/{{ entry.pdb | lower }}">{{ entry.pdb }}</a>
+                                </label>
+                            </td>
+                            <td>{{ entry.peptide | sequence_display | safe }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </small>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
 {# The scoped COM viewer: this TCR's structures projected onto the antigen-binding
    domain. Unlike /tcrs/explore, clicking a COM does not load a structure — it
    highlights that structure's row in the list above, which is the subject of the
@@ -383,6 +458,12 @@
 {% endblock %}
 
 {% block scripts %}
+{% if overlay or com_points %}
+{% include "fragments/_molstar_scripts.html" %}
+{% endif %}
+{% if overlay %}
+<script src="{{ asset('overlay.js') }}"></script>
+{% endif %}
 {% if com_points %}
 <script src="{{ asset('com_scope.js') }}"></script>
 {% endif %}

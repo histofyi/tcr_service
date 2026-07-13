@@ -1,6 +1,6 @@
 from quart import current_app
 
-from functions.coordinates import coordinate_map
+from functions.coordinates import coordinate_map, coordinate_url
 from functions.slugs import de_slugify_string
 from functions.variability import footprint_spread
 from models.structures import Structure
@@ -78,11 +78,28 @@ def tcr_handler(tcr_id: str, selected_structure: str | None = None) -> dict:
     projection = current_app.config['COM_PROJECTION']
     spread = footprint_spread(tcr.get('structures'), projection['px_per_angstrom'])
 
+    # The superposition. The coordinates are all on the 1hhk-aligned frame, so they
+    # overlay directly. Only worth showing with something to compare — one structure
+    # superposed on itself says nothing.
+    palette = current_app.config['OVERLAY_COLORS']
+    overlay = [
+        {
+            'pdb': structure['pdb_id'],
+            'url': coordinate_url(structure['pdb_id']),
+            'colour': palette[index % len(palette)],
+            'peptide': structure.get('peptide'),
+            'allele': structure.get('allele'),
+        }
+        for index, structure in enumerate(tcr.get('structures') or [])
+        if coordinate_url(structure['pdb_id'])
+    ]
+
     return {
         'tcr': tcr,
         'tcr_id': tcr_id,
         'com_points': com_points,
         'footprint_spread': spread,
+        'overlay': overlay if len(overlay) > 1 else None,
         'selected_structure': selected if selected in pdb_ids else None,
     }
 

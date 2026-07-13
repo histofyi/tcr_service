@@ -211,6 +211,121 @@ window.HistoTCR = (function () {
     return viewer;
   }
 
+  /* Superpose several structures of the same TCR in one viewer.
+   *
+   * The coordinates are all on the 1hhk-aligned frame, so they overlay directly —
+   * there is no fitting to do. What varies between them is where the receptor sits
+   * on the groove, so the groove is drawn ONCE (from the reference structure, in
+   * the usual chain colours) and every structure's TCR chains are drawn over it,
+   * one colour per structure.
+   *
+   * `entries` is [{ pdb, url, colour }], reference first.
+   */
+  async function overlay(el, entries, opts) {
+    opts = opts || {};
+    if (!window.molstar) {
+      el.innerHTML = '<p><small>Mol* failed to load.</small></p>';
+      return null;
+    }
+
+    const viewer = await molstar.Viewer.create(el, VIEWER_SPEC);
+    const plugin = viewer.plugin;
+    const builders = plugin.builders.structure;
+
+    const load = async (url) => {
+      const data = await plugin.builders.data.download({ url, isBinary: false });
+      const trajectory = await builders.parseTrajectory(data, 'pdb');
+      const model = await builders.createModel(trajectory);
+      return builders.createStructure(model);
+    };
+
+    // The TCR variable domains — the thing that moves. MS.core.set.has is how Mol*
+    // expresses "chain is one of these".
+    const tcrChains = () => {
+      const MS = molstar.MS;
+      return MS.struct.generator.atomGroups({
+        'chain-test': MS.core.set.has([
+          MS.set(...(opts.tcrChains || ['D', 'E'])),
+          MS.struct.atomProperty.macromolecular.auth_asym_id(),
+        ]),
+      });
+    };
+
+    try {
+      for (const [index, entry] of entries.entries()) {
+        const structure = await load(entry.url);
+
+        // The groove, once, from the reference — it is the fixed frame everything
+        // else is read against, so drawing it per structure would just thicken it.
+        if (index === 0) {
+          for (const chainId of ['A', 'B', 'C']) {
+            const component = await builders.tryCreateComponentFromExpression(
+              structure, chainExpression(chainId), `ref-${chainId}`, { label: chainId },
+            );
+            if (!component) continue;
+            await builders.representation.addRepresentation(component, {
+              type: 'cartoon',
+              color: 'uniform',
+              colorParams: { value: CHAIN_COLOURS[chainId] },
+              typeParams: { alpha: 0.45 },
+            });
+            if (chainId === PEPTIDE_CHAIN) {
+              await builders.representation.addRepresentation(component, {
+                type: 'ball-and-stick',
+                color: 'uniform',
+                colorParams: { value: CHAIN_COLOURS[chainId] },
+              });
+            }
+          }
+        }
+
+        const receptor = await builders.tryCreateComponentFromExpression(
+          structure, tcrChains(), `tcr-${entry.pdb}`, { label: entry.pdb },
+        );
+        if (!receptor) continue;
+
+        await builders.representation.addRepresentation(receptor, {
+          type: 'cartoon',
+          color: 'uniform',
+          colorParams: { value: hexToInt(entry.colour) },
+        });
+
+        viewers[`overlay-${entry.pdb}`] = viewer;
+      }
+
+      if (plugin.canvas3d) {
+        plugin.canvas3d.setProps({
+          renderer: {
+            backgroundColor: 0xffffff,
+            highlightColor: 0x514c7d,
+            selectColor: 0x28a299,
+          },
+        });
+      }
+      plugin.managers.camera.reset();
+    } catch (e) {
+      el.insertAdjacentHTML('beforeend',
+        '<p><small>Could not build the overlay.</small></p>');
+    }
+
+    return viewer;
+  }
+
+  const hexToInt = (colour) =>
+    typeof colour === 'number' ? colour : parseInt(String(colour).replace('#', ''), 16);
+
+  /* Show or hide one structure's TCR chains in an overlay. */
+  function toggleOverlayEntry(viewer, pdb, visible) {
+    try {
+      const plugin = viewer.plugin;
+      const entry = plugin.managers.structure.hierarchy.current.structures
+        .flatMap(s => s.components)
+        .find(c => c.cell.obj && c.cell.obj.label === pdb);
+      if (!entry) return;
+      plugin.managers.structure.component.toggleVisibility([entry], !visible);
+    } catch (e) { /* nothing to toggle */ }
+  }
+
   /* Swap the structure shown in an existing viewer (the explore page does this
    * when a COM is clicked). On failure the previous structure is left up rather
    * than blanking the panel. */
@@ -427,5 +542,6 @@ window.HistoTCR = (function () {
     load, replace, renderStructure, paintLegend, viewers,
     focusResidue, highlightResidue, focusRange, highlightRange, clearFocus,
     subscribeClicks, readLociResidue,
+    overlay, toggleOverlayEntry,
   };
 })();
