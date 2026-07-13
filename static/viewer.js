@@ -314,7 +314,11 @@ window.HistoTCR = (function () {
   const hexToInt = (colour) =>
     typeof colour === 'number' ? colour : parseInt(String(colour).replace('#', ''), 16);
 
-  /* Show or hide one structure's TCR chains in an overlay. */
+  /* Show or hide one structure's TCR chains in an overlay.
+   *
+   * Mol*'s toggleVisibility(components, value) takes the new VISIBILITY, not
+   * "hidden" — passing !visible inverts the checkboxes, so a ticked box hid the
+   * structure. */
   function toggleOverlayEntry(viewer, pdb, visible) {
     try {
       const plugin = viewer.plugin;
@@ -322,7 +326,7 @@ window.HistoTCR = (function () {
         .flatMap(s => s.components)
         .find(c => c.cell.obj && c.cell.obj.label === pdb);
       if (!entry) return;
-      plugin.managers.structure.component.toggleVisibility([entry], !visible);
+      plugin.managers.structure.component.toggleVisibility([entry], visible);
     } catch (e) { /* nothing to toggle */ }
   }
 
