@@ -40,6 +40,24 @@
     #structure-overlay label { cursor: pointer; user-select: none; }
     .overlay-status { color: #857f9c; }
 
+    /* The same pill buttons as the Explore viewer's filter panel. */
+    .overlay-btns { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+    .overlay-btns button {
+        cursor: pointer;
+        width: auto;
+        padding: 3px 9px;
+        font-family: inherit;
+        font-size: 10.5px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        border-radius: 12px;
+        background: rgba(10, 0, 57, 0.05);
+        color: rgba(10, 0, 57, 0.75);
+        border: 1px solid rgba(10, 0, 57, 0.20);
+    }
+    .overlay-btns button:hover { background: rgba(10, 0, 57, 0.10); color: #0a0039; }
+    .overlay-btns button[disabled] { cursor: default; opacity: 0.5; }
+
     /* --- scoped COM viewer -------------------------------------------------- */
     #com-scope {
         border: 1px solid rgba(10, 0, 57, 0.20);
@@ -123,6 +141,12 @@
 {% block main %}
 
 {% if tcr %}
+
+{# The shareable ?structure= selection, validated server-side against this TCR's own
+   structures. selection.js reads it from here — the table, the publication list, the
+   COM viewer and the superposition are all views onto it, so it belongs to none of
+   them. #}
+<div id="tcr-selection" data-selected="{{ selected_structure or '' }}" hidden></div>
 
 <section>
     <div class="grid-container">
@@ -269,8 +293,7 @@
                      data-background="{{ com_projection.background }}"
                      data-width="{{ com_projection.width }}"
                      data-crop='{{ com_projection.crop | tojson }}'
-                     data-ref='{{ com_projection.ref | tojson }}'
-                     data-selected="{{ selected_structure or '' }}">
+                     data-ref='{{ com_projection.ref | tojson }}'>
                     <div class="com-scope-bar">
                         <label>Centre of mass type <select class="com-scope-type"></select></label>
                     </div>
@@ -373,6 +396,10 @@
                         Untick one to take it out.
                     </small>
                 </p>
+                <div class="overlay-btns">
+                    <button type="button" class="overlay-all" disabled>All</button>
+                    <button type="button" class="overlay-none" disabled>None</button>
+                </div>
                 <small>
                     <table class="info-table">
                         {% for entry in overlay %}
@@ -458,7 +485,11 @@
 {% endblock %}
 
 {% block scripts %}
+{# The selected structure is one piece of state shared by the structure table, the
+   publication list, the COM viewer and the superposition — so selection.js owns it
+   and must load before any of its views. #}
 {% if overlay or com_points %}
+<script src="{{ asset('selection.js') }}"></script>
 {% include "fragments/_molstar_scripts.html" %}
 {% endif %}
 {% if overlay %}

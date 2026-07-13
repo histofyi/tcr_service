@@ -5,6 +5,9 @@
  * wired the other way round: clicking a COM does NOT load a structure, it
  * highlights that structure's row in the list above. The list is the subject of
  * the page; the projection is a way into it.
+ *
+ * A view over TcrSelection (selection.js): clicking a COM selects a structure, and
+ * a structure selected anywhere else — the URL, the superposition — lights up here.
  */
 (function () {
 
@@ -33,12 +36,12 @@
 
   let layer = 'footprint';   // where the whole interface sits, the best default
   let scale = 1;
-  // The shareable ?structure= selection, already validated server-side against
-  // this TCR's structures, and already rendered as .is-selected in the tables.
-  let selected = root.dataset.selected || null;
   let hovered = null;
 
-  const URL_PARAM = 'structure';
+  // The shareable ?structure= selection, already validated server-side against this
+  // TCR's structures, and already rendered as .is-selected in the tables.
+  const selection = window.TcrSelection;
+  const selected = () => selection.current();
 
   const visible = () =>
     POINTS.filter(p => p.com_px && p.com_px[layer]);
@@ -53,7 +56,7 @@
     visible().forEach((p) => {
       const { x, y } = at(p);
       const colour = COLORS[p.antigen_type] || '#999999';
-      const isOn = p.pdb_id === selected || p.pdb_id === hovered;
+      const isOn = p.pdb_id === selected() || p.pdb_id === hovered;
 
       ctx.beginPath();
       ctx.arc(x, y, RADIUS, 0, Math.PI * 2);
@@ -121,59 +124,6 @@
 
   const rowFor = (pdbId) => document.getElementById(`structure-row-${pdbId}`);
 
-  /* Reflect the selection in the URL so it can be shared. The id goes in
-   * lower-case, matching the PDB ids in the site's paths; the handler reads it
-   * case-insensitively, so a hand-typed ?structure=3PWP works too.
-   *
-   * replaceState, not pushState — clicking through a dozen COMs shouldn't bury
-   * the previous page under a dozen back-button steps. */
-  function updateUrl(pdbId) {
-    try {
-      const url = new URL(window.location.href);
-      if (pdbId) url.searchParams.set(URL_PARAM, pdbId.toLowerCase());
-      else url.searchParams.delete(URL_PARAM);
-      window.history.replaceState(null, '', url.toString());
-    } catch (e) { /* history unavailable — the in-page selection still works */ }
-  }
-
-  function clearHighlights() {
-    document.querySelectorAll('.structure-table tr.is-selected')
-      .forEach(row => row.classList.remove('is-selected'));
-  }
-
-  /* Light up the structure's row, and any publication that reported it. */
-  function highlight(pdbId) {
-    clearHighlights();
-
-    const row = rowFor(pdbId);
-    if (row) row.classList.add('is-selected');
-
-    document.querySelectorAll('[data-structures]').forEach((publication) => {
-      const reported = publication.dataset.structures.split(/\s+/);
-      if (reported.includes(pdbId)) publication.classList.add('is-selected');
-    });
-
-    return row;
-  }
-
-  function selectStructure(pdbId, opts) {
-    selected = pdbId;
-    draw();
-
-    const row = highlight(pdbId);
-    if (row && !(opts && opts.scroll === false)) {
-      row.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-    updateUrl(pdbId);
-  }
-
-  function clearSelection() {
-    selected = null;
-    draw();
-    clearHighlights();
-    updateUrl(null);
-  }
-
   function showCard(event, p) {
     card.innerHTML = `
       <div class="pdb">${p.pdb_id}</div>
@@ -218,9 +168,13 @@
     const r = cv.getBoundingClientRect();
     const p = pick(e.clientX - r.left, e.clientY - r.top + CROP.top * scale);
     // Clicking empty background clears the selection, same as the explore viewer.
-    if (p) selectStructure(p.pdb_id);
-    else clearSelection();
+    if (p) selection.select(p.pdb_id, { source: 'com-scope' });
+    else selection.clear({ source: 'com-scope' });
   });
+
+  // A structure selected anywhere — this canvas, the superposition, the URL on load —
+  // is drawn as the selected COM here.
+  selection.subscribe(() => draw());
 
   // The reverse link: hovering a row lights up its COM.
   POINTS.forEach((p) => {
