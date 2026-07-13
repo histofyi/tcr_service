@@ -224,3 +224,8 @@ __marimo__/
 #   tar -xzf imgt_renumbered_structures.tar.gz -C tmp/ && \
 #     for f in tmp/*.pdb; do cp "$f" "static/coordinates/$(basename "$f" | tr 'A-Z' 'a-z')"; done
 static/coordinates/
+
+# Transient files Claude Code writes while saving settings. The settings file
+# itself is covered by the global gitignore, but these .tmp.<pid>.<hash> variants
+# are not, and a `git add -A` mid-write sweeps them in.
+.claude/settings.local.json.tmp.*
