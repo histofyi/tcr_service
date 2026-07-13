@@ -116,10 +116,22 @@
   padding: 6px 10px 6px 0;
   white-space: nowrap;
 }
+/* Room in the first column for a selected row's marker bar, which would otherwise
+   sit on top of the PDB code. The table is pulled back by the same amount so it
+   still lines up with the heading above it. */
+.structure-table { margin-left: -8px; }
+.structure-table th:first-child,
+.structure-table td:first-child { padding-left: 8px; }
 .structure-table td {
   padding: 7px 10px 7px 0;
   border-bottom: 1px solid #eeeeee;
   vertical-align: middle;
+}
+/* A publication row is two lines deep; its PDB ids should sit against the title,
+   not float in the middle of it. */
+.structure-table tr[data-structures] td {
+  vertical-align: top;
+  padding-top: 10px;
 }
 .structure-table tr:hover td {
   background: #fafafa;

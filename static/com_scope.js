@@ -33,8 +33,12 @@
 
   let layer = 'footprint';   // where the whole interface sits, the best default
   let scale = 1;
-  let selected = null;
+  // The shareable ?structure= selection, already validated server-side against
+  // this TCR's structures, and already rendered as .is-selected in the tables.
+  let selected = root.dataset.selected || null;
   let hovered = null;
+
+  const URL_PARAM = 'structure';
 
   const visible = () =>
     POINTS.filter(p => p.com_px && p.com_px[layer]);
@@ -117,18 +121,57 @@
 
   const rowFor = (pdbId) => document.getElementById(`structure-row-${pdbId}`);
 
-  function selectStructure(pdbId) {
+  /* Reflect the selection in the URL so it can be shared. The id goes in
+   * lower-case, matching the PDB ids in the site's paths; the handler reads it
+   * case-insensitively, so a hand-typed ?structure=3PWP works too.
+   *
+   * replaceState, not pushState — clicking through a dozen COMs shouldn't bury
+   * the previous page under a dozen back-button steps. */
+  function updateUrl(pdbId) {
+    try {
+      const url = new URL(window.location.href);
+      if (pdbId) url.searchParams.set(URL_PARAM, pdbId.toLowerCase());
+      else url.searchParams.delete(URL_PARAM);
+      window.history.replaceState(null, '', url.toString());
+    } catch (e) { /* history unavailable — the in-page selection still works */ }
+  }
+
+  function clearHighlights() {
+    document.querySelectorAll('.structure-table tr.is-selected')
+      .forEach(row => row.classList.remove('is-selected'));
+  }
+
+  /* Light up the structure's row, and any publication that reported it. */
+  function highlight(pdbId) {
+    clearHighlights();
+
+    const row = rowFor(pdbId);
+    if (row) row.classList.add('is-selected');
+
+    document.querySelectorAll('[data-structures]').forEach((publication) => {
+      const reported = publication.dataset.structures.split(/\s+/);
+      if (reported.includes(pdbId)) publication.classList.add('is-selected');
+    });
+
+    return row;
+  }
+
+  function selectStructure(pdbId, opts) {
     selected = pdbId;
     draw();
 
-    document.querySelectorAll('.structure-table tr.is-selected')
-      .forEach(row => row.classList.remove('is-selected'));
-
-    const row = rowFor(pdbId);
-    if (row) {
-      row.classList.add('is-selected');
+    const row = highlight(pdbId);
+    if (row && !(opts && opts.scroll === false)) {
       row.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
+    updateUrl(pdbId);
+  }
+
+  function clearSelection() {
+    selected = null;
+    draw();
+    clearHighlights();
+    updateUrl(null);
   }
 
   function showCard(event, p) {
@@ -176,12 +219,7 @@
     const p = pick(e.clientX - r.left, e.clientY - r.top + CROP.top * scale);
     // Clicking empty background clears the selection, same as the explore viewer.
     if (p) selectStructure(p.pdb_id);
-    else {
-      selected = null;
-      draw();
-      document.querySelectorAll('.structure-table tr.is-selected')
-        .forEach(row => row.classList.remove('is-selected'));
-    }
+    else clearSelection();
   });
 
   // The reverse link: hovering a row lights up its COM.

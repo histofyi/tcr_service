@@ -30,13 +30,18 @@ def tcrs_handler(sort: str = DEFAULT_SORT) -> dict:
     }
 
 
-def tcr_handler(tcr_id: str) -> dict:
+def tcr_handler(tcr_id: str, selected_structure: str | None = None) -> dict:
     """Per-TCR page context: the prebaked detail bundle for one TCR, plus the
     alpha/beta gene + CDR panel shown at the top of the page.
 
     That panel needs CDR1/CDR2, which the per-TCR bundle doesn't carry — they are
     germline (V-gene encoded) and so live in the structure bundles. It is
     assembled from a representative structure; see models.tcrs.annotate_chains.
+
+    `selected_structure` is the ?structure= query arg — a shareable selection,
+    highlighted in the structure list, the COM viewer and the publications. It
+    comes from the URL, so it is validated against this TCR's own structures
+    rather than trusted; an unknown or foreign PDB id selects nothing.
     """
     tcr = Tcr().get_one(tcr_id)
     if not tcr:
@@ -62,7 +67,15 @@ def tcr_handler(tcr_id: str) -> dict:
         if structure.get('com_px')
     ]
 
-    return {'tcr': tcr, 'tcr_id': tcr_id, 'com_points': com_points}
+    pdb_ids = {structure['pdb_id'] for structure in tcr.get('structures') or []}
+    selected = (selected_structure or '').strip().upper()
+
+    return {
+        'tcr': tcr,
+        'tcr_id': tcr_id,
+        'com_points': com_points,
+        'selected_structure': selected if selected in pdb_ids else None,
+    }
 
 
 def explore_handler() -> dict:

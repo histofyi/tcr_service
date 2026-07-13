@@ -148,7 +148,9 @@ async def tcrs_explore_view():
 @app.route('/tcrs/<tcr_id>/')
 @templated('tcr_overview')
 async def tcr_overview_view(tcr_id):
-    return tcr_handler(tcr_id)
+    # ?structure=1AO7 — a shareable selection. The page highlights that structure
+    # in the list, the COM viewer and the publications.
+    return tcr_handler(tcr_id, request.args.get('structure'))
 
 
 @app.route('/tcrs/<tcr_id>/structures/<pdb_id>')

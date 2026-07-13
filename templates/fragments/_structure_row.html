@@ -2,8 +2,10 @@
    TCR bundle's structures[]) and `tcr_id`. Rendered inside a .structure-table.
 
    The row id is the handle the scoped COM viewer below uses to highlight this
-   structure when its centre of mass is clicked. #}
-<tr id="structure-row-{{ structure.pdb_id }}">
+   structure when its centre of mass is clicked. `selected_structure` is the
+   shareable ?structure= selection, so a link lands with the row already lit. #}
+<tr id="structure-row-{{ structure.pdb_id }}"
+    {% if selected_structure == structure.pdb_id %}class="is-selected"{% endif %}>
     <td class="pdb">
         <a href="/tcrs/{{ tcr_id }}/structures/{{ structure.pdb_id | lower }}">{{ structure.pdb_id }}</a>
         {% if structure.is_engineered_variant %}

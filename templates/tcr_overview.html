@@ -4,8 +4,13 @@
 {% block style %}
 <style>
     /* The row the scoped COM viewer has selected. */
+    /* The selected structure, in both the structure list and the publications.
+       The marker bar goes on the FIRST cell only — on every td it drew a black
+       bar down the left of every cell in the row. */
     .structure-table tr.is-selected td {
         background: rgba(10, 0, 57, 0.07);
+    }
+    .structure-table tr.is-selected td:first-child {
         box-shadow: inset 3px 0 0 #0a0039;
     }
 
@@ -240,7 +245,8 @@
                      data-background="{{ com_projection.background }}"
                      data-width="{{ com_projection.width }}"
                      data-crop='{{ com_projection.crop | tojson }}'
-                     data-ref='{{ com_projection.ref | tojson }}'>
+                     data-ref='{{ com_projection.ref | tojson }}'
+                     data-selected="{{ selected_structure or '' }}">
                     <div class="com-scope-bar">
                         <label>Centre of mass type <select class="com-scope-type"></select></label>
                     </div>
@@ -292,33 +298,33 @@
                 <h2 class="heading-small vertical-spacing-top-0-5 vertical-spacing-bottom-0-25">
                     Publications ({{ tcr.publications | length }})
                 </h2>
-                <small>
-                    <table class="structure-table">
-                        {# PDB id first, mirroring the structure list above. #}
-                        <tr>
-                            <th>PDB</th>
-                            <th>Publication</th>
-                        </tr>
-                        {% for publication in tcr.publications %}
-                        <tr>
-                            <td class="pdb">
-                                {% for pdb_id in publication.structures %}
-                                    <a href="/tcrs/{{ tcr_id }}/structures/{{ pdb_id | lower }}">{{ pdb_id }}</a>{% if not loop.last %}<br />{% endif %}
-                                {% endfor %}
-                            </td>
-                            <td>
-                                {{ publication.title }}
-                                <br />
-                                <smaller>
-                                    {{ publication.journal }} ({{ publication.year }})
-                                    {% if publication.doi %} &middot; <a href="https://doi.org/{{ publication.doi }}" target="_blank" rel="noopener">doi:{{ publication.doi }}</a>{% endif %}
-                                    {% if publication.pmid %} &middot; <a href="https://pubmed.ncbi.nlm.nih.gov/{{ publication.pmid }}" target="_blank" rel="noopener">PMID {{ publication.pmid }}</a>{% endif %}
-                                </smaller>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </table>
-                </small>
+                <table class="structure-table">
+                    <tr>
+                        <th>PDB</th>
+                        <th>Publication</th>
+                    </tr>
+                    {# data-structures lets the COM viewer light up the paper a
+                       selected structure was reported in. #}
+                    {% for publication in tcr.publications %}
+                    <tr data-structures="{{ publication.structures | join(' ') }}"
+                        {% if selected_structure in publication.structures %}class="is-selected"{% endif %}>
+                        <td class="pdb">
+                            {% for pdb_id in publication.structures %}
+                                <a href="/tcrs/{{ tcr_id }}/structures/{{ pdb_id | lower }}">{{ pdb_id }}</a>{% if not loop.last %}<br />{% endif %}
+                            {% endfor %}
+                        </td>
+                        <td>
+                            <strong>{{ publication.title }}</strong>
+                            <br />
+                            <small>
+                                {{ publication.journal }} ({{ publication.year }})
+                                {% if publication.doi %} &middot; <a href="https://doi.org/{{ publication.doi }}" target="_blank" rel="noopener">doi:{{ publication.doi }}</a>{% endif %}
+                                {% if publication.pmid %} &middot; <a href="https://pubmed.ncbi.nlm.nih.gov/{{ publication.pmid }}" target="_blank" rel="noopener">PMID {{ publication.pmid }}</a>{% endif %}
+                            </small>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
             </div>
         </div>
     </div>
