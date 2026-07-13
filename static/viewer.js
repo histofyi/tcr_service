@@ -15,8 +15,6 @@ window.HistoTCR = (function () {
 
   const PEPTIDE_CHAIN = 'C';
 
-  // The chains these files always carry. Used to look up what colour Mol*'s
-  // chain-id theme gave each one, so the page legend matches the render.
   const CHAIN_LABELS = {
     A: 'MHC α (heavy chain)',
     B: 'β2-microglobulin',
@@ -24,6 +22,27 @@ window.HistoTCR = (function () {
     D: 'TCR α',
     E: 'TCR β',
   };
+
+  /* Mol*'s own chain-id palette (Dark2), but pinned to the chain LETTER.
+   *
+   * Mol*'s chain-id theme colours by chain INDEX — the order the chains first
+   * appear in the file — not by their id. 10 of the 206 structures have a
+   * non-standard chain order (9ZCL's file starts with chain C; 7L1D and three
+   * others start D,E,A,B,C), so the same colour meant a different chain on those
+   * pages: the peptide came out MHC-green. The palette is Mol*'s, so the site
+   * looks unchanged; the assignment is ours, so it is the same everywhere.
+   *
+   * These are the exact colours Mol* gives a canonical A-B-C-D-E file.
+   */
+  const CHAIN_COLOURS = {
+    A: 0x1b9e77,   // MHC α — green
+    B: 0xd95f02,   // β2m — orange
+    C: 0x7570b3,   // peptide — purple
+    D: 0xe7298a,   // TCR α — pink
+    E: 0x66a61e,   // TCR β — olive
+  };
+
+  const hex = (value) => '#' + ('000000' + value.toString(16)).slice(-6);
 
   // Viewers created by autoInit, keyed by their container's DOM id, so a page can
   // reach in and swap the structure (the explore page does this on COM click).
@@ -38,29 +57,42 @@ window.HistoTCR = (function () {
     });
   }
 
-  /* Load `url` into an existing, empty viewer: the default preset (cartoon,
-   * coloured by Mol*'s chain-id theme) plus ball-and-stick on the peptide. */
+  /* Load `url` into an existing, empty viewer: one cartoon component per chain, in
+   * the house colours, plus ball-and-stick on the peptide.
+   *
+   * A component per chain — rather than the chain-id theme over the whole
+   * structure — is what lets the colour be pinned to the chain id instead of the
+   * chain's position in the file. See CHAIN_COLOURS. */
   async function renderStructure(viewer, url, opts) {
     opts = opts || {};
     const peptideChain = opts.peptideChain || PEPTIDE_CHAIN;
     const plugin = viewer.plugin;
+    const builders = plugin.builders.structure;
 
-    await viewer.loadStructureFromUrl(url, opts.format || 'pdb', false, {
-      representationParams: { theme: { globalName: 'chain-id' } },
-    });
+    const data = await plugin.builders.data.download({ url, isBinary: false });
+    const trajectory = await builders.parseTrajectory(data, opts.format || 'pdb');
+    const model = await builders.createModel(trajectory);
+    const structure = await builders.createStructure(model);
 
-    // Pull the peptide out as its own component so it can carry a second
-    // representation. Its colour still comes from the chain-id theme, so it stays
-    // consistent with the cartoon behind it.
-    const structures = plugin.managers.structure.hierarchy.current.structures;
-    if (structures && structures.length) {
-      const component = await plugin.builders.structure.tryCreateComponentFromExpression(
-        structures[0].cell, chainExpression(peptideChain), 'peptide', { label: 'Peptide' },
+    for (const chainId of Object.keys(CHAIN_COLOURS)) {
+      const component = await builders.tryCreateComponentFromExpression(
+        structure, chainExpression(chainId), `chain-${chainId}`, { label: chainId },
       );
-      if (component) {
-        await plugin.builders.structure.representation.addRepresentation(component, {
+      // A chain can be absent — 9RU5 has no β2-microglobulin.
+      if (!component) continue;
+
+      await builders.representation.addRepresentation(component, {
+        type: 'cartoon',
+        color: 'uniform',
+        colorParams: { value: CHAIN_COLOURS[chainId] },
+      });
+
+      // The peptide is short and reads poorly as cartoon alone.
+      if (chainId === peptideChain) {
+        await builders.representation.addRepresentation(component, {
           type: 'ball-and-stick',
-          color: 'chain-id',
+          color: 'uniform',
+          colorParams: { value: CHAIN_COLOURS[chainId] },
         });
       }
     }
@@ -76,31 +108,20 @@ window.HistoTCR = (function () {
     }
   }
 
-  /* Read the colour Mol*'s chain-id theme actually gave each chain, so the page
-   * legend can be painted to match rather than hard-coding a guess at the
-   * palette. Returns { A: '#rrggbb', ... } for the chains present in the file. */
+  /* Which chains this structure actually has, and their colour. The colour is now
+   * ours (pinned to the chain id), so this only has to establish presence — 9RU5
+   * has no β2-microglobulin, and its legend must not advertise one. */
   function chainThemeColors(viewer) {
     const colors = {};
     try {
-      const plugin = viewer.plugin;
-      const entry = plugin.managers.structure.hierarchy.current.structures[0];
-      const structure = entry.cell.obj.data;
+      const structure = currentStructure(viewer);
+      if (!structure) return colors;
 
-      const provider =
-        plugin.representation.structure.themes.colorThemeRegistry.get('chain-id');
-      const ctx = { structure };
-      const params = provider.getParams ? provider.getParams(ctx) : {};
-      const values = {};
-      Object.keys(params).forEach(k => { values[k] = params[k].defaultValue; });
-      const theme = provider.factory(ctx, values);
-
-      for (const chainId of Object.keys(CHAIN_LABELS)) {
+      for (const chainId of Object.keys(CHAIN_COLOURS)) {
         const loci = molstar.StructureSelection.toLociWithSourceUnits(
           molstar.Script.getStructureSelection(chainExpression(chainId), structure));
         if (molstar.StructureElement.Loci.isEmpty(loci)) continue;
-        const location = molstar.StructureElement.Loci.getFirstLocation(loci);
-        const color = theme.color(location, false);
-        colors[chainId] = '#' + ('000000' + color.toString(16)).slice(-6);
+        colors[chainId] = hex(CHAIN_COLOURS[chainId]);
       }
     } catch (e) { /* legend just stays unpainted */ }
     return colors;
@@ -222,12 +243,117 @@ window.HistoTCR = (function () {
     return molstar.StructureElement.Loci.isEmpty(loci) ? null : loci;
   }
 
-  /* Zoom to (auth chain, auth residue number) and show its interactions. */
-  function focusResidue(viewer, chainId, resnum) {
-    const loci = rangeLoci(viewer, chainId, resnum, resnum);
+  /* A loci for a single residue, identified by (chain, number, insertion code).
+   *
+   * The insertion code matters: 57 structures have one in the TCR chains, and
+   * 1AO7 has both E:112 and E:112A — both inside CDR3β. Selecting on the number
+   * alone would light up two residues when the reader clicked one. */
+  function residueLoci(viewer, chainId, resnum, icode) {
+    if (!viewer || !molstar.MS) return null;
+    const structure = currentStructure(viewer);
+    if (!structure) return null;
+
+    const MS = molstar.MS;
+    // The insertion-code test is ALWAYS applied, including when there isn't one.
+    // Mol* reports '' for a residue with no insertion code, so testing for ''
+    // correctly excludes 112A when you asked for 112 — omit the test and clicking
+    // E:112 lights up both E:112 and E:112A.
+    const tests = {
+      'chain-test': MS.core.rel.eq([
+        MS.struct.atomProperty.macromolecular.auth_asym_id(), chainId,
+      ]),
+      'residue-test': MS.core.logic.and([
+        MS.core.rel.eq([
+          MS.struct.atomProperty.macromolecular.auth_seq_id(), resnum,
+        ]),
+        MS.core.rel.eq([
+          MS.struct.atomProperty.macromolecular.pdbx_PDB_ins_code(), icode || '',
+        ]),
+      ]),
+    };
+
+    const loci = molstar.StructureSelection.toLociWithSourceUnits(
+      molstar.Script.getStructureSelection(
+        MS.struct.generator.atomGroups(tests), structure));
+    return molstar.StructureElement.Loci.isEmpty(loci) ? null : loci;
+  }
+
+  /* Mol* -> page: read (chain, resnum, icode, resname) out of a clicked loci.
+   * The bundle exposes StructureElement but not StructureProperties, so read
+   * straight off the model's atomic hierarchy. Returns null on a background click
+   * or any unexpected shape. */
+  function readLociResidue(loci) {
+    try {
+      const SE = molstar.StructureElement;
+      if (!SE || !SE.Loci || !loci || loci.kind !== 'element-loci') return null;
+      if (SE.Loci.isEmpty(loci)) return null;
+
+      const location = SE.Loci.getFirstLocation(loci);
+      if (!location || !location.unit) return null;
+
+      const hierarchy = location.unit.model.atomicHierarchy;
+      const element = location.element;
+      const residueIndex = hierarchy.residueAtomSegments.index[element];
+      const chainIndex = hierarchy.chainAtomSegments.index[element];
+
+      let icode = '';
+      try {
+        icode = String(
+          hierarchy.residues.pdbx_PDB_ins_code.value(residueIndex) || '',
+        ).trim();
+      } catch (e) { /* no insertion codes in this model */ }
+
+      return {
+        chain: String(hierarchy.chains.auth_asym_id.value(chainIndex)),
+        resnum: hierarchy.residues.auth_seq_id.value(residueIndex),
+        icode: icode,
+        resname: String(hierarchy.atoms.label_comp_id.value(element)),
+      };
+    } catch (e) {
+      return null;
+    }
+  }
+
+  /* Subscribe to canvas clicks: a residue click -> onSelect(residue); a click on
+   * empty background -> onClear(). */
+  function subscribeClicks(viewer, onSelect, onClear) {
+    try {
+      const click = viewer?.plugin?.behaviors?.interaction?.click;
+      if (!click || !click.subscribe) return false;
+
+      click.subscribe((event) => {
+        // Mol* fires a spurious empty-loci click with no mouse button on
+        // load/focus; ignore those or they wipe a URL-restored selection.
+        if (!event || !event.button) return;
+        const residue = readLociResidue(event.current && event.current.loci);
+        if (residue) onSelect(residue);
+        else onClear();
+      });
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  /* Zoom to one residue and show its interactions. */
+  function focusResidue(viewer, chainId, resnum, icode) {
+    const loci = residueLoci(viewer, chainId, resnum, icode);
     if (!loci) return;
     viewer.plugin.managers.camera.focusLoci(loci);
     viewer.plugin.managers.structure.focus.setFromLoci(loci);
+  }
+
+  /* Transiently highlight one residue (hover), without moving the camera. */
+  function highlightResidue(viewer, chainId, resnum, icode) {
+    if (!viewer) return;
+    const interactivity = viewer.plugin.managers.interactivity;
+    if (!interactivity) return;
+    if (chainId === undefined || chainId === null) {
+      interactivity.lociHighlights.clearHighlights();
+      return;
+    }
+    const loci = residueLoci(viewer, chainId, resnum, icode);
+    if (loci) interactivity.lociHighlights.highlightOnly({ loci });
   }
 
   /* Zoom to a residue range — a CDR loop or an MHC helix. */
@@ -283,6 +409,7 @@ window.HistoTCR = (function () {
 
   return {
     load, replace, renderStructure, paintLegend, viewers,
-    focusResidue, focusRange, highlightRange, clearFocus,
+    focusResidue, highlightResidue, focusRange, highlightRange, clearFocus,
+    subscribeClicks, readLociResidue,
   };
 })();

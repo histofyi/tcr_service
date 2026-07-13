@@ -1,0 +1,27 @@
+{# An interactive sequence — hover a residue to outline it and highlight it in the
+   structure, click to zoom to it.
+
+   Params: residues (from functions.residues), which carry the residue's REAL number
+   and insertion code read from the coordinate file. Do not try to derive those from
+   the sequence: a CDR loop is shorter than its IMGT range, and insertion codes are
+   not always in ascending order (see functions/residues.py).
+
+   A modified residue (PFF, F2F, ABA) shows as X but keeps the background colour of
+   the parent residue it derives from, so it still reads as part of its chemical
+   group while being honest that it is not that residue.
+
+   `selected_residue` is the shareable ?residue= token, already validated against
+   this structure. Marking it server-side means a pasted link lands with the residue
+   already lit, without waiting for JS. #}
+<span class="sequence">
+    {%- for residue in residues -%}
+    {%- set token = residue | residue_token -%}
+    <span class="aa aa-click bg-{{ residue.colour | lower }}{% if residue.is_modified %} is-modified{% endif %}{% if selected_residue == token %} is-selected{% endif %}"
+          data-residue="{{ token }}"
+          data-chain="{{ residue.chain }}"
+          data-resnum="{{ residue.resnum }}"
+          data-icode="{{ residue.icode }}"
+          title="{{ residue.resname }} {{ residue.resnum }}{{ residue.icode }} &middot; chain {{ residue.chain }}{% if residue.is_modified %} &mdash; modified residue{% endif %}"
+    >{{ residue.display }}</span>
+    {%- endfor -%}
+</span>

@@ -42,6 +42,25 @@
 .bg-q { background-color: rgba(224, 155, 0, 0.15); }
 .bg-y { background-color: rgba(192, 133, 0, 0.15); }
 .bg-c { background-color: rgba(255, 163, 51, 0.15); }
+/* A modified residue (PFF, F2F, ABA) has no one-letter code, so it shows as X and
+   takes the colour of the parent residue it derives from. */
+.bg-x { background-color: rgba(153, 153, 153, 0.15); }
+
+/* Clickable residues: hover to outline and highlight in the structure, click to
+   zoom to it. */
+.aa-click {
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 2px;
+}
+.aa-click:hover { border-color: #0a0039; }
+.aa-click.is-selected {
+  border-color: #0a0039;
+  box-shadow: 0 0 0 1px #0a0039;
+  font-weight: 700;
+}
+/* A modified residue is not the residue it derives from — say so. */
+.aa-click.is-modified { border-bottom: 2px dotted #dc267f; }
 
 /* ---- house components, shared across the TCR pages ---------------------- */
 

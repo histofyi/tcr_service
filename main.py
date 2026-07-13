@@ -11,6 +11,7 @@ from handlers import structure_handler
 from handlers import clonotypes_handler, clonotype_handler
 
 from functions.coordinates import coordinate_url
+from functions.residues import residue_token
 from functions.decorators import templated
 from functions.slugs import (
     de_slugify_allele,
@@ -102,6 +103,13 @@ def date_display_filter(value: str) -> str:
         return str(value)
 
 
+@app.template_filter('residue_token')
+def residue_token_filter(residue: dict) -> str:
+    """The shareable ?residue= token for a residue — chain + number + insertion
+    code, e.g. e112a."""
+    return residue_token(residue)
+
+
 @app.template_filter('coordinate_url')
 def coordinate_url_filter(pdb_id: str) -> str:
     """The static URL of a PDB id's aligned coordinate file, for Mol* to load."""
@@ -157,7 +165,8 @@ async def tcr_overview_view(tcr_id):
 @app.route('/tcrs/<tcr_id>/structures/<pdb_id>/')
 @templated('structure_overview')
 async def structure_overview_view(tcr_id, pdb_id):
-    return structure_handler(tcr_id, pdb_id)
+    # ?residue=e112a — a shareable selection of one CDR / peptide residue.
+    return structure_handler(tcr_id, pdb_id, request.args.get('residue'))
 
 
 ## Clonotypes — the finer grain ##

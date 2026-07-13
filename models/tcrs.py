@@ -34,13 +34,17 @@ UNNAMED_TCR = 'Unknown'
 def annotate_tcr_name(record: dict) -> dict:
     """Give the two unnamed TCRs a display name.
 
-    Two of the 123 TCRs have no published clone name (9K2R, identified only by the
-    donor code KI-890, and 9D95). The index carries this as a **float NaN**, which
-    renders as the string "nan"; the detail bundles carry it as null, which renders
-    as nothing at all — an empty page heading. Neither is a name.
+    Two of the 123 TCRs have no published clone name (9K2R and 9D95). The index
+    carries this as a **float NaN**, which renders as the string "nan"; the detail
+    bundles carry it as null, which renders as nothing at all — an empty page
+    heading. Neither is a name.
 
-    Normalised to 'Unknown' here rather than in the templates, so every consumer
-    gets the same answer. See DATA.md #1 — the pipeline should carry a real value.
+    Where the bundle knows the donor code (9K2R is identified only as KI-890), use
+    that: it is a real identifier for a real thing, and far better than 'Unknown'.
+    Otherwise fall back to 'Unknown'.
+
+    Normalised here rather than in the templates, so every consumer gets the same
+    answer. See DATA.md #1 — the pipeline should carry a real value.
     """
     name = record.get('tcr_name')
     is_missing = (
@@ -49,8 +53,27 @@ def annotate_tcr_name(record: dict) -> dict:
         or str(name).strip().lower() in ('', 'nan')
     )
     if is_missing:
-        record['tcr_name'] = UNNAMED_TCR
+        # The detail bundle knows the donor code; the parquet index does not carry
+        # the column, so look it up — otherwise the browse list would say "Unknown"
+        # for a TCR whose own page says "KI-890".
+        donor_code = record.get('donor_code') or _donor_codes().get(record.get('tcr_id'))
+        record['tcr_name'] = donor_code if donor_code else UNNAMED_TCR
     return record
+
+
+@lru_cache(maxsize=1)
+def _donor_codes() -> dict:
+    """{ tcr_id: donor_code } for the TCRs that have one. Read once."""
+    detail_dir = 'data/tcr'
+    codes = {}
+    for filename in os.listdir(detail_dir):
+        if not filename.endswith('.json'):
+            continue
+        with open(os.path.join(detail_dir, filename)) as detail_file:
+            tcr = json.load(detail_file)
+        if tcr.get('donor_code'):
+            codes[tcr['tcr_id']] = tcr['donor_code']
+    return codes
 
 
 def annotate_index_record(record: dict) -> dict:

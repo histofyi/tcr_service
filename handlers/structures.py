@@ -1,4 +1,5 @@
 from functions.annotations import external_links, iedb_annotation
+from functions.residues import cdr_residues, parse_residue_token, peptide_residues
 from functions.interface import (
     CDR_LABELS,
     CDR_LOOPS,
@@ -14,7 +15,7 @@ from models.structures import Structure
 from models.tcrs import Tcr
 
 
-def structure_handler(tcr_id: str, pdb_id: str) -> dict:
+def structure_handler(tcr_id: str, pdb_id: str, selected_residue: str | None = None) -> dict:
     """
     Per-structure deep-dive context. Loads the prebaked structure bundle plus a
     little parent context (the TCR the structure hangs under) for breadcrumbs,
@@ -32,7 +33,25 @@ def structure_handler(tcr_id: str, pdb_id: str) -> dict:
     }
 
     if structure:
+        # The real residue numbers behind each CDR loop and the peptide, read from
+        # the coordinate file so a residue can be clicked through to Mol*. Empty if
+        # the coordinates disagree with the sequence — better no interaction than
+        # one that focuses the wrong residue. See functions/residues.py.
+        cdrs = structure.get('cdrs') or {}
+        sequences = {
+            f'{chain}_{loop}': cdr_residues(
+                pdb_id, chain, loop, (cdrs.get(chain) or {}).get(loop),
+            )
+            for chain in ('alpha', 'beta')
+            for loop in ('cdr1', 'cdr2', 'cdr3')
+        }
+        sequences['peptide'] = peptide_residues(pdb_id, structure.get('peptide_seq'))
+
         context.update({
+            'sequences': sequences,
+            # ?residue=e112a — a shareable selection, validated against the
+            # residues this structure actually shows (it comes from the URL).
+            'selected_residue': parse_residue_token(selected_residue, sequences),
             'iedb': iedb_annotation(pdb_id),
             'external_links': external_links(pdb_id),
             # Keyed off the coordinate file the viewer loads, so the matrix always

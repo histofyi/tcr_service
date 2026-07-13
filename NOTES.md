@@ -196,6 +196,45 @@ Three things the source data forces, all easy to get wrong:
    `None` and drawn as a **dashed outline** — kept visually distinct from *no
    contact*, which is a small dot (35% of BSA cells are exactly zero).
 
+### Clickable residues — and why the numbers are read from the coordinates
+
+The structure page lets you hover a residue in a CDR loop or the peptide to
+outline it and highlight it in Mol\*, and click to zoom to it. The selection is
+shareable (`?residue=e-112a`), survives a paste, and is kept in step in four
+directions: sequence -> Mol\*, Mol\* -> sequence, URL -> both, both -> URL. A
+click on empty background in the viewer clears all of it.
+
+The residue numbers behind that come from `functions/residues.py`, which reads the
+coordinate file. **They cannot be derived from the sequence**, and every shortcut
+here fails silently — you get a click that focuses the wrong residue, not an error:
+
+- **A CDR sequence is shorter than its IMGT range.** 1AO7's CDR1α is `DRGSQS` —
+  six residues — across IMGT 27–38, which is twelve. IMGT numbering is gapped by
+  design, so the Nth letter is not the Nth position.
+- **Insertion codes are not always in ascending order.** IMGT numbers CDR3
+  insertions inward from both ends, so 1MI5's CDR3α runs `...112A, 112...` while
+  1AO7's CDR3β runs `...112, 112A...`. Sorting on the insertion code transposes
+  those two residues. `_chain_residues()` sorts on the residue **number alone**;
+  Python's sort is stable, so the file's own order (which is sequence order) wins
+  the ties.
+- **Insertion codes are part of the key, in Mol\* too.** 57 structures have one.
+  Selecting on `auth_seq_id` alone lights up both E:112 and E:112A when the reader
+  clicked one. Mol\* reports `''` for a residue without an insertion code, so the
+  `pdbx_PDB_ins_code` test is applied *always*, including for `''`.
+- **A modified residue is a HETATM.** `PFF`/`F2F` (the fluorinated phenylalanines
+  that are the whole point of 3D39/3D3V) and `ABA` (8SHI) are HETATM records, so a
+  naive ATOM-only parse drops them and the peptide comes up a residue short. They
+  are shown as **X** — they are not the residue they derive from — but keep the
+  parent's background colour so they still read as part of the chemical group.
+- **Chain C can carry ligands.** Iodide, isopropanol, and 2GJ6's covalently linked
+  hapten (`3IB`) sit on the peptide chain as extra residues, so the peptide is
+  taken as the first N residues, N = len(peptide_seq).
+
+Verified across all 206 structures: every one of the 1236 CDR loops and every
+peptide maps exactly. The cross-check is kept in the code — if the coordinates ever
+disagree with the sequence, the loop renders **non-interactive** rather than wiring
+up a click that would focus the wrong residue.
+
 ## Data layer
 
 Unchanged from the skeleton; see `data/README.md`. Worth repeating:

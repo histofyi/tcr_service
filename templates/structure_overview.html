@@ -191,9 +191,18 @@
                         <tr><td>V gene</td><td class="mono">{{ structure.tcr_alpha_v_gene }}</td><td class="mono">{{ structure.tcr_beta_v_gene }}</td></tr>
                         <tr><td>J gene</td><td class="mono">{{ structure.tcr_alpha_j_gene }}</td><td class="mono">{{ structure.tcr_beta_j_gene }}</td></tr>
                         {% if structure.cdrs %}
-                        <tr><td>CDR1</td><td>{{ structure.cdrs.alpha.cdr1 | sequence_display | safe }}</td><td>{{ structure.cdrs.beta.cdr1 | sequence_display | safe }}</td></tr>
-                        <tr><td>CDR2</td><td>{{ structure.cdrs.alpha.cdr2 | sequence_display | safe }}</td><td>{{ structure.cdrs.beta.cdr2 | sequence_display | safe }}</td></tr>
-                        <tr><td>CDR3</td><td>{{ structure.cdrs.alpha.cdr3 | sequence_display | safe }}</td><td>{{ structure.cdrs.beta.cdr3 | sequence_display | safe }}</td></tr>
+                        <tr><td>CDR1</td>
+                            <td>{% with residues=sequences["alpha_cdr1"] %}{% include "fragments/_sequence.html" %}{% endwith %}</td>
+                            <td>{% with residues=sequences["beta_cdr1"] %}{% include "fragments/_sequence.html" %}{% endwith %}</td>
+                        </tr>
+                        <tr><td>CDR2</td>
+                            <td>{% with residues=sequences["alpha_cdr2"] %}{% include "fragments/_sequence.html" %}{% endwith %}</td>
+                            <td>{% with residues=sequences["beta_cdr2"] %}{% include "fragments/_sequence.html" %}{% endwith %}</td>
+                        </tr>
+                        <tr><td>CDR3</td>
+                            <td>{% with residues=sequences["alpha_cdr3"] %}{% include "fragments/_sequence.html" %}{% endwith %}</td>
+                            <td>{% with residues=sequences["beta_cdr3"] %}{% include "fragments/_sequence.html" %}{% endwith %}</td>
+                        </tr>
                         {% endif %}
                     </table>
                 </small>
@@ -205,7 +214,7 @@
                         <tr>
                             <td>Peptide</td>
                             <td>
-                                {{ structure.peptide_seq | sequence_display | safe }}
+                                {% with residues=sequences["peptide"] %}{% include "fragments/_sequence.html" %}{% endwith %}
                                 <br /><smaller>{{ structure.peptide_len }}mer</smaller>
                             </td>
                         </tr>
@@ -512,5 +521,6 @@
 {% if structure %}
 <script src="{{ asset('interface_matrix.js') }}"></script>
 <script src="{{ asset('chord.js') }}"></script>
+<script src="{{ asset('sequence.js') }}"></script>
 {% endif %}
 {% endblock %}
