@@ -86,6 +86,33 @@
         font-size: 10px;
     }
 
+    /* --- the contact chord ---------------------------------------------------
+       Six CDR loops across the top, three MHC regions across the bottom; a ribbon
+       is one loop-region pair, its width the number of contacting atom pairs.
+       Geometry ported from the grant's draw_chord_diagrams.py. */
+    .chord-svg { width: 100%; height: auto; display: block; max-width: 520px; }
+
+    .chord-arc { stroke: #ffffff; stroke-width: 0.6; }
+    .chord-ribbon {
+        fill-opacity: 0.70;          /* the grant's ribbon alpha */
+        cursor: pointer;
+        transition: fill-opacity 0.12s ease;
+    }
+    .chord-ribbon.is-dim { fill-opacity: 0.12; }
+    .chord-ribbon.is-hot { fill-opacity: 0.95; }
+
+    .chord-label {
+        font-size: 11px;
+        font-weight: 600;
+        fill: #0a0039;
+        font-family: 'Poppins', sans-serif;
+    }
+    .chord-empty {
+        font-size: 13px;
+        fill: #857f9c;
+        font-family: 'Poppins', sans-serif;
+    }
+
     .matrix-key { display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center; }
     .matrix-ramp {
         display: inline-block;
@@ -380,6 +407,63 @@
     </div>
 </section>
 
+{# The contact chord: which loop touches which region, and with what chemistry.
+   The matrix above says how MUCH surface each pair buries; this says what the
+   contact is MADE OF. #}
+<section>
+    <div class="grid-container">
+        <div class="column-full-width">
+            <div class="inner">
+                <hr />
+                <h2 class="heading-small vertical-spacing-top-0-5 vertical-spacing-bottom-0-25">Contacts</h2>
+            </div>
+        </div>
+    </div>
+    <div class="grid-container">
+        <div class="column-one-half">
+            <div class="inner">
+                <div id="chord-diagram"
+                     data-viewer="structure-viewer"
+                     data-cells='{{ matrix.cells | tojson }}'
+                     data-cdr-labels='{{ cdr_labels | tojson }}'
+                     data-mhc-labels='{{ mhc_labels | tojson }}'
+                     data-cdr-selections='{{ cdr_selections | tojson }}'
+                     data-mhc-selections='{{ mhc_selections | tojson }}'></div>
+            </div>
+        </div>
+        <div class="column-one-half">
+            <div class="inner">
+                <p>
+                    Every contacting atom pair between a CDR loop and a region of the
+                    groove. Ribbon width is the number of atom pairs; an arc is as long as
+                    the contact that loop or region makes. Ribbons are coloured by the CDR
+                    loop.
+                </p>
+                <p class="vertical-spacing-top-0-25">
+                    <label>
+                        <input type="checkbox" id="chord-specific">
+                        Specific bonds only
+                    </label>
+                    <br />
+                    <smaller>
+                        Most atom pairs are merely <em>proximal</em> &mdash; near each other, with
+                        no particular chemistry. {% if matrix.total_atom_pairs %}This interface has
+                        {{ matrix.total_atom_pairs }} atom pairs in all{% endif %}. Tick this to
+                        drop the proximal pairs and see the hydrogen bonds, salt bridges and
+                        hydrophobic contacts that actually hold the complex together.
+                    </smaller>
+                </p>
+                <p class="vertical-spacing-top-0-25">
+                    <smaller>
+                        Hover a ribbon for its bond-type breakdown and to highlight that loop
+                        in the structure; click to zoom to it.
+                    </smaller>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
 {# Executive summary + REQUIRED AI-provenance attribution. #}
 {% if structure.executive_summary %}
 <section>
@@ -400,6 +484,7 @@
 {% endif %}
 
 <div class="matrix-tooltip" id="matrix-tooltip"></div>
+<div class="matrix-tooltip" id="chord-tooltip"></div>
 
 {% else %}
 
@@ -423,5 +508,6 @@
 {% include "fragments/_molstar_scripts.html" %}
 {% if structure %}
 <script src="{{ asset('interface_matrix.js') }}"></script>
+<script src="{{ asset('chord.js') }}"></script>
 {% endif %}
 {% endblock %}
