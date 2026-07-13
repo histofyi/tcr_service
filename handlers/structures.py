@@ -47,7 +47,17 @@ def structure_handler(tcr_id: str, pdb_id: str, selected_residue: str | None = N
         }
         sequences['peptide'] = peptide_residues(pdb_id, structure.get('peptide_seq'))
 
+        # footprint_spread_A lives on the TCR bundle's variability[], keyed by pdb.
+        # It is the spread ACROSS COPIES of this structure — a precision figure, not
+        # a biological one — so it sits beside the ASU copy count.
+        variability = next(
+            (row for row in ((tcr or {}).get('variability') or [])
+             if row.get('pdb_id') == pdb_id.upper()),
+            None,
+        )
+
         context.update({
+            'variability': variability,
             'sequences': sequences,
             # ?residue=e112a — a shareable selection, validated against the
             # residues this structure actually shows (it comes from the URL).

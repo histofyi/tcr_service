@@ -122,7 +122,15 @@
                     <small>
                         {{ tcr.n_structures }} structure{% if tcr.n_structures != 1 %}s{% endif %}
                         &middot; {{ tcr.n_clonotypes }} clonotype{% if tcr.n_clonotypes != 1 %}s{% endif %}
-                        &middot; deposited {{ tcr.first_deposition_date | date_display }} to {{ tcr.latest_deposition_date | date_display }}
+                        {# A TCR with one structure (or several deposited the same day)
+                           read "deposited 26 Jun 2025 to 26 Jun 2025". #}
+                        &middot; deposited to the PDB
+                        {%- if tcr.first_deposition_date == tcr.latest_deposition_date %}
+                            on {{ tcr.first_deposition_date | date_display }}
+                        {%- else %}
+                            from {{ tcr.first_deposition_date | date_display }}
+                            to {{ tcr.latest_deposition_date | date_display }}
+                        {%- endif %}
                     </small>
                 </p>
             </div>
@@ -270,6 +278,32 @@
                         Click one to highlight it in the list; hover a row in the list to find
                         it here.
                     </p>
+                    {# How much the footprint actually moves between this TCR's
+                       structures — the number the scatter above is showing. Needs
+                       two structures, so 90 of the 123 TCRs don't get it. #}
+                    {% if footprint_spread %}
+                    <table class="info-table vertical-spacing-bottom-0-25">
+                        <tr>
+                            <td>Footprint spread</td>
+                            <td>
+                                {{ '%.2f' | format(footprint_spread.rms_angstrom) }} &#8491;
+                                <br /><smaller>RMS, across {{ footprint_spread.n_structures }} structures</smaller>
+                            </td>
+                        </tr>
+                        {% if footprint_spread.furthest %}
+                        <tr>
+                            <td>Furthest apart</td>
+                            <td>
+                                <a href="?structure={{ footprint_spread.furthest.a | lower }}">{{ footprint_spread.furthest.a }}</a>
+                                &harr;
+                                <a href="?structure={{ footprint_spread.furthest.b | lower }}">{{ footprint_spread.furthest.b }}</a>
+                                <br /><smaller>{{ '%.2f' | format(footprint_spread.furthest.distance) }} &#8491; apart</smaller>
+                            </td>
+                        </tr>
+                        {% endif %}
+                    </table>
+                    {% endif %}
+
                     <p>Circles are coloured by antigen type:</p>
                     <p>
                         {% for antigen in tcr.antigen_types %}

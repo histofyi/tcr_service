@@ -14,6 +14,7 @@
         "background": "/static/images/com_projection_background.png",
         "ref": {"x": 949.7, "y": 774.5},
         "crop": {"top": 160, "height": 1113},
+        "px_per_angstrom": 28.98,
         "layers": {
             "peptides": "Peptide",
             "tcrs": "TCR variable domain",

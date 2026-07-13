@@ -434,6 +434,18 @@
                         <tr><td>Method</td><td>{{ structure.method | deslugify_string }}</td></tr>
                         <tr><td>Resolution</td><td>{% if structure.resolution %}{{ structure.resolution }} &#8491;{% else %}&mdash;{% endif %}</td></tr>
                         <tr><td>Copies in the asymmetric unit</td><td>{{ structure.n_copies }}</td></tr>
+                        {# How far apart the copies' footprint centres sit. Only
+                           means anything with more than one copy — a precision
+                           figure about the crystallography, not the biology. #}
+                        {% if variability and structure.n_copies > 1 %}
+                        <tr>
+                            <td>Footprint spread across copies</td>
+                            <td>
+                                {{ '%.2f' | format(variability.footprint_spread_A) }} &#8491;
+                                <br /><smaller>how far the copies' footprint centres sit apart</smaller>
+                            </td>
+                        </tr>
+                        {% endif %}
                         <tr><td>Deposited</td><td>{{ structure.deposition_date | date_display }}</td></tr>
                         <tr><td>Released</td><td>{{ structure.release_date | date_display }}</td></tr>
                     </table>

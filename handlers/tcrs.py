@@ -1,5 +1,8 @@
+from quart import current_app
+
 from functions.coordinates import coordinate_map
 from functions.slugs import de_slugify_string
+from functions.variability import footprint_spread
 from models.structures import Structure
 from models.tcrs import (
     Tcr,
@@ -70,10 +73,16 @@ def tcr_handler(tcr_id: str, selected_structure: str | None = None) -> dict:
     pdb_ids = {structure['pdb_id'] for structure in tcr.get('structures') or []}
     selected = (selected_structure or '').strip().upper()
 
+    # How much this TCR's footprint moves BETWEEN its structures — the quantity the
+    # COM viewer below is showing. Needs two structures to mean anything.
+    projection = current_app.config['COM_PROJECTION']
+    spread = footprint_spread(tcr.get('structures'), projection['px_per_angstrom'])
+
     return {
         'tcr': tcr,
         'tcr_id': tcr_id,
         'com_points': com_points,
+        'footprint_spread': spread,
         'selected_structure': selected if selected in pdb_ids else None,
     }
 
