@@ -8,13 +8,14 @@
 <div class="executive-summary">
     {% if publication %}
     <div class="vertical-spacing-bottom-0-25">
-        {# The title carries the weight; the journal, year and identifiers are the
-           citation apparatus, so they break onto their own line beneath it. #}
+        {# Three lines: the title, then where it was published, then the
+           identifiers. Each is a different kind of thing. #}
         {% if publication.title %}<strong>{{ publication.title }}</strong><br />{% endif %}
         {% if publication.journal %}{{ publication.journal }}{% endif %}
         {% if publication.year %} ({{ publication.year }}){% endif %}
-        {% if publication.doi %} &middot; <a href="https://doi.org/{{ publication.doi }}" target="_blank" rel="noopener">doi:{{ publication.doi }}</a>{% endif %}
-        {% if publication.pmid %} &middot; <a href="https://pubmed.ncbi.nlm.nih.gov/{{ publication.pmid }}" target="_blank" rel="noopener">PMID {{ publication.pmid }}</a>{% endif %}
+        {% if publication.doi or publication.pmid %}<br />{% endif %}
+        {% if publication.doi %}<a href="https://doi.org/{{ publication.doi }}" target="_blank" rel="noopener">doi:{{ publication.doi }}</a>{% endif %}
+        {% if publication.pmid %}{% if publication.doi %} &middot; {% endif %}<a href="https://pubmed.ncbi.nlm.nih.gov/{{ publication.pmid }}" target="_blank" rel="noopener">PMID {{ publication.pmid }}</a>{% endif %}
     </div>
     {% endif %}
     <div class="vertical-spacing-bottom-0-25">
