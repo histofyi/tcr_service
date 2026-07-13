@@ -1,6 +1,7 @@
 from quart import current_app
 
 from functions.coordinates import coordinate_map, coordinate_url
+from functions.interface import interface_panel
 from functions.slugs import de_slugify_string
 from functions.variability import footprint_spread
 from models.structures import Structure
@@ -100,6 +101,10 @@ def tcr_handler(tcr_id: str, selected_structure: str | None = None) -> dict:
         'com_points': com_points,
         'footprint_spread': spread,
         'overlay': overlay if len(overlay) > 1 else None,
+        # Every structure of this TCR as a row of the same interface grid — what the
+        # receptor does DIFFERENTLY from one peptide to the next. None below two
+        # structures; a single row says nothing the structure page doesn't say better.
+        'interface_panel': interface_panel(tcr.get('structures')),
         'selected_structure': selected if selected in pdb_ids else None,
     }
 

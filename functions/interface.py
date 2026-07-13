@@ -56,10 +56,15 @@ CDR_LABELS = {
     'beta_cdr3': 'β CDR3',
 }
 
+# NOT "α1 helix" / "α2 helix", however much we want them to be. The shipped SASA/SC
+# data defines these regions as the WHOLE DOMAINS (A 1-90 and A 91-180), not the
+# helices (50-86 / 137-180) — so a bubble attributed to α1 includes surface buried
+# against the beta-sheet floor of the groove, and calling it "helix" overclaims.
+# Put "helix" back when the regenerated, helix-only data lands. DATA.md #13.
 MHC_LABELS = {
-    'alpha1': 'α1 helix',
+    'alpha1': 'α1',
     'peptide': 'Peptide',
-    'alpha2': 'α2 helix',
+    'alpha2': 'α2',
 }
 
 # The contacts/neighbours files label the loops `CDR1_alpha`; SASA/SC use
@@ -248,6 +253,102 @@ def interface_matrix(pdb_id: str) -> dict | None:
         'iface_completeness_pct': sasa.get('iface_completeness_pct'),
         'total_atom_pairs': contacts.get('ct_total_atom_pairs'),
         'residue_contacts': neighbours.get('nb_residue_contacts'),
+    }
+
+
+# --- the cross-structure panel on a TCR page ---------------------------------
+
+
+@lru_cache(maxsize=1)
+def global_trimmed_area_max() -> float:
+    """The largest trimmed-area cell across every structure.
+
+    The panel's counterpart to global_bsa_max(): bubbles are normalised against every
+    structure, not against the TCR's own biggest, so a bubble means the same thing on
+    every TCR's panel.
+    """
+    largest = 0.0
+    for record in _dataset('shape_complementarity').values():
+        for pair in record.get('pairs') or []:
+            value = _clean(pair.get('trimmed_area'))
+            if value is not None:
+                largest = max(largest, value)
+    return largest or 1.0
+
+
+def interface_panel(structures: list) -> dict | None:
+    """Every structure of one TCR as a row of the same 6x3 interface grid.
+
+    The structure page shows one complex's interface; this shows a receptor's whole
+    set at once, which is the only way to see what a TCR does DIFFERENTLY from one
+    peptide to the next — 26 of the 33 multi-structure TCRs vary their peptide, and
+    that cross-reactivity is the whole point of the view.
+
+    **Bubble area here is `trimmed_area`, not the BSA the structure page uses.** They
+    are different quantities (1AO7's αCDR3/peptide cell: 63.3 Å² trimmed, 127.1 Å²
+    buried) and neither is a rescaling of the other. Trimmed area is the area of the
+    patch the shape-complementarity calculation actually scored, so it is the area
+    that belongs with an Sc colour — but it means the two charts' legends must, and
+    do, name their own quantity.
+
+    Only worth drawing with more than one structure: a single row says nothing the
+    structure page does not say better.
+    """
+    rows = []
+
+    for structure in structures or []:
+        pdb_id = structure.get('pdb_id')
+        key = structure_id(pdb_id or '')
+        if not key:
+            continue
+
+        sc = _dataset('shape_complementarity').get(key) or {}
+        sc_pairs = {
+            (p['cdr_loop'], p['mhc_region']): p for p in sc.get('pairs') or []
+        }
+
+        # Loop-major, region within it: the columns read as six CDR groups of three,
+        # as the grant's figures lay them out.
+        cells = []
+        for cdr_loop in CDR_LOOPS:
+            for mhc_region in MHC_REGIONS:
+                cell = sc_pairs.get((cdr_loop, mhc_region), {})
+                cells.append({
+                    'cdr_loop': cdr_loop,
+                    'mhc_region': mhc_region,
+                    'trimmed_area': _clean(cell.get('trimmed_area')),
+                    'sc': _clean(cell.get('sc')),
+                    'median_distance': _clean(cell.get('median_distance')),
+                })
+
+        rows.append({
+            'pdb_id': pdb_id,
+            'structure_id': key,
+            'peptide': structure.get('peptide'),
+            'allele': structure.get('allele'),
+            'cells': cells,
+        })
+
+    if len(rows) < 2:
+        return None
+
+    # Most TCRs here are one receptor against one allele and a range of peptides, and
+    # the rows need only name the peptide. But five are not — LC13 spans HLA-B*08:01
+    # and B*44:05, TK3 the B*35:01/B*35:08 micropolymorphism — and on those pages a row
+    # labelled with a peptide alone would imply an MHC that is not constant. Where it
+    # varies, the row says so.
+    allele_varies = len({row['allele'] for row in rows}) > 1
+
+    return {
+        'rows': rows,
+        'allele_varies': allele_varies,
+        'trimmed_area_max': global_trimmed_area_max(),
+        'cdr_loops': list(CDR_LOOPS),
+        'mhc_regions': list(MHC_REGIONS),
+        'cdr_labels': CDR_LABELS,
+        'mhc_labels': MHC_LABELS,
+        'sc_min': SC_MIN,
+        'sc_max': SC_MAX,
     }
 
 

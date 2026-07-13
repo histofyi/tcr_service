@@ -393,6 +393,26 @@ per-copy and they agree. The averaging can go once the matrix is rebuilt on it.
 
 ## Not a data problem, but worth recording
 
+### The two charts size their bubbles by DIFFERENT quantities — on purpose
+
+| Chart | Bubble area | Field | Source record |
+| --- | --- | --- | --- |
+| Structure page, *Interface* | Buried area | `bsa_total` | `sasa_by_structure.json` |
+| TCR page, *The interface, across every structure* | Trimmed area | `trimmed_area` | `shape_complementarity_by_structure.json` |
+
+They are **not** rescalings of each other — 1AO7's αCDR3/peptide cell is 63.3 Å²
+trimmed and 127.1 Å² buried, and the ratio is not constant.
+
+Trimmed area is the area of the patch the Sc calculation actually scored, so it is
+the area that belongs beside an Sc colour; buried area is the surface lost on
+contact, which is what people usually mean by "interface size". Both are wanted, and
+the TCR panel deliberately mirrors the grant's published figures.
+
+**So each chart's size legend names its own quantity** ("Buried area" / "Trimmed
+area"). Do not "unify" them by relabelling one to match the other — the labels are
+the only thing telling a reader that a bubble here and a bubble one click away are
+not comparable.
+
 ### TCR3d has no per-structure URL
 
 All 206 structures are in TCR3d, but it has **no per-structure page** to link to:

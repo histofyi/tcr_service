@@ -7,6 +7,86 @@
 
 {% block style %}
 <style>
+    /* --- the cross-structure interface panel ---------------------------------
+       One row per structure; bubble AREA = trimmed area, COLOUR = Sc. Built as SVG
+       by tcr_matrix.js. */
+    .panel-svg { width: 100%; height: auto; display: block; }
+
+    .matrix-label { font-size: 12px; fill: #333355; font-family: 'Poppins', sans-serif; }
+    .matrix-label-cdr { font-weight: 600; fill: #0a0039; }
+    .matrix-legend-text {
+        font-size: 11px;
+        fill: #666677;
+        font-family: 'IBM Plex Mono', monospace;
+    }
+    .matrix-split { stroke: rgba(10, 0, 57, 0.25); stroke-width: 1; }
+    .matrix-rule { stroke: #eeeeee; stroke-width: 1; }
+
+    .matrix-bubble { stroke: #0a0039; stroke-width: 0.75; pointer-events: none; }
+    /* Contact, but Sc could not be computed — an outline, so it never reads as
+       "no contact". */
+    .matrix-bubble.is-unknown { stroke-dasharray: 3 2; stroke: #666677; }
+    .matrix-bubble.is-legend { fill: #e4e4ec; }
+
+    .panel-pdb {
+        font-size: 12px;
+        font-weight: 600;
+        fill: #0a0039;
+        font-family: 'IBM Plex Mono', monospace;
+    }
+    .panel-peptide {
+        font-size: 11px;
+        fill: #857f9c;
+        font-family: 'IBM Plex Mono', monospace;
+    }
+    /* Only drawn where the allele varies across a TCR's structures — LC13, TK3 and
+       three others. Elsewhere it is constant and would be noise on every row. */
+    .panel-allele {
+        font-size: 10px;
+        fill: #857f9c;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    /* The row band: the hover and selection target. The bubbles are far too small
+       to click, so the whole row is the control. */
+    .panel-band { fill: transparent; pointer-events: none; }
+    .panel-band.is-hot { fill: rgba(10, 0, 57, 0.04); }
+    .panel-band.is-selected { fill: rgba(10, 0, 57, 0.08); }
+    .panel-hit { fill: transparent; cursor: pointer; }
+
+    .matrix-tooltip {
+        position: fixed;
+        z-index: 60;
+        display: none;
+        pointer-events: none;
+        background: #ffffff;
+        border: 1px solid rgba(10, 0, 57, 0.20);
+        border-radius: 5px;
+        padding: 9px 11px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        font-size: 11.5px;
+        color: #0a0039;
+        max-width: 260px;
+    }
+    .matrix-tooltip .tt-title { font-weight: 600; margin-bottom: 4px; }
+    .matrix-tooltip table { border-collapse: collapse; }
+    .matrix-tooltip td { padding: 1px 0; }
+    .matrix-tooltip .tt-k {
+        color: #857f9c;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-size: 10px;
+    }
+    .matrix-tooltip .tt-sub-plain {
+        color: #857f9c;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 5px;
+    }
+
     /* The row the scoped COM viewer has selected. */
     /* The selected structure, in both the structure list and the publications.
        The marker bar goes on the FIRST cell only — on every td it drew a black
@@ -423,6 +503,70 @@
 </section>
 {% endif %}
 
+{# Every structure of this TCR on the same interface grid, one per row. The structure
+   page shows a single complex; this shows what the receptor does DIFFERENTLY from one
+   peptide to the next — which is the whole reason to look at a TCR rather than a
+   structure. Only drawn with more than one structure. #}
+{% if interface_panel %}
+<section>
+    <div class="grid-container">
+        <div class="column-full-width">
+            <div class="inner">
+                <hr />
+                <h2 class="heading-small vertical-spacing-top-0-5 vertical-spacing-bottom-0-25">
+                    The interface, across every structure
+                </h2>
+            </div>
+        </div>
+    </div>
+    <div class="grid-container">
+        <div class="column-two-thirds">
+            <div class="inner">
+                <div id="interface-panel" data-panel='{{ interface_panel | tojson }}'></div>
+            </div>
+        </div>
+        <div class="column-one-third">
+            <div class="inner">
+                <div class="panel-title vertical-spacing-bottom-0-25">Reading this</div>
+                <p>
+                    <small>
+                        One row per structure. Each bubble is one CDR loop against one
+                        region of the groove: its <strong>area</strong> is the area of
+                        the patch, its <strong>colour</strong> the shape complementarity
+                        (Sc) of that patch &mdash; how well the two surfaces mesh.
+                        Reading down a column shows what one loop does across every
+                        peptide this receptor has been solved against.
+                    </small>
+                </p>
+                <p class="vertical-spacing-top-0-25">
+                    <small>
+                        An empty cell means that loop never reaches that region. A white
+                        bubble means it does, but Sc could not be computed for the pair.
+                    </small>
+                </p>
+                <p class="vertical-spacing-top-0-25">
+                    <small>
+                        Hover a row for the numbers; click it to select that structure.
+                    </small>
+                </p>
+                {# The two charts encode DIFFERENT quantities in the bubble area, and a
+                   reader moving between them would otherwise have no way to know. #}
+                <p class="vertical-spacing-top-0-25">
+                    <smaller>
+                        Bubble area here is the <strong>trimmed area</strong> &mdash; the
+                        patch the Sc calculation scored, so it is the area that goes with
+                        the Sc colour. The matrix on a structure page sizes its bubbles by
+                        <strong>buried area</strong> instead, which is a different
+                        quantity: the two are not comparable by eye.
+                    </smaller>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="matrix-tooltip" id="panel-tooltip"></div>
+{% endif %}
+
 {# The publications behind this TCR — titles and links only. The executive
    summaries belong on the structure pages. #}
 {% if tcr.publications %}
@@ -486,10 +630,12 @@
 
 {% block scripts %}
 {# The selected structure is one piece of state shared by the structure table, the
-   publication list, the COM viewer and the superposition — so selection.js owns it
-   and must load before any of its views. #}
-{% if overlay or com_points %}
+   publication list, the COM viewer, the superposition and the interface panel — so
+   selection.js owns it and must load before any of its views. #}
+{% if overlay or com_points or interface_panel %}
 <script src="{{ asset('selection.js') }}"></script>
+{% endif %}
+{% if overlay or com_points %}
 {% include "fragments/_molstar_scripts.html" %}
 {% endif %}
 {% if overlay %}
@@ -497,5 +643,8 @@
 {% endif %}
 {% if com_points %}
 <script src="{{ asset('com_scope.js') }}"></script>
+{% endif %}
+{% if interface_panel %}
+<script src="{{ asset('tcr_matrix.js') }}"></script>
 {% endif %}
 {% endblock %}
