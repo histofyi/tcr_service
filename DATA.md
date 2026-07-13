@@ -14,16 +14,26 @@ Sources: `data/` (prebaked bundles + parquet indexes), `data/class_i_annotation.
 
 ## Open — the pipeline should fix these
 
-### 1. Two TCRs are literally named `nan`
+### 1. Two TCRs have no name — and it breaks in two different ways at once
 
-`tcr_name` is the string `"nan"` for two entries — a pandas NaN that was
-stringified rather than handled. They render as "nan" in the browse list.
+9K2R and 9D95 have no published clone name. That is fine; how it is *carried* is
+not, because the two stores disagree:
 
-`data/README.md` says these should resolve to **`ki-890`** (9K2R, donor code, no
-published clone name) and **`hghv4`** (9D95). The `tcr_id` slugs appear to be
-right; it is `tcr_name` that is broken.
+| Store | Value | Rendered as |
+| --- | --- | --- |
+| `tcrs.parquet` (index) | float `NaN` | the string **"nan"** |
+| `data/tcr/*.json` (bundle) | `null` | **nothing** — an empty page heading |
 
-**Site workaround:** none. It renders what it is given, so the bug is visible.
+Only one of the two was ever visible at a time, which is why it looked like one
+bug rather than two.
+
+**Fix at source:** carry a real value. The bundle for 9K2R already knows its
+**donor code (KI-890)** and carries a `naming_note` explaining there is no clone
+name — that is a real identifier and should be the name.
+
+**Site workaround:** `models/tcrs.py::annotate_tcr_name()` normalises all three
+cases in the model layer, so every consumer agrees. 9K2R uses its donor code;
+9D95 has nothing to fall back on and shows "Unknown".
 
 ### 2. `NaN` in the shape-complementarity tables — not valid JSON
 
@@ -116,35 +126,6 @@ into.
 `functions/coordinates.py`, which indexes what is actually on disk and picks the
 preferred file (first copy, first altloc).
 
-### 9. `overall_completeness_pct` is not "overall" — ANSWERED, but the name is wrong
-
-**Answered by Claude Science.** It is **neither** the TCR chains alone **nor** the
-whole structure. It is a QC metric over the interface-defining regions plus the TCR
-variable domains — the fraction of residues present across:
-
-- MHC α1 helix (A 50–86)
-- MHC α2 helix (A 137–180)
-- peptide (chain C)
-- TCR α and β **variable** domains (chains D, E)
-
-counting **internal disorder only** (Cα backbone breaks > 4.2 Å for the TCR; missing
-residues within the modelled span for peptide/MHC). Chain-terminal truncation is
-ignored. It excludes β2-microglobulin (chain B) and the MHC α3 domain / the
-non-helix parts of α1–α2.
-
-**So the column name is actively misleading** — "overall" means neither of the two
-things a reader would assume, and both my first guess and the page's original copy
-were wrong.
-
-**Fix at source:** rename it to something that says what it measures, e.g.
-`groove_and_tcrv_completeness_pct`.
-
-**Site workaround:** the row is labelled "Groove & TCR V domains", not "Overall",
-and the note spells out what is and isn't counted.
-
-*(Note this metric already uses the **helix-only** α1/α2 bounds — 50–86 / 137–180 —
-which is further support for #13.)*
-
 ### 10. Structure ids and coordinate filenames disagree on case
 
 The interaction export keys on `7N2P_aligned_1_altlocA` — upper-case PDB id,
@@ -228,9 +209,66 @@ but it is a foot-gun.
 
 ---
 
-## Fixed by the `interaction_export` drop
+## Resolved
 
-### 12. BSA could not be attributed to an ASU copy — *now fixed*
+### 15. Ten coordinate files had a non-standard chain order — RESOLVED
+
+**RESOLVED** by the revised coordinate drop (2026-07-13).
+
+Ten of the 206 files did not letter their chains in `A,B,C,D,E` order — 9ZCL ran
+`C,A,B,D,E`; 7L1D, 8RRO, 9HLJ and 9WBD ran `D,E,A,B,C`. The chains were correctly
+*named*; they simply appeared in a different order.
+
+That matters because **Mol\*'s `chain-id` colour theme assigns colours by chain
+INDEX, not by chain id**, so a colour meant a different chain on those pages — the
+peptide came out MHC-green. It surfaced twice: once in the cartoon, and again in
+the side chains Mol\* draws when focusing a residue (`element-symbol` colours its
+carbons with a `chain-id` sub-theme). See BUGS.md #1 and #12.
+
+The revised drop reletters everything to `A,B,C,D,E`.
+
+**Site workaround (kept):** the cartoon pins Mol\*'s palette to the chain
+**letter**, so it no longer depends on file order at all. The focus side chains
+still use Mol\*'s own theme and therefore still depend on it — that is the one
+place a future odd-ordered file would show up first.
+
+
+### 9. `overall_completeness_pct` is not "overall" — RESOLVED
+
+**RESOLVED** — answered by Claude Science, 2026-07-13. The site now labels it
+correctly; one pipeline action remains (renaming the column).
+
+It is It is **neither** the TCR chains alone **nor** the
+whole structure. It is a QC metric over the interface-defining regions plus the TCR
+variable domains — the fraction of residues present across:
+
+- MHC α1 helix (A 50–86)
+- MHC α2 helix (A 137–180)
+- peptide (chain C)
+- TCR α and β **variable** domains (chains D, E)
+
+counting **internal disorder only** (Cα backbone breaks > 4.2 Å for the TCR; missing
+residues within the modelled span for peptide/MHC). Chain-terminal truncation is
+ignored. It excludes β2-microglobulin (chain B) and the MHC α3 domain / the
+non-helix parts of α1–α2.
+
+**So the column name is actively misleading** — "overall" means neither of the two
+things a reader would assume, and both my first guess and the page's original copy
+were wrong.
+
+**Fix at source:** rename it to something that says what it measures, e.g.
+`groove_and_tcrv_completeness_pct`.
+
+**Site workaround:** the row is labelled "Groove & TCR V domains", not "Overall",
+and the note spells out what is and isn't counted.
+
+*(Note this metric already uses the **helix-only** α1/α2 bounds — 50–86 / 137–180 —
+which is further support for #13.)*
+
+
+### 12. BSA could not be attributed to an ASU copy — RESOLVED
+
+**RESOLVED** by the `interaction_export` drop.
 
 In the **old** structure bundles, a multi-copy structure carries 18 SASA/SC cells
 *per copy* (2AK4 has 72 rows), but the BSA rows' `complex` field is the **system
