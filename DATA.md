@@ -142,7 +142,35 @@ data keys.
 case-insensitively against the keys that actually exist, rather than constructing
 the key.
 
-### 11. Two `peptide` keys for the same thing
+### 11. No residue-level contacts — the chord cannot be drawn as designed
+
+The chord diagram is meant to be **residue × residue**, with residues grouped by
+CDR loop / peptide / α1 / α2 (as in the grant's figures). Nothing in the export
+supports that. Every layer aggregates to **CDR-loop × MHC-region**:
+
+| File | Grain |
+| --- | --- |
+| `contacts_by_structure.json` | `{cdr_loop, region, bond_type, n_atom_pairs}` |
+| `neighbours_by_structure.json` | `{cdr_loop, region, n_atom_pairs}` |
+| `interaction_com_raw.json` (the raw source) | `ct_bond_types` keyed `CDR1_alpha\|alpha1\|proximal` |
+
+`nb_residue_contacts` is a **count** (e.g. 63), not the pairs. No file carries
+`chain / resnum / resname` on either side of a contact.
+
+The only residue-level data anywhere is the grant's `contact_maps/*.csv` —
+columns `chain_1, resnum_1, resname_1, atom_1, chain_2, resnum_2, resname_2,
+atom_2, interaction_types, distance, tcr_chain, cdr_loop` — and it covers **10 of
+the 206** structures.
+
+**Fix at source:** emit the grant's `contact_maps` format (or equivalent) for all
+206. `bsi_career_enhancing_grant/code/compute_contact_maps.py` already produces
+exactly this from PDBe-Arpeggio; it just needs running over the full set.
+
+**Site workaround:** the chord is drawn at loop × region for now, with ribbon
+width = atom pairs and a "specific bonds only" toggle (Arpeggio's `proximal`
+catch-all is ~90% of all pairs).
+
+### 12. Two `peptide` keys for the same thing
 
 The per-TCR bundle's `structures[]` use `peptide`; the per-structure bundle uses
 `peptide_seq` (+ `peptide_len`). Templates must read the right one per shape.

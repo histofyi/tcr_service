@@ -7,8 +7,6 @@
 
 {% block style %}
 <style>
-    .executive-summary { font-size: 11pt; }
-
     /* The alpha/beta chain table. In a half-width column a 14-residue CDR3 fits at
        the site's normal residue size, so the sequences here match the peptide's
        rather than being shrunk to fit. The label column gives up width to them. */
@@ -255,87 +253,6 @@
     </div>
 </section>
 
-{# The file itself: how it was determined, and how much of it is actually modelled.
-   "Structure completeness" rather than "model completeness" — this is an
-   experimental structure, and "model" reads as a prediction. #}
-<section>
-    <div class="grid-container">
-        <div class="column-full-width">
-            <div class="inner">
-                <hr />
-            </div>
-        </div>
-    </div>
-    {# Two headings of equal weight, side by side — completeness is a finding about
-       the structure, not a footnote to its metadata. #}
-    <div class="grid-container">
-        <div class="column-one-half">
-            <div class="inner">
-                <h2 class="heading-small vertical-spacing-top-0-5 vertical-spacing-bottom-0-25">Structure information</h2>
-                <small>
-                    <table class="info-table">
-                        <tr><td>Method</td><td>{{ structure.method | deslugify_string }}</td></tr>
-                        <tr><td>Resolution</td><td>{% if structure.resolution %}{{ structure.resolution }} &#8491;{% else %}&mdash;{% endif %}</td></tr>
-                        <tr><td>Copies in the asymmetric unit</td><td>{{ structure.n_copies }}</td></tr>
-                        <tr><td>Deposited</td><td>{{ structure.deposition_date | date_display }}</td></tr>
-                        <tr><td>Released</td><td>{{ structure.release_date | date_display }}</td></tr>
-                    </table>
-                </small>
-                {# Only the databases that actually hold this entry are linked;
-                   `sources` on the master table says which. TCR3d holds all of
-                   them but has no per-structure page, so it cannot be linked. #}
-                <p class="vertical-spacing-top-0-25">
-                    <smaller>
-                        <a href="{{ pdb_id | coordinate_url }}" download>Download aligned PDB</a>
-                    </smaller>
-                </p>
-                <p class="vertical-spacing-top-0-25">
-                    <smaller>
-                        This structure at:
-                        {% for link in external_links %}
-                            <a href="{{ link.url }}" target="_blank" rel="noopener">{{ link.label }}</a>{% if not loop.last %} &middot; {% endif %}
-                        {% endfor %}
-                    </smaller>
-                </p>
-            </div>
-        </div>
-        <div class="column-one-half">
-            <div class="inner">
-                <h2 class="heading-small vertical-spacing-top-0-5 vertical-spacing-bottom-0-25">Structure completeness</h2>
-                <small>
-                    <table class="info-table">
-                        {% set multi = structure.completeness | length > 1 %}
-                        {% if multi %}
-                        <tr>
-                            <th></th>
-                            {% for copy in structure.completeness %}<th>Copy {{ loop.index }}</th>{% endfor %}
-                        </tr>
-                        {% endif %}
-                        <tr>
-                            <td>Interface</td>
-                            {% for copy in structure.completeness %}<td>{{ copy.iface_completeness_pct }}%</td>{% endfor %}
-                        </tr>
-                        <tr>
-                            <td>Overall</td>
-                            {% for copy in structure.completeness %}<td>{{ copy.overall_completeness_pct }}%</td>{% endfor %}
-                        </tr>
-                        <tr>
-                            <td>TCR backbone breaks</td>
-                            {% for copy in structure.completeness %}<td>{{ copy.tcr_alpha_backbone_breaks }} &alpha; &middot; {{ copy.tcr_beta_backbone_breaks }} &beta;</td>{% endfor %}
-                        </tr>
-                    </table>
-                </small>
-                <p class="vertical-spacing-top-0-25">
-                    <smaller>
-                        How much of the deposited structure can be modelled in the electron
-                        density &mdash; at the TCR:pMHC interface, and the TCR chains overall.
-                    </smaller>
-                </p>
-            </div>
-        </div>
-    </div>
-</section>
-
 {# The interface: what each CDR loop buries against each region of the MHC, and
    how well it packs there. Hovering a cell highlights that loop in the viewer
    above; clicking zooms to it. #}
@@ -357,7 +274,7 @@
         </div>
     </div>
     <div class="grid-container">
-        <div class="column-three-quarters">
+        <div class="column-one-half">
             <div class="inner">
                 <div id="interface-matrix"
                      data-viewer="structure-viewer"
@@ -372,7 +289,9 @@
                      data-sc-max="{{ sc_max }}"></div>
             </div>
         </div>
-        <div class="column-one-quarter">
+    </div>
+    <div class="grid-container">
+        <div class="column-one-half">
             <div class="inner">
                 <div class="panel-title vertical-spacing-bottom-0-25">Reading this</div>
                 <small>
@@ -464,6 +383,87 @@
     </div>
 </section>
 
+{# The file itself: how it was determined, and how much of it is actually modelled.
+   "Structure completeness" rather than "model completeness" — this is an
+   experimental structure, and "model" reads as a prediction. #}
+<section>
+    <div class="grid-container">
+        <div class="column-full-width">
+            <div class="inner">
+                <hr />
+            </div>
+        </div>
+    </div>
+    {# Two headings of equal weight, side by side — completeness is a finding about
+       the structure, not a footnote to its metadata. #}
+    <div class="grid-container">
+        <div class="column-one-half">
+            <div class="inner">
+                <h2 class="heading-small vertical-spacing-top-0-5 vertical-spacing-bottom-0-25">Structure information</h2>
+                <small>
+                    <table class="info-table">
+                        <tr><td>Method</td><td>{{ structure.method | deslugify_string }}</td></tr>
+                        <tr><td>Resolution</td><td>{% if structure.resolution %}{{ structure.resolution }} &#8491;{% else %}&mdash;{% endif %}</td></tr>
+                        <tr><td>Copies in the asymmetric unit</td><td>{{ structure.n_copies }}</td></tr>
+                        <tr><td>Deposited</td><td>{{ structure.deposition_date | date_display }}</td></tr>
+                        <tr><td>Released</td><td>{{ structure.release_date | date_display }}</td></tr>
+                    </table>
+                </small>
+                {# Only the databases that actually hold this entry are linked;
+                   `sources` on the master table says which. TCR3d holds all of
+                   them but has no per-structure page, so it cannot be linked. #}
+                <p class="vertical-spacing-top-0-25">
+                    <smaller>
+                        <a href="{{ pdb_id | coordinate_url }}" download>Download aligned PDB</a>
+                    </smaller>
+                </p>
+                <p class="vertical-spacing-top-0-25">
+                    <smaller>
+                        This structure at:
+                        {% for link in external_links %}
+                            <a href="{{ link.url }}" target="_blank" rel="noopener">{{ link.label }}</a>{% if not loop.last %} &middot; {% endif %}
+                        {% endfor %}
+                    </smaller>
+                </p>
+            </div>
+        </div>
+        <div class="column-one-half">
+            <div class="inner">
+                <h2 class="heading-small vertical-spacing-top-0-5 vertical-spacing-bottom-0-25">Structure completeness</h2>
+                <small>
+                    <table class="info-table">
+                        {% set multi = structure.completeness | length > 1 %}
+                        {% if multi %}
+                        <tr>
+                            <th></th>
+                            {% for copy in structure.completeness %}<th>Copy {{ loop.index }}</th>{% endfor %}
+                        </tr>
+                        {% endif %}
+                        <tr>
+                            <td>Interface</td>
+                            {% for copy in structure.completeness %}<td>{{ copy.iface_completeness_pct }}%</td>{% endfor %}
+                        </tr>
+                        <tr>
+                            <td>Overall</td>
+                            {% for copy in structure.completeness %}<td>{{ copy.overall_completeness_pct }}%</td>{% endfor %}
+                        </tr>
+                        <tr>
+                            <td>TCR backbone breaks</td>
+                            {% for copy in structure.completeness %}<td>{{ copy.tcr_alpha_backbone_breaks }} &alpha; &middot; {{ copy.tcr_beta_backbone_breaks }} &beta;</td>{% endfor %}
+                        </tr>
+                    </table>
+                </small>
+                <p class="vertical-spacing-top-0-25">
+                    <smaller>
+                        How much of the deposited structure can be modelled in the electron
+                        density &mdash; at the TCR:pMHC interface, and the TCR chains overall.
+                    </smaller>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
 {# Executive summary + REQUIRED AI-provenance attribution. #}
 {% if structure.executive_summary %}
 <section>
@@ -471,7 +471,7 @@
         <div class="column-full-width">
             <div class="inner">
                 <hr />
-                <h2 class="heading-small vertical-spacing-top-0-5 vertical-spacing-bottom-0-25">Summary</h2>
+                <h2 class="heading-small vertical-spacing-top-0-5 vertical-spacing-bottom-0-25">Publication</h2>
                 {% with summary_text=structure.executive_summary,
                         attribution_html=structure.executive_summary_attribution_html,
                         publication=structure.publication %}
