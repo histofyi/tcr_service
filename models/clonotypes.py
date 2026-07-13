@@ -4,6 +4,7 @@ import os
 import duckdb
 
 from models.model import Model
+from models.tcrs import annotate_tcr_name
 
 
 # The clonotype parquet index JSON-encodes these list columns.
@@ -25,7 +26,9 @@ def annotate_index_record(record: dict) -> dict:
         value = record.get(column)
         if isinstance(value, str):
             record[column] = json.loads(value)
-    return record
+    # Clonotypes carry the TCR's name too, so they inherit its missing-name
+    # problem (CL115, CL124 belong to the two unnamed TCRs). Same fallback.
+    return annotate_tcr_name(record)
 
 
 class Clonotype(Model):
@@ -52,5 +55,5 @@ class Clonotype(Model):
             detail_path = os.path.join(self.detail_dir, f'{candidate}.json')
             if os.path.exists(detail_path):
                 with open(detail_path) as detail_file:
-                    return json.load(detail_file)
+                    return annotate_tcr_name(json.load(detail_file))
         return None

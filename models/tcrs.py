@@ -1,4 +1,5 @@
 import json
+import math
 import os
 from functools import lru_cache
 
@@ -27,13 +28,38 @@ SORT_ORDERINGS = {
 DEFAULT_SORT = 'deposition_desc'
 
 
+UNNAMED_TCR = 'Unknown'
+
+
+def annotate_tcr_name(record: dict) -> dict:
+    """Give the two unnamed TCRs a display name.
+
+    Two of the 123 TCRs have no published clone name (9K2R, identified only by the
+    donor code KI-890, and 9D95). The index carries this as a **float NaN**, which
+    renders as the string "nan"; the detail bundles carry it as null, which renders
+    as nothing at all — an empty page heading. Neither is a name.
+
+    Normalised to 'Unknown' here rather than in the templates, so every consumer
+    gets the same answer. See DATA.md #1 — the pipeline should carry a real value.
+    """
+    name = record.get('tcr_name')
+    is_missing = (
+        name is None
+        or (isinstance(name, float) and math.isnan(name))
+        or str(name).strip().lower() in ('', 'nan')
+    )
+    if is_missing:
+        record['tcr_name'] = UNNAMED_TCR
+    return record
+
+
 def annotate_index_record(record: dict) -> dict:
     """Decode the JSON-encoded list columns of an index row into real lists."""
     for column in INDEX_LIST_COLUMNS:
         value = record.get(column)
         if isinstance(value, str):
             record[column] = json.loads(value)
-    return record
+    return annotate_tcr_name(record)
 
 
 def annotate_chains(tcr: dict, representative: dict | None) -> dict:
@@ -149,4 +175,4 @@ class Tcr(Model):
         if not os.path.exists(detail_path):
             return None
         with open(detail_path) as detail_file:
-            return json.load(detail_file)
+            return annotate_tcr_name(json.load(detail_file))

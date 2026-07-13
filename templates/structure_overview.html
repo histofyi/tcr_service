@@ -148,12 +148,15 @@
         <div class="column-full-width">
             <div class="inner">
                 <div id="structure-top"></div>
-                <small>
-                    <strong>{{ pdb_id }}</strong>
-                    {% if structure.noncanonical and structure.noncanonical.flag %}
-                        <span class="flag is-noncanonical" title="{{ structure.noncanonical.evidence }}">non-canonical</span>
-                    {% endif %}
-                </small>
+                {# the spacing class needs a block element — <small> is inline #}
+                <div class="vertical-spacing-top-0-5">
+                    <small>
+                        <strong>{{ pdb_id }}</strong>
+                        {% if structure.noncanonical and structure.noncanonical.flag %}
+                            <span class="flag is-noncanonical" title="{{ structure.noncanonical.evidence }}">non-canonical</span>
+                        {% endif %}
+                    </small>
+                </div>
                 {# heading-medium, not extra-large: the latter is 72px, which sets a
                    full sentence like this over four lines. #}
                 <h1 class="heading-medium vertical-spacing-bottom-0-5">
