@@ -170,7 +170,35 @@ exactly this from PDBe-Arpeggio; it just needs running over the full set.
 width = atom pairs and a "specific bonds only" toggle (Arpeggio's `proximal`
 catch-all is ~90% of all pairs).
 
-### 12. Two `peptide` keys for the same thing
+### 13. α1 / α2 are defined two different ways — and the shipped data uses the wrong one
+
+Two definitions of the MHC regions are in circulation:
+
+| Source | α1 | α2 |
+| --- | --- | --- |
+| `bsi_career_enhancing_grant/structure_components.json` | A **50–86** (helix only) | A **137–180** (helix only) |
+| `interaction_export` (what we currently ship) | A 1–90 (whole domain) | A 91–180 (whole domain) |
+
+**Decided: helix-only.** The TCR reads the helices flanking the groove; the β-sheet
+floor beneath them is not part of the recognised surface, and including it dilutes
+the signal.
+
+So **every interaction file we currently hold is built to the wrong definition** —
+not just the contacts, but `sasa_by_structure` and
+`shape_complementarity_by_structure` too, whose MHC *patches* are defined the same
+way. An "α1" buried-area figure on the site today includes the sheet floor.
+
+**Fix at source:** regenerate all five files (contacts, residue-level contacts,
+neighbours, SASA, SC) to 50–86 / 137–180. Expect every count to fall — fewer
+residues are in scope. See `briefs/residue_contacts/BRIEF.md` §4.
+
+**Site workaround:** none, deliberately. `functions/interface.py::MHC_SELECTIONS`
+still uses the whole-domain bounds so the Mol\* highlight describes the same
+residues the numbers are computed over. Changing one without the other would be
+worse than leaving both wrong: clicking an "α1" cell would light up a region the
+figure doesn't refer to. **Switch both together when the data lands.**
+
+### 14. Two `peptide` keys for the same thing
 
 The per-TCR bundle's `structures[]` use `peptide`; the per-structure bundle uses
 `peptide_seq` (+ `peptide_len`). Templates must read the right one per shape.

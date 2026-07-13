@@ -81,6 +81,16 @@ CDR_SELECTIONS = {
     'beta_cdr3': {'chain': 'E', 'start': 105, 'end': 117},
 }
 
+# PENDING CHANGE — these are the WHOLE-DOMAIN bounds, matching the data we have
+# today (interaction_export: alpha1 = A 1-90, alpha2 = A 91-180). The region
+# definition has since been settled as HELIX-ONLY (alpha1 = A 50-86, alpha2 =
+# A 137-180), which is what the TCR actually reads — the beta-sheet floor beneath
+# the helices is not part of the recognised surface.
+#
+# Do NOT change these until the regenerated helix-only data lands: the highlight
+# ranges must describe the same residues the figures are computed over, or clicking
+# an "alpha1" cell would light up a region the number does not refer to. Switch
+# both together. See briefs/residue_contacts/BRIEF.md section 4, and DATA.md #13.
 MHC_SELECTIONS = {
     'alpha1': {'chain': 'A', 'start': 1, 'end': 90},
     'alpha2': {'chain': 'A', 'start': 91, 'end': 180},
