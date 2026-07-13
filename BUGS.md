@@ -208,6 +208,35 @@ file stays invisible to a browser that already has it for **12 hours**.
 The Mol\* bundle and the coordinate files are deliberately *not* routed through it —
 they never change, and the long cache is exactly what we want for them.
 
+
+## 12. Focused side chains recoloured themselves — FIXED (upstream)
+
+**Symptom.** Focusing a peptide residue in 9ZCL (`?residue=c-3`) drew the peptide's
+side chains **MHC-green** and the MHC's side chains **β2m-orange** — contradicting
+the cartoon right behind them.
+
+**Cause: this is #1 again.** Mol\*'s focus representation colours side chains with
+the `element-symbol` theme, whose **carbon** atoms take a `chain-id` sub-theme — and
+`chain-id` assigns by chain **index**. 9ZCL's file used to run `C,A,B,D,E`, so the
+peptide was index 0 (green) and the MHC index 1 (orange). Exactly the reported
+symptom.
+
+**Fix: the revised coordinate drop.** Every file is now relettered to `A,B,C,D,E`,
+so `chain-id` produces precisely the palette we pin the cartoon to (verified:
+A `#1b9e77`, B `#d95f02`, C `#7570b3`, D `#e7298a`, E `#66a61e`). Side chains now
+come out coloured by their chain with CPK heteroatoms, which is what you want.
+
+**A fix I wrote and then removed.** My first move was to force the focus carbons to
+a uniform grey. It did stop the recolouring — but it threw away the chain identity
+of the side chains to solve a problem that the relettering had already solved. Chris
+caught it. Worth recording: the right question was *"is this still broken on the new
+coordinates?"*, and I hadn't asked it.
+
+**Residual risk.** The focus side chains are the one place that still depends on the
+order chains appear in the file — the **cartoon** is pinned to the chain letter
+(`CHAIN_COLOURS`) and is safe either way. If a file with an odd chain order ever
+reappears, the side chains are where it will show first.
+
 ---
 
 ## Still open

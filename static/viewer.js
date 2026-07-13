@@ -160,6 +160,22 @@ window.HistoTCR = (function () {
     viewportShowTrajectoryControls: false,
   };
 
+  /* Mol*'s focus representation — the side chains and contacts it draws when you
+   * focus a residue — is left at its defaults: element-symbol, whose CARBON atoms
+   * take a `chain-id` sub-theme. So side chains come out coloured by their chain
+   * with CPK heteroatoms (red O, blue N), which is what you want to see.
+   *
+   * That theme colours by chain INDEX, so it only agrees with our cartoon while
+   * the coordinate files letter their chains A,B,C,D,E in that order — which the
+   * revised drop guarantees. It did NOT hold before: 9ZCL's file used to run
+   * C,A,B,D,E, so focusing a peptide residue drew its side chains MHC-green and the
+   * MHC's b2m-orange, contradicting the cartoon behind them (BUGS.md #12).
+   *
+   * The CARTOON is pinned to the chain letter (CHAIN_COLOURS) and so is safe either
+   * way. If a file with an odd chain order ever reappears, the focus side chains are
+   * where it will show first.
+   */
+
   /* An empty viewer, ready for a later replace() — the explore page's lower panel
    * before a COM has been clicked. */
   async function emptyViewer(el) {

@@ -455,8 +455,12 @@
                             <td>Interface</td>
                             {% for copy in structure.completeness %}<td>{{ copy.iface_completeness_pct }}%</td>{% endfor %}
                         </tr>
+                        {# NOT "overall" — despite the column name. It covers the
+                           groove (α1/α2 helices + peptide) and the TCR variable
+                           domains, and excludes β2m and the MHC α3 domain. See the
+                           note below and DATA.md #9. #}
                         <tr>
-                            <td>Overall</td>
+                            <td>Groove &amp; TCR V domains</td>
                             {% for copy in structure.completeness %}<td>{{ copy.overall_completeness_pct }}%</td>{% endfor %}
                         </tr>
                         <tr>
@@ -467,8 +471,12 @@
                 </small>
                 <p class="vertical-spacing-top-0-25">
                     <smaller>
-                        How much of the deposited structure can be modelled in the electron
-                        density &mdash; at the TCR:pMHC interface, and the TCR chains overall.
+                        How much of the structure could be modelled in the electron density.
+                        <em>Groove &amp; TCR V domains</em> covers the &alpha;1 and &alpha;2
+                        helices, the peptide, and the TCR &alpha;/&beta; variable domains &mdash;
+                        counting internal disorder only. Truncation at a chain terminus is not
+                        counted, and &beta;2-microglobulin and the MHC &alpha;3 domain are
+                        excluded.
                     </smaller>
                 </p>
             </div>

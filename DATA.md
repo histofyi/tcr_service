@@ -116,13 +116,34 @@ into.
 `functions/coordinates.py`, which indexes what is actually on disk and picks the
 preferred file (first copy, first altloc).
 
-### 9. `overall_completeness_pct` — whole complex, or TCR chains only?
+### 9. `overall_completeness_pct` is not "overall" — ANSWERED, but the name is wrong
 
-The structure page's completeness note now says "the TCR chains overall", but the
-field is named `overall_completeness_pct` and the row is labelled just "Overall".
-**Unresolved:** if the figure really is TCR-chains-only the name is misleading;
-if it is whole-complex, the page copy is wrong. Needs confirming, and the column
-renaming to match.
+**Answered by Claude Science.** It is **neither** the TCR chains alone **nor** the
+whole structure. It is a QC metric over the interface-defining regions plus the TCR
+variable domains — the fraction of residues present across:
+
+- MHC α1 helix (A 50–86)
+- MHC α2 helix (A 137–180)
+- peptide (chain C)
+- TCR α and β **variable** domains (chains D, E)
+
+counting **internal disorder only** (Cα backbone breaks > 4.2 Å for the TCR; missing
+residues within the modelled span for peptide/MHC). Chain-terminal truncation is
+ignored. It excludes β2-microglobulin (chain B) and the MHC α3 domain / the
+non-helix parts of α1–α2.
+
+**So the column name is actively misleading** — "overall" means neither of the two
+things a reader would assume, and both my first guess and the page's original copy
+were wrong.
+
+**Fix at source:** rename it to something that says what it measures, e.g.
+`groove_and_tcrv_completeness_pct`.
+
+**Site workaround:** the row is labelled "Groove & TCR V domains", not "Overall",
+and the note spells out what is and isn't counted.
+
+*(Note this metric already uses the **helix-only** α1/α2 bounds — 50–86 / 137–180 —
+which is further support for #13.)*
 
 ### 10. Structure ids and coordinate filenames disagree on case
 
