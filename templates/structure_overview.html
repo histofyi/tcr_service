@@ -89,7 +89,25 @@
        bottom — and one ribbon per contacting residue pair, its width the number of
        contacting atom pairs. Geometry ported from the grant's
        draw_chord_diagrams.py; built as SVG by chord.js. */
-    .chord-svg { width: 100%; height: auto; display: block; max-width: 620px; }
+    /* The ring is drawn by chord.js, so the div is empty until it runs — and an empty
+       div is zero-height, which meant the SVG landing in it shoved the whole rest of
+       the column down the page (0.037 of the page's 0.040 CLS). Reserve the space it
+       will take: the cropped viewBox is square to within a couple of pixels, so a
+       square box at the SVG's own width holds it almost exactly. */
+    #chord-diagram {
+        width: 90%;
+        max-width: 620px;
+        margin: 0 auto;
+        aspect-ratio: 1 / 1;
+    }
+
+    /* 90%, centred: at full column width the ring dominated the page and pulled the
+       eye off the structure beside it. */
+    .chord-svg {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
 
     .chord-arc { stroke: #ffffff; stroke-width: 0.6; cursor: pointer; }
     .chord-ribbon {
