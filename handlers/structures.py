@@ -58,12 +58,27 @@ def structure_handler(tcr_id: str, pdb_id: str, selected_residue: str | None = N
             None,
         )
 
+        # The same contacts at residue grain: one arc per contacting residue, one
+        # ribbon per contacting residue pair. Drives the interaction map.
+        chord = residue_chord(pdb_id)
+
+        # Every residue the map can select. The CDR loops and the peptide have a
+        # sequence cell; the α1/α2 helix residues have only an arc — but an arc is a
+        # perfectly good thing to select, and its residue is just as shareable.
+        chord_tokens = {
+            node['token']
+            for node in (chord or {}).get('nodes') or []
+            if node.get('token')
+        }
+
         context.update({
             'variability': variability,
             'sequences': sequences,
             # ?residue=e112a — a shareable selection, validated against the
             # residues this structure actually shows (it comes from the URL).
-            'selected_residue': parse_residue_token(selected_residue, sequences),
+            'selected_residue': parse_residue_token(
+                selected_residue, sequences, also=chord_tokens,
+            ),
             'iedb': iedb_annotation(pdb_id),
             'external_links': external_links(pdb_id),
             # The one thing the bundle's `publication` lacks: who wrote it.
@@ -71,9 +86,7 @@ def structure_handler(tcr_id: str, pdb_id: str, selected_residue: str | None = N
             # Keyed off the coordinate file the viewer loads, so the matrix always
             # describes the copy actually on screen — no longer averaged.
             'matrix': interface_matrix(pdb_id),
-            # The same contacts at residue grain: one arc per contacting residue,
-            # one ribbon per contacting residue pair. Drives the chord.
-            'chord': residue_chord(pdb_id),
+            'chord': chord,
             'cdr_loops': list(CDR_LOOPS),
             'mhc_regions': list(MHC_REGIONS),
             'cdr_labels': CDR_LABELS,

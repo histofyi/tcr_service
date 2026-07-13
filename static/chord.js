@@ -481,4 +481,31 @@
   if (toggle) toggle.addEventListener('change', e => render(e.target.checked));
 
   render(toggle ? toggle.checked : false);
+
+  /* --- a selection restored from ?residue= ---------------------------------
+   *
+   * sequence.js focuses a restored residue that has a CELL — a CDR loop or the
+   * peptide. An α1/α2 helix residue has only an arc here, so nothing else on the
+   * page can focus it, and a shared link to one would land doing nothing. Focus it
+   * ourselves.
+   *
+   * The token was validated server-side against this structure's arcs, so if it
+   * names a node, that node is real. */
+  const SELECTED = root.dataset.selectedResidue;
+  if (SELECTED && !document.querySelector(`.aa-click[data-residue="${SELECTED}"]`)) {
+    const node = (CHORD?.nodes || []).find(n => n.token === SELECTED);
+    if (node) {
+      // viewer.js creates the viewer asynchronously, so it may not exist yet.
+      let waited = 0;
+      const wait = setInterval(() => {
+        const viewer = viewerFor();
+        if (viewer) {
+          clearInterval(wait);
+          HistoTCR.focusResidues(viewer, [molstarResidue(node)]);
+        } else if ((waited += 200) > 30000) {
+          clearInterval(wait);   // Mol* never loaded; the map still works
+        }
+      }, 200);
+    }
+  }
 })();

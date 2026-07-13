@@ -186,18 +186,27 @@ def residue_token(residue: dict) -> str:
     return f"{residue['chain']}-{residue['resnum']}{residue['icode']}".lower()
 
 
-def parse_residue_token(token: str, sequences: dict) -> str | None:
+def parse_residue_token(token: str, sequences: dict, also: set | None = None) -> str | None:
     """Validate a ?residue= token against the residues this structure actually
     shows, and return it in canonical form — or None.
 
-    It arrives from the URL, so it is not trusted: a token that doesn't name a
-    residue of one of this structure's CDR loops or its peptide selects nothing.
-    That also means a link is only ever shareable to something the page can show.
+    It arrives from the URL, so it is not trusted: a token that names no residue the
+    page can show selects nothing. That also means a link is only ever shareable to
+    something the reader will actually see selected.
+
+    `sequences` are the residues with a *cell* — the CDR loops and the peptide.
+    `also` widens that to residues the page shows some other way: the α1/α2 helix
+    residues have an arc on the interaction map but no sequence cell, and they are
+    just as selectable.
     """
     if not token or not RESIDUE_TOKEN.match(token.strip()):
         return None
 
     wanted = token.strip().lower()
+
+    if also and wanted in also:
+        return wanted
+
     for residues in sequences.values():
         for residue in residues:
             if residue_token(residue) == wanted:

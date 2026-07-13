@@ -264,7 +264,10 @@
                      data-viewer="structure-viewer"
                      data-chord='{{ chord | tojson }}'
                      data-cdr-labels='{{ cdr_labels | tojson }}'
-                     data-mhc-labels='{{ mhc_labels | tojson }}'></div>
+                     data-mhc-labels='{{ mhc_labels | tojson }}'
+                     {# an α1/α2 residue has an arc but no sequence cell, so the map is
+                        the only thing that can restore it from ?residue= #}
+                     data-selected-residue="{{ selected_residue or '' }}"></div>
                 <p class="vertical-spacing-top-0-25">
                     <smaller>
                         {{ chord.nodes | length }} residues,
