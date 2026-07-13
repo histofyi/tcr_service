@@ -5,3 +5,15 @@
         <li><a href="{{ navitem.url }}">{{ navitem.label }}</a></li>
     {% endif %}
 {% endfor %}
+{# Copies the URL as it stands, which is the point: a selected structure, a selected
+   residue and the interaction map's state all live in the query string, so what gets
+   shared is the view the reader is actually looking at — not just the page.
+
+   A <button>, not a link: it goes nowhere. Hidden until share.js enables it, so it is
+   never a dead control in a browser with no clipboard access. #}
+<li>
+    <button type="button" class="share-view" hidden>
+        <i class="fa-regular fa-paste" aria-hidden="true"></i>
+        <span class="share-view-label">Share this view</span>
+    </button>
+</li>

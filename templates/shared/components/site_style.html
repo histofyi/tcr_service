@@ -165,6 +165,24 @@
   font-weight: 600;
 }
 
+/* "Share this view" in the navbar. A <button> because it goes nowhere, but it sits
+   among the nav links and must read as one of them — so it takes histo's own nav-link
+   type (16px Poppins, #0a0039, underline on hover) and drops the button chrome. */
+.primary-navigation .share-view {
+  appearance: none;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 22px;
+  color: #0a0039;
+  border-bottom: 1px solid transparent;
+}
+.primary-navigation .share-view:hover { border-bottom-color: #0a0039; }
+.primary-navigation .share-view i { margin-right: 5px; }
+
 /* Mol* viewer container. molstar.css is loaded after the histo stylesheet, so the
    chrome overrides below are scoped + !important to win. */
 .molstar-box {
