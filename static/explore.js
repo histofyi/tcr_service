@@ -21,7 +21,9 @@ let CROP={top:0, height:0};
 let scale=1;
 let cardPdb=null;   // which point the hover card currently shows (keeps it fixed until the point changes)
 
-let curType="peptides";
+// Footprint centre — where the whole interface sits. The best default, and what the
+// scoped viewer on a TCR page opens on too.
+let curType="footprint";
 // appearance is fixed (controls removed): radius 10, 35% fill, outline on, ABD reference shown
 const radius=10, opacity=0.35, stroke=true, showRef=true;
 let groupby="antigen_type";
