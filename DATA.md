@@ -197,6 +197,107 @@ The per-TCR bundle's `structures[]` use `peptide`; the per-structure bundle uses
 `data/README.md` explicitly warns not to "unify" them, so this looks deliberate —
 but it is a foot-gun.
 
+### 16. The residue-level contacts DROP every insertion-coded residue
+
+`contacts_by_structure.json` names each contacting residue by chain and number only,
+with no insertion code. But **57 structures have insertion codes** in the TCR chains,
+and IMGT puts them exactly where the contacts are: 1AO7 has both `E:112` and
+`E:112A`, and both sit in CDR3β. **427 contacts across 60 of the 206 structures** land
+on a residue number that has an insertion-code twin.
+
+That looks like an ambiguity — a contact on `E:112` could be either residue. **It is
+not. It is a hole.** The export never refers to an inserted residue at all:
+
+* All **427** of those contacts carry the residue name of the **icode-free** twin.
+  Not one names an inserted twin.
+* Their `min_distance` is the icode-free twin's distance **even where the inserted
+  twin is closer**. 1AO7's row for `E:112`–`C:7` reports 3.97 Å, which is `E:112`'s
+  distance; `E:112A` is at **3.95 Å**. A row covering both would have said 3.95.
+* `sum(residues[].n_atom_pairs) == ct_total_atom_pairs` for all 385 records — so the
+  rows are not merged either. The inserted residues are simply not counted.
+
+So the rows are unambiguous, and the real defect is that **contacts made by
+insertion-coded residues are missing from the data entirely**. This is not a footnote:
+
+| | |
+| --- | --- |
+| CDR-loop residues with an insertion code | **95**, across 63 structures |
+| …of those, within 5 Å of the MHC or peptide | **75**, across **51** structures |
+| …closest | **5JHD `D:112A`, at 2.04 Å** — a hydrogen bond |
+| …appearing anywhere in `contacts_by_structure.json` | **none** |
+
+IMGT numbers CDR3 insertions **inward from the apex of the loop** — which is the part
+of the receptor most likely to be lying on the peptide. The residues being dropped
+are, systematically, some of the most important ones at the interface. The total,
+183,925 atom pairs, is byte-identical to the previous loop-level file, so the
+aggregate `bonds[]` — and therefore the interface matrix — has always had the same
+blind spot.
+
+**Fix at source:** the contact computation is filtering on `insertion_code == ''`
+somewhere (or keying a dict on the residue number). Include inserted residues, and
+carry `from_icode` / `to_icode` on every row — the residue number alone is not a key.
+Expect the counts to *rise*.
+
+**Site workaround:** none is possible — the contacts do not exist and cannot be
+invented. `functions/interface.py::_resolve()` resolves every contact to the
+icode-free residue, which is provably the right one, so the chord's clicks are exact.
+`omitted_residues()` then reads the coordinates for the inserted CDR residues that
+have no row, and the structure page **names them under the chord** ("Not shown:
+E:112A") rather than drawing a ring with silent holes in it.
+
+### 17. A modified peptide is not flagged anywhere, and the coordinates have no LINK records
+
+`peptide_seq` gives the parent residue at every position, so a modified peptide is
+indistinguishable from an unmodified one in the data. There are two kinds, and the
+second cannot be seen in the data at all:
+
+* **The residue itself is non-standard.** 3D39 (`PFF`) and 3D3V (`F2F`) — the
+  fluorinated phenylalanines those two structures are *about* — and 8SHI (`ABA`).
+  `peptide_seq` says `F`, `F`, `A`. At least these are visible in the coordinates,
+  as a HETATM residue in the peptide chain.
+* **The residue is standard but carries a covalently attached group.** 2GJ6's Lys5
+  holds the `3IB` hapten, modelled as its own residue on chain C. `peptide_seq` says
+  `K` and the coordinates say `LYS`. Nothing marks the attachment.
+
+**And the coordinate files carry no `LINK` records**, so the attachment cannot be
+read — it has to be inferred from geometry.
+
+**Site workaround:** `functions/residues.py` finds the bond by distance — a
+non-solvent group on the peptide chain, and the peptide atom it sits within 2.0 Å
+of. (2GJ6: `3IB` C13 to `LYS` 5 NZ is 1.33 Å.) That needs a solvent/cryoprotectant
+exclusion list, because chain C also carries waters, glycerol, iodide and the rest.
+Both kinds then render as **X** in the parent residue's colour.
+
+**The pipeline should** flag modified peptide positions explicitly — the modified
+residue's component id, and for an attached group the residue it is attached to —
+rather than leaving the site to rediscover it from atom distances. Across all 206
+structures there are exactly four: 2GJ6, 3D39, 3D3V, 8SHI. Preserving `LINK` records
+in the renumbered coordinates would also do it.
+
+### 18. Author lists are truncated to three, and nothing says so
+
+`pdbe_publications.json` covers all 206 structures and every entry has authors — but
+the lists are cut off at three names, and **no field records the true count**:
+
+| Names in the entry | Entries (of 207) |
+| --- | --- |
+| 3 | 198 |
+| 2 | 6 |
+| 1 | 3 |
+
+1AO7's paper has **six** authors (Garboczi, Ghosh, Utz, Fan, Biddison, Wiley); the
+file gives three. So a three-name entry cannot be told apart from the first three of
+thirty, and printing those three as *the* authors would assert an authorship that is
+usually false.
+
+**Site workaround:** `functions/publications.py` treats three names as "at the cap,
+therefore unknown" and the citation renders *et al.* — true whether the paper has four
+authors or forty. Entries with one or two names are complete (nothing truncates to
+fewer than the cap) and are shown in full.
+
+**The pipeline should** carry the full author list, or failing that a total count
+alongside the truncated list, so a correct citation can be built.
+
 ---
 
 ## Resolved
