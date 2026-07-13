@@ -1,0 +1,53 @@
+{
+  "cdr_loops": {
+    "alpha_cdr1": [
+      "D",
+      27,
+      38
+    ],
+    "alpha_cdr2": [
+      "D",
+      56,
+      65
+    ],
+    "alpha_cdr3": [
+      "D",
+      105,
+      117
+    ],
+    "beta_cdr1": [
+      "E",
+      27,
+      38
+    ],
+    "beta_cdr2": [
+      "E",
+      56,
+      65
+    ],
+    "beta_cdr3": [
+      "E",
+      105,
+      117
+    ]
+  },
+  "mhc_regions": {
+    "alpha1": [
+      "A",
+      50,
+      86
+    ],
+    "alpha2": [
+      "A",
+      137,
+      180
+    ],
+    "peptide": [
+      "C",
+      null,
+      null
+    ]
+  },
+  "distance_note": "SC/BSA are computed on the two selections directly (no distance cutoff); pairs that fail (no interface) return null with an error string, as in the example JSON",
+  "pairs": "6 CDR loops x 3 MHC regions = 18 per structure"
+}

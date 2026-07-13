@@ -29,9 +29,43 @@ On the external links, having checked each one:
 
 import csv
 import os
+import re
 from functools import lru_cache
 
 ANNOTATION_FILE = os.path.join('data', 'class_i_annotation.csv')
+
+# The IEDB source-antigen accessions are NOT all UniProt — of the 80 distinct
+# values, 17 are UniProtKB (`O43395.2`, `A0A1W2PQQ0.2`) and 63 are NCBI: GenBank
+# protein accessions (`AAG31572.1`), bare GI numbers (`1125014`), and PDB chain
+# references (`6VM8_C`). Linking them all at UniProt would 404 for most, so the
+# namespace is detected and each goes to the resolver that actually holds it.
+# Both were checked against the live services.
+UNIPROT_ACCESSION = re.compile(
+    r'^([OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2})(\.\d+)?$'
+)
+
+
+def accession_link(accession: str) -> dict | None:
+    """{source, url} for a peptide-source accession, or None if there isn't one.
+
+    UniProt is queried without the version suffix; NCBI resolves its accessions,
+    GI numbers and PDB chain refs as given.
+    """
+    accession = (accession or '').strip()
+    if not accession:
+        return None
+
+    if UNIPROT_ACCESSION.match(accession):
+        base = accession.split('.')[0]
+        return {
+            'source': 'UniProt',
+            'url': f'https://www.uniprot.org/uniprotkb/{base}/entry',
+        }
+
+    return {
+        'source': 'NCBI Protein',
+        'url': f'https://www.ncbi.nlm.nih.gov/protein/{accession}',
+    }
 
 
 @lru_cache(maxsize=1)
@@ -64,10 +98,13 @@ def iedb_annotation(pdb_id: str) -> dict | None:
     if not antigen:
         return None
 
+    accession = (row.get('iedb_antigen_accession') or '').strip()
+
     return {
         'source_antigen': antigen,
         'source_organism': (row.get('iedb_source_organism') or '').strip(),
-        'accession': (row.get('iedb_antigen_accession') or '').strip(),
+        'accession': accession,
+        'accession_link': accession_link(accession),
     }
 
 

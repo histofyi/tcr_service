@@ -201,7 +201,14 @@
                         {% if iedb.accession %}
                         <tr>
                             <td>Accession</td>
-                            <td class="mono">{{ iedb.accession }}</td>
+                            <td>
+                                {% if iedb.accession_link %}
+                                    <a class="mono" href="{{ iedb.accession_link.url }}" target="_blank" rel="noopener">{{ iedb.accession }}</a>
+                                    <br /><smaller>{{ iedb.accession_link.source }}</smaller>
+                                {% else %}
+                                    <span class="mono">{{ iedb.accession }}</span>
+                                {% endif %}
+                            </td>
                         </tr>
                         {% endif %}
                         {% endif %}
