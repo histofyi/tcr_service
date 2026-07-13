@@ -9,13 +9,10 @@
 <style>
     .executive-summary { font-size: 11pt; }
 
-    /* The alpha/beta chain table in the one-third column: three columns, and a
-       CDR3 can run to 14 residues, so the label column gives up its width and the
-       residues are set smaller than the site default. */
-    .info-table.is-chains td:first-child { width: 26%; }
-    .info-table.is-chains td { padding: 3px 4px 3px 0; }
-    .info-table.is-chains .aa { font-size: 10pt; padding: 0; margin: 0; }
-    .info-table.is-chains .mono { font-size: 10pt; }
+    /* The alpha/beta chain table. In a half-width column a 14-residue CDR3 fits at
+       the site's normal residue size, so the sequences here match the peptide's
+       rather than being shrunk to fit. The label column gives up width to them. */
+    .info-table.is-chains td:first-child { width: 22%; }
 
     /* --- the interface matrix ------------------------------------------------
        6 CDR loops x 3 MHC regions. Bubble AREA = buried surface area, bubble
@@ -146,14 +143,14 @@
    describes the experiment, not the biology, and does not belong at eye level. #}
 <section>
     <div class="grid-container">
-        <div class="column-two-thirds">
+        <div class="column-one-half">
             <div class="inner">
                 {% with viewer_id='structure-viewer', box_class='is-tall' %}
                     {% include "fragments/_molstar_viewer.html" %}
                 {% endwith %}
             </div>
         </div>
-        <div class="column-one-third">
+        <div class="column-one-half">
             <div class="inner">
                 <div class="panel-title vertical-spacing-bottom-0-25">T cell receptor</div>
                 <small>
@@ -186,13 +183,35 @@
                                 <span class="antigen-dot" style="background-color: {{ antigen_colors.get(structure.antigen_type, '#999999') }};"></span>{{ structure.antigen_type | deslugify_string }}
                             </td>
                         </tr>
-                        {# IEDB epitope annotation (source organism, epitope id, assays) would
-                           sit here. It is NOT in the data layer — the structure bundles carry
-                           only allele / peptide_seq / peptide_len / antigen_type, and there is
-                           no IEDB CSV in the repo. Add the fields to the bundle and they can be
-                           rendered as extra rows. #}
+                        {# Where the peptide comes from, per IEDB. 204 of the 206
+                           structures matched IEDB, but only 152 carry a source
+                           antigen — so a matched peptide can still have nothing
+                           to show here. #}
+                        {% if iedb %}
+                        <tr>
+                            <td>Source antigen</td>
+                            <td>{{ iedb.source_antigen }}</td>
+                        </tr>
+                        {% if iedb.source_organism %}
+                        <tr>
+                            <td>Source organism</td>
+                            <td>{{ iedb.source_organism }}</td>
+                        </tr>
+                        {% endif %}
+                        {% if iedb.accession %}
+                        <tr>
+                            <td>Accession</td>
+                            <td class="mono">{{ iedb.accession }}</td>
+                        </tr>
+                        {% endif %}
+                        {% endif %}
                     </table>
                 </small>
+                {% if iedb %}
+                <p class="vertical-spacing-top-0-25">
+                    <smaller>Peptide source assigned from the <a href="https://www.iedb.org/" target="_blank" rel="noopener">IEDB</a>.</smaller>
+                </p>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -206,13 +225,15 @@
         <div class="column-full-width">
             <div class="inner">
                 <hr />
-                <h2 class="heading-small vertical-spacing-top-0-5 vertical-spacing-bottom-0-25">Structure information</h2>
             </div>
         </div>
     </div>
+    {# Two headings of equal weight, side by side — completeness is a finding about
+       the structure, not a footnote to its metadata. #}
     <div class="grid-container">
         <div class="column-one-half">
             <div class="inner">
+                <h2 class="heading-small vertical-spacing-top-0-5 vertical-spacing-bottom-0-25">Structure information</h2>
                 <small>
                     <table class="info-table">
                         <tr><td>Method</td><td>{{ structure.method | deslugify_string }}</td></tr>
@@ -222,17 +243,27 @@
                         <tr><td>Released</td><td>{{ structure.release_date | date_display }}</td></tr>
                     </table>
                 </small>
+                {# Only the databases that actually hold this entry are linked;
+                   `sources` on the master table says which. TCR3d holds all of
+                   them but has no per-structure page, so it cannot be linked. #}
                 <p class="vertical-spacing-top-0-25">
                     <smaller>
-                        <a href="{{ pdb_id | coordinate_url }}" download>Download aligned PDB</a><br />
-                        <a href="https://www.rcsb.org/structure/{{ pdb_id }}" target="_blank" rel="noopener">View at RCSB PDB</a>
+                        <a href="{{ pdb_id | coordinate_url }}" download>Download aligned PDB</a>
+                    </smaller>
+                </p>
+                <p class="vertical-spacing-top-0-25">
+                    <smaller>
+                        This structure at:
+                        {% for link in external_links %}
+                            <a href="{{ link.url }}" target="_blank" rel="noopener">{{ link.label }}</a>{% if not loop.last %} &middot; {% endif %}
+                        {% endfor %}
                     </smaller>
                 </p>
             </div>
         </div>
         <div class="column-one-half">
             <div class="inner">
-                <div class="panel-title vertical-spacing-bottom-0-25">Structure completeness</div>
+                <h2 class="heading-small vertical-spacing-top-0-5 vertical-spacing-bottom-0-25">Structure completeness</h2>
                 <small>
                     <table class="info-table">
                         {% set multi = structure.completeness | length > 1 %}
@@ -251,15 +282,15 @@
                             {% for copy in structure.completeness %}<td>{{ copy.overall_completeness_pct }}%</td>{% endfor %}
                         </tr>
                         <tr>
-                            <td>Backbone breaks</td>
+                            <td>TCR backbone breaks</td>
                             {% for copy in structure.completeness %}<td>{{ copy.tcr_alpha_backbone_breaks }} &alpha; &middot; {{ copy.tcr_beta_backbone_breaks }} &beta;</td>{% endfor %}
                         </tr>
                     </table>
                 </small>
                 <p class="vertical-spacing-top-0-25">
                     <smaller>
-                        How much of the deposited structure is actually modelled &mdash; at the
-                        TCR:pMHC interface, and overall.
+                        How much of the deposited structure can be modelled in the electron
+                        density &mdash; at the TCR:pMHC interface, and the TCR chains overall.
                     </smaller>
                 </p>
             </div>

@@ -1,3 +1,4 @@
+from functions.annotations import external_links, iedb_annotation
 from functions.interface import (
     CDR_LABELS,
     CDR_LOOPS,
@@ -32,6 +33,8 @@ def structure_handler(tcr_id: str, pdb_id: str) -> dict:
 
     if structure:
         context.update({
+            'iedb': iedb_annotation(pdb_id),
+            'external_links': external_links(pdb_id),
             'matrix': interface_matrix(structure),
             'cdr_loops': list(CDR_LOOPS),
             'mhc_regions': list(MHC_REGIONS),
