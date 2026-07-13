@@ -126,6 +126,29 @@
     }
   }
 
+  /* --- chord -> sequences --------------------------------------------------
+   *
+   * The chord (static/chord.js) fires this when a residue arc is clicked, so a
+   * fifth way in leads to the SAME selection: the sequences light up, the URL gets
+   * its ?residue=, and the chord's click is not a separate, disagreeing thing.
+   *
+   * Cancelling the event tells the chord we have taken the residue and will focus
+   * it. We only take the residues this page SHOWS — the CDR loops and the peptide.
+   * An α1/α2 helix residue has no cell here, so the chord focuses that one itself;
+   * we drop the sequence selection so the page does not go on claiming a residue
+   * the viewer is no longer looking at.
+   */
+  document.addEventListener('histotcr:residue', (event) => {
+    const cell = byToken.get(event.detail.token);
+    if (cell) {
+      select(cell, { scroll: true });
+      event.preventDefault();
+    } else {
+      markOnly(null);
+      updateUrl(null);
+    }
+  });
+
   /* The viewer is created asynchronously by viewer.js's autoInit, so it may not
    * exist yet. Poll briefly rather than racing it. */
   let waited = 0;

@@ -523,6 +523,54 @@ window.HistoTCR = (function () {
     if (loci) interactivity.lociHighlights.highlightOnly({ loci });
   }
 
+  /* --- residues named by a CONTACT ----------------------------------------
+   *
+   * A contact row identifies its residue by (chain, number) only — the export
+   * carries no insertion code (DATA.md #16). Where the coordinates have a twin at
+   * that number that the residue name cannot separate (1AO7's E:112 and E:112A are
+   * both GLY), we do not know which residue the contact means, and the chord marks
+   * it. `icode: null` says exactly that, and selects the residue-NUMBER GROUP —
+   * both twins. That is the honest selection: picking one would be a guess, and the
+   * page says which residues it cannot pin down.
+   *
+   * `icode: ''` is different, and means the residue genuinely has no insertion code.
+   */
+  function contactLoci(viewer, residue) {
+    if (!viewer || !residue) return null;
+    return residue.icode === null || residue.icode === undefined
+      ? rangeLoci(viewer, residue.chain, residue.resnum, residue.resnum)
+      : residueLoci(viewer, residue.chain, residue.resnum, residue.icode);
+  }
+
+  /* One loci covering several residues — a contacting PAIR, say. */
+  function contactsLoci(viewer, residues) {
+    return (residues || [])
+      .map(residue => contactLoci(viewer, residue))
+      .filter(Boolean)
+      .reduce(
+        (all, loci) => (all ? molstar.StructureElement.Loci.union(all, loci) : loci),
+        null,
+      );
+  }
+
+  /* Zoom to a set of contact residues and show their interactions. */
+  function focusResidues(viewer, residues) {
+    const loci = contactsLoci(viewer, residues);
+    if (!loci) return;
+    viewer.plugin.managers.camera.focusLoci(loci);
+    viewer.plugin.managers.structure.focus.setFromLoci(loci);
+  }
+
+  /* Transiently highlight a set of contact residues (hover). Empty list clears. */
+  function highlightResidues(viewer, residues) {
+    if (!viewer) return;
+    const interactivity = viewer.plugin.managers.interactivity;
+    if (!interactivity) return;
+    const loci = contactsLoci(viewer, residues);
+    if (loci) interactivity.lociHighlights.highlightOnly({ loci });
+    else interactivity.lociHighlights.clearHighlights();
+  }
+
   /* Drop the focus/highlight state set by a focusRange(). */
   function clearFocus(viewer) {
     if (!viewer) return;
@@ -555,6 +603,7 @@ window.HistoTCR = (function () {
   return {
     load, replace, renderStructure, paintLegend, viewers,
     focusResidue, highlightResidue, focusRange, highlightRange, clearFocus,
+    focusResidues, highlightResidues,
     subscribeClicks, readLociResidue,
     overlay, toggleOverlayEntry,
   };

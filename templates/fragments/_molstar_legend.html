@@ -1,0 +1,16 @@
+{# The chain key for a Mol* viewer. Split out of _molstar_viewer.html because it does
+   not have to sit under its viewer: viewer.js finds it by `data-viewer` anywhere on
+   the page, so a page can put the key wherever it reads best — on the structure page
+   it runs full width beneath both the structure and the chord.
+
+   Params (via {% with %}):
+     viewer_id — the viewer this key describes
+
+   The swatches are left unpainted here and filled in by viewer.js once the structure
+   is up: it reads the colours back off the theme, so the key cannot drift from what
+   is on screen. A chain absent from the file has its entry hidden. #}
+<p class="mol-legend" data-viewer="{{ viewer_id }}">
+  {% for chain, label in chain_labels.items() %}
+  <span hidden><i class="swatch" data-chain="{{ chain }}"></i>{{ label }}</span>
+  {% endfor %}
+</p>

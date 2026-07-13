@@ -1,16 +1,26 @@
 {# Publication citation, then the REQUIRED AI-provenance attribution, then the
    executive summary itself — what the paper is, that the summary is AI-written,
    and then the summary.
-   Callers pass: summary_text, attribution_html, and optionally publication (dict).
+   Callers pass: summary_text, attribution_html, and optionally publication (dict)
+   and authors ({names, truncated} — see functions/publications.py).
    The attribution MUST always render with the summary — do not show a summary
    without it. #}
 {% if summary_text %}
 <div class="executive-summary">
     {% if publication %}
     <div class="vertical-spacing-bottom-0-25">
-        {# Three lines: the title, then where it was published, then the
-           identifiers. Each is a different kind of thing. #}
+        {# The title, then who wrote it, then where it was published, then the
+           identifiers. Each is a different kind of thing.
+
+           `et al.` is not decoration: the author lists are truncated to three and the
+           data does not say to what, so at three names we cannot claim the list is
+           complete — and usually it is not (1AO7's paper has six authors). Saying
+           "and others" is true either way; printing three bare names would not be.
+           DATA.md #18. #}
         {% if publication.title %}<strong>{{ publication.title }}</strong><br />{% endif %}
+        {% if authors %}
+            {{ authors.names | join(', ') }}{% if authors.truncated %} <em>et al.</em>{% endif %}<br />
+        {% endif %}
         {% if publication.journal %}{{ publication.journal }}{% endif %}
         {% if publication.year %} ({{ publication.year }}){% endif %}
         {% if publication.doi or publication.pmid %}<br />{% endif %}

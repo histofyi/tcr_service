@@ -85,30 +85,63 @@
     }
 
     /* --- the contact chord ---------------------------------------------------
-       Six CDR loops across the top, three MHC regions across the bottom; a ribbon
-       is one loop-region pair, its width the number of contacting atom pairs.
-       Geometry ported from the grant's draw_chord_diagrams.py. */
-    .chord-svg { width: 100%; height: auto; display: block; max-width: 520px; }
+       ONE ARC PER RESIDUE — the CDR loops across the top, the MHC across the
+       bottom — and one ribbon per contacting residue pair, its width the number of
+       contacting atom pairs. Geometry ported from the grant's
+       draw_chord_diagrams.py; built as SVG by chord.js. */
+    .chord-svg { width: 100%; height: auto; display: block; max-width: 620px; }
 
-    .chord-arc { stroke: #ffffff; stroke-width: 0.6; }
+    .chord-arc { stroke: #ffffff; stroke-width: 0.6; cursor: pointer; }
     .chord-ribbon {
         fill-opacity: 0.70;          /* the grant's ribbon alpha */
         cursor: pointer;
         transition: fill-opacity 0.12s ease;
     }
-    .chord-ribbon.is-dim { fill-opacity: 0.12; }
+    .chord-ribbon.is-dim { fill-opacity: 0.10; }
     .chord-ribbon.is-hot { fill-opacity: 0.95; }
 
+    /* One label per residue: <one-letter><number>, as the grant's figures label
+       them. The ring tops out at 33 residues in a half, which still leaves room. */
     .chord-label {
-        font-size: 11px;
+        font-size: 9.5px;
         font-weight: 600;
         fill: #0a0039;
-        font-family: 'Poppins', sans-serif;
+        font-family: 'IBM Plex Mono', monospace;
+        pointer-events: none;
     }
+    /* The guard case: a residue the contacts name that is not in the coordinates.
+       It fires on nothing we hold, but if it ever did, the label must say so. */
+    .chord-label.is-unresolved { fill: #857f9c; }
+
     .chord-empty {
         font-size: 13px;
         fill: #857f9c;
         font-family: 'Poppins', sans-serif;
+    }
+
+    /* the chord's tooltip carries a bond-type list and, sometimes, a warning */
+    .matrix-tooltip .tt-sub-plain {
+        color: #857f9c;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 5px;
+    }
+    .matrix-tooltip .tt-bond {
+        display: inline-block;
+        background: #f0f0f5;
+        border-radius: 3px;
+        padding: 1px 5px;
+        margin: 2px 2px 0 0;
+        font-size: 10.5px;
+    }
+    .matrix-tooltip .tt-warn {
+        margin-top: 7px;
+        padding-top: 5px;
+        border-top: 1px solid rgba(10, 0, 57, 0.10);
+        color: #857f9c;
+        font-size: 10.5px;
+        line-height: 1.35;
     }
 
     .matrix-key { display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center; }
@@ -169,27 +202,99 @@
     </div>
 </section>
 
-{# The main event: the aligned structure, coloured by chain, with what it IS
-   beside it — the receptor's genes and loops, and the pMHC it is reading. The
-   provenance of the file (method, resolution, dates) sits below instead: it
+{# The main event: the structure, and beside it the chord — WHICH residues of the
+   receptor touch which of the peptide-MHC. The two are wired together (hover a
+   ribbon, the residues light up in the viewer; click, it zooms), so they belong
+   side by side rather than a screen apart.
+
+   Below the structure: where to get it. Below the chord: how to read it. The
+   provenance of the file (method, resolution, dates) sits further down — it
    describes the experiment, not the biology, and does not belong at eye level. #}
+{% set has_chord = chord and chord.links %}
 <section>
     <div class="grid-container">
-        <div class="column-one-half">
+        <div class="{{ 'column-one-half' if has_chord else 'column-full-width' }}">
             <div class="inner">
                 {% with viewer_id='structure-viewer', box_class='is-tall' %}
                     {% include "fragments/_molstar_viewer.html" %}
                 {% endwith %}
+
+                {# Where to get this structure — the aligned file we are showing, and
+                   the databases that hold the entry it came from. Only the databases
+                   that actually hold it are linked; `sources` on the master table says
+                   which. TCR3d holds them all but has no per-structure page. #}
+                <p class="vertical-spacing-top-0-5">
+                    <smaller>
+                        <a href="{{ pdb_id | coordinate_url }}" download>Download aligned PDB</a>
+                    </smaller>
+                </p>
+                <p class="vertical-spacing-top-0-25">
+                    <smaller>
+                        This structure at:
+                        {% for link in external_links %}
+                            <a href="{{ link.url }}" target="_blank" rel="noopener">{{ link.label }}</a>{% if not loop.last %} &middot; {% endif %}
+                        {% endfor %}
+                    </smaller>
+                </p>
             </div>
         </div>
+        {% if has_chord %}
+        <div class="column-one-half">
+            <div class="inner">
+                <div class="panel-title vertical-spacing-bottom-0-25">Interaction map</div>
+                <div id="chord-diagram"
+                     data-viewer="structure-viewer"
+                     data-chord='{{ chord | tojson }}'
+                     data-cdr-labels='{{ cdr_labels | tojson }}'
+                     data-mhc-labels='{{ mhc_labels | tojson }}'></div>
+                <p class="vertical-spacing-top-0-25">
+                    <smaller>
+                        {{ chord.nodes | length }} residues,
+                        {{ chord.links | length }} contacting pairs{% if chord.total_atom_pairs %},
+                        {{ chord.total_atom_pairs }} atom pairs{% endif %}.
+                    </smaller>
+                </p>
+                <p class="vertical-spacing-top-0-25">
+                    <label>
+                        <input type="checkbox" id="chord-specific">
+                        Specific bonds only
+                    </label>
+                    <br />
+                    <smaller>
+                        Nearly every pair is <em>proximal</em> &mdash; near each other, with no
+                        particular chemistry. Tick this to keep only the
+                        {{ chord.n_specific_pairs }} pairs held by something else: the hydrogen
+                        bonds, salt bridges and hydrophobic contacts that actually hold the
+                        complex together.
+                    </smaller>
+                </p>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+{# What the structure IS: the receptor's genes and loops, and the pMHC it is
+   reading. Side by side — they are the two halves of one recognition event, not a
+   list. Every residue here is clickable through to the viewer above. #}
+<section>
+    <div class="grid-container">
+        <div class="column-full-width">
+            <div class="inner vertical-spacing-bottom-0-25">
+                <hr />
+            </div>
+        </div>
+    </div>
+    <div class="grid-container">
         <div class="column-one-half">
             <div class="inner">
                 <div class="panel-title vertical-spacing-bottom-0-25">T cell receptor</div>
                 <small>
                     <table class="info-table is-chains">
+                        {# The loops first: they are what touches the peptide-MHC, and what
+                           the chord and the viewer are wired to. The genes that encode them
+                           are provenance, and follow. #}
                         <tr><th></th><th>Alpha</th><th>Beta</th></tr>
-                        <tr><td>V gene</td><td class="mono">{{ structure.tcr_alpha_v_gene }}</td><td class="mono">{{ structure.tcr_beta_v_gene }}</td></tr>
-                        <tr><td>J gene</td><td class="mono">{{ structure.tcr_alpha_j_gene }}</td><td class="mono">{{ structure.tcr_beta_j_gene }}</td></tr>
                         {% if structure.cdrs %}
                         <tr><td>CDR1</td>
                             <td>{% with residues=sequences["alpha_cdr1"] %}{% include "fragments/_sequence.html" %}{% endwith %}</td>
@@ -204,10 +309,15 @@
                             <td>{% with residues=sequences["beta_cdr3"] %}{% include "fragments/_sequence.html" %}{% endwith %}</td>
                         </tr>
                         {% endif %}
+                        <tr><td>V gene</td><td class="mono">{{ structure.tcr_alpha_v_gene }}</td><td class="mono">{{ structure.tcr_beta_v_gene }}</td></tr>
+                        <tr><td>J gene</td><td class="mono">{{ structure.tcr_alpha_j_gene }}</td><td class="mono">{{ structure.tcr_beta_j_gene }}</td></tr>
                     </table>
                 </small>
-
-                <div class="panel-title vertical-spacing-top-0-5 vertical-spacing-bottom-0-25">Peptide &amp; MHC</div>
+            </div>
+        </div>
+        <div class="column-one-half">
+            <div class="inner">
+                <div class="panel-title vertical-spacing-bottom-0-25">Peptide &amp; MHC</div>
                 <small>
                     <table class="info-table">
                         <tr><td>Allele</td><td>{{ structure.allele }}</td></tr>
@@ -318,8 +428,6 @@
                      data-sc-max="{{ sc_max }}"></div>
             </div>
         </div>
-    </div>
-    <div class="grid-container">
         <div class="column-one-half">
             <div class="inner">
                 <div class="panel-title vertical-spacing-bottom-0-25">Reading this</div>
@@ -355,62 +463,6 @@
     </div>
 </section>
 
-{# The contact chord: which loop touches which region, and with what chemistry.
-   The matrix above says how MUCH surface each pair buries; this says what the
-   contact is MADE OF. #}
-<section>
-    <div class="grid-container">
-        <div class="column-full-width">
-            <div class="inner">
-                <hr />
-                <h2 class="heading-small vertical-spacing-top-0-5 vertical-spacing-bottom-0-25">Contacts</h2>
-            </div>
-        </div>
-    </div>
-    <div class="grid-container">
-        <div class="column-one-half">
-            <div class="inner">
-                <div id="chord-diagram"
-                     data-viewer="structure-viewer"
-                     data-cells='{{ matrix.cells | tojson }}'
-                     data-cdr-labels='{{ cdr_labels | tojson }}'
-                     data-mhc-labels='{{ mhc_labels | tojson }}'
-                     data-cdr-selections='{{ cdr_selections | tojson }}'
-                     data-mhc-selections='{{ mhc_selections | tojson }}'></div>
-            </div>
-        </div>
-        <div class="column-one-half">
-            <div class="inner">
-                <p>
-                    Every contacting atom pair between a CDR loop and a region of the
-                    groove. Ribbon width is the number of atom pairs; an arc is as long as
-                    the contact that loop or region makes. Ribbons are coloured by the CDR
-                    loop.
-                </p>
-                <p class="vertical-spacing-top-0-25">
-                    <label>
-                        <input type="checkbox" id="chord-specific">
-                        Specific bonds only
-                    </label>
-                    <br />
-                    <smaller>
-                        Most atom pairs are merely <em>proximal</em> &mdash; near each other, with
-                        no particular chemistry. {% if matrix.total_atom_pairs %}This interface has
-                        {{ matrix.total_atom_pairs }} atom pairs in all{% endif %}. Tick this to
-                        drop the proximal pairs and see the hydrogen bonds, salt bridges and
-                        hydrophobic contacts that actually hold the complex together.
-                    </smaller>
-                </p>
-                <p class="vertical-spacing-top-0-25">
-                    <smaller>
-                        Hover a ribbon for its bond-type breakdown and to highlight that loop
-                        in the structure; click to zoom to it.
-                    </smaller>
-                </p>
-            </div>
-        </div>
-    </div>
-</section>
 
 {# The file itself: how it was determined, and how much of it is actually modelled.
    "Structure completeness" rather than "model completeness" — this is an
@@ -450,22 +502,6 @@
                         <tr><td>Released</td><td>{{ structure.release_date | date_display }}</td></tr>
                     </table>
                 </small>
-                {# Only the databases that actually hold this entry are linked;
-                   `sources` on the master table says which. TCR3d holds all of
-                   them but has no per-structure page, so it cannot be linked. #}
-                <p class="vertical-spacing-top-0-25">
-                    <smaller>
-                        <a href="{{ pdb_id | coordinate_url }}" download>Download aligned PDB</a>
-                    </smaller>
-                </p>
-                <p class="vertical-spacing-top-0-25">
-                    <smaller>
-                        This structure at:
-                        {% for link in external_links %}
-                            <a href="{{ link.url }}" target="_blank" rel="noopener">{{ link.label }}</a>{% if not loop.last %} &middot; {% endif %}
-                        {% endfor %}
-                    </smaller>
-                </p>
             </div>
         </div>
         <div class="column-one-half">
@@ -523,7 +559,8 @@
                 <h2 class="heading-small vertical-spacing-top-0-5 vertical-spacing-bottom-0-25">Publication</h2>
                 {% with summary_text=structure.executive_summary,
                         attribution_html=structure.executive_summary_attribution_html,
-                        publication=structure.publication %}
+                        publication=structure.publication,
+                        authors=authors %}
                     {% include "fragments/_executive_summary.html" %}
                 {% endwith %}
             </div>

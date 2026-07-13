@@ -29,6 +29,11 @@ import os
 from functools import lru_cache
 
 from functions.coordinates import coordinate_file
+# `_chain_residues` is the house's one reader of a coordinate file's residue list —
+# HETATM included, sorted into sequence order, insertion codes kept. The contacts
+# carry no insertion code (DATA.md #16), so it is the only way to say which residue
+# a contact actually lands on.
+from functions.residues import CHAIN_FOR, IMGT_LOOPS, THREE_TO_ONE, _chain_residues
 
 INTERACTION_DIR = os.path.join('data', 'interactions')
 
@@ -243,4 +248,243 @@ def interface_matrix(pdb_id: str) -> dict | None:
         'iface_completeness_pct': sasa.get('iface_completeness_pct'),
         'total_atom_pairs': contacts.get('ct_total_atom_pairs'),
         'residue_contacts': neighbours.get('nb_residue_contacts'),
+    }
+
+
+# --- the residue-level chord -------------------------------------------------
+#
+# `contacts_by_structure.json`'s `residues[]` is one row per contacting RESIDUE
+# PAIR — the grain the grant's chord figures are drawn at, and what DATA.md #11
+# asked for. The `bonds[]` aggregate is still what the interface matrix reads; this
+# is a second view of the same file.
+#
+# Reading round the ring, as in the grant's figures: the CDR loops across the top
+# (α CDR1, CDR2, CDR3, then β CDR3, CDR2, CDR1, left to right), the MHC across the
+# bottom (α1, peptide, α2). Every residue gets its own arc.
+
+# The order residues are read in around each half of the ring, left to right.
+CHORD_CDR_ORDER = (
+    'alpha_cdr1', 'alpha_cdr2', 'alpha_cdr3',
+    'beta_cdr3', 'beta_cdr2', 'beta_cdr1',
+)
+CHORD_MHC_ORDER = MHC_REGIONS
+
+
+@lru_cache(maxsize=32)
+def _numbering(filename: str) -> dict:
+    """{ (chain, resnum): [(icode, resname, sequence_position), ...] } for a file.
+
+    A key with MORE THAN ONE entry is an insertion-code twin — 1AO7's chain E has
+    both E:112 and E:112A, and both sit in CDR3β. A contact row names its residue by
+    number alone, so a contact landing on a twin cannot say which of the two it
+    means. See `_resolve()` and DATA.md #16.
+    """
+    index: dict = {}
+    for chain, residues in _chain_residues(filename).items():
+        for position, (resnum, icode, resname) in enumerate(residues):
+            index.setdefault((chain, resnum), []).append((icode, resname, position))
+    return index
+
+
+def _resolve(numbering: dict, chain: str, resnum: int, resname: str) -> dict:
+    """Which residue of the coordinate file a contact row is talking about.
+
+    It is always the one with **no insertion code**, and that is not a guess — it is
+    what the data does. A contact row names its residue by number only, which looks
+    ambiguous where the chain has an insertion-code twin (1AO7's chain E has both
+    E:112 and E:112A, both GLY, both in CDR3β). It isn't, because the export never
+    refers to an inserted residue at all:
+
+    * All 427 contacts that land on a twinned residue number carry the residue name
+      of the **icode-free** twin. Not one names an inserted twin.
+    * Their `min_distance` is the icode-free twin's distance even where the inserted
+      twin is CLOSER — 1AO7's row for C:7 reports 3.97 Å (E:112) though E:112A is at
+      3.95 Å. A row covering both would have reported 3.95.
+
+    So the rows are not merged and they are not ambiguous: insertion-coded residues
+    are simply **absent** from the contact data. That is the real defect, and it
+    loses contacts rather than blurring them — see `omitted_residues()` and
+    DATA.md #16.
+
+    `icode: None` is the guard for a residue that is not in the coordinates at all
+    (it never fires today). The caller must not pretend to know which residue that
+    is, and selects the whole residue-number group instead.
+    """
+    candidates = numbering.get((chain, resnum)) or []
+    plain = [entry for entry in candidates if entry[0] == '']
+
+    if len(plain) == 1:
+        icode, name, order = plain[0]
+        return {'icode': icode, 'resname': name, 'order': order, 'unresolved': False}
+
+    if len(candidates) == 1:
+        icode, name, order = candidates[0]
+        return {'icode': icode, 'resname': name, 'order': order, 'unresolved': False}
+
+    return {
+        'icode': None,
+        'resname': resname,
+        'order': candidates[0][2] if candidates else resnum,
+        'unresolved': True,
+    }
+
+
+def omitted_residues(filename: str, rows: list) -> list:
+    """The CDR-loop residues this diagram CANNOT show, because the data has no row
+    for them: the insertion-coded ones.
+
+    The contacts never mention a residue with an insertion code (see `_resolve`), and
+    inserted residues are not incidental — IMGT numbers CDR3 insertions inward from
+    the loop's apex, which is the part of the receptor most likely to be touching the
+    peptide. Across the set, 75 of them lie within 5 Å of the MHC or the peptide (one
+    at 2.04 Å) and not one appears in the contact data.
+
+    So the chord names them rather than quietly leaving them out.
+    """
+    seen = {(row['from_chain'], row['from_residue']) for row in rows}
+    omitted = []
+
+    for chain_label, chain in CHAIN_FOR.items():
+        for resnum, icode, resname in _chain_residues(filename).get(chain, []):
+            if not icode:
+                continue
+            loop = next(
+                (name for name, (start, end) in IMGT_LOOPS.items()
+                 if start <= resnum <= end),
+                None,
+            )
+            if not loop:
+                continue
+            omitted.append({
+                'chain': chain,
+                'resnum': resnum,
+                'icode': icode,
+                'label': f'{THREE_TO_ONE.get(resname, "X")}{resnum}{icode}',
+                'loop': f'{chain_label}_{loop}',
+                # a residue number the contacts DO use is still only ever the
+                # icode-free residue — the inserted one is missing either way
+                'number_contacts': (chain, resnum) in seen,
+            })
+
+    return omitted
+
+
+def _chord_node(side: str, group: str, chain: str, resnum: int, resolved: dict) -> dict:
+    """One residue's arc.
+
+    Labelled the way the grant's figures are — one-letter code then residue number,
+    `G62`. A modified residue shows as `X`, as it does in the sequences
+    (functions/residues.py).
+    """
+    icode = resolved['icode']
+    code = THREE_TO_ONE.get(resolved['resname'], 'X')
+    unresolved = resolved['unresolved']
+
+    return {
+        # `?` marks the guard case — a residue we could not find in the coordinates,
+        # so its id can never collide with a resolved one
+        'id': f"{chain}-{resnum}{'?' if unresolved else (icode or '')}".lower(),
+        'side': side,
+        'group': group,
+        'chain': chain,
+        'resnum': resnum,
+        # None makes Mol* select the whole residue-number group — see viewer.js
+        'icode': icode,
+        'resname': resolved['resname'],
+        'label': f"{code}{resnum}{'*' if unresolved else (icode or '')}",
+        'unresolved': unresolved,
+        # the ?residue= token the sequences and the URL use — only where we know
+        # exactly which residue this is
+        'token': None if unresolved else f"{chain}-{resnum}{icode or ''}".lower(),
+        'order': resolved['order'],
+    }
+
+
+def residue_chord(pdb_id: str) -> dict | None:
+    """Every contacting residue pair for the copy of `pdb_id` on screen.
+
+    Nodes are residues (grouped by CDR loop / MHC region), links are residue pairs.
+    `n_atom_pairs` is the weight; `specific` says whether the pair has any real
+    chemistry behind it or is only Arpeggio's `proximal` catch-all.
+    """
+    key = structure_id(pdb_id)
+    filename = coordinate_file(pdb_id)
+    if not key or not filename:
+        return None
+
+    contacts = _dataset('contacts').get(key) or {}
+    rows = contacts.get('residues') or []
+    numbering = _numbering(filename)
+
+    nodes: dict = {}
+    links: dict = {}
+
+    for row in rows:
+        loop = CONTACT_LOOP_ALIASES.get(row['cdr_loop'], row['cdr_loop'])
+        region = row['region']
+        if loop not in CHORD_CDR_ORDER or region not in CHORD_MHC_ORDER:
+            continue
+
+        tcr = _chord_node(
+            'tcr', loop, row['from_chain'], row['from_residue'],
+            _resolve(numbering, row['from_chain'], row['from_residue'], row['from_aa']),
+        )
+        mhc = _chord_node(
+            'mhc', region, row['to_chain'], row['to_residue'],
+            _resolve(numbering, row['to_chain'], row['to_residue'], row['to_aa']),
+        )
+        nodes.setdefault(tcr['id'], tcr)
+        nodes.setdefault(mhc['id'], mhc)
+
+        bond_types = list(row.get('bond_types') or [])
+        # A pair is "specific" if it is held by anything other than proximity.
+        specific = any(bond not in NON_SPECIFIC_BONDS for bond in bond_types)
+
+        # Two rows can only collapse onto one pair if the ambiguity merged them;
+        # add rather than overwrite, so no contact is lost.
+        link = links.setdefault((tcr['id'], mhc['id']), {
+            'tcr': tcr['id'],
+            'mhc': mhc['id'],
+            'cdr_loop': loop,
+            'mhc_region': region,
+            'n_atom_pairs': 0,
+            'min_distance': None,
+            'bond_types': [],
+            'specific': False,
+        })
+        link['n_atom_pairs'] += row['n_atom_pairs']
+        link['specific'] = link['specific'] or specific
+        for bond in bond_types:
+            if bond not in link['bond_types']:
+                link['bond_types'].append(bond)
+        distance = _clean(row.get('min_distance'))
+        if distance is not None:
+            link['min_distance'] = (
+                distance if link['min_distance'] is None
+                else min(link['min_distance'], distance)
+            )
+
+    # Around the ring: by group, then by the residue's position in its chain. Not by
+    # residue number — IMGT numbers CDR3 insertions inward from both ends, so 112A
+    # can PRECEDE 112 in the chain (functions/residues.py). The coordinate file's own
+    # order is the sequence order.
+    group_rank = {
+        group: rank for rank, group in
+        enumerate(CHORD_CDR_ORDER + tuple(CHORD_MHC_ORDER))
+    }
+    ordered = sorted(
+        nodes.values(),
+        key=lambda node: (group_rank[node['group']], node['order']),
+    )
+
+    return {
+        'structure_id': key,
+        'nodes': ordered,
+        'links': sorted(links.values(), key=lambda link: -link['n_atom_pairs']),
+        'n_pairs': len(links),
+        'n_specific_pairs': sum(1 for link in links.values() if link['specific']),
+        'total_atom_pairs': contacts.get('ct_total_atom_pairs'),
+        # Named, not just counted: the page says which CDR residues the contact data
+        # cannot see, rather than quietly drawing a ring with holes in it.
+        'omitted': omitted_residues(filename, rows),
     }

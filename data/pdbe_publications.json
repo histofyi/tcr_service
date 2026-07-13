@@ -1,0 +1,1868 @@
+{
+ "pubs": {
+  "6VM9": {
+   "pdb_id": "6VM9",
+   "title": "Structurally silent peptide anchor modifications allosterically modulate T cell recognition in a receptor-dependent manner",
+   "journal": "Proc. Natl. Acad. Sci. U.S.A.",
+   "year": 2021,
+   "doi": "10.1073/pnas.2018125118",
+   "pmid": "",
+   "authors": "Smith, A.R.; Alonso, J.A.; Ayres, C.M."
+  },
+  "6VMC": {
+   "pdb_id": "6VMC",
+   "title": "Structurally silent peptide anchor modifications allosterically modulate T cell recognition in a receptor-dependent manner",
+   "journal": "Proc. Natl. Acad. Sci. U.S.A.",
+   "year": 2021,
+   "doi": "10.1073/pnas.2018125118",
+   "pmid": "",
+   "authors": "Smith, A.R.; Alonso, J.A.; Ayres, C.M."
+  },
+  "6AM5": {
+   "pdb_id": "6AM5",
+   "title": "Crystal structure of DMF5 TCR bound to HLA-A2 presenting synthetic peptide SMLGIGIVPV",
+   "journal": "To be published",
+   "year": null,
+   "doi": "",
+   "pmid": "",
+   "authors": "Riley, T.P.; Baker, B.M."
+  },
+  "6AMU": {
+   "pdb_id": "6AMU",
+   "title": "Crystal structure of DMF5 TCR bound to HLA-A2 presenting synthetic peptide MMWDRGLGMM",
+   "journal": "To be published",
+   "year": null,
+   "doi": "",
+   "pmid": "",
+   "authors": "Riley, T.P.; Baker, B.M."
+  },
+  "7N1F": {
+   "pdb_id": "7N1F",
+   "title": "Structural assessment of HLA-A2-restricted SARS-CoV-2 spike epitopes recognized by public and private T-cell receptors",
+   "journal": "Nat Commun",
+   "year": 2022,
+   "doi": "10.1038/s41467-021-27669-8",
+   "pmid": "35013235",
+   "authors": "Wu D; Kolesnikov A; Yin R"
+  },
+  "7RTR": {
+   "pdb_id": "7RTR",
+   "title": "Molecular Basis of a Dominant SARS-CoV-2 Spike-Derived Epitope Presented by HLA-A*02:01 Recognised by a Public TCR",
+   "journal": "Cells",
+   "year": 2021,
+   "doi": "10.3390/cells10102646",
+   "pmid": "34685626",
+   "authors": "Szeto C; Nguyen AT; Lobos CA"
+  },
+  "3HG1": {
+   "pdb_id": "3HG1",
+   "title": "Germ line-governed recognition of a cancer epitope by an immunodominant human T-cell receptor",
+   "journal": "J. Biol. Chem.",
+   "year": 2009,
+   "doi": "10.1074/jbc.M109.022509",
+   "pmid": "19605354",
+   "authors": "Cole DK; Yuan F; Rizkallah PJ"
+  },
+  "4QOK": {
+   "pdb_id": "4QOK",
+   "title": "Structural basis for ineffective T-cell responses to MHC anchor residue-improved \"heteroclitic\" peptides",
+   "journal": "Eur. J. Immunol.",
+   "year": 2015,
+   "doi": "10.1002/eji.201445114",
+   "pmid": "25471691",
+   "authors": "Madura F; Rizkallah PJ; Holland CJ"
+  },
+  "6EQA": {
+   "pdb_id": "6EQA",
+   "title": "TCR-induced alteration of primary MHC peptide anchor residue",
+   "journal": "Eur. J. Immunol.",
+   "year": 2019,
+   "doi": "10.1002/eji.201948085",
+   "pmid": "31091334",
+   "authors": "Madura F; Rizkallah PJ; Legut M"
+  },
+  "7Q99": {
+   "pdb_id": "7Q99",
+   "title": "Targeting of multiple tumor-associated antigens by individual T\u00a0cell receptors during successful cancer immunotherapy",
+   "journal": "Cell",
+   "year": 2023,
+   "doi": "10.1016/j.cell.2023.06.020",
+   "pmid": "37490916",
+   "authors": "Dolton G; Rius C; Wall A"
+  },
+  "7Q9A": {
+   "pdb_id": "7Q9A",
+   "title": "Targeting of multiple tumor-associated antigens by individual T\u00a0cell receptors during successful cancer immunotherapy",
+   "journal": "Cell",
+   "year": 2023,
+   "doi": "10.1016/j.cell.2023.06.020",
+   "pmid": "37490916",
+   "authors": "Dolton G; Rius C; Wall A"
+  },
+  "5NME": {
+   "pdb_id": "5NME",
+   "title": "Dual Molecular Mechanisms Govern Escape at Immunodominant HLA A2-Restricted HIV Epitope",
+   "journal": "Front Immunol",
+   "year": 2017,
+   "doi": "10.3389/fimmu.2017.01503",
+   "pmid": "29209312",
+   "authors": "Cole DK; Fuller A; Dolton G"
+  },
+  "5NMF": {
+   "pdb_id": "5NMF",
+   "title": "Dual Molecular Mechanisms Govern Escape at Immunodominant HLA A2-Restricted HIV Epitope",
+   "journal": "Front Immunol",
+   "year": 2017,
+   "doi": "10.3389/fimmu.2017.01503",
+   "pmid": "29209312",
+   "authors": "Cole DK; Fuller A; Dolton G"
+  },
+  "5NMG": {
+   "pdb_id": "5NMG",
+   "title": "Dual Molecular Mechanisms Govern Escape at Immunodominant HLA A2-Restricted HIV Epitope",
+   "journal": "Front Immunol",
+   "year": 2017,
+   "doi": "10.3389/fimmu.2017.01503",
+   "pmid": "29209312",
+   "authors": "Cole DK; Fuller A; Dolton G"
+  },
+  "1AO7": {
+   "pdb_id": "1AO7",
+   "title": "Structure of the complex between human T-cell receptor, viral peptide and HLA-A2",
+   "journal": "Nature",
+   "year": 1996,
+   "doi": "10.1038/384134a0",
+   "pmid": "8906788",
+   "authors": "Garboczi DN; Ghosh P; Utz U"
+  },
+  "1QRN": {
+   "pdb_id": "1QRN",
+   "title": "Four A6-TCR/peptide/HLA-A2 structures that generate very different T cell signals are nearly identical",
+   "journal": "Immunity",
+   "year": 1999,
+   "doi": "10.1016/s1074-7613(00)80080-1",
+   "pmid": "10435578",
+   "authors": "Ding YH; Baker BM; Garboczi DN"
+  },
+  "1QSE": {
+   "pdb_id": "1QSE",
+   "title": "Four A6-TCR/peptide/HLA-A2 structures that generate very different T cell signals are nearly identical",
+   "journal": "Immunity",
+   "year": 1999,
+   "doi": "10.1016/s1074-7613(00)80080-1",
+   "pmid": "10435578",
+   "authors": "Ding YH; Baker BM; Garboczi DN"
+  },
+  "1QSF": {
+   "pdb_id": "1QSF",
+   "title": "Four A6-TCR/peptide/HLA-A2 structures that generate very different T cell signals are nearly identical",
+   "journal": "Immunity",
+   "year": 1999,
+   "doi": "10.1016/s1074-7613(00)80080-1",
+   "pmid": "10435578",
+   "authors": "Ding YH; Baker BM; Garboczi DN"
+  },
+  "2GJ6": {
+   "pdb_id": "2GJ6",
+   "title": "T cell receptor recognition via cooperative conformational plasticity",
+   "journal": "J. Mol. Biol.",
+   "year": 2006,
+   "doi": "10.1016/j.jmb.2006.08.045",
+   "pmid": "16962135",
+   "authors": "Gagnon SJ; Borbulevych OY; Davis-Harrison RL"
+  },
+  "3D39": {
+   "pdb_id": "3D39",
+   "title": "Fluorine substitutions in an antigenic peptide selectively modulate T-cell receptor binding in a minimally perturbing manner",
+   "journal": "Biochem. J.",
+   "year": 2009,
+   "doi": "10.1042/BJ20090732",
+   "pmid": "19698083",
+   "authors": "Piepenbrink KH; Borbulevych OY; Sommese RF"
+  },
+  "3D3V": {
+   "pdb_id": "3D3V",
+   "title": "Fluorine substitutions in an antigenic peptide selectively modulate T-cell receptor binding in a minimally perturbing manner",
+   "journal": "Biochem. J.",
+   "year": 2009,
+   "doi": "10.1042/BJ20090732",
+   "pmid": "19698083",
+   "authors": "Piepenbrink KH; Borbulevych OY; Sommese RF"
+  },
+  "3H9S": {
+   "pdb_id": "3H9S",
+   "title": "T cell receptor cross-reactivity directed by antigen-dependent tuning of peptide-MHC molecular flexibility",
+   "journal": "Immunity",
+   "year": 2009,
+   "doi": "10.1016/j.immuni.2009.11.003",
+   "pmid": "20064447",
+   "authors": "Borbulevych OY; Piepenbrink KH; Gloor BE"
+  },
+  "3PWP": {
+   "pdb_id": "3PWP",
+   "title": "Conformational melding permits a conserved binding geometry in TCR recognition of foreign and self molecular mimics",
+   "journal": "J. Immunol.",
+   "year": 2011,
+   "doi": "10.4049/jimmunol.1003150",
+   "pmid": "21282516",
+   "authors": "Borbulevych OY; Piepenbrink KH; Baker BM"
+  },
+  "3QFJ": {
+   "pdb_id": "3QFJ",
+   "title": "Disparate degrees of hypervariable loop flexibility control T-cell receptor cross-reactivity, specificity, and binding mechanism",
+   "journal": "J. Mol. Biol.",
+   "year": 2011,
+   "doi": "10.1016/j.jmb.2011.10.006",
+   "pmid": "22019736",
+   "authors": "Scott DR; Borbulevych OY; Piepenbrink KH"
+  },
+  "4FTV": {
+   "pdb_id": "4FTV",
+   "title": "Structure of a high affinity TCR reveals native binding to MHC with enhanced peptide specificity",
+   "journal": "To be published",
+   "year": null,
+   "doi": "",
+   "pmid": "",
+   "authors": "Borbulevych, O.Y.; Baker, B.M."
+  },
+  "9NDS": {
+   "pdb_id": "9NDS",
+   "title": "Design of solubly expressed miniaturized SMART MHCs",
+   "journal": "Proc. Natl. Acad. Sci. U.S.A.",
+   "year": 2026,
+   "doi": "10.1073/pnas.2505932123",
+   "pmid": "41481462",
+   "authors": "White WL; Bai H; Kim CJ"
+  },
+  "3VXU": {
+   "pdb_id": "3VXU",
+   "title": "Structure of TCR and antigen complexes at an immunodominant CTL epitope in HIV-1 infection",
+   "journal": "Sci Rep",
+   "year": 2013,
+   "doi": "10.1038/srep03097",
+   "pmid": "24192765",
+   "authors": "Shimizu A; Kawana-Tachikawa A; Yamagata A"
+  },
+  "3W0W": {
+   "pdb_id": "3W0W",
+   "title": "Structure of TCR and antigen complexes at an immunodominant CTL epitope in HIV-1 infection",
+   "journal": "Sci Rep",
+   "year": 2013,
+   "doi": "10.1038/srep03097",
+   "pmid": "24192765",
+   "authors": "Shimizu A; Kawana-Tachikawa A; Yamagata A"
+  },
+  "7N2N": {
+   "pdb_id": "7N2N",
+   "title": "Autoimmunity-associated T cell receptors recognize HLA-B*27-bound peptides",
+   "journal": "Nature",
+   "year": 2022,
+   "doi": "10.1038/s41586-022-05501-7",
+   "pmid": "36477533",
+   "authors": "Yang X; Garner LI; Zvyagin IV"
+  },
+  "7N2O": {
+   "pdb_id": "7N2O",
+   "title": "Autoimmunity-associated T cell receptors recognize HLA-B*27-bound peptides",
+   "journal": "Nature",
+   "year": 2022,
+   "doi": "10.1038/s41586-022-05501-7",
+   "pmid": "36477533",
+   "authors": "Yang X; Garner LI; Zvyagin IV"
+  },
+  "8RYM": {
+   "pdb_id": "8RYM",
+   "title": "Broadening alloselectivity of T cell receptors by structure guided engineering",
+   "journal": "Sci Rep",
+   "year": 2024,
+   "doi": "10.1038/s41598-024-75140-7",
+   "pmid": "39500929",
+   "authors": "Karuppiah V; Sangani D; Whaley L"
+  },
+  "8RYN": {
+   "pdb_id": "8RYN",
+   "title": "Broadening alloselectivity of T cell receptors by structure guided engineering",
+   "journal": "Sci Rep",
+   "year": 2024,
+   "doi": "10.1038/s41598-024-75140-7",
+   "pmid": "39500929",
+   "authors": "Karuppiah V; Sangani D; Whaley L"
+  },
+  "3VXR": {
+   "pdb_id": "3VXR",
+   "title": "Structure of TCR and antigen complexes at an immunodominant CTL epitope in HIV-1 infection",
+   "journal": "Sci Rep",
+   "year": 2013,
+   "doi": "10.1038/srep03097",
+   "pmid": "24192765",
+   "authors": "Shimizu A; Kawana-Tachikawa A; Yamagata A"
+  },
+  "3VXS": {
+   "pdb_id": "3VXS",
+   "title": "Structure of TCR and antigen complexes at an immunodominant CTL epitope in HIV-1 infection",
+   "journal": "Sci Rep",
+   "year": 2013,
+   "doi": "10.1038/srep03097",
+   "pmid": "24192765",
+   "authors": "Shimizu A; Kawana-Tachikawa A; Yamagata A"
+  },
+  "2BNQ": {
+   "pdb_id": "2BNQ",
+   "title": "Structural and kinetic basis for heightened immunogenicity of T cell vaccines",
+   "journal": "J. Exp. Med.",
+   "year": 2005,
+   "doi": "10.1084/jem.20042323",
+   "pmid": "15837811",
+   "authors": "Chen JL; Stewart-Jones G; Bossi G"
+  },
+  "2BNR": {
+   "pdb_id": "2BNR",
+   "title": "Structural and kinetic basis for heightened immunogenicity of T cell vaccines",
+   "journal": "J. Exp. Med.",
+   "year": 2005,
+   "doi": "10.1084/jem.20042323",
+   "pmid": "15837811",
+   "authors": "Chen JL; Stewart-Jones G; Bossi G"
+  },
+  "6Q3S": {
+   "pdb_id": "6Q3S",
+   "title": "High-throughput peptide-MHC complex generation and kinetic screenings of TCRs with peptide-receptive HLA-A*02:01 molecules",
+   "journal": "Sci Immunol",
+   "year": 2019,
+   "doi": "10.1126/sciimmunol.aav0860",
+   "pmid": "31324691",
+   "authors": "Moritz A; Anjanappa R; Wagner C"
+  },
+  "7N2P": {
+   "pdb_id": "7N2P",
+   "title": "Autoimmunity-associated T cell receptors recognize HLA-B*27-bound peptides",
+   "journal": "Nature",
+   "year": 2022,
+   "doi": "10.1038/s41586-022-05501-7",
+   "pmid": "36477533",
+   "authors": "Yang X; Garner LI; Zvyagin IV"
+  },
+  "7N2Q": {
+   "pdb_id": "7N2Q",
+   "title": "Autoimmunity-associated T cell receptors recognize HLA-B*27-bound peptides",
+   "journal": "Nature",
+   "year": 2022,
+   "doi": "10.1038/s41586-022-05501-7",
+   "pmid": "36477533",
+   "authors": "Yang X; Garner LI; Zvyagin IV"
+  },
+  "7N2R": {
+   "pdb_id": "7N2R",
+   "title": "Autoimmunity-associated T cell receptors recognize HLA-B*27-bound peptides",
+   "journal": "Nature",
+   "year": 2022,
+   "doi": "10.1038/s41586-022-05501-7",
+   "pmid": "36477533",
+   "authors": "Yang X; Garner LI; Zvyagin IV"
+  },
+  "9PBG": {
+   "pdb_id": "9PBG",
+   "title": "Deep peptide recognition profiling decodes TCR specificity and enables disease-associated antigen discovery",
+   "journal": "Nat. Biotechnol.",
+   "year": 2026,
+   "doi": "10.1038/s41587-026-03128-x",
+   "pmid": "42129507",
+   "authors": "Wang N; Yeh H; Lai B"
+  },
+  "9PBH": {
+   "pdb_id": "9PBH",
+   "title": "Deep peptide recognition profiling decodes TCR specificity and enables disease-associated antigen discovery",
+   "journal": "Nat. Biotechnol.",
+   "year": 2026,
+   "doi": "10.1038/s41587-026-03128-x",
+   "pmid": "42129507",
+   "authors": "Wang N; Yeh H; Lai B"
+  },
+  "5BRZ": {
+   "pdb_id": "5BRZ",
+   "title": "Direct molecular mimicry enables off-target cardiovascular toxicity by an enhanced affinity TCR designed for cancer immunotherapy",
+   "journal": "Sci Rep",
+   "year": 2016,
+   "doi": "10.1038/srep18851",
+   "pmid": "26758806",
+   "authors": "Raman MC; Rizkallah PJ; Simmons R"
+  },
+  "5BS0": {
+   "pdb_id": "5BS0",
+   "title": "Direct molecular mimicry enables off-target cardiovascular toxicity by an enhanced affinity TCR designed for cancer immunotherapy",
+   "journal": "Sci Rep",
+   "year": 2016,
+   "doi": "10.1038/srep18851",
+   "pmid": "26758806",
+   "authors": "Raman MC; Rizkallah PJ; Simmons R"
+  },
+  "8EN8": {
+   "pdb_id": "8EN8",
+   "title": "Molecular determinants of cross-strain influenza A virus recognition by T-cell receptors",
+   "journal": "To be published",
+   "year": null,
+   "doi": "",
+   "pmid": "",
+   "authors": "Quinones-Parra, S.M.; Littler, D.R.; Rossjohn, J."
+  },
+  "8ENH": {
+   "pdb_id": "8ENH",
+   "title": "Molecular determinants of cross-strain influenza A virus recognition by T-cell receptors",
+   "journal": "To be published",
+   "year": null,
+   "doi": "",
+   "pmid": "",
+   "authors": "Quinones-Parra, S.M.; Littler, D.R.; Rossjohn, J."
+  },
+  "8EO8": {
+   "pdb_id": "8EO8",
+   "title": "Molecular determinants of cross-strain influenza A virus recognition by T-cell receptors",
+   "journal": "To be published",
+   "year": null,
+   "doi": "",
+   "pmid": "",
+   "authors": "Quinones-Parra, S.M.; Littler, D.R.; Rossjohn, J."
+  },
+  "7NME": {
+   "pdb_id": "7NME",
+   "title": "Human MHC Class I, A24 Allele presenting QLPRLFPLL, Complex with 4C6 TCR",
+   "journal": "To be published",
+   "year": null,
+   "doi": "",
+   "pmid": "",
+   "authors": "Rizkallahp, P.J.; Sewell, A.K.; Cole, D.K."
+  },
+  "7NMF": {
+   "pdb_id": "7NMF",
+   "title": "Human MHC Class I, A24 Allele presenting QLPRLFPLL, Complex with 4C6 TCR, monoclinic form",
+   "journal": "To be published",
+   "year": null,
+   "doi": "",
+   "pmid": "",
+   "authors": "Rizkallahp, P.J.; Sewell, A.K.; Cole, D.K."
+  },
+  "7NMG": {
+   "pdb_id": "7NMG",
+   "title": "Human MHC Class I, A24 Allele presenting LWM, Complex with 4C6 TCR",
+   "journal": "To be published",
+   "year": null,
+   "doi": "",
+   "pmid": "",
+   "authors": "Rizkallahp, P.J.; Sewell, A.K.; Cole, D.K."
+  },
+  "4JFD": {
+   "pdb_id": "4JFD",
+   "title": "T-cell receptor specificity maintained by altered thermodynamics",
+   "journal": "J. Biol. Chem.",
+   "year": 2013,
+   "doi": "10.1074/jbc.M113.464560",
+   "pmid": "23698002",
+   "authors": "Madura F; Rizkallah PJ; Miles KM"
+  },
+  "4JFE": {
+   "pdb_id": "4JFE",
+   "title": "T-cell receptor specificity maintained by altered thermodynamics",
+   "journal": "J. Biol. Chem.",
+   "year": 2013,
+   "doi": "10.1074/jbc.M113.464560",
+   "pmid": "23698002",
+   "authors": "Madura F; Rizkallah PJ; Miles KM"
+  },
+  "4JFF": {
+   "pdb_id": "4JFF",
+   "title": "T-cell receptor specificity maintained by altered thermodynamics",
+   "journal": "J. Biol. Chem.",
+   "year": 2013,
+   "doi": "10.1074/jbc.M113.464560",
+   "pmid": "23698002",
+   "authors": "Madura F; Rizkallah PJ; Miles KM"
+  },
+  "6EQB": {
+   "pdb_id": "6EQB",
+   "title": "TCR-induced alteration of primary MHC peptide anchor residue",
+   "journal": "Eur. J. Immunol.",
+   "year": 2019,
+   "doi": "10.1002/eji.201948085",
+   "pmid": "31091334",
+   "authors": "Madura F; Rizkallah PJ; Legut M"
+  },
+  "6TMO": {
+   "pdb_id": "6TMO",
+   "title": "Molecular Rules Underpinning Enhanced Affinity Binding of Human T Cell Receptors Engineered for Immunotherapy",
+   "journal": "Mol Ther Oncolytics",
+   "year": 2020,
+   "doi": "10.1016/j.omto.2020.07.008",
+   "pmid": "32913893",
+   "authors": "Crean RM; MacLachlan BJ; Madura F"
+  },
+  "5WKF": {
+   "pdb_id": "5WKF",
+   "title": "Germline bias dictates cross-serotype reactivity in a common dengue-virus-specific CD8<sub>+</sub> T cell response",
+   "journal": "Nat. Immunol.",
+   "year": 2017,
+   "doi": "10.1038/ni.3850",
+   "pmid": "28945243",
+   "authors": "Culshaw A; Ladell K; Gras S"
+  },
+  "5WKH": {
+   "pdb_id": "5WKH",
+   "title": "Germline bias dictates cross-serotype reactivity in a common dengue-virus-specific CD8<sub>+</sub> T cell response",
+   "journal": "Nat. Immunol.",
+   "year": 2017,
+   "doi": "10.1038/ni.3850",
+   "pmid": "28945243",
+   "authors": "Culshaw A; Ladell K; Gras S"
+  },
+  "6ULR": {
+   "pdb_id": "6ULR",
+   "title": "High-affinity oligoclonal TCRs define effective adoptive T cell therapy targeting mutant KRAS-G12D",
+   "journal": "Proc. Natl. Acad. Sci. U.S.A.",
+   "year": 2020,
+   "doi": "10.1073/pnas.1921964117",
+   "pmid": "32461371",
+   "authors": "Sim MJW; Lu J; Spencer M"
+  },
+  "7SU9": {
+   "pdb_id": "7SU9",
+   "title": "T cells discriminate between groups C1 and C2 HLA-C",
+   "journal": "Elife",
+   "year": 2022,
+   "doi": "10.7554/eLife.75670",
+   "pmid": "35587797",
+   "authors": "Sim MJW; Stotz Z; Lu J"
+  },
+  "3UTS": {
+   "pdb_id": "3UTS",
+   "title": "Structural basis for the killing of human beta cells by CD8(+) T cells in type 1 diabetes",
+   "journal": "Nat. Immunol.",
+   "year": 2012,
+   "doi": "10.1038/ni.2206",
+   "pmid": "22245737",
+   "authors": "Bulek AM; Cole DK; Skowera A"
+  },
+  "3UTT": {
+   "pdb_id": "3UTT",
+   "title": "Structural basis for the killing of human beta cells by CD8(+) T cells in type 1 diabetes",
+   "journal": "Nat. Immunol.",
+   "year": 2012,
+   "doi": "10.1038/ni.2206",
+   "pmid": "22245737",
+   "authors": "Bulek AM; Cole DK; Skowera A"
+  },
+  "5C07": {
+   "pdb_id": "5C07",
+   "title": "Hotspot autoimmune T cell receptor binding underlies pathogen and insulin peptide cross-reactivity",
+   "journal": "J. Clin. Invest.",
+   "year": 2016,
+   "doi": "10.1172/JCI85679",
+   "pmid": "27183389",
+   "authors": "Cole DK; Bulek AM; Dolton G"
+  },
+  "5C08": {
+   "pdb_id": "5C08",
+   "title": "Hotspot autoimmune T cell receptor binding underlies pathogen and insulin peptide cross-reactivity",
+   "journal": "J. Clin. Invest.",
+   "year": 2016,
+   "doi": "10.1172/JCI85679",
+   "pmid": "27183389",
+   "authors": "Cole DK; Bulek AM; Dolton G"
+  },
+  "5C09": {
+   "pdb_id": "5C09",
+   "title": "Hotspot autoimmune T cell receptor binding underlies pathogen and insulin peptide cross-reactivity",
+   "journal": "J. Clin. Invest.",
+   "year": 2016,
+   "doi": "10.1172/JCI85679",
+   "pmid": "27183389",
+   "authors": "Cole DK; Bulek AM; Dolton G"
+  },
+  "5C0A": {
+   "pdb_id": "5C0A",
+   "title": "Hotspot autoimmune T cell receptor binding underlies pathogen and insulin peptide cross-reactivity",
+   "journal": "J. Clin. Invest.",
+   "year": 2016,
+   "doi": "10.1172/JCI85679",
+   "pmid": "27183389",
+   "authors": "Cole DK; Bulek AM; Dolton G"
+  },
+  "5C0B": {
+   "pdb_id": "5C0B",
+   "title": "Hotspot autoimmune T cell receptor binding underlies pathogen and insulin peptide cross-reactivity",
+   "journal": "J. Clin. Invest.",
+   "year": 2016,
+   "doi": "10.1172/JCI85679",
+   "pmid": "27183389",
+   "authors": "Cole DK; Bulek AM; Dolton G"
+  },
+  "5C0C": {
+   "pdb_id": "5C0C",
+   "title": "Hotspot autoimmune T cell receptor binding underlies pathogen and insulin peptide cross-reactivity",
+   "journal": "J. Clin. Invest.",
+   "year": 2016,
+   "doi": "10.1172/JCI85679",
+   "pmid": "27183389",
+   "authors": "Cole DK; Bulek AM; Dolton G"
+  },
+  "5HYJ": {
+   "pdb_id": "5HYJ",
+   "title": "A \"hotspot\" for autoimmune T cells in type 1 diabetes",
+   "journal": "J. Clin. Invest.",
+   "year": 2016,
+   "doi": "10.1172/JCI88165",
+   "pmid": "27183386",
+   "authors": "Stadinski BD; Obst R; Huseby ES"
+  },
+  "3QDM": {
+   "pdb_id": "3QDM",
+   "title": "TCRs used in cancer gene therapy cross-react with MART-1/Melan-A tumor antigens via distinct mechanisms",
+   "journal": "J. Immunol.",
+   "year": 2011,
+   "doi": "10.4049/jimmunol.1101268",
+   "pmid": "21795600",
+   "authors": "Borbulevych OY; Santhanagopolan SM; Hossain M"
+  },
+  "3QEQ": {
+   "pdb_id": "3QEQ",
+   "title": "TCRs used in cancer gene therapy cross-react with MART-1/Melan-A tumor antigens via distinct mechanisms",
+   "journal": "J. Immunol.",
+   "year": 2011,
+   "doi": "10.4049/jimmunol.1101268",
+   "pmid": "21795600",
+   "authors": "Borbulevych OY; Santhanagopolan SM; Hossain M"
+  },
+  "1OGA": {
+   "pdb_id": "1OGA",
+   "title": "A structural basis for immunodominant human T cell receptor recognition",
+   "journal": "Nat. Immunol.",
+   "year": 2003,
+   "doi": "10.1038/ni942",
+   "pmid": "12796775",
+   "authors": "Stewart-Jones GB; McMichael AJ; Bell JI"
+  },
+  "2VLJ": {
+   "pdb_id": "2VLJ",
+   "title": "The structural dynamics and energetics of an immunodominant T cell receptor are programmed by its Vbeta domain",
+   "journal": "Immunity",
+   "year": 2008,
+   "doi": "10.1016/j.immuni.2007.12.018",
+   "pmid": "18275829",
+   "authors": "Ishizuka J; Stewart-Jones GB; van der Merwe A"
+  },
+  "2VLK": {
+   "pdb_id": "2VLK",
+   "title": "The structural dynamics and energetics of an immunodominant T cell receptor are programmed by its Vbeta domain",
+   "journal": "Immunity",
+   "year": 2008,
+   "doi": "10.1016/j.immuni.2007.12.018",
+   "pmid": "18275829",
+   "authors": "Ishizuka J; Stewart-Jones GB; van der Merwe A"
+  },
+  "5HHM": {
+   "pdb_id": "5HHM",
+   "title": "Molecular basis for universal HLA-A*0201-restricted CD8+ T-cell immunity against influenza viruses",
+   "journal": "Proc. Natl. Acad. Sci. U.S.A.",
+   "year": 2016,
+   "doi": "10.1073/pnas.1603106113",
+   "pmid": "27036003",
+   "authors": "Valkenburg SA; Josephs TM; Clemens EB"
+  },
+  "7DZM": {
+   "pdb_id": "7DZM",
+   "title": "Cross-reactive TCR with alloreactivity for immunodominant HIV-1 epitope Gag TL9 with enhanced control of viral infection",
+   "journal": "Biorxiv",
+   "year": 2021,
+   "doi": "10.1101/2021.06.06.447276",
+   "pmid": "",
+   "authors": "Liu, Y.; San, D.; Yin, L."
+  },
+  "7DZN": {
+   "pdb_id": "7DZN",
+   "title": "Cross-reactive TCR with alloreactivity for immunodominant HIV-1 epitope Gag TL9 with enhanced control of viral infection",
+   "journal": "Biorxiv",
+   "year": 2021,
+   "doi": "10.1101/2021.06.06.447276",
+   "pmid": "",
+   "authors": "Liu, Y.; San, D.; Yin, L."
+  },
+  "1MI5": {
+   "pdb_id": "1MI5",
+   "title": "A structural basis for the selection of dominant alphabeta T cell receptors in antiviral immunity",
+   "journal": "Immunity",
+   "year": 2003,
+   "doi": "10.1016/s1074-7613(02)00513-7",
+   "pmid": "12530975",
+   "authors": "Kjer-Nielsen L; Clements CS; Purcell AW"
+  },
+  "3KPR": {
+   "pdb_id": "3KPR",
+   "title": "T cell allorecognition via molecular mimicry",
+   "journal": "Immunity",
+   "year": 2009,
+   "doi": "10.1016/j.immuni.2009.09.025",
+   "pmid": "20064448",
+   "authors": "Macdonald WA; Chen Z; Gras S"
+  },
+  "3KPS": {
+   "pdb_id": "3KPS",
+   "title": "T cell allorecognition via molecular mimicry",
+   "journal": "Immunity",
+   "year": 2009,
+   "doi": "10.1016/j.immuni.2009.09.025",
+   "pmid": "20064448",
+   "authors": "Macdonald WA; Chen Z; Gras S"
+  },
+  "7OW5": {
+   "pdb_id": "7OW5",
+   "title": "Therapeutic high affinity T cell receptor targeting a KRASG12D cancer neoantigen",
+   "journal": "Nat Commun",
+   "year": 2022,
+   "doi": "10.1038/s41467-022-32811-1",
+   "pmid": "",
+   "authors": "Poole, A.; Karuppiah, V.; Hartt, A."
+  },
+  "7OW6": {
+   "pdb_id": "7OW6",
+   "title": "Therapeutic high affinity T cell receptor targeting a KRASG12D cancer neoantigen",
+   "journal": "Nat Commun",
+   "year": 2022,
+   "doi": "10.1038/s41467-022-32811-1",
+   "pmid": "",
+   "authors": "Poole, A.; Karuppiah, V.; Hartt, A."
+  },
+  "2AK4": {
+   "pdb_id": "2AK4",
+   "title": "T cell receptor recognition of a 'super-bulged' major histocompatibility complex class I-bound peptide",
+   "journal": "Nat. Immunol.",
+   "year": 2005,
+   "doi": "10.1038/ni1257",
+   "pmid": "16186824",
+   "authors": "Tynan FE; Burrows SR; Buckle AM"
+  },
+  "3KXF": {
+   "pdb_id": "3KXF",
+   "title": "Hard wiring of T cell receptor specificity for the major histocompatibility complex is underpinned by TCR adaptability",
+   "journal": "Proc. Natl. Acad. Sci. U.S.A.",
+   "year": 2010,
+   "doi": "10.1073/pnas.1004926107",
+   "pmid": "20483993",
+   "authors": "Burrows SR; Chen Z; Archbold JK"
+  },
+  "4G8G": {
+   "pdb_id": "4G8G",
+   "title": "A molecular basis for the control of preimmune escape variants by HIV-specific CD8+ T cells",
+   "journal": "Immunity",
+   "year": 2013,
+   "doi": "10.1016/j.immuni.2012.11.021",
+   "pmid": "23521884",
+   "authors": "Ladell K; Hashimoto M; Iglesias MC"
+  },
+  "4G9F": {
+   "pdb_id": "4G9F",
+   "title": "A molecular basis for the control of preimmune escape variants by HIV-specific CD8+ T cells",
+   "journal": "Immunity",
+   "year": 2013,
+   "doi": "10.1016/j.immuni.2012.11.021",
+   "pmid": "23521884",
+   "authors": "Ladell K; Hashimoto M; Iglesias MC"
+  },
+  "6UK2": {
+   "pdb_id": "6UK2",
+   "title": "Structural dissimilarity from self drives neoepitope escape from immune tolerance",
+   "journal": "Nat. Chem. Biol.",
+   "year": 2020,
+   "doi": "10.1038/s41589-020-0610-1",
+   "pmid": "32807968",
+   "authors": "Devlin JR; Alonso JA; Ayres CM"
+  },
+  "6UK4": {
+   "pdb_id": "6UK4",
+   "title": "Structural dissimilarity from self drives neoepitope escape from immune tolerance",
+   "journal": "Nat. Chem. Biol.",
+   "year": 2020,
+   "doi": "10.1038/s41589-020-0610-1",
+   "pmid": "32807968",
+   "authors": "Devlin JR; Alonso JA; Ayres CM"
+  },
+  "8GOM": {
+   "pdb_id": "8GOM",
+   "title": "Structural insights into protection against a SARS-CoV-2 spike variant by T cell receptor (TCR) diversity",
+   "journal": "J. Biol. Chem.",
+   "year": 2023,
+   "doi": "10.1016/j.jbc.2023.103035",
+   "pmid": "36806685",
+   "authors": "Wu D; Efimov GA; Bogolyubova AV"
+  },
+  "8GON": {
+   "pdb_id": "8GON",
+   "title": "Structural insights into protection against a SARS-CoV-2 spike variant by T cell receptor (TCR) diversity",
+   "journal": "J. Biol. Chem.",
+   "year": 2023,
+   "doi": "10.1016/j.jbc.2023.103035",
+   "pmid": "36806685",
+   "authors": "Wu D; Efimov GA; Bogolyubova AV"
+  },
+  "5JZI": {
+   "pdb_id": "5JZI",
+   "title": "How an alloreactive T-cell receptor achieves peptide and MHC specificity",
+   "journal": "Proc. Natl. Acad. Sci. U.S.A.",
+   "year": 2017,
+   "doi": "10.1073/pnas.1700459114",
+   "pmid": "28572406",
+   "authors": "Wang Y; Singh NK; Spear TT"
+  },
+  "5YXN": {
+   "pdb_id": "5YXN",
+   "title": "Capturing HCV immune escape by targeting structural based mechanism",
+   "journal": "To be published",
+   "year": null,
+   "doi": "",
+   "pmid": "",
+   "authors": "Hui, F."
+  },
+  "8V4Z": {
+   "pdb_id": "8V4Z",
+   "title": "Molecular determinants of cross-strain influenza A virus recognition by \u03b1\u03b2 T cell receptors",
+   "journal": "Sci Immunol",
+   "year": 2025,
+   "doi": "10.1126/sciimmunol.adn3805",
+   "pmid": "39919196",
+   "authors": "Qui\u00f1ones-Parra SM; Gras S; Nguyen THO"
+  },
+  "8V50": {
+   "pdb_id": "8V50",
+   "title": "Molecular determinants of cross-strain influenza A virus recognition by \u03b1\u03b2 T cell receptors",
+   "journal": "Sci Immunol",
+   "year": 2025,
+   "doi": "10.1126/sciimmunol.adn3805",
+   "pmid": "39919196",
+   "authors": "Qui\u00f1ones-Parra SM; Gras S; Nguyen THO"
+  },
+  "8V51": {
+   "pdb_id": "8V51",
+   "title": "Molecular determinants of cross-strain influenza A virus recognition by \u03b1\u03b2 T cell receptors",
+   "journal": "Sci Immunol",
+   "year": 2025,
+   "doi": "10.1126/sciimmunol.adn3805",
+   "pmid": "39919196",
+   "authors": "Qui\u00f1ones-Parra SM; Gras S; Nguyen THO"
+  },
+  "3MV7": {
+   "pdb_id": "3MV7",
+   "title": "Allelic polymorphism in the T cell receptor and its impact on immune responses",
+   "journal": "J. Exp. Med.",
+   "year": 2010,
+   "doi": "10.1084/jem.20100603",
+   "pmid": "20566715",
+   "authors": "Gras S; Chen Z; Miles JJ"
+  },
+  "3MV8": {
+   "pdb_id": "3MV8",
+   "title": "Allelic polymorphism in the T cell receptor and its impact on immune responses",
+   "journal": "J. Exp. Med.",
+   "year": 2010,
+   "doi": "10.1084/jem.20100603",
+   "pmid": "20566715",
+   "authors": "Gras S; Chen Z; Miles JJ"
+  },
+  "3MV9": {
+   "pdb_id": "3MV9",
+   "title": "Allelic polymorphism in the T cell receptor and its impact on immune responses",
+   "journal": "J. Exp. Med.",
+   "year": 2010,
+   "doi": "10.1084/jem.20100603",
+   "pmid": "20566715",
+   "authors": "Gras S; Chen Z; Miles JJ"
+  },
+  "4PRH": {
+   "pdb_id": "4PRH",
+   "title": "A molecular basis for the interplay between T cells, viral mutants, and human leukocyte antigen micropolymorphism",
+   "journal": "J. Biol. Chem.",
+   "year": 2014,
+   "doi": "10.1074/jbc.M114.563502",
+   "pmid": "24759101",
+   "authors": "Liu YC; Chen Z; Neller MA"
+  },
+  "4PRI": {
+   "pdb_id": "4PRI",
+   "title": "A molecular basis for the interplay between T cells, viral mutants, and human leukocyte antigen micropolymorphism",
+   "journal": "J. Biol. Chem.",
+   "year": 2014,
+   "doi": "10.1074/jbc.M114.563502",
+   "pmid": "24759101",
+   "authors": "Liu YC; Chen Z; Neller MA"
+  },
+  "4PRP": {
+   "pdb_id": "4PRP",
+   "title": "A molecular basis for the interplay between T cells, viral mutants, and human leukocyte antigen micropolymorphism",
+   "journal": "J. Biol. Chem.",
+   "year": 2014,
+   "doi": "10.1074/jbc.M114.563502",
+   "pmid": "24759101",
+   "authors": "Liu YC; Chen Z; Neller MA"
+  },
+  "9RU5": {
+   "pdb_id": "9RU5",
+   "title": "Cryo-EM structure of TCRpub/pMHC",
+   "journal": "To be published",
+   "year": null,
+   "doi": "",
+   "pmid": "",
+   "authors": "Akil, C.; Zhu, Y.; Hardenbrook, N."
+  },
+  "9RUP": {
+   "pdb_id": "9RUP",
+   "title": "Cryo-EM structure of TCRpub/pMHC dimer",
+   "journal": "To be published",
+   "year": null,
+   "doi": "",
+   "pmid": "",
+   "authors": "Akil, C.; Zhu, Y.; Hardenbrook, N."
+  },
+  "8GVB": {
+   "pdb_id": "8GVB",
+   "title": "Molecular Basis for the Recognition of HIV Nef138-8 Epitope by a Pair of Human Public T Cell Receptors",
+   "journal": "J. Immunol.",
+   "year": 2022,
+   "doi": "10.4049/jimmunol.2200191",
+   "pmid": "36130828",
+   "authors": "Ma K; Chai Y; Guan J"
+  },
+  "8GVG": {
+   "pdb_id": "8GVG",
+   "title": "Molecular Basis for the Recognition of HIV Nef138-8 Epitope by a Pair of Human Public T Cell Receptors",
+   "journal": "J. Immunol.",
+   "year": 2022,
+   "doi": "10.4049/jimmunol.2200191",
+   "pmid": "36130828",
+   "authors": "Ma K; Chai Y; Guan J"
+  },
+  "6VM7": {
+   "pdb_id": "6VM7",
+   "title": "Structurally silent peptide anchor modifications allosterically modulate T cell recognition in a receptor-dependent manner",
+   "journal": "Proc. Natl. Acad. Sci. U.S.A.",
+   "year": 2021,
+   "doi": "10.1073/pnas.2018125118",
+   "pmid": "",
+   "authors": "Smith, A.R.; Alonso, J.A.; Ayres, C.M."
+  },
+  "6VM8": {
+   "pdb_id": "6VM8",
+   "title": "Structurally silent peptide anchor modifications allosterically modulate T cell recognition in a receptor-dependent manner",
+   "journal": "Proc. Natl. Acad. Sci. U.S.A.",
+   "year": 2021,
+   "doi": "10.1073/pnas.2018125118",
+   "pmid": "33468649",
+   "authors": "Smith AR; Alonso JA; Ayres CM"
+  },
+  "4L3E": {
+   "pdb_id": "4L3E",
+   "title": "Computational design of the affinity and specificity of a therapeutic T cell receptor",
+   "journal": "PLoS Comput Biol",
+   "year": 2014,
+   "doi": "10.1371/journal.pcbi.1003478",
+   "pmid": "24550723",
+   "authors": "Pierce BG; Hellman LM; Hossain M"
+  },
+  "6D78": {
+   "pdb_id": "6D78",
+   "title": "Improving T Cell Receptor On-Target Specificity via Structure-Guided Design",
+   "journal": "Mol. Ther.",
+   "year": 2019,
+   "doi": "10.1016/j.ymthe.2018.12.010",
+   "pmid": "30617019",
+   "authors": "Hellman LM; Foley KC; Singh NK"
+  },
+  "1BD2": {
+   "pdb_id": "1BD2",
+   "title": "Two human T cell receptors bind in a similar diagonal mode to the HLA-A2/Tax peptide complex using different TCR amino acids",
+   "journal": "Immunity",
+   "year": 1998,
+   "doi": "10.1016/s1074-7613(00)80546-4",
+   "pmid": "9586631",
+   "authors": "Ding YH; Smith KJ; Garboczi DN"
+  },
+  "2F53": {
+   "pdb_id": "2F53",
+   "title": "Directed evolution of human T cell receptor CDR2 residues by phage display dramatically enhances affinity for cognate peptide-MHC without increasing apparent cross-reactivity",
+   "journal": "Protein Sci.",
+   "year": 2006,
+   "doi": "10.1110/ps.051936406",
+   "pmid": "16600963",
+   "authors": "Dunn SM; Rizkallah PJ; Baston E"
+  },
+  "2F54": {
+   "pdb_id": "2F54",
+   "title": "Directed evolution of human T cell receptor CDR2 residues by phage display dramatically enhances affinity for cognate peptide-MHC without increasing apparent cross-reactivity",
+   "journal": "Protein Sci.",
+   "year": 2006,
+   "doi": "10.1110/ps.051936406",
+   "pmid": "16600963",
+   "authors": "Dunn SM; Rizkallah PJ; Baston E"
+  },
+  "2NX5": {
+   "pdb_id": "2NX5",
+   "title": "A T cell receptor flattens a bulged antigenic peptide presented by a major histocompatibility complex class I molecule",
+   "journal": "Nat. Immunol.",
+   "year": 2007,
+   "doi": "10.1038/ni1432",
+   "pmid": "17259989",
+   "authors": "Tynan FE; Reid HH; Kjer-Nielsen L"
+  },
+  "2P5E": {
+   "pdb_id": "2P5E",
+   "title": "Crystal structures of high affinity human T-cell receptors bound to peptide major histocompatibility complex reveal native diagonal binding geometry",
+   "journal": "Protein Eng. Des. Sel.",
+   "year": 2007,
+   "doi": "10.1093/protein/gzm033",
+   "pmid": "17644531",
+   "authors": "Sami M; Rizkallah PJ; Dunn S"
+  },
+  "2P5W": {
+   "pdb_id": "2P5W",
+   "title": "Crystal structures of high affinity human T-cell receptors bound to peptide major histocompatibility complex reveal native diagonal binding geometry",
+   "journal": "Protein Eng. Des. Sel.",
+   "year": 2007,
+   "doi": "10.1093/protein/gzm033",
+   "pmid": "17644531",
+   "authors": "Sami M; Rizkallah PJ; Dunn S"
+  },
+  "2PYE": {
+   "pdb_id": "2PYE",
+   "title": "Crystal structures of high affinity human T-cell receptors bound to peptide major histocompatibility complex reveal native diagonal binding geometry",
+   "journal": "Protein Eng. Des. Sel.",
+   "year": 2007,
+   "doi": "10.1093/protein/gzm033",
+   "pmid": "17644531",
+   "authors": "Sami M; Rizkallah PJ; Dunn S"
+  },
+  "2VLR": {
+   "pdb_id": "2VLR",
+   "title": "The structural dynamics and energetics of an immunodominant T cell receptor are programmed by its Vbeta domain",
+   "journal": "Immunity",
+   "year": 2008,
+   "doi": "10.1016/j.immuni.2007.12.018",
+   "pmid": "18275829",
+   "authors": "Ishizuka J; Stewart-Jones GB; van der Merwe A"
+  },
+  "2YPL": {
+   "pdb_id": "2YPL",
+   "title": "Structural features underlying T-cell receptor sensitivity to concealed MHC class I micropolymorphisms",
+   "journal": "Proc. Natl. Acad. Sci. U.S.A.",
+   "year": 2012,
+   "doi": "10.1073/pnas.1207896109",
+   "pmid": "23161907",
+   "authors": "Stewart-Jones GB; Simpson P; van der Merwe PA"
+  },
+  "3DXA": {
+   "pdb_id": "3DXA",
+   "title": "Natural micropolymorphism in human leukocyte antigens provides a basis for genetic control of antigen recognition",
+   "journal": "J. Exp. Med.",
+   "year": 2009,
+   "doi": "10.1084/jem.20082136",
+   "pmid": "19139173",
+   "authors": "Archbold JK; Macdonald WA; Gras S"
+  },
+  "3FFC": {
+   "pdb_id": "3FFC",
+   "title": "The shaping of T cell receptor recognition by self-tolerance",
+   "journal": "Immunity",
+   "year": 2009,
+   "doi": "10.1016/j.immuni.2008.11.011",
+   "pmid": "19167249",
+   "authors": "Gras S; Burrows SR; Kjer-Nielsen L"
+  },
+  "3GSN": {
+   "pdb_id": "3GSN",
+   "title": "Structural bases for the affinity-driven selection of a public TCR against a dominant human cytomegalovirus epitope",
+   "journal": "J. Immunol.",
+   "year": 2009,
+   "doi": "10.4049/jimmunol.0900556",
+   "pmid": "19542454",
+   "authors": "Gras S; Saulquin X; Reiser JB"
+  },
+  "3O4L": {
+   "pdb_id": "3O4L",
+   "title": "Genetic and structural basis for selection of a ubiquitous T cell receptor deployed in Epstein-Barr virus infection",
+   "journal": "PLoS Pathog.",
+   "year": 2010,
+   "doi": "10.1371/journal.ppat.1001198",
+   "pmid": "21124993",
+   "authors": "Miles JJ; Bulek AM; Cole DK"
+  },
+  "3QDG": {
+   "pdb_id": "3QDG",
+   "title": "TCRs used in cancer gene therapy cross-react with MART-1/Melan-A tumor antigens via distinct mechanisms",
+   "journal": "J. Immunol.",
+   "year": 2011,
+   "doi": "10.4049/jimmunol.1101268",
+   "pmid": "21795600",
+   "authors": "Borbulevych OY; Santhanagopolan SM; Hossain M"
+  },
+  "3QDJ": {
+   "pdb_id": "3QDJ",
+   "title": "TCRs used in cancer gene therapy cross-react with MART-1/Melan-A tumor antigens via distinct mechanisms",
+   "journal": "J. Immunol.",
+   "year": 2011,
+   "doi": "10.4049/jimmunol.1101268",
+   "pmid": "21795600",
+   "authors": "Borbulevych OY; Santhanagopolan SM; Hossain M"
+  },
+  "3SJV": {
+   "pdb_id": "3SJV",
+   "title": "A structural basis for varied \u03b1\u03b2 TCR usage against an immunodominant EBV antigen restricted to a HLA-B8 molecule",
+   "journal": "J. Immunol.",
+   "year": 2012,
+   "doi": "10.4049/jimmunol.1102686",
+   "pmid": "22140258",
+   "authors": "Gras S; Wilmann PG; Chen Z"
+  },
+  "3VXM": {
+   "pdb_id": "3VXM",
+   "title": "Structure of TCR and antigen complexes at an immunodominant CTL epitope in HIV-1 infection",
+   "journal": "Sci Rep",
+   "year": 2013,
+   "doi": "10.1038/srep03097",
+   "pmid": "24192765",
+   "authors": "Shimizu A; Kawana-Tachikawa A; Yamagata A"
+  },
+  "4EUP": {
+   "pdb_id": "4EUP",
+   "title": "Structural description of how different MART-1 antigenic peptides influence JKF6 T cell receptor recognition",
+   "journal": "To be published",
+   "year": null,
+   "doi": "",
+   "pmid": "",
+   "authors": "Hossain, M.; Baker, B.M."
+  },
+  "4JRX": {
+   "pdb_id": "4JRX",
+   "title": "Highly divergent T-cell receptor binding modes underlie specific recognition of a bulged viral peptide bound to a human leukocyte antigen class I molecule",
+   "journal": "J. Biol. Chem.",
+   "year": 2013,
+   "doi": "10.1074/jbc.M112.447185",
+   "pmid": "23569211",
+   "authors": "Liu YC; Miles JJ; Neller MA"
+  },
+  "4JRY": {
+   "pdb_id": "4JRY",
+   "title": "Highly divergent T-cell receptor binding modes underlie specific recognition of a bulged viral peptide bound to a human leukocyte antigen class I molecule",
+   "journal": "J. Biol. Chem.",
+   "year": 2013,
+   "doi": "10.1074/jbc.M112.447185",
+   "pmid": "23569211",
+   "authors": "Liu YC; Miles JJ; Neller MA"
+  },
+  "4MJI": {
+   "pdb_id": "4MJI",
+   "title": "Molecular basis of a dominant T cell response to an HIV reverse transcriptase 8-mer epitope presented by the protective allele HLA-B*51:01",
+   "journal": "J. Immunol.",
+   "year": 2014,
+   "doi": "10.4049/jimmunol.1302667",
+   "pmid": "24600035",
+   "authors": "Motozono C; Kuse N; Sun X"
+  },
+  "4QRP": {
+   "pdb_id": "4QRP",
+   "title": "An extensive antigenic footprint underpins immunodominant TCR adaptability against a hypervariable viral determinant",
+   "journal": "J. Immunol.",
+   "year": 2014,
+   "doi": "10.4049/jimmunol.1401357",
+   "pmid": "25355921",
+   "authors": "Nivarthi UK; Gras S; Kjer-Nielsen L"
+  },
+  "5D2L": {
+   "pdb_id": "5D2L",
+   "title": "Structural Basis for Clonal Diversity of the Public T Cell Response to a Dominant Human Cytomegalovirus Epitope",
+   "journal": "J. Biol. Chem.",
+   "year": 2015,
+   "doi": "10.1074/jbc.M115.691311",
+   "pmid": "26429912",
+   "authors": "Yang X; Gao M; Chen G"
+  },
+  "5D2N": {
+   "pdb_id": "5D2N",
+   "title": "Structural Basis for Clonal Diversity of the Public T Cell Response to a Dominant Human Cytomegalovirus Epitope",
+   "journal": "J. Biol. Chem.",
+   "year": 2015,
+   "doi": "10.1074/jbc.M115.691311",
+   "pmid": "26429912",
+   "authors": "Yang X; Gao M; Chen G"
+  },
+  "5E6I": {
+   "pdb_id": "5E6I",
+   "title": "Crystal structure of TCR PF8 in complex with flu MP(58-66) epitope presented by HLA-A2",
+   "journal": "To be published",
+   "year": null,
+   "doi": "",
+   "pmid": "",
+   "authors": "Gao, M."
+  },
+  "5E9D": {
+   "pdb_id": "5E9D",
+   "title": "An Engineered Switch in T Cell Receptor Specificity Leads to an Unusual but Functional Binding Geometry",
+   "journal": "Structure",
+   "year": 2016,
+   "doi": "10.1016/j.str.2016.04.011",
+   "pmid": "27238970",
+   "authors": "Harris DT; Singh NK; Cai Q"
+  },
+  "5EU6": {
+   "pdb_id": "5EU6",
+   "title": "A Molecular Switch Abrogates Glycoprotein 100 (gp100) T-cell Receptor (TCR) Targeting of a Human Melanoma Antigen",
+   "journal": "J. Biol. Chem.",
+   "year": 2016,
+   "doi": "10.1074/jbc.M115.707414",
+   "pmid": "26917722",
+   "authors": "Bianchi V; Bulek A; Fuller A"
+  },
+  "5EUO": {
+   "pdb_id": "5EUO",
+   "title": "Crystal structure of PF6-M1-HLA-A2 complex",
+   "journal": "To be published",
+   "year": null,
+   "doi": "",
+   "pmid": "",
+   "authors": "Yang, X.; Mariuzza, R.A."
+  },
+  "5HHO": {
+   "pdb_id": "5HHO",
+   "title": "Molecular basis for universal HLA-A*0201-restricted CD8+ T-cell immunity against influenza viruses",
+   "journal": "Proc. Natl. Acad. Sci. U.S.A.",
+   "year": 2016,
+   "doi": "10.1073/pnas.1603106113",
+   "pmid": "27036003",
+   "authors": "Valkenburg SA; Josephs TM; Clemens EB"
+  },
+  "5ISZ": {
+   "pdb_id": "5ISZ",
+   "title": "Broad TCR repertoire and diverse structural solutions for recognition of an immunodominant CD8<sub>+</sub> T cell epitope",
+   "journal": "Nat. Struct. Mol. Biol.",
+   "year": 2017,
+   "doi": "10.1038/nsmb.3383",
+   "pmid": "28250417",
+   "authors": "Song I; Gil A; Mishra R"
+  },
+  "5JHD": {
+   "pdb_id": "5JHD",
+   "title": "Broad TCR repertoire and diverse structural solutions for recognition of an immunodominant CD8<sub>+</sub> T cell epitope",
+   "journal": "Nat. Struct. Mol. Biol.",
+   "year": 2017,
+   "doi": "10.1038/nsmb.3383",
+   "pmid": "28250417",
+   "authors": "Song I; Gil A; Mishra R"
+  },
+  "5MEN": {
+   "pdb_id": "5MEN",
+   "title": "Structural Mechanism Underpinning Cross-reactivity of a CD8+ T-cell Clone That Recognizes a Peptide Derived from Human Telomerase Reverse Transcriptase",
+   "journal": "J. Biol. Chem.",
+   "year": 2017,
+   "doi": "10.1074/jbc.M116.741603",
+   "pmid": "27903649",
+   "authors": "Cole DK; van den Berg HA; Lloyd A"
+  },
+  "5NHT": {
+   "pdb_id": "5NHT",
+   "title": "human 199.54-16 TCR in complex with Melan-A/MART-1 (26-35) peptide and HLA-A2",
+   "journal": "To be published",
+   "year": null,
+   "doi": "",
+   "pmid": "",
+   "authors": "Exertier, C.; Reiser, J.-B.; Housset, D."
+  },
+  "5NQK": {
+   "pdb_id": "5NQK",
+   "title": "human 199.16 TCR in complex with Melan-A/MART-1 (26-35) peptide and HLA-A2",
+   "journal": "To be published",
+   "year": null,
+   "doi": "",
+   "pmid": "",
+   "authors": "Exertier, C.; Reiser, J.-B.; Housset, D."
+  },
+  "5TEZ": {
+   "pdb_id": "5TEZ",
+   "title": "Structural basis for clonal diversity of the human T-cell response to a dominant influenza virus epitope",
+   "journal": "J. Biol. Chem.",
+   "year": 2017,
+   "doi": "10.1074/jbc.M117.810382",
+   "pmid": "28931605",
+   "authors": "Yang X; Chen G; Weng NP"
+  },
+  "5YXU": {
+   "pdb_id": "5YXU",
+   "title": "an affinity enhanced T cell receptor in complex with HLA-A0201 restricted HCV NS3 peptide KLVALGINAV",
+   "journal": "To be published",
+   "year": null,
+   "doi": "",
+   "pmid": "",
+   "authors": "Yi, L."
+  },
+  "6AVF": {
+   "pdb_id": "6AVF",
+   "title": "Divergent T-cell receptor recognition modes of a HLA-I restricted extended tumour-associated peptide",
+   "journal": "Nat Commun",
+   "year": 2018,
+   "doi": "10.1038/s41467-018-03321-w",
+   "pmid": "29531227",
+   "authors": "Chan KF; Gully BS; Gras S"
+  },
+  "6AVG": {
+   "pdb_id": "6AVG",
+   "title": "Divergent T-cell receptor recognition modes of a HLA-I restricted extended tumour-associated peptide",
+   "journal": "Nat Commun",
+   "year": 2018,
+   "doi": "10.1038/s41467-018-03321-w",
+   "pmid": "29531227",
+   "authors": "Chan KF; Gully BS; Gras S"
+  },
+  "6BJ2": {
+   "pdb_id": "6BJ2",
+   "title": "Isolation of a Structural Mechanism for Uncoupling T Cell Receptor Signaling from Peptide-MHC Binding",
+   "journal": "Cell",
+   "year": 2018,
+   "doi": "10.1016/j.cell.2018.06.017",
+   "pmid": "30053426",
+   "authors": "Sibener LV; Fernandes RA; Kolawole EM"
+  },
+  "6DKP": {
+   "pdb_id": "6DKP",
+   "title": "Improving T Cell Receptor On-Target Specificity via Structure-Guided Design",
+   "journal": "Mol. Ther.",
+   "year": 2019,
+   "doi": "10.1016/j.ymthe.2018.12.010",
+   "pmid": "30617019",
+   "authors": "Hellman LM; Foley KC; Singh NK"
+  },
+  "6MTM": {
+   "pdb_id": "6MTM",
+   "title": "Broad CD8<sub>+</sub> T cell cross-recognition of distinct influenza A strains in humans",
+   "journal": "Nat Commun",
+   "year": 2018,
+   "doi": "10.1038/s41467-018-07815-5",
+   "pmid": "30575715",
+   "authors": "Grant EJ; Josephs TM; Loh L"
+  },
+  "6P64": {
+   "pdb_id": "6P64",
+   "title": "A T cell receptor peptide/MHC complex at 3.05 Angstrom resolution",
+   "journal": "To be published",
+   "year": null,
+   "doi": "",
+   "pmid": "",
+   "authors": "Devlin, J.R.; Baker, B.M.; Harari, A."
+  },
+  "6R2L": {
+   "pdb_id": "6R2L",
+   "title": "Specificity of bispecific T cell receptors and antibodies targeting peptide-HLA",
+   "journal": "J. Clin. Invest.",
+   "year": 2020,
+   "doi": "10.1172/JCI130562",
+   "pmid": "32310221",
+   "authors": "Holland CJ; Crean RM; Pentier JM"
+  },
+  "6RP9": {
+   "pdb_id": "6RP9",
+   "title": "TCRs with Distinct Specificity Profiles Use Different Binding Modes to Engage an Identical Peptide-HLA Complex",
+   "journal": "J. Immunol.",
+   "year": 2020,
+   "doi": "10.4049/jimmunol.1900915",
+   "pmid": "32102902",
+   "authors": "Coles CH; Mulvaney RM; Malla S"
+  },
+  "6RPA": {
+   "pdb_id": "6RPA",
+   "title": "TCRs with Distinct Specificity Profiles Use Different Binding Modes to Engage an Identical Peptide-HLA Complex",
+   "journal": "J. Immunol.",
+   "year": 2020,
+   "doi": "10.4049/jimmunol.1900915",
+   "pmid": "32102902",
+   "authors": "Coles CH; Mulvaney RM; Malla S"
+  },
+  "6RPB": {
+   "pdb_id": "6RPB",
+   "title": "TCRs with Distinct Specificity Profiles Use Different Binding Modes to Engage an Identical Peptide-HLA Complex",
+   "journal": "J. Immunol.",
+   "year": 2020,
+   "doi": "10.4049/jimmunol.1900915",
+   "pmid": "32102902",
+   "authors": "Coles CH; Mulvaney RM; Malla S"
+  },
+  "6RSY": {
+   "pdb_id": "6RSY",
+   "title": "Specificity of bispecific T cell receptors and antibodies targeting peptide-HLA",
+   "journal": "J. Clin. Invest.",
+   "year": 2020,
+   "doi": "10.1172/JCI130562",
+   "pmid": "32310221",
+   "authors": "Holland CJ; Crean RM; Pentier JM"
+  },
+  "6TRO": {
+   "pdb_id": "6TRO",
+   "title": "T cell receptor interactions with human leukocyte antigen govern indirect peptide selectivity for the cancer testis antigen MAGE-A4",
+   "journal": "J. Biol. Chem.",
+   "year": 2020,
+   "doi": "10.1074/jbc.RA120.014016",
+   "pmid": "32532817",
+   "authors": "Coles CH; McMurran C; Lloyd A"
+  },
+  "6ULN": {
+   "pdb_id": "6ULN",
+   "title": "High-affinity oligoclonal TCRs define effective adoptive T cell therapy targeting mutant KRAS-G12D",
+   "journal": "Proc. Natl. Acad. Sci. U.S.A.",
+   "year": 2020,
+   "doi": "10.1073/pnas.1921964117",
+   "pmid": "32461371",
+   "authors": "Sim MJW; Lu J; Spencer M"
+  },
+  "6UON": {
+   "pdb_id": "6UON",
+   "title": "High-affinity oligoclonal TCRs define effective adoptive T cell therapy targeting mutant KRAS-G12D",
+   "journal": "Proc. Natl. Acad. Sci. U.S.A.",
+   "year": 2020,
+   "doi": "10.1073/pnas.1921964117",
+   "pmid": "32461371",
+   "authors": "Sim MJW; Lu J; Spencer M"
+  },
+  "6VMA": {
+   "pdb_id": "6VMA",
+   "title": "Structurally silent peptide anchor modifications allosterically modulate T cell recognition in a receptor-dependent manner",
+   "journal": "Proc. Natl. Acad. Sci. U.S.A.",
+   "year": 2021,
+   "doi": "10.1073/pnas.2018125118",
+   "pmid": "",
+   "authors": "Smith, A.R.; Alonso, J.A.; Ayres, C.M."
+  },
+  "6VMX": {
+   "pdb_id": "6VMX",
+   "title": "A Shared TCR Bias toward an Immunogenic EBV Epitope Dominates in HLA-B*07:02-Expressing Individuals",
+   "journal": "J. Immunol.",
+   "year": 2020,
+   "doi": "10.4049/jimmunol.2000249",
+   "pmid": "32817371",
+   "authors": "Rowntree LC; Nguyen THO; Farenc C"
+  },
+  "6VQO": {
+   "pdb_id": "6VQO",
+   "title": "Structural basis for oligoclonal T cell recognition of a shared p53 cancer neoantigen",
+   "journal": "Nat Commun",
+   "year": 2020,
+   "doi": "10.1038/s41467-020-16755-y",
+   "pmid": "32518267",
+   "authors": "Wu D; Gallagher DT; Gowthaman R"
+  },
+  "6VRM": {
+   "pdb_id": "6VRM",
+   "title": "Structural basis for oligoclonal T cell recognition of a shared p53 cancer neoantigen",
+   "journal": "Nat Commun",
+   "year": 2020,
+   "doi": "10.1038/s41467-020-16755-y",
+   "pmid": "32518267",
+   "authors": "Wu D; Gallagher DT; Gowthaman R"
+  },
+  "6VRN": {
+   "pdb_id": "6VRN",
+   "title": "Structural basis for oligoclonal T cell recognition of a shared p53 cancer neoantigen",
+   "journal": "Nat Commun",
+   "year": 2020,
+   "doi": "10.1038/s41467-020-16755-y",
+   "pmid": "32518267",
+   "authors": "Wu D; Gallagher DT; Gowthaman R"
+  },
+  "7L1D": {
+   "pdb_id": "7L1D",
+   "title": "Immunogenicity and therapeutic targeting of a public neoantigen derived from mutated PIK3CA",
+   "journal": "Nat. Med.",
+   "year": 2022,
+   "doi": "10.1038/s41591-022-01786-3",
+   "pmid": "35484264",
+   "authors": "Chandran SS; Ma J; Klatt MG"
+  },
+  "7N1E": {
+   "pdb_id": "7N1E",
+   "title": "Structural assessment of HLA-A2-restricted SARS-CoV-2 spike epitopes recognized by public and private T-cell receptors",
+   "journal": "Nat Commun",
+   "year": 2022,
+   "doi": "10.1038/s41467-021-27669-8",
+   "pmid": "35013235",
+   "authors": "Wu D; Kolesnikov A; Yin R"
+  },
+  "7N2S": {
+   "pdb_id": "7N2S",
+   "title": "Autoimmunity-associated T cell receptors recognize HLA-B*27-bound peptides",
+   "journal": "Nature",
+   "year": 2022,
+   "doi": "10.1038/s41586-022-05501-7",
+   "pmid": "36477533",
+   "authors": "Yang X; Garner LI; Zvyagin IV"
+  },
+  "7N6E": {
+   "pdb_id": "7N6E",
+   "title": "Structural basis of biased T cell receptor recognition of an immunodominant HLA-A2 epitope of the SARS-CoV-2 spike protein",
+   "journal": "J. Biol. Chem.",
+   "year": 2021,
+   "doi": "10.1016/j.jbc.2021.101065",
+   "pmid": "34384783",
+   "authors": "Chaurasia P; Nguyen THO; Rowntree LC"
+  },
+  "7PB2": {
+   "pdb_id": "7PB2",
+   "title": "Therapeutic high affinity T cell receptor targeting a KRASG12D cancer neoantigen",
+   "journal": "Nat Commun",
+   "year": 2022,
+   "doi": "10.1038/s41467-022-32811-1",
+   "pmid": "",
+   "authors": "Poole, A.; Karuppiah, V.; Hartt, A."
+  },
+  "7PBE": {
+   "pdb_id": "7PBE",
+   "title": "Emergence of immune escape at dominant SARS-CoV-2 killer T\u00a0cell epitope",
+   "journal": "Cell",
+   "year": 2022,
+   "doi": "10.1016/j.cell.2022.07.002",
+   "pmid": "35931021",
+   "authors": "Dolton G; Rius C; Hasan MS"
+  },
+  "7PHR": {
+   "pdb_id": "7PHR",
+   "title": "Structure of a fully assembled tumor-specific T cell receptor ligated by pMHC",
+   "journal": "Cell",
+   "year": 2022,
+   "doi": "10.1016/j.cell.2022.07.010",
+   "pmid": "35985289",
+   "authors": "Su\u0161ac L; Vuong MT; Thomas C"
+  },
+  "7QPJ": {
+   "pdb_id": "7QPJ",
+   "title": "Structural insights into engineering a T-cell receptor targeting MAGE-A10 with higher affinity and specificity for cancer immunotherapy",
+   "journal": "J Immunother Cancer",
+   "year": 2022,
+   "doi": "10.1136/jitc-2022-004600",
+   "pmid": "35851311",
+   "authors": "Simister PC; Border EC; Vieira JF"
+  },
+  "7R80": {
+   "pdb_id": "7R80",
+   "title": "Molecular basis of differential HLA class I-restricted T cell recognition of a highly networked HIV peptide",
+   "journal": "Nat Commun",
+   "year": 2023,
+   "doi": "10.1038/s41467-023-38573-8",
+   "pmid": "37217466",
+   "authors": "Li X; Singh NK; Collins DR"
+  },
+  "7RK7": {
+   "pdb_id": "7RK7",
+   "title": "A class-mismatched TCR bypasses MHC restriction via an unorthodox but fully functional binding geometry",
+   "journal": "Nat Commun",
+   "year": 2022,
+   "doi": "10.1038/s41467-022-34896-0",
+   "pmid": "36424374",
+   "authors": "Singh NK; Alonso JA; Devlin JR"
+  },
+  "7RM4": {
+   "pdb_id": "7RM4",
+   "title": "T cell receptors employ diverse strategies to target a p53 cancer neoantigen",
+   "journal": "J. Biol. Chem.",
+   "year": 2022,
+   "doi": "10.1016/j.jbc.2022.101684",
+   "pmid": "35124005",
+   "authors": "Wu D; Gowathaman R; Pierce BG"
+  },
+  "7RRG": {
+   "pdb_id": "7RRG",
+   "title": "Immunogenicity and therapeutic targeting of a public neoantigen derived from mutated PIK3CA",
+   "journal": "Nat. Med.",
+   "year": 2022,
+   "doi": "10.1038/s41591-022-01786-3",
+   "pmid": "35484264",
+   "authors": "Chandran SS; Ma J; Klatt MG"
+  },
+  "8CX4": {
+   "pdb_id": "8CX4",
+   "title": "Autoimmunity-associated T cell receptors recognize HLA-B*27-bound peptides",
+   "journal": "Nature",
+   "year": 2022,
+   "doi": "10.1038/s41586-022-05501-7",
+   "pmid": "36477533",
+   "authors": "Yang X; Garner LI; Zvyagin IV"
+  },
+  "8DNT": {
+   "pdb_id": "8DNT",
+   "title": "SARS-CoV-2 infection establishes a stable and age-independent CD8<sub>+</sub> T cell response against a dominant nucleocapsid epitope using restricted T cell receptors",
+   "journal": "Nat Commun",
+   "year": 2023,
+   "doi": "10.1038/s41467-023-42430-z",
+   "pmid": "37872153",
+   "authors": "Choy C; Chen J; Li J"
+  },
+  "8ES8": {
+   "pdb_id": "8ES8",
+   "title": "Structural analysis of cancer-relevant TCR-CD3 and peptide-MHC complexes by cryoEM",
+   "journal": "Nat Commun",
+   "year": 2023,
+   "doi": "10.1038/s41467-023-37532-7",
+   "pmid": "37100770",
+   "authors": "Saotome K; Dudgeon D; Colotti K"
+  },
+  "8ES9": {
+   "pdb_id": "8ES9",
+   "title": "Structural analysis of cancer-relevant TCR-CD3 and peptide-MHC complexes by cryoEM",
+   "journal": "Nat Commun",
+   "year": 2023,
+   "doi": "10.1038/s41467-023-37532-7",
+   "pmid": "37100770",
+   "authors": "Saotome K; Dudgeon D; Colotti K"
+  },
+  "8F5A": {
+   "pdb_id": "8F5A",
+   "title": "Public T\u00a0cell clonotypes are selected in HLA-B<sub>\u2217</sub>57:01<sub>+</sub>/HIV<sub>+</sub> patients independently of the viral load",
+   "journal": "Cell Rep",
+   "year": 2024,
+   "doi": "10.1016/j.celrep.2024.114555",
+   "pmid": "39083376",
+   "authors": "Chatzileontiadou DSM; Lobos CA; Robson H"
+  },
+  "8GVI": {
+   "pdb_id": "8GVI",
+   "title": "Molecular Basis for the Recognition of HIV Nef138-8 Epitope by a Pair of Human Public T Cell Receptors",
+   "journal": "J. Immunol.",
+   "year": 2022,
+   "doi": "10.4049/jimmunol.2200191",
+   "pmid": "36130828",
+   "authors": "Ma K; Chai Y; Guan J"
+  },
+  "8RJ5": {
+   "pdb_id": "8RJ5",
+   "title": "NF9 T-cell Receptor bound to HLA A*2402-NF9 pMHC complex (Paper Pending)",
+   "journal": "To be published",
+   "year": null,
+   "doi": "",
+   "pmid": "",
+   "authors": "Motozono, C.; Wall, A.; Sewell, A.K."
+  },
+  "8RRO": {
+   "pdb_id": "8RRO",
+   "title": "Identification and structural characterization of a mutant KRAS-G12V specific TCR restricted by HLA-A3",
+   "journal": "Eur. J. Immunol.",
+   "year": 2024,
+   "doi": "10.1002/eji.202451079",
+   "pmid": "39030753",
+   "authors": "Sim MJW; Hanada KI; Stotz Z"
+  },
+  "8RYO": {
+   "pdb_id": "8RYO",
+   "title": "Broadening alloselectivity of T cell receptors by structure guided engineering",
+   "journal": "Sci Rep",
+   "year": 2024,
+   "doi": "10.1038/s41598-024-75140-7",
+   "pmid": "39500929",
+   "authors": "Karuppiah V; Sangani D; Whaley L"
+  },
+  "8RYP": {
+   "pdb_id": "8RYP",
+   "title": "Broadening alloselectivity of T cell receptors by structure guided engineering",
+   "journal": "Sci Rep",
+   "year": 2024,
+   "doi": "10.1038/s41598-024-75140-7",
+   "pmid": "39500929",
+   "authors": "Karuppiah V; Sangani D; Whaley L"
+  },
+  "8RYQ": {
+   "pdb_id": "8RYQ",
+   "title": "Broadening alloselectivity of T cell receptors by structure guided engineering",
+   "journal": "Sci Rep",
+   "year": 2024,
+   "doi": "10.1038/s41598-024-75140-7",
+   "pmid": "39500929",
+   "authors": "Karuppiah V; Sangani D; Whaley L"
+  },
+  "8SHI": {
+   "pdb_id": "8SHI",
+   "title": "Complimentary electrostatics dominate T Cell Receptor binding to a psoriasis-associated-peptide-antigen presented by Human Leukocyte Antigen (HLA) C*06:02",
+   "journal": "J. Biol. Chem.",
+   "year": 2023,
+   "doi": "10.1016/j.jbc.2023.104930",
+   "pmid": "37330172",
+   "authors": "Anand S; Littler DR; Mobbs JI"
+  },
+  "8YE4": {
+   "pdb_id": "8YE4",
+   "title": "Structural insights into immune escape at killer T cell epitope by SARS-CoV-2 Spike Y453F variants",
+   "journal": "J. Biol. Chem.",
+   "year": 2024,
+   "doi": "10.1016/j.jbc.2024.107563",
+   "pmid": "39002680",
+   "authors": "Deng S; Xu Z; Wang M"
+  },
+  "9D95": {
+   "pdb_id": "9D95",
+   "title": "The ancient MHC class I molecule HLA-B*38:01 calibrates the immune system to protect against multiple sclerosis",
+   "journal": "To be published",
+   "year": null,
+   "doi": "",
+   "pmid": "",
+   "authors": "Ladell, K.; Zhu, S.; Kaufmann, M."
+  },
+  "9GV6": {
+   "pdb_id": "9GV6",
+   "title": "Determining T-cell receptor binding orientation and Peptide-HLA interactions using cross-linking mass spectrometry",
+   "journal": "J. Biol. Chem.",
+   "year": 2025,
+   "doi": "10.1016/j.jbc.2025.108445",
+   "pmid": "40154610",
+   "authors": "Powell T; Karuppiah V; Shaikh SA"
+  },
+  "9GV7": {
+   "pdb_id": "9GV7",
+   "title": "Determining T-cell receptor binding orientation and Peptide-HLA interactions using cross-linking mass spectrometry",
+   "journal": "J. Biol. Chem.",
+   "year": 2025,
+   "doi": "10.1016/j.jbc.2025.108445",
+   "pmid": "40154610",
+   "authors": "Powell T; Karuppiah V; Shaikh SA"
+  },
+  "9HLJ": {
+   "pdb_id": "9HLJ",
+   "title": "Molecular basis of potent antiviral HLA-C-restricted CD8<sub>+</sub> T cell response to an immunodominant SARS-CoV-2 nucleocapsid epitope",
+   "journal": "Nat Commun",
+   "year": 2025,
+   "doi": "10.1038/s41467-025-63288-3",
+   "pmid": "40877317",
+   "authors": "Goto Y; Ahn YM; Toyoda M"
+  },
+  "9IKY": {
+   "pdb_id": "9IKY",
+   "title": "An Engineered Soluble Single-Chain TCR Engager for KRAS-G12V Specific Tumor Immunotherapy",
+   "journal": "Adv Sci",
+   "year": 2025,
+   "doi": "10.1002/advs.202500181",
+   "pmid": "40470869",
+   "authors": "Ma K; Wang J; Jiang M"
+  },
+  "9J4S": {
+   "pdb_id": "9J4S",
+   "title": "Structural basis for recognition of SARS-CoV-2 conserved nucleocapside epitopes by dominant T cell receptors",
+   "journal": "To be published",
+   "year": null,
+   "doi": "",
+   "pmid": "",
+   "authors": "Yuan, P.; Wu, D.C."
+  },
+  "9J4T": {
+   "pdb_id": "9J4T",
+   "title": "Structural insights into clonal restriction and diversity in T cell recognition of two immunodominant SARS-CoV-2 nucleocapsid epitopes",
+   "journal": "Nat Commun",
+   "year": 2025,
+   "doi": "10.1038/s41467-025-66322-6",
+   "pmid": "41372155",
+   "authors": "Yuan P; Chen G; Li Y"
+  },
+  "9J4U": {
+   "pdb_id": "9J4U",
+   "title": "Structural insights into clonal restriction and diversity in T cell recognition of two immunodominant SARS-CoV-2 nucleocapsid epitopes",
+   "journal": "Nat Commun",
+   "year": 2025,
+   "doi": "10.1038/s41467-025-66322-6",
+   "pmid": "41372155",
+   "authors": "Yuan P; Chen G; Li Y"
+  },
+  "9K2I": {
+   "pdb_id": "9K2I",
+   "title": "Structural basis for TCR recognition of a Rac1 neoantigen arising from anchor residue mutation",
+   "journal": "J. Struct. Biol.",
+   "year": 2026,
+   "doi": "10.1016/j.jsb.2026.108329",
+   "pmid": "42190883",
+   "authors": "Zeng Y; Yang D; Zhao J"
+  },
+  "9K2R": {
+   "pdb_id": "9K2R",
+   "title": "Human T cell receptor (TRAV24*01/TRBV27*01) in complex with HLA-C*1202 and IY11 peptide",
+   "journal": "To be published",
+   "year": null,
+   "doi": "",
+   "pmid": "",
+   "authors": "Chikata, T.; Kuroki, K.; Kuse, N."
+  },
+  "9NMU": {
+   "pdb_id": "9NMU",
+   "title": "Overcoming T cell tolerance to tumor self-antigens through catch-bond engineering",
+   "journal": "Science",
+   "year": 2026,
+   "doi": "10.1126/science.adx3162",
+   "pmid": "41855322",
+   "authors": "Chen X; Mao Z; Kolawole EM"
+  },
+  "9NMV": {
+   "pdb_id": "9NMV",
+   "title": "Overcoming T cell tolerance to tumor self-antigens through catch-bond engineering",
+   "journal": "Science",
+   "year": 2026,
+   "doi": "10.1126/science.adx3162",
+   "pmid": "41855322",
+   "authors": "Chen X; Mao Z; Kolawole EM"
+  },
+  "9NMW": {
+   "pdb_id": "9NMW",
+   "title": "Overcoming T cell tolerance to tumor self-antigens through catch-bond engineering",
+   "journal": "Science",
+   "year": 2026,
+   "doi": "10.1126/science.adx3162",
+   "pmid": "41855322",
+   "authors": "Chen X; Mao Z; Kolawole EM"
+  },
+  "9NMX": {
+   "pdb_id": "9NMX",
+   "title": "Overcoming T cell tolerance to tumor self-antigens through catch-bond engineering",
+   "journal": "Science",
+   "year": 2026,
+   "doi": "10.1126/science.adx3162",
+   "pmid": "41855322",
+   "authors": "Chen X; Mao Z; Kolawole EM"
+  },
+  "9NMY": {
+   "pdb_id": "9NMY",
+   "title": "Overcoming T cell tolerance to tumor self-antigens through catch-bond engineering",
+   "journal": "Science",
+   "year": 2026,
+   "doi": "10.1126/science.adx3162",
+   "pmid": "41855322",
+   "authors": "Chen X; Mao Z; Kolawole EM"
+  },
+  "9RXM": {
+   "pdb_id": "9RXM",
+   "title": "Cryo-EM structure of TCRpriv/pMHC",
+   "journal": "To be published",
+   "year": null,
+   "doi": "",
+   "pmid": "",
+   "authors": "Akil, C.; Zhu, Y.; Hardenbrook, N."
+  },
+  "9WBD": {
+   "pdb_id": "9WBD",
+   "title": "Structural insights into clonal restriction and diversity in T cell recognition of two immunodominant SARS-CoV-2 nucleocapsid epitopes",
+   "journal": "Nat Commun",
+   "year": 2025,
+   "doi": "10.1038/s41467-025-66322-6",
+   "pmid": "41372155",
+   "authors": "Yuan P; Chen G; Li Y"
+  },
+  "9YW4": {
+   "pdb_id": "9YW4",
+   "title": "Structural basis for oligoclonal T cell recognition of a shared NRAS cancer neoantigen",
+   "journal": "To be published",
+   "year": null,
+   "doi": "",
+   "pmid": "",
+   "authors": "Sharma, V.K.; Gallagher, D.T.; Pierce, B.G."
+  },
+  "9ZCL": {
+   "pdb_id": "9ZCL",
+   "title": "Structural basis for oligoclonal T cell recognition of a shared NRAS cancer neoantigen",
+   "journal": "To be published",
+   "year": null,
+   "doi": "",
+   "pmid": "",
+   "authors": "Sharma, V.K.; Gallagher, D.T.; Mariuzza, R.A."
+  }
+ },
+ "errors": []
+}

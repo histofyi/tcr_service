@@ -1,4 +1,5 @@
 from functions.annotations import external_links, iedb_annotation
+from functions.publications import publication_authors
 from functions.residues import cdr_residues, parse_residue_token, peptide_residues
 from functions.interface import (
     CDR_LABELS,
@@ -10,6 +11,7 @@ from functions.interface import (
     SC_MAX,
     SC_MIN,
     interface_matrix,
+    residue_chord,
 )
 from models.structures import Structure
 from models.tcrs import Tcr
@@ -64,9 +66,14 @@ def structure_handler(tcr_id: str, pdb_id: str, selected_residue: str | None = N
             'selected_residue': parse_residue_token(selected_residue, sequences),
             'iedb': iedb_annotation(pdb_id),
             'external_links': external_links(pdb_id),
+            # The one thing the bundle's `publication` lacks: who wrote it.
+            'authors': publication_authors(pdb_id),
             # Keyed off the coordinate file the viewer loads, so the matrix always
             # describes the copy actually on screen — no longer averaged.
             'matrix': interface_matrix(pdb_id),
+            # The same contacts at residue grain: one arc per contacting residue,
+            # one ribbon per contacting residue pair. Drives the chord.
+            'chord': residue_chord(pdb_id),
             'cdr_loops': list(CDR_LOOPS),
             'mhc_regions': list(MHC_REGIONS),
             'cdr_labels': CDR_LABELS,
