@@ -127,11 +127,16 @@
   border-bottom: 1px solid #eeeeee;
   vertical-align: middle;
 }
-/* A publication row is two lines deep; its PDB ids should sit against the title,
-   not float in the middle of it. */
-.structure-table tr[data-structures] td {
+/* A publication row is two lines deep, so its PDB ids sit against the top of the
+   title rather than floating in the middle of it, with room before the title
+   starts. The header cell gets the same gutter so the column still lines up. */
+.structure-table.is-publications td {
   vertical-align: top;
   padding-top: 10px;
+}
+.structure-table.is-publications th:first-child,
+.structure-table.is-publications td:first-child {
+  padding-right: 24px;
 }
 .structure-table tr:hover td {
   background: #fafafa;
