@@ -69,16 +69,6 @@ So there is no single resolver. Linking them all at UniProt (the obvious thing)
 namespace by regex and sends UniProt-shaped ids to UniProt and everything else to
 NCBI Protein. Both verified against the live services.
 
-### 4. No IEDB epitope / reference id
-
-The master table has `iedb_matched`, `iedb_source_antigen`,
-`iedb_source_organism`, `iedb_antigen_accession`, `iedb_tcr_alpha_v`,
-`iedb_tcr_beta_v` — but **no IEDB epitope id or reference id**. So there is
-nothing to link back to IEDB with, only the source protein.
-
-**Fix at source:** carry the IEDB epitope id. (Chris is having Claude Science
-generate these.)
-
 ### 5. IEDB coverage is partial, and "matched" overstates it
 
 `iedb_matched` is `True` for 204 of 206 — but only **152** carry a
@@ -210,6 +200,21 @@ but it is a foot-gun.
 ---
 
 ## Resolved
+
+### 4. No IEDB epitope / reference id — RESOLVED
+
+**RESOLVED** — the master table now carries `iedb_epitope_ids`,
+`iedb_epitope_id_count` and `iedb_primary_epitope_id` (2026-07-13).
+
+**204 of 206** structures have an epitope id — far better coverage than the source
+antigen (152), and it is what the peptide is now linked to
+(`iedb.org/epitope/<id>`).
+
+Worth knowing: a peptide can map to **several** IEDB epitopes — 1OGA's `GILGFVFTL`
+has twelve — hence the primary id plus the full `;`-separated list. And the epitope
+id and the source antigen are **independent**: 52 structures have an id and no
+antigen, so a panel keyed off the antigen alone (as ours used to be) showed them
+nothing.
 
 ### 15. Ten coordinate files had a non-standard chain order — RESOLVED
 

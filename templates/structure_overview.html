@@ -224,15 +224,32 @@
                                 <span class="antigen-dot" style="background-color: {{ antigen_colors.get(structure.antigen_type, '#999999') }};"></span>{{ structure.antigen_type | deslugify_string }}
                             </td>
                         </tr>
-                        {# Where the peptide comes from, per IEDB. 204 of the 206
-                           structures matched IEDB, but only 152 carry a source
-                           antigen — so a matched peptide can still have nothing
-                           to show here. #}
+                        {# What IEDB knows about this peptide. The epitope id and the
+                           source antigen are INDEPENDENT — 204 structures have an id
+                           but only 152 have an antigen, so 52 have an id and nothing
+                           else. Each row stands on its own. #}
                         {% if iedb %}
+                        {% if iedb.epitope_id %}
+                        <tr>
+                            <td>IEDB epitope</td>
+                            <td>
+                                <a class="mono" href="{{ iedb.epitope_url }}" target="_blank" rel="noopener">{{ iedb.epitope_id }}</a>
+                                {% if iedb.other_epitope_ids %}
+                                <br />
+                                <smaller>
+                                    also
+                                    {% for other in iedb.other_epitope_ids %}<a class="mono" href="{{ other.url }}" target="_blank" rel="noopener">{{ other.id }}</a>{% if not loop.last %}, {% endif %}{% endfor %}
+                                </smaller>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endif %}
+                        {% if iedb.source_antigen %}
                         <tr>
                             <td>Source antigen</td>
                             <td>{{ iedb.source_antigen }}</td>
                         </tr>
+                        {% endif %}
                         {% if iedb.source_organism %}
                         <tr>
                             <td>Source organism</td>
@@ -257,7 +274,7 @@
                 </small>
                 {% if iedb %}
                 <p class="vertical-spacing-top-0-25">
-                    <smaller>Peptide source assigned from the <a href="https://www.iedb.org/" target="_blank" rel="noopener">IEDB</a>.</smaller>
+                    <smaller>Peptide annotation from the <a href="https://www.iedb.org/" target="_blank" rel="noopener">IEDB</a>.</smaller>
                 </p>
                 {% endif %}
             </div>
