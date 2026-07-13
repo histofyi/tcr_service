@@ -22,6 +22,7 @@ So the numbers are read from the coordinate file itself. Verified across all 206
 structures: every CDR loop (1236 of them) and every peptide maps exactly.
 """
 
+import math
 import os
 import re
 from functools import lru_cache
@@ -39,6 +40,20 @@ IMGT_LOOPS = {
 
 CHAIN_FOR = {'alpha': 'D', 'beta': 'E'}
 PEPTIDE_CHAIN = 'C'
+
+# Solvent, cryoprotectants and ions that sit on the peptide chain but are nothing to
+# do with the peptide. Almost every structure has waters on chain C; a good few also
+# carry glycerol, ethylene glycol, isopropanol, sulfate or an iodide from the
+# crystallisation. None of them modify the peptide.
+SOLVENT = {
+    'HOH', 'WAT', 'DOD',
+    'GOL', 'EDO', 'PEG', 'PG4', 'IPA', 'MPD', 'DMS', 'TRS', 'ACT', 'FMT',
+    'SO4', 'PO4', 'NO3', 'ACY', 'CIT',
+    'IOD', 'CL', 'NA', 'K', 'MG', 'ZN', 'CA', 'MN', 'CD', 'NI', 'BR',
+}
+
+# A covalent bond is ~1.2-1.6 Å; nothing non-bonded gets that close.
+COVALENT_BOND_MAX = 2.0
 
 THREE_TO_ONE = {
     'ALA': 'A', 'ARG': 'R', 'ASN': 'N', 'ASP': 'D', 'CYS': 'C', 'GLN': 'Q',
@@ -95,18 +110,26 @@ def _chain_residues(filename: str) -> dict:
     }
 
 
-def _residue(chain: str, resnum: int, icode: str, resname: str, parent: str | None) -> dict:
+def _residue(chain: str, resnum: int, icode: str, resname: str,
+             parent: str | None = None, attached: str | None = None) -> dict:
     """One residue, ready to render and to select in Mol*.
 
-    A modified residue is displayed as **X** — it is not the residue it derives
-    from, and showing its parent's letter would hide exactly what makes these
-    structures interesting (3D39/3D3V are *about* the fluorinated phenylalanine).
-    It keeps the parent's background colour, so it still reads as part of its
-    chemical group. `parent` is the one-letter code the data gives for that
-    position, which is that parent.
+    A modified residue is displayed as **X**, not as the residue it derives from.
+    Two things count as modified, and both matter:
+
+    * the residue itself is non-standard — `PFF`/`F2F` (the fluorinated
+      phenylalanines that 3D39/3D3V are *about*) or `ABA` (8SHI);
+    * the residue is standard but carries a covalently bonded group — 2GJ6's Lys5
+      holds the `3IB` hapten on its side-chain nitrogen. It is not a plain lysine,
+      and showing a bare `K` would hide the entire point of that structure.
+
+    Either way it keeps the parent residue's background colour, so it still reads
+    as part of its chemical group. `parent` is the one-letter code the data gives
+    for that position.
     """
     one_letter = THREE_TO_ONE.get(resname)
-    is_modified = one_letter is None
+    is_nonstandard = one_letter is None
+    is_modified = is_nonstandard or bool(attached)
 
     return {
         'chain': chain,
@@ -115,8 +138,9 @@ def _residue(chain: str, resnum: int, icode: str, resname: str, parent: str | No
         'resname': resname,
         'display': 'X' if is_modified else one_letter,
         # what colours the cell — the parent residue for a modified one
-        'colour': (parent or 'X') if is_modified else one_letter,
+        'colour': (parent or 'X') if is_nonstandard else one_letter,
         'is_modified': is_modified,
+        'attached': attached,
     }
 
 
@@ -181,6 +205,59 @@ def parse_residue_token(token: str, sequences: dict) -> str | None:
     return None
 
 
+@lru_cache(maxsize=32)
+def _chain_atoms(filename: str, chain: str) -> tuple:
+    """((resnum, icode, resname, atom_name, x, y, z), ...) for one chain."""
+    path = os.path.join(COORDINATE_DIR, filename)
+    atoms = []
+
+    with open(path) as coordinate_file_handle:
+        for line in coordinate_file_handle:
+            if line[:6].strip() not in ('ATOM', 'HETATM') or line[21] != chain:
+                continue
+            atoms.append((
+                int(line[22:26]), line[26].strip(), line[17:20].strip(),
+                line[12:16].strip(),
+                float(line[30:38]), float(line[38:46]), float(line[46:54]),
+            ))
+    return tuple(atoms)
+
+
+@lru_cache(maxsize=32)
+def _attached_groups(filename: str, peptide_length: int) -> dict:
+    """{ (resnum, icode): group_resname } — peptide residues carrying a covalently
+    bonded chemical group.
+
+    Some peptides are modified by a group modelled as its own residue rather than
+    as a non-standard amino acid. 2GJ6's peptide carries the indolylbutyric acid
+    hapten `3IB` on chain C at residue 10, bonded to Lys5's side-chain nitrogen —
+    that IS a modified peptide, and P5 should not read as a plain lysine.
+
+    There are no LINK records in these files, so the bond is found geometrically:
+    a non-solvent group on the peptide chain, and the peptide atom it sits within
+    covalent distance of. (Verified for 2GJ6: 3IB C13 to LYS 5 NZ is 1.33 Å.)
+    """
+    atoms = _chain_atoms(filename, PEPTIDE_CHAIN)
+
+    peptide_atoms = [a for a in atoms if a[0] <= peptide_length]
+    group_atoms = [
+        a for a in atoms
+        if a[0] > peptide_length and a[2] not in SOLVENT and a[2] not in THREE_TO_ONE
+    ]
+    if not group_atoms:
+        return {}
+
+    attached: dict = {}
+    for _, _, group_name, _, gx, gy, gz in group_atoms:
+        for resnum, icode, resname, _, px, py, pz in peptide_atoms:
+            distance = math.dist((gx, gy, gz), (px, py, pz))
+            if distance <= COVALENT_BOND_MAX:
+                attached[(resnum, icode)] = group_name
+                break
+
+    return attached
+
+
 def peptide_residues(pdb_id: str, sequence: str) -> list:
     """The peptide's residues, with their real numbers.
 
@@ -199,7 +276,13 @@ def peptide_residues(pdb_id: str, sequence: str) -> list:
     if len(residues) != len(sequence):
         return []
 
+    attached = _attached_groups(filename, len(sequence))
+
     return [
-        _residue(PEPTIDE_CHAIN, resnum, icode, resname, sequence[index])
+        _residue(
+            PEPTIDE_CHAIN, resnum, icode, resname,
+            parent=sequence[index],
+            attached=attached.get((resnum, icode)),
+        )
         for index, (resnum, icode, resname) in enumerate(residues)
     ]
