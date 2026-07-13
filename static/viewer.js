@@ -316,17 +316,27 @@ window.HistoTCR = (function () {
 
   /* Show or hide one structure's TCR chains in an overlay.
    *
-   * Mol*'s toggleVisibility(components, value) takes the new VISIBILITY, not
-   * "hidden" — passing !visible inverts the checkboxes, so a ticked box hid the
-   * structure. */
+   * `toggleVisibility(components, pivot)` is a TRAP. Its second argument is a
+   * representation *pivot*, not a boolean visibility — checked against the real
+   * signature. Passing `true` makes it take the pivot branch, where
+   * `representations.indexOf(true)` is -1 and nothing happens at all; passing
+   * `false` falls through to the plain-toggle branch and works by accident. So a
+   * boolean second argument gives you a checkbox that hides but won't show again.
+   *
+   * There is no "set visibility" form — only a toggle — so read the current state
+   * and toggle only when it actually differs. That also makes this idempotent. */
   function toggleOverlayEntry(viewer, pdb, visible) {
     try {
       const plugin = viewer.plugin;
       const entry = plugin.managers.structure.hierarchy.current.structures
-        .flatMap(s => s.components)
-        .find(c => c.cell.obj && c.cell.obj.label === pdb);
+        .flatMap(structure => structure.components)
+        .find(component => component.cell.obj && component.cell.obj.label === pdb);
       if (!entry) return;
-      plugin.managers.structure.component.toggleVisibility([entry], visible);
+
+      const isHidden = !!entry.cell.state.isHidden;
+      if (isHidden !== visible) return;   // already in the state we want
+
+      plugin.managers.structure.component.toggleVisibility([entry]);
     } catch (e) { /* nothing to toggle */ }
   }
 
