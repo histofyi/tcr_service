@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(nohup .venv/bin/python -m quart --app main:create_app run --host 127.0.0.1 --port 8080)",
+      "Bash(curl -s -o /dev/null -w \"server: %{http_code}\\\\n\" \"http://127.0.0.1:8080/tcrs/a6/structures/1ao7\")",
+      "Bash(pkill -f \"quart --app main:create_app\")",
+      "Bash(nohup .venv/bin/python -m quart --app main:app run --host 127.0.0.1 --port 8080)",
+      "Bash(curl -s -o /dev/null -w \"structure page: %{http_code}\\\\n\" \"http://127.0.0.1:8080/tcrs/a6/structures/1ao7\")",
+      "Bash(curl -s -o /dev/null -w \"tcr page: %{http_code}\\\\n\" \"http://127.0.0.1:8080/tcrs/a6\")",
+      "Bash(grep -n -A6 \"^    load, replace\\\\|return {$\" static/viewer.js)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://127.0.0.1:8080/tcrs)"
+    ]
+  }
+}

@@ -30,6 +30,29 @@
   // "is this residue part of the interface?" when a click comes back from Mol*.
   const byToken = new Map(cells.map(cell => [cell.dataset.residue, cell]));
 
+  /* The interaction map's residues. A CDR or peptide residue has a cell here; an α1/α2
+   * one has only an arc over there — but it is just as selectable, and a click on it
+   * in Mol* must be honoured. So the set of selectable residues is the union of the
+   * two, and it is what stops a click on, say, β2-microglobulin writing a ?residue=
+   * the server would only reject on reload. */
+  const chordRoot = document.getElementById('chord-diagram');
+  const chordTokens = new Set(
+    chordRoot
+      ? (JSON.parse(chordRoot.dataset.chord).nodes || [])
+          .map(node => node.token).filter(Boolean)
+      : [],
+  );
+
+  const selectable = (token) => byToken.has(token) || chordTokens.has(token);
+
+  /* Say what is selected now, so the other views of it can follow. The interaction map
+   * listens: it rings the arc, holds its ribbons lit and stands its card up. */
+  function broadcast(token) {
+    document.dispatchEvent(new CustomEvent('histotcr:selection', {
+      detail: { token: token || null },
+    }));
+  }
+
   // chain-resnum[icode], e.g. e-112a. The chain is part of the key: numbering
   // restarts per chain, so D:28 and E:28 are different residues.
   const tokenFor = (chain, resnum, icode) =>
@@ -58,6 +81,7 @@
     opts = opts || {};
     markOnly(cell);
     updateUrl(cell.dataset.residue);
+    broadcast(cell.dataset.residue);
 
     const active = viewer();
     if (!active) return;
@@ -74,9 +98,19 @@
     }
   }
 
+  /* A residue the interaction map shows but the sequences do not — an α1 or α2 one. It
+   * has no cell to mark, but it is still THE selection: it goes in the URL and it is
+   * broadcast, so the map rings its arc and stands its card up. */
+  function selectMapOnly(token) {
+    markOnly(null);
+    updateUrl(token);
+    broadcast(token);
+  }
+
   function clearSelection() {
     markOnly(null);
     updateUrl(null);
+    broadcast(null);
     HistoTCR.clearFocus(viewer());
   }
 
@@ -105,10 +139,16 @@
     HistoTCR.subscribeClicks(
       active,
       (residue) => {
-        // Only residues the page actually shows — clicking the MHC framework in
-        // 3D has nothing to light up in a sequence, so leave the selection alone.
-        const cell = byToken.get(tokenFor(residue.chain, residue.resnum, residue.icode));
+        const token = tokenFor(residue.chain, residue.resnum, residue.icode);
+        const cell = byToken.get(token);
+
+        // A residue with a cell: light up the sequence. One with only an arc on the
+        // interaction map (α1/α2): still the selection — the map shows it.
+        // Anything else — β2m, the MHC framework, the TCR constant domains — is not
+        // part of the interface the page describes, and clicking it selects nothing
+        // rather than wiping what you had.
         if (cell) select(cell, { focus: false });
+        else if (chordTokens.has(token)) selectMapOnly(token);
       },
       // a click on empty background resets the view: clear the sequences too
       () => clearSelection(),
@@ -149,9 +189,12 @@
       event.preventDefault();
       return;
     }
-    markOnly(null);
-    updateUrl(event.detail.token);
+    selectMapOnly(event.detail.token);
   });
+
+  /* The map asking for a reset — a click on its background, or on a ribbon, which is a
+   * pair rather than a residue. Same reset as clicking empty space in Mol*. */
+  document.addEventListener('histotcr:residue-clear', () => clearSelection());
 
   /* The viewer is created asynchronously by viewer.js's autoInit, so it may not
    * exist yet. Poll briefly rather than racing it. */

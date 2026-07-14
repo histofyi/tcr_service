@@ -115,6 +115,19 @@
   const tooltip = document.getElementById('chord-tooltip');
   const viewerFor = () => (window.HistoTCR || {}).viewers?.[VIEWER_ID];
 
+  /* The page's selected residue, held STICKY here: its arc is ringed, its ribbons stay
+   * lit while everything else stays dimmed, and its card stays up. Hovering something
+   * else previews that instead, and leaving the hover falls back to this.
+   *
+   * The token, not the node — the "specific bonds only" toggle rebuilds the diagram
+   * from scratch, and the node objects with it, so the selection has to survive as
+   * something that outlives a render.
+   *
+   * `current` is what the LAST render left behind: everything applySelection needs to
+   * find an arc again and light it up. */
+  let selectedToken = root.dataset.selectedResidue || null;
+  let current = null;
+
   const BOND_LABELS = {
     hbond: 'H-bond', ionic: 'Ionic', aromatic: 'Aromatic',
     hydrophobic: 'Hydrophobic', vdw: 'VdW', vdw_clash: 'VdW clash',
@@ -140,6 +153,13 @@
     });
     document.dispatchEvent(event);
     return event.defaultPrevented;
+  }
+
+  /* Ask sequence.js to drop the page's selection — the sequences, the URL and the
+   * Mol* focus, and by way of its broadcast, this diagram's own sticky arc. Same
+   * reset a click on empty space in Mol* performs. */
+  function clearPageSelection() {
+    document.dispatchEvent(new CustomEvent('histotcr:residue-clear'));
   }
 
   const scrollToViewer = () =>
@@ -281,6 +301,8 @@
         r.classList.remove('is-dim'); r.classList.remove('is-hot');
       });
 
+    const wedges = {};
+
     /* --- ribbons. Widest first, so a thin ribbon is never buried under a fat one. */
     const ribbons = {};
     [...links].sort((a, b) => b.n_atom_pairs - a.n_atom_pairs).forEach((link) => {
@@ -300,6 +322,10 @@
       (ribbons[link.mhc] ||= []).push(path);
 
       path.addEventListener('mouseenter', () => {
+        // While a residue is selected, the diagram holds still. Previewing everything
+        // the pointer crosses would keep tearing down the very thing you selected in
+        // order to look at, and the card would flicker between the two.
+        if (selectedToken) return;
         dimAll();
         path.classList.remove('is-dim');
         path.classList.add('is-hot');
@@ -307,14 +333,22 @@
         HistoTCR.highlightResidues(
           viewerFor(), [molstarResidue(tcr), molstarResidue(mhc)]);
       });
-      path.addEventListener('mousemove', e => showLinkTooltip(e, link, tcr, mhc));
+      path.addEventListener('mousemove', (e) => {
+        if (selectedToken) return;
+        showLinkTooltip(e, link, tcr, mhc);
+      });
       path.addEventListener('mouseleave', () => {
+        if (selectedToken) return;
         undimAll();
         hideTooltip();
         HistoTCR.highlightResidues(viewerFor(), []);
       });
-      path.addEventListener('click', () => {
-        // a ribbon IS the pair, so zoom to both residues and show what holds them
+      path.addEventListener('click', (event) => {
+        event.stopPropagation();   // not a background click
+        // A ribbon is the PAIR, so it zooms to both residues — and a pair is not a
+        // residue selection. Drop the single-residue one rather than leave a stale arc
+        // ringed and a stale ?residue= in the URL while the viewer shows two residues.
+        clearPageSelection();
         HistoTCR.focusResidues(
           viewerFor(), [molstarResidue(tcr), molstarResidue(mhc)]);
         scrollToViewer();
@@ -343,27 +377,41 @@
       const mine = partners[node.id] || [];
 
       wedge.addEventListener('mouseenter', () => {
+        // Selected means selected: no previewing other residues over the top of it.
+        if (selectedToken) return;
         dimAll();
         (ribbons[node.id] || []).forEach((r) => {
           r.classList.remove('is-dim'); r.classList.add('is-hot');
         });
         HistoTCR.highlightResidues(viewerFor(), [molstarResidue(node)]);
       });
-      wedge.addEventListener('mousemove', e => showNodeTooltip(e, node, mine));
+      wedge.addEventListener('mousemove', (e) => {
+        if (selectedToken) return;
+        showNodeTooltip(e, node, mine);
+      });
       wedge.addEventListener('mouseleave', () => {
+        if (selectedToken) return;
         undimAll();
         hideTooltip();
         HistoTCR.highlightResidues(viewerFor(), []);
       });
-      wedge.addEventListener('click', () => {
-        // sequence.js takes it if the page shows this residue (a CDR loop or the
-        // peptide) — then the sequences and the URL move with the chord.
+      wedge.addEventListener('click', (event) => {
+        event.stopPropagation();   // not a background click
+
+        // Announce the residue. sequence.js owns the page's selection and takes it
+        // from here: the sequences, the URL and Mol* all move — and it broadcasts
+        // back, which is what lights this arc up. We do not set our own state here;
+        // there is one selection and one place it is decided.
+        //
+        // It only CANCELS for a residue it has a cell for, though. An α1/α2 residue
+        // has no cell, so nothing else will focus it — we do.
         if (!handOff(node)) {
           HistoTCR.focusResidues(viewerFor(), [molstarResidue(node)]);
         }
         scrollToViewer();
       });
 
+      wedges[node.id] = wedge;
       svg.appendChild(wedge);
 
       /* Labels: one-letter code + residue number, at 1.08 x the radius, rotated to
@@ -386,6 +434,11 @@
 
     root.appendChild(svg);
     fitViewBox(svg);
+
+    // Hand this render's state up, so the sticky selection can find its arc again —
+    // and re-apply it, because the "specific bonds only" toggle rebuilds everything.
+    current = { svg, arcs, nodeById, partners, ribbons, wedges, dimAll, undimAll };
+    applySelection();
   }
 
   /* Shrink the viewBox onto what was actually drawn.
@@ -443,10 +496,13 @@
       <div class="tt-sub">Bond types</div>
       <div>${bonds}</div>
       ${unresolved.map(UNRESOLVED_NOTE).join('')}`;
-    place(event);
+    place(event.clientX, event.clientY);
   }
 
-  function showNodeTooltip(event, node, mine) {
+  /* The card for one residue. Rendered separately from where it is PUT, because a
+   * selection made in Mol* has no cursor position on the chord to hang it off — it
+   * gets anchored to the arc instead (see pinCard). */
+  function renderNodeCard(node, mine) {
     if (!tooltip) return;
     const total = mine.reduce((sum, l) => sum + l.n_atom_pairs, 0);
 
@@ -460,22 +516,78 @@
         <tr><td class="tt-k">Atom pairs</td><td>${total}</td></tr>
       </table>
       ${node.unresolved ? UNRESOLVED_NOTE(node) : ''}`;
-    place(event);
   }
 
-  function place(event) {
+  function showNodeTooltip(event, node, mine) {
+    renderNodeCard(node, mine);
+    place(event.clientX, event.clientY);
+  }
+
+  function place(clientX, clientY) {
+    if (!tooltip) return;
     tooltip.style.display = 'block';
     const pad = 14;
     const box = tooltip.getBoundingClientRect();
-    let x = event.clientX + pad;
-    let y = event.clientY + pad;
-    if (x + box.width > window.innerWidth) x = event.clientX - box.width - pad;
-    if (y + box.height > window.innerHeight) y = event.clientY - box.height - pad;
+    let x = clientX + pad;
+    let y = clientY + pad;
+    if (x + box.width > window.innerWidth) x = clientX - box.width - pad;
+    if (y + box.height > window.innerHeight) y = clientY - box.height - pad;
     tooltip.style.left = `${x}px`;
     tooltip.style.top = `${y}px`;
   }
 
   const hideTooltip = () => { if (tooltip) tooltip.style.display = 'none'; };
+
+  /* --- the sticky selection ------------------------------------------------- */
+
+  /* Put the selected residue's card beside its own arc.
+   *
+   * The card has to be placed from the diagram's geometry, not from a mouse event:
+   * the selection can arrive from a click in Mol*, where there is no cursor anywhere
+   * near the chord. Convert the arc's midpoint from SVG user units into client
+   * coordinates — and read the viewBox rather than assuming it, because fitViewBox
+   * crops it to the drawing and its origin is not 0,0. */
+  function pinCard(node) {
+    const arc = current.arcs[node.id];
+    if (!arc || !tooltip) return;
+
+    const [ux, uy] = polar((arc.from + arc.to) / 2, LABEL_R + 10);
+
+    const box = current.svg.getBoundingClientRect();
+    const view = current.svg.viewBox.baseVal;
+    const scale = view.width ? box.width / view.width : 1;
+
+    renderNodeCard(node, current.partners[node.id] || []);
+    place(box.left + (ux - view.x) * scale, box.top + (uy - view.y) * scale);
+  }
+
+  /* Draw the sticky selection: ring its arc, keep its ribbons lit while the rest stay
+   * dimmed, and stand its card up beside it. Also the "nothing is selected" path, and
+   * what a hover falls BACK to when the pointer leaves. */
+  function applySelection() {
+    if (!current) return;
+
+    current.svg.querySelectorAll('.chord-arc.is-selected')
+      .forEach(arc => arc.classList.remove('is-selected'));
+    current.undimAll();
+    hideTooltip();
+
+    if (!selectedToken) return;
+
+    // The residue may not be in THIS render — "specific bonds only" can filter the arc
+    // out entirely. Then there is nothing to light up, and that is the honest result.
+    const node = Object.values(current.nodeById)
+      .find(candidate => candidate.token === selectedToken);
+    if (!node) return;
+
+    current.dimAll();
+    (current.ribbons[node.id] || []).forEach((ribbon) => {
+      ribbon.classList.remove('is-dim');
+      ribbon.classList.add('is-hot');
+    });
+    current.wedges[node.id]?.classList.add('is-selected');
+    pinCard(node);
+  }
 
   const toggle = document.getElementById('chord-specific');
   if (toggle) toggle.addEventListener('change', e => render(e.target.checked));
@@ -508,4 +620,32 @@
       }, 200);
     }
   }
+
+  /* --- the page's selection, in and out ------------------------------------- */
+
+  /* Whatever selects a residue — an arc here, a click in Mol*, a sequence cell, a
+   * pasted URL — sequence.js broadcasts it, and the arc lights up. One selection, one
+   * place it is decided, three views of it. */
+  document.addEventListener('histotcr:selection', (event) => {
+    selectedToken = (event.detail && event.detail.token) || null;
+    applySelection();
+  });
+
+  /* The card is position:fixed — it has to be, to escape the column and never be
+   * clipped — so it does not travel with the arc it is pinned to. Re-pin it when the
+   * page moves under it, or it drifts off across the screen on the first scroll. */
+  function repin() {
+    if (!selectedToken || !current) return;
+    const node = Object.values(current.nodeById)
+      .find(candidate => candidate.token === selectedToken);
+    if (node) pinCard(node);
+  }
+
+  window.addEventListener('scroll', repin, { passive: true });
+  window.addEventListener('resize', repin);
+
+  /* Empty space in the diagram resets the page, exactly as empty space in Mol* does.
+   * The arcs and ribbons stopPropagation, so anything still reaching here — the
+   * background, the labels, the space inside the ring — is a miss. */
+  root.addEventListener('click', () => clearPageSelection());
 })();

@@ -110,6 +110,12 @@
     }
 
     .chord-arc { stroke: #ffffff; stroke-width: 0.6; cursor: pointer; }
+    /* The selected residue's arc: ringed in the site's ink, so it reads as chosen
+       rather than merely hovered — the hover state is carried by the ribbons. */
+    .chord-arc.is-selected {
+        stroke: #0a0039;
+        stroke-width: 2;
+    }
     .chord-ribbon {
         fill-opacity: 0.70;          /* the grant's ribbon alpha */
         cursor: pointer;
@@ -268,6 +274,17 @@
                      {# an α1/α2 residue has an arc but no sequence cell, so the map is
                         the only thing that can restore it from ?residue= #}
                      data-selected-residue="{{ selected_residue or '' }}"></div>
+                {# The map holds a selection, which is not obvious from looking at it —
+                   say so, and say how to let it go again. #}
+                <p class="vertical-spacing-top-0-25">
+                    <small>
+                        Hover a residue or a contact to preview it. <strong>Click to
+                        select</strong> &mdash; the structure zooms to it and its contacts
+                        stay lit while you look. Clicking a residue in the structure
+                        selects it here too. Click empty space, here or in the structure,
+                        to let it go.
+                    </small>
+                </p>
                 <p class="vertical-spacing-top-0-25">
                     <smaller>
                         {{ chord.nodes | length }} residues,
