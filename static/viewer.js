@@ -571,12 +571,21 @@ window.HistoTCR = (function () {
     else interactivity.lociHighlights.clearHighlights();
   }
 
-  /* Drop the focus/highlight state set by a focusRange(). */
+  /* Undo a focusResidue()/focusRange(): drop the focus and highlight, AND pull the
+   * camera back out.
+   *
+   * The camera reset is the part that is easy to miss. Clicking empty space in Mol*
+   * zooms back out — but that is Mol*'s OWN behaviour on a background click, not
+   * something clearFocus was doing. So every other way of clearing the selection (the
+   * interaction map's background, a ribbon click) left the camera buried in the
+   * side-chains it had zoomed to, and only one of the two "click the background"
+   * gestures actually reset the view. */
   function clearFocus(viewer) {
     if (!viewer) return;
     try {
       viewer.plugin.managers.structure.focus.clear();
       viewer.plugin.managers.interactivity.lociHighlights.clearHighlights();
+      viewer.plugin.managers.camera.reset();
     } catch (e) { /* nothing focused */ }
   }
 
