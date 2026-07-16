@@ -225,12 +225,11 @@ __marimo__/
 #     for f in tmp/*.pdb; do cp "$f" "static/coordinates/$(basename "$f" | tr 'A-Z' 'a-z')"; done
 static/coordinates/
 
-# Transient files Claude Code writes while saving settings — .tmp.<pid>.<hash>
-# variants of both settings.json and settings.local.json. A `git add -A` landing
-# mid-write sweeps them in. This does NOT hide .claude/settings.json itself, which is
-# tracked on purpose (shared project settings) — an ignore rule has no say over a file
-# git is already tracking.
-.claude/*.json.tmp.*
+# Claude Code project settings. Kept out of version control — settings.json churns
+# constantly (a permission entry appended per new command) and settings.local.json is
+# machine-local. This also covers the .tmp.<pid>.<hash> files Claude Code writes while
+# saving them, which a `git add -A` landing mid-write would otherwise sweep in.
+.claude/
 
 # Briefs handed to other Claude Code instances / pipeline owners. Working
 # documents with sample data (coordinate files, exports) — not part of the app.
