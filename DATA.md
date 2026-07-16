@@ -134,34 +134,6 @@ data keys.
 case-insensitively against the keys that actually exist, rather than constructing
 the key.
 
-### 11. No residue-level contacts — the chord cannot be drawn as designed
-
-The chord diagram is meant to be **residue × residue**, with residues grouped by
-CDR loop / peptide / α1 / α2 (as in the grant's figures). Nothing in the export
-supports that. Every layer aggregates to **CDR-loop × MHC-region**:
-
-| File | Grain |
-| --- | --- |
-| `contacts_by_structure.json` | `{cdr_loop, region, bond_type, n_atom_pairs}` |
-| `neighbours_by_structure.json` | `{cdr_loop, region, n_atom_pairs}` |
-| `interaction_com_raw.json` (the raw source) | `ct_bond_types` keyed `CDR1_alpha\|alpha1\|proximal` |
-
-`nb_residue_contacts` is a **count** (e.g. 63), not the pairs. No file carries
-`chain / resnum / resname` on either side of a contact.
-
-The only residue-level data anywhere is the grant's `contact_maps/*.csv` —
-columns `chain_1, resnum_1, resname_1, atom_1, chain_2, resnum_2, resname_2,
-atom_2, interaction_types, distance, tcr_chain, cdr_loop` — and it covers **10 of
-the 206** structures.
-
-**Fix at source:** emit the grant's `contact_maps` format (or equivalent) for all
-206. `bsi_career_enhancing_grant/code/compute_contact_maps.py` already produces
-exactly this from PDBe-Arpeggio; it just needs running over the full set.
-
-**Site workaround:** the chord is drawn at loop × region for now, with ribbon
-width = atom pairs and a "specific bonds only" toggle (Arpeggio's `proximal`
-catch-all is ~90% of all pairs).
-
 ### 13. α1 / α2 are defined two different ways — and the shipped data uses the wrong one
 
 Two definitions of the MHC regions are in circulation:
@@ -184,11 +156,16 @@ way. An "α1" buried-area figure on the site today includes the sheet floor.
 neighbours, SASA, SC) to 50–86 / 137–180. Expect every count to fall — fewer
 residues are in scope. See `briefs/residue_contacts/BRIEF.md` §4.
 
-**Site workaround:** none, deliberately. `functions/interface.py::MHC_SELECTIONS`
-still uses the whole-domain bounds so the Mol\* highlight describes the same
-residues the numbers are computed over. Changing one without the other would be
-worse than leaving both wrong: clicking an "α1" cell would light up a region the
-figure doesn't refer to. **Switch both together when the data lands.**
+**Site workaround (partial):** the *numbers* are left alone — `MHC_SELECTIONS` still
+uses the whole-domain bounds so the Mol\* highlight describes the same residues the
+figures are computed over. Changing one without the other would be worse than leaving
+both wrong: clicking an "α1" cell would light up a region the figure doesn't refer to.
+**Switch both together when the data lands.**
+
+What *did* change is the **label**: `MHC_LABELS` reads `α1` / `α2`, not "α1 helix" /
+"α2 helix", on both the structure-page matrix and the TCR panel. The word "helix"
+claimed a precision the whole-domain numbers don't have. Put it back when the
+regenerated data lands and the numbers are genuinely helix-only.
 
 ### 14. Two `peptide` keys for the same thing
 
@@ -241,9 +218,13 @@ Expect the counts to *rise*.
 **Site workaround:** none is possible — the contacts do not exist and cannot be
 invented. `functions/interface.py::_resolve()` resolves every contact to the
 icode-free residue, which is provably the right one, so the chord's clicks are exact.
-`omitted_residues()` then reads the coordinates for the inserted CDR residues that
-have no row, and the structure page **names them under the chord** ("Not shown:
-E:112A") rather than drawing a ring with silent holes in it.
+
+`omitted_residues()` still computes the inserted CDR residues that have no contact row
+(it reads them back from the coordinates, and they ride along in the `chord` dict as
+`chord.omitted`), but the structure page **no longer displays them**: the "Not shown:
+E:112A" note under the chord was removed to declutter the panel. So the ring is drawn
+with silent holes in it after all — the omission is tracked here and available to the
+template, but not currently surfaced to the reader.
 
 ### 17. A modified peptide is not flagged anywhere, and the coordinates have no LINK records
 
@@ -388,6 +369,26 @@ over the copies and tells the reader it has done so.
 **Fixed by:** `data/interactions/*.json` are keyed by *structure id*
 (`1AO7_aligned_1`, `3PWP_aligned_1_altlocA`) throughout, so every table is
 per-copy and they agree. The averaging can go once the matrix is rebuilt on it.
+
+### 11. No residue-level contacts — the chord cannot be drawn as designed — RESOLVED
+
+**RESOLVED** by the revised `contacts_by_structure.json` (2026-07-13).
+
+The chord diagram is meant to be **residue × residue**, grouped by CDR loop /
+peptide / α1 / α2 (as in the grant's figures). The first export could not support
+it: every layer aggregated to **CDR-loop × MHC-region**, and `nb_residue_contacts`
+was a *count*, not the pairs — no file carried `chain / resnum / resname` on either
+side of a contact. The only residue-level data anywhere was the grant's
+`contact_maps/*.csv`, covering 10 of the 206.
+
+The revised file now carries a `residues[]` block per structure — `{from_chain,
+from_residue, from_aa, to_chain, to_residue, to_aa, n_atom_pairs, min_distance,
+bond_types}` — for all 206, and `functions/interface.py::residue_chord()` builds the
+diagram from it. `static/chord.js` draws one arc per residue and one ribbon per pair.
+
+**One caveat carries over as its own entry:** those `residues[]` rows silently drop
+every insertion-coded residue. That is not a grain problem but a completeness one, so
+it is tracked separately and is still open — see #16.
 
 ---
 
