@@ -55,8 +55,9 @@ Provenance notes worth carrying:
 
 | Path | Kind | Read by | Held how |
 | --- | --- | --- | --- |
-| `data/tcrs.parquet`, `data/clonotypes.parquet` | Browse indexes | DuckDB, per request | not cached |
-| `data/tcr/<id>.json`, `data/clonotype/<id>.json`, `data/structure/<PDB>.json` | Per-page bundles | `json.load`, per request | not cached |
+| `data/tcrs.parquet` | Browse index | DuckDB, per request | not cached |
+| `data/tcr/<id>.json`, `data/structure/<PDB>.json` | Per-page bundles | `json.load`, per request | not cached |
+| `data/clonotypes.parquet`, `data/clonotype/<id>.json`, `data/clonotypes_index.json` | Clonotype data | **nothing** — views held back from MVP | on disk, unused |
 | `data/class_i_annotation.csv` | Master table (IEDB, external DB sources, gene calls) | `functions/annotations.py` | cached for process life |
 | `data/interactions/*.json` | Contacts, neighbours, SASA, shape-complementarity | `functions/interface.py` | cached for process life |
 | `data/pdbe_publications.json` | Author lists | `functions/publications.py` | cached for process life |
@@ -64,8 +65,10 @@ Provenance notes worth carrying:
 | `static/data/com_coords.json` | Centre-of-mass points for the Explore viewer | browser (`explore.js`) | — |
 | `config.json` | COM projection geometry, colour palettes, chain labels, nav | loaded at `create_app()` | held on `app.config` |
 
-The 206 structures roll up into **123 TCR** pages and **133 clonotype** pages; see
-`data/README.md` for how the page units relate.
+The 206 structures roll up into **123 TCR** pages. They also roll up into 133
+clonotypes (the finer TRAV/TRBV/CDR3 grain), but **the clonotype views are held back
+from the MVP** — the data is still on disk and the parquet index still builds, but no
+route serves it. See `data/README.md` for how the page units relate.
 
 ## 3. Transformations at process start (cached for the process lifetime)
 

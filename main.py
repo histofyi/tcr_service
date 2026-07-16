@@ -8,7 +8,6 @@ import os
 
 from handlers import tcrs_handler, tcr_handler, explore_handler
 from handlers import structure_handler
-from handlers import clonotypes_handler, clonotype_handler
 
 from functions.coordinates import coordinate_url
 from functions.residues import residue_token
@@ -169,21 +168,11 @@ async def structure_overview_view(tcr_id, pdb_id):
     return structure_handler(tcr_id, pdb_id, request.args.get('residue'))
 
 
-## Clonotypes — the finer grain ##
-
-@app.route('/clonotypes')
-@app.route('/clonotypes/')
-@templated('clonotypes_index')
-async def clonotypes_view():
-    sort = request.args.get('sort', 'deposition_desc')
-    return clonotypes_handler(sort)
-
-
-@app.route('/clonotypes/<clonotype_id>')
-@app.route('/clonotypes/<clonotype_id>/')
-@templated('clonotype_overview')
-async def clonotype_overview_view(clonotype_id):
-    return clonotype_handler(clonotype_id)
+# Clonotype views (index + per-clonotype pages) are held back from the MVP: the finer
+# TCRAV/TRBV/CDR3 grain, and especially the engineered-variant detail, need more design
+# thought than they've had. The prebaked data (data/clonotype/*, data/clonotypes*) is
+# left in place so the pages can be brought back without regenerating anything; the
+# handler and model are functions/handlers/clonotypes.py in git history.
 
 
 if __name__ == "__main__":

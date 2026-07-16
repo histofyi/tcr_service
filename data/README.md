@@ -17,9 +17,10 @@ PDBe deposition/release dates. Parquet engine: **fastparquet**.
   (name suffix `*`) are grouped into the parent TCR page and flagged
   `has_engineered_variants`; the residue-level engineering detail lives on the
   clonotype.
-- **clonotype** (133) — finer grain (`/clonotypes`, `/clonotypes/{clonotype_id}`).
-  Unique (TRAV,TRBV,CDR3α,CDR3β). A named TCR may span several clonotypes
-  (engineered families e.g. 1G4, TCR156).
+- **clonotype** (133) — finer grain, unique (TRAV,TRBV,CDR3α,CDR3β); a named TCR may
+  span several clonotypes (engineered families e.g. 1G4, TCR156). **The clonotype
+  views are held back from the MVP** — this data is still generated and shipped, but
+  no route currently serves it (was `/clonotypes`, `/clonotypes/{clonotype_id}`).
 - **structure** (206) — the deep-dive leaf (`/tcrs/{tcr_id}/structures/{pdb_id}`).
 
 ## Files

@@ -241,7 +241,6 @@
                 <p class="vertical-spacing-bottom-0-5">
                     <small>
                         {{ tcr.n_structures }} structure{% if tcr.n_structures != 1 %}s{% endif %}
-                        &middot; {{ tcr.n_clonotypes }} clonotype{% if tcr.n_clonotypes != 1 %}s{% endif %}
                         {# A TCR with one structure (or several deposited the same day)
                            read "deposited 26 Jun 2025 to 26 Jun 2025". #}
                         &middot; deposited to the PDB
@@ -299,14 +298,6 @@
                             <td>
                                 {% for peptide in tcr.peptides %}
                                     <span class="mono">{{ peptide }}</span>{% if not loop.last %}<br />{% endif %}
-                                {% endfor %}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Clonotypes</td>
-                            <td>
-                                {% for clonotype_id in tcr.clonotype_ids %}
-                                    <a href="/clonotypes/{{ clonotype_id }}">{{ clonotype_id }}</a>{% if not loop.last %}, {% endif %}
                                 {% endfor %}
                             </td>
                         </tr>
