@@ -563,7 +563,9 @@
                      data-width="{{ com_projection.width }}"
                      data-crop='{{ com_projection.crop | tojson }}'
                      data-ref='{{ com_projection.ref | tojson }}'
-                     data-colour="{{ antigen_colors.get(structure.antigen_type, '#0a0039') }}">
+                     data-colour="{{ antigen_colors.get(structure.antigen_type, '#0a0039') }}"
+                     data-antigen-label="{{ structure.antigen_type | deslugify_string }}"
+                     data-distributions='{{ com_distributions | tojson }}'>
                     <div class="com-mini-bar">
                         <label>Centre of mass type <select class="com-mini-type"></select></label>
                     </div>
@@ -577,9 +579,14 @@
                 <p class="vertical-spacing-top-0-25">
                     <smaller>
                         This structure&rsquo;s centre of mass, projected onto the 1hhk
-                        antigen-binding domain (viewed from above). The black dot is the
-                        domain&rsquo;s own centre &mdash; the fixed point every projection is
-                        read against.
+                        antigen-binding domain (viewed from above), against where TCRs
+                        usually sit. The <strong>black outline</strong> is the spread of all
+                        structures; the
+                        <strong style="color: {{ antigen_colors.get(structure.antigen_type, '#0a0039') }};">coloured
+                        outline</strong> the spread of those reading a
+                        {{ structure.antigen_type | deslugify_string | lower }} antigen. Each
+                        is a 2&sigma; and 1&sigma; ellipse; the black dot is the domain&rsquo;s
+                        own centre.
                     </smaller>
                 </p>
             </div>

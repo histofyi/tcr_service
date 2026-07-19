@@ -20,6 +20,11 @@
   const CROP = JSON.parse(root.dataset.crop);          // { top, height } — the visible band
   const W = parseFloat(root.dataset.width);            // projection width, image px
   const COLOUR = root.dataset.colour || '#0a0039';     // this structure's antigen colour
+  const ANTIGEN = root.dataset.antigenLabel || '';     // ...and what to call it
+
+  // Distribution ellipses to sit behind the point, per layer: every structure (black)
+  // and this structure's antigen class (coloured). Either can be null for a layer.
+  const DIST = JSON.parse(root.dataset.distributions || '{}');
 
   const bg = root.querySelector('.com-mini-bg');
   const cv = root.querySelector('.com-mini-canvas');
@@ -34,9 +39,44 @@
   let layer = POINT.footprint ? 'footprint' : Object.keys(LAYERS)[0];
   let scale = 1;
 
+  /* A 2-sigma covariance ellipse (from functions/com_distribution.py) — and a 1-sigma
+   * one at half the axes, matching the Explore viewer. Drawn behind the point, so the
+   * point reads as "here, against that spread". */
+  function drawEllipse(e, colour) {
+    if (!e) return;
+    ctx.save();
+    ctx.translate(e.cx * scale, e.cy * scale);
+    ctx.rotate(e.angle);
+
+    ctx.beginPath();
+    ctx.ellipse(0, 0, e.ax_major * scale, e.ax_minor * scale, 0, 0, Math.PI * 2);
+    ctx.globalAlpha = 0.06;
+    ctx.fillStyle = colour;
+    ctx.fill();
+    ctx.globalAlpha = 0.7;
+    ctx.lineWidth = 1.5;
+    ctx.strokeStyle = colour;
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.ellipse(0, 0, e.ax_major * scale / 2, e.ax_minor * scale / 2, 0, 0, Math.PI * 2);
+    ctx.globalAlpha = 0.45;
+    ctx.lineWidth = 1;
+    ctx.stroke();
+
+    ctx.globalAlpha = 1;
+    ctx.restore();
+  }
+
   function draw() {
     const dpr = window.devicePixelRatio || 1;
     ctx.clearRect(0, CROP.top * scale, cv.width / dpr, CROP.height * scale);
+
+    // Context first, behind the point: every structure (black), then this structure's
+    // antigen class (its colour). The antigen ellipse is null where the class has too
+    // few structures to describe, so only the overall one shows.
+    drawEllipse((DIST.overall || {})[layer], '#000000');
+    drawEllipse((DIST.antigen || {})[layer], COLOUR);
 
     const p = POINT[layer];
     if (p) {

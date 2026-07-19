@@ -1,4 +1,5 @@
 from functions.annotations import external_links, iedb_annotation
+from functions.com_distribution import com_distributions
 from functions.publications import publication_authors
 from functions.residues import cdr_residues, parse_residue_token, peptide_residues
 from functions.interface import (
@@ -83,6 +84,9 @@ def structure_handler(tcr_id: str, pdb_id: str, selected_residue: str | None = N
             'external_links': external_links(pdb_id),
             # The one thing the bundle's `publication` lacks: who wrote it.
             'authors': publication_authors(pdb_id),
+            # Context for the mini COM viewer: the spread of every structure's COM
+            # (black) and of this structure's antigen class (coloured), per layer.
+            'com_distributions': com_distributions(structure.get('antigen_type')),
             # Keyed off the coordinate file the viewer loads, so the matrix always
             # describes the copy actually on screen — no longer averaged.
             'matrix': interface_matrix(pdb_id),
