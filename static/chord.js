@@ -52,10 +52,41 @@
   /* The grant's IBM colour-blind-safe palette (palette.json). MHC is the
    * orange/amber family, TCR alpha magenta, TCR beta blue; within a chain CDR1 is
    * lightest and CDR3 darkest. */
+  /* The chord echoes Mol*'s chain colours, so an arc means the same chain here as in
+   * the structure beside it. The base colours are Mol*'s exactly (viewer.js
+   * CHAIN_COLOURS); the groups within a chain are TINTS of it — the colour mixed
+   * toward white, at the given strength. So a lower percentage is paler.
+   *
+   *   MHC (chain A):  α1 60%, α2 100%   — the α2 helix full strength, α1 a shade back
+   *   peptide (C):    100%
+   *   TCR α (D):      CDR1 50%, CDR2 75%, CDR3 100%   — deepest at CDR3, the apex loop
+   *   TCR β (E):      CDR1 50%, CDR2 75%, CDR3 100%
+   */
+  const MOLSTAR = {
+    mhc: '#1b9e77',      // chain A
+    peptide: '#7570b3',  // chain C
+    tcr_alpha: '#e7298a', // chain D
+    tcr_beta: '#66a61e', // chain E
+  };
+
+  /* Mix a hex colour toward white. strength 1 = the colour itself, 0 = white. */
+  function tint(hex, strength) {
+    const n = parseInt(hex.slice(1), 16);
+    const r = (n >> 16) & 255, g = (n >> 8) & 255, b = n & 255;
+    const mix = (c) => Math.round(c + (255 - c) * (1 - strength));
+    return `rgb(${mix(r)}, ${mix(g)}, ${mix(b)})`;
+  }
+
   const COLOURS = {
-    alpha1: '#FE8133', peptide: '#FFB000', alpha2: '#FE6100',
-    alpha_cdr1: '#EA7DB2', alpha_cdr2: '#DC267F', alpha_cdr3: '#9A1B59',
-    beta_cdr1: '#92B1FF', beta_cdr2: '#648FFF', beta_cdr3: '#4664B2',
+    alpha1: tint(MOLSTAR.mhc, 0.6),
+    peptide: tint(MOLSTAR.peptide, 1.0),
+    alpha2: tint(MOLSTAR.mhc, 1.0),
+    alpha_cdr1: tint(MOLSTAR.tcr_alpha, 0.5),
+    alpha_cdr2: tint(MOLSTAR.tcr_alpha, 0.75),
+    alpha_cdr3: tint(MOLSTAR.tcr_alpha, 1.0),
+    beta_cdr1: tint(MOLSTAR.tcr_beta, 0.5),
+    beta_cdr2: tint(MOLSTAR.tcr_beta, 0.75),
+    beta_cdr3: tint(MOLSTAR.tcr_beta, 1.0),
   };
 
   // Reading left to right along the top of the ring, and along the bottom.
@@ -90,6 +121,27 @@
   const RING = Math.round(OUTER * 0.05);     // grant: RING_WIDTH 0.05 of OUTER 1.0
   const CHORD_R = OUTER - RING;
   const LABEL_R = Math.round(OUTER * 1.08);  // grant: LABEL_RADIUS 1.08
+  const GROUP_LABEL_R = Math.round(OUTER * 1.24);  // just outside the residue labels
+
+  /* The component label for the outer ring. Greek throughout: the CDR groups keep the
+   * server's `α CDR1` form; the MHC regions read `MHC α1` / `MHC α2` / `peptide` so a
+   * newcomer can tell what half of the ring they are looking at. */
+  const RING_LABEL = {
+    alpha1: 'MHC α1', peptide: 'peptide', alpha2: 'MHC α2',
+    alpha_cdr1: CDR_LABELS.alpha_cdr1, alpha_cdr2: CDR_LABELS.alpha_cdr2,
+    alpha_cdr3: CDR_LABELS.alpha_cdr3, beta_cdr1: CDR_LABELS.beta_cdr1,
+    beta_cdr2: CDR_LABELS.beta_cdr2, beta_cdr3: CDR_LABELS.beta_cdr3,
+  };
+
+  /* Each component label is tinted to its own arc — but at full chain strength, not the
+   * arc's tint. A 50%-tint CDR1 label would be too pale to read at 8px; the full colour
+   * still ties the label to its segment (α pink, β olive, MHC teal, peptide purple)
+   * while the tint gradient stays the arcs' job. */
+  const GROUP_LABEL_COLOUR = {
+    alpha_cdr1: MOLSTAR.tcr_alpha, alpha_cdr2: MOLSTAR.tcr_alpha, alpha_cdr3: MOLSTAR.tcr_alpha,
+    beta_cdr1: MOLSTAR.tcr_beta, beta_cdr2: MOLSTAR.tcr_beta, beta_cdr3: MOLSTAR.tcr_beta,
+    alpha1: MOLSTAR.mhc, alpha2: MOLSTAR.mhc, peptide: MOLSTAR.peptide,
+  };
 
   /* Ribbon endpoints, in degrees. A residue's arc is shared out among its partners
    * in proportion to their atom pairs, on a scale (deg per atom pair) shared by the
@@ -202,26 +254,33 @@
 
     /* --- arcs: equal angular space per residue within each half, gaps reserved --- */
     const arcs = {};
+    const groupMid = {};   // angular midpoint of each group that has residues — for the ring labels
     const tcrWidth = ((TCR_LEFT - TCR_RIGHT) - CDR_GAP_TOTAL) / (tcrCount || 1);
     const mhcWidth = ((MHC_RIGHT - MHC_LEFT) - MHC_GAP_TOTAL) / (mhcCount || 1);
 
     // Top: 180° -> 0°, clockwise (decreasing polar).
     let cursor = TCR_LEFT;
     CDR_ORDER.forEach((group) => {
-      inGroup(group).forEach((node) => {
+      const start = cursor;
+      const members = inGroup(group);
+      members.forEach((node) => {
         arcs[node.id] = { from: cursor - tcrWidth, to: cursor, width: tcrWidth };
         cursor -= tcrWidth;
       });
+      if (members.length) groupMid[group] = (start + cursor) / 2;
       cursor -= CDR_GAPS[group];
     });
 
     // Bottom: 195° -> 345°, anti-clockwise (increasing polar).
     cursor = MHC_LEFT;
     MHC_ORDER.forEach((group) => {
-      inGroup(group).forEach((node) => {
+      const start = cursor;
+      const members = inGroup(group);
+      members.forEach((node) => {
         arcs[node.id] = { from: cursor, to: cursor + mhcWidth, width: mhcWidth };
         cursor += mhcWidth;
       });
+      if (members.length) groupMid[group] = (start + cursor) / 2;
       cursor += MHC_GAPS[group];
     });
 
@@ -432,6 +491,34 @@
       svg.appendChild(label);
     });
 
+    /* --- component labels around the outer ring -------------------------------
+     * One per group that has residues, sat outside the residue labels and tangential
+     * to the ring so the multi-word ones (MHC α1, α CDR1) read along it. Upright on
+     * the top half, flipped through 180° on the bottom so nothing hangs upside down. */
+    Object.entries(groupMid).forEach(([group, mid]) => {
+      const [gx, gy] = polar(mid, GROUP_LABEL_R);
+      // screen angle of the radial direction is -mid; the tangent is that minus 90.
+      let rot = -mid - 90;
+      rot = ((rot % 360) + 360) % 360;
+      if (rot > 180) rot -= 360;
+      if (rot > 90 || rot < -90) rot += 180;   // keep it the right way up
+
+      // The peptide sits at the bottom of the ring, near horizontal already — a few
+      // degrees of tilt just reads as a mistake, so pin it flat.
+      if (group === 'peptide') rot = 0;
+
+      const label = el('text', {
+        x: gx, y: gy,
+        class: 'chord-group-label',
+        fill: GROUP_LABEL_COLOUR[group] || '#0a0039',
+        'text-anchor': 'middle',
+        'dominant-baseline': 'central',
+        transform: `rotate(${rot} ${gx} ${gy})`,
+      });
+      label.textContent = RING_LABEL[group] || group;
+      svg.appendChild(label);
+    });
+
     root.appendChild(svg);
     fitViewBox(svg);
 
@@ -488,7 +575,6 @@
         ${GROUP_LABELS[link.cdr_loop]} &middot; ${GROUP_LABELS[link.mhc_region]}
       </div>
       <table>
-        <tr><td class="tt-k">Atom pairs</td><td>${link.n_atom_pairs}</td></tr>
         <tr><td class="tt-k">Closest</td><td>${
           link.min_distance === null ? '&mdash;' : `${link.min_distance.toFixed(2)} Å`
         }</td></tr>
@@ -496,69 +582,60 @@
       <div class="tt-sub">Bond types</div>
       <div>${bonds}</div>
       ${unresolved.map(UNRESOLVED_NOTE).join('')}`;
-    place(event.clientX, event.clientY);
+    placeCentre();
   }
 
   /* The card for one residue. Rendered separately from where it is PUT, because a
-   * selection made in Mol* has no cursor position on the chord to hang it off — it
-   * gets anchored to the arc instead (see pinCard). */
+   * selection made in Mol* has no cursor position on the chord to hang it off. */
   function renderNodeCard(node, mine) {
     if (!tooltip) return;
-    const total = mine.reduce((sum, l) => sum + l.n_atom_pairs, 0);
 
+    // The residue, then what its chain does HERE — its loop or region (α CDR1, MHC α1,
+    // peptide) rather than a bare "chain D". That says more and folds the old separate
+    // group line into the title, so the card is a row shorter.
     tooltip.innerHTML = `
       <div class="tt-title">${node.resname} ${node.resnum}${
-        node.icode || ''} &middot; chain ${node.chain}</div>
-      <div class="tt-sub-plain">${GROUP_LABELS[node.group]}</div>
+        node.icode || ''} &middot; ${RING_LABEL[node.group] || GROUP_LABELS[node.group]}</div>
       <table>
         <tr><td class="tt-k">Contacts</td><td>${mine.length} residue${
           mine.length === 1 ? '' : 's'}</td></tr>
-        <tr><td class="tt-k">Atom pairs</td><td>${total}</td></tr>
       </table>
       ${node.unresolved ? UNRESOLVED_NOTE(node) : ''}`;
   }
 
   function showNodeTooltip(event, node, mine) {
     renderNodeCard(node, mine);
-    place(event.clientX, event.clientY);
+    placeCentre();
   }
 
-  function place(clientX, clientY) {
-    if (!tooltip) return;
+  /* The card sits in the MIDDLE of the ring — the empty centre — rather than chasing
+   * the cursor. It reads the same wherever the contact is, and a selection restored
+   * from Mol* (which has no cursor near the chord) lands in the same place as a hover.
+   * The ring's centre is (CENTRE, CENTRE) in user units; convert to client coords via
+   * the cropped viewBox, exactly as pinCard did for the arc. */
+  function placeCentre() {
+    if (!tooltip || !current) return;
+    const box = current.svg.getBoundingClientRect();
+    const view = current.svg.viewBox.baseVal;
+    const scale = view.width ? box.width / view.width : 1;
+
     tooltip.style.display = 'block';
-    const pad = 14;
-    const box = tooltip.getBoundingClientRect();
-    let x = clientX + pad;
-    let y = clientY + pad;
-    if (x + box.width > window.innerWidth) x = clientX - box.width - pad;
-    if (y + box.height > window.innerHeight) y = clientY - box.height - pad;
-    tooltip.style.left = `${x}px`;
-    tooltip.style.top = `${y}px`;
+    const tip = tooltip.getBoundingClientRect();
+    const cx = box.left + (CENTRE - view.x) * scale;
+    const cy = box.top + (CENTRE - view.y) * scale;
+    tooltip.style.left = `${cx - tip.width / 2}px`;
+    tooltip.style.top = `${cy - tip.height / 2}px`;
   }
 
   const hideTooltip = () => { if (tooltip) tooltip.style.display = 'none'; };
 
   /* --- the sticky selection ------------------------------------------------- */
 
-  /* Put the selected residue's card beside its own arc.
-   *
-   * The card has to be placed from the diagram's geometry, not from a mouse event:
-   * the selection can arrive from a click in Mol*, where there is no cursor anywhere
-   * near the chord. Convert the arc's midpoint from SVG user units into client
-   * coordinates — and read the viewBox rather than assuming it, because fitViewBox
-   * crops it to the drawing and its origin is not 0,0. */
+  /* Stand the selected residue's card up in the centre of the ring. */
   function pinCard(node) {
-    const arc = current.arcs[node.id];
-    if (!arc || !tooltip) return;
-
-    const [ux, uy] = polar((arc.from + arc.to) / 2, LABEL_R + 10);
-
-    const box = current.svg.getBoundingClientRect();
-    const view = current.svg.viewBox.baseVal;
-    const scale = view.width ? box.width / view.width : 1;
-
+    if (!current || !tooltip) return;
     renderNodeCard(node, current.partners[node.id] || []);
-    place(box.left + (ux - view.x) * scale, box.top + (uy - view.y) * scale);
+    placeCentre();
   }
 
   /* Draw the sticky selection: ring its arc, keep its ribbons lit while the rest stay

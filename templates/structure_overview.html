@@ -127,7 +127,7 @@
     /* One label per residue: <one-letter><number>, as the grant's figures label
        them. The ring tops out at 33 residues in a half, which still leaves room. */
     .chord-label {
-        font-size: 9.5px;
+        font-size: 10.5px;
         font-weight: 600;
         fill: #0a0039;
         font-family: 'IBM Plex Mono', monospace;
@@ -136,6 +136,17 @@
     /* The guard case: a residue the contacts name that is not in the coordinates.
        It fires on nothing we hold, but if it ever did, the label must say so. */
     .chord-label.is-unresolved { fill: #857f9c; }
+
+    /* The component labels around the outer ring (α CDR1, MHC α1, peptide) — words,
+       so Poppins rather than the mono of the residue labels. Kept smaller than the
+       residue labels so they read as a secondary annotation, not a heading; each is
+       tinted to its segment via an inline fill (see chord.js). */
+    .chord-group-label {
+        font-size: 8px;
+        font-weight: 600;
+        font-family: 'Poppins', sans-serif;
+        pointer-events: none;
+    }
 
     .chord-empty {
         font-size: 13px;
