@@ -12,6 +12,27 @@
        rather than being shrunk to fit. The label column gives up width to them. */
     .info-table.is-chains td:first-child { width: 22%; }
 
+    /* Key to the amino-acid colours the CDR and peptide sequences use. Each swatch is
+       a real residue rendered exactly as in the sequences (the .bg-* palette), so the
+       key IS a sample of the thing it explains. */
+    .aa-key { display: flex; flex-wrap: wrap; gap: 7px 18px; align-items: center; }
+    .aa-key .aa-group {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 10pt;
+        color: #333355;
+    }
+    .aa-key .swatch {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 10pt;
+        padding: 1px 6px;
+        border-radius: 3px;
+        color: #0a0039;
+    }
+    /* The X marker, same dotted underline the modified residues carry in the sequence. */
+    .aa-key .swatch.is-modified { border-bottom: 2px dotted #dc267f; }
+
     /* --- the interface matrix ------------------------------------------------
        6 CDR loops x 3 MHC regions. Bubble AREA = buried surface area, bubble
        COLOUR = shape complementarity. Built as SVG by interface_matrix.js. */
@@ -435,6 +456,25 @@
                     <smaller>Peptide annotation from the <a href="https://www.iedb.org/" target="_blank" rel="noopener">IEDB</a>.</smaller>
                 </p>
                 {% endif %}
+            </div>
+        </div>
+    </div>
+    {# Key to the residue colours above. Grouped by side-chain property, which is what
+       the palette encodes; each swatch is a representative residue drawn exactly as in
+       the sequences. #}
+    <div class="grid-container">
+        <div class="column-full-width">
+            <div class="inner">
+                <div class="panel-title vertical-spacing-top-0-25 vertical-spacing-bottom-0-25">Amino acid colours</div>
+                <div class="aa-key">
+                    <span class="aa-group"><span class="swatch bg-l">L</span> Hydrophobic</span>
+                    <span class="aa-group"><span class="swatch bg-t">T</span> Polar</span>
+                    <span class="aa-group"><span class="swatch bg-k">K</span> Basic</span>
+                    <span class="aa-group"><span class="swatch bg-e">E</span> Acidic</span>
+                    <span class="aa-group"><span class="swatch bg-g">G</span> Glycine</span>
+                    <span class="aa-group"><span class="swatch bg-c">C</span> Cysteine</span>
+                    <span class="aa-group"><span class="swatch is-modified">X</span> Modified</span>
+                </div>
             </div>
         </div>
     </div>

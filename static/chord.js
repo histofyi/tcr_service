@@ -121,7 +121,7 @@
   const RING = Math.round(OUTER * 0.05);     // grant: RING_WIDTH 0.05 of OUTER 1.0
   const CHORD_R = OUTER - RING;
   const LABEL_R = Math.round(OUTER * 1.08);  // grant: LABEL_RADIUS 1.08
-  const GROUP_LABEL_R = Math.round(OUTER * 1.24);  // just outside the residue labels
+  const GROUP_LABEL_R = Math.round(OUTER * 1.34);  // clear of the residue labels, incl. 3-digit numbers
 
   /* The component label for the outer ring. Greek throughout: the CDR groups keep the
    * server's `α CDR1` form; the MHC regions read `MHC α1` / `MHC α2` / `peptide` so a
