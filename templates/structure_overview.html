@@ -33,6 +33,40 @@
     /* The X marker, same dotted underline the modified residues carry in the sequence. */
     .aa-key .swatch.is-modified { border-bottom: 2px dotted #dc267f; }
 
+    /* The mini COM viewer beside the interface matrix — the scoped viewer's look,
+       single point, no hover card. */
+    #com-mini {
+        border: 1px solid rgba(10, 0, 57, 0.20);
+        border-radius: 6px;
+        overflow: hidden;
+    }
+    .com-mini-bar {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 9px 16px;
+        border-bottom: 1px solid rgba(10, 0, 57, 0.10);
+        font-size: 11px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #0a0039;
+    }
+    .com-mini-bar select {
+        border: 1px solid rgba(10, 0, 57, 0.20);
+        border-radius: 5px;
+        padding: 5px 8px;
+        font-size: 13px;
+        font-family: 'Poppins', sans-serif;
+        text-transform: none;
+        letter-spacing: 0;
+        cursor: pointer;
+    }
+    .com-mini-stage { position: relative; background: #ffffff; overflow: hidden; }
+    .com-mini-wrap { position: relative; }
+    .com-mini-bg { position: absolute; top: 0; left: 0; width: 100%; height: auto; display: block; }
+    .com-mini-canvas { position: absolute; top: 0; left: 0; }
+
     /* --- the interface matrix ------------------------------------------------
        6 CDR loops x 3 MHC regions. Bubble AREA = buried surface area, bubble
        COLOUR = shape complementarity. Built as SVG by interface_matrix.js. */
@@ -500,6 +534,9 @@
             </div>
         </div>
     </div>
+    {# The bubble matrix, and beside it where this structure sits on the groove — the
+       same 1hhk projection as Explore, one point, a dropdown to pick which centre of
+       mass. How the interface reads, and where it is. #}
     <div class="grid-container">
         <div class="column-one-half">
             <div class="inner">
@@ -516,9 +553,45 @@
                      data-sc-max="{{ sc_max }}"></div>
             </div>
         </div>
+        {% if structure.com_px %}
         <div class="column-one-half">
             <div class="inner">
-                <div class="panel-title vertical-spacing-bottom-0-25">Reading this</div>
+                <div id="com-mini"
+                     data-point='{{ structure.com_px | tojson }}'
+                     data-layers='{{ com_projection.layers | tojson }}'
+                     data-background="{{ com_projection.background }}"
+                     data-width="{{ com_projection.width }}"
+                     data-crop='{{ com_projection.crop | tojson }}'
+                     data-ref='{{ com_projection.ref | tojson }}'
+                     data-colour="{{ antigen_colors.get(structure.antigen_type, '#0a0039') }}">
+                    <div class="com-mini-bar">
+                        <label>Centre of mass type <select class="com-mini-type"></select></label>
+                    </div>
+                    <div class="com-mini-stage">
+                        <div class="com-mini-wrap">
+                            <img class="com-mini-bg" alt="Where this structure sits on the antigen-binding domain">
+                            <canvas class="com-mini-canvas"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <p class="vertical-spacing-top-0-25">
+                    <smaller>
+                        This structure&rsquo;s centre of mass, projected onto the 1hhk
+                        antigen-binding domain (viewed from above). The black dot is the
+                        domain&rsquo;s own centre &mdash; the fixed point every projection is
+                        read against.
+                    </smaller>
+                </p>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    {# How to read the matrix — below it now, not beside it, so the COM viewer can sit
+       alongside the chart it belongs with. #}
+    <div class="grid-container">
+        <div class="column-full-width">
+            <div class="inner">
+                <div class="panel-title vertical-spacing-top-0-25 vertical-spacing-bottom-0-25">Reading the matrix</div>
                 <small>
                     <div class="matrix-key vertical-spacing-bottom-0-25">
                         <span>Sc {{ sc_min }} <span class="matrix-ramp" id="matrix-ramp"></span> {{ sc_max }}</span>
@@ -527,12 +600,8 @@
                         Bubble area is proportional to buried surface area, on a scale shared
                         with every other structure &mdash; so the bubbles are comparable
                         between pages, not just within this one.
-                    </p>
-                    <p>
                         A dashed outline means the loop does touch that region, but Sc could not
                         be computed for the pair. A small dot means no contact at all.
-                    </p>
-                    <p>
                         Hovering a cell also breaks down the atom pairs behind it by bond type.
                     </p>
                     {% if matrix.copies | length > 1 %}
@@ -684,5 +753,6 @@
 <script src="{{ asset('interface_matrix.js') }}"></script>
 <script src="{{ asset('chord.js') }}"></script>
 <script src="{{ asset('sequence.js') }}"></script>
+{% if structure.com_px %}<script src="{{ asset('com_mini.js') }}"></script>{% endif %}
 {% endif %}
 {% endblock %}
